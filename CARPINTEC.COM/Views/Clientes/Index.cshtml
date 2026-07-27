@@ -1,0 +1,377 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Carpintec - Gestión de Clientes</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "inverse-primary": "#e1c299",
+                            "on-primary-fixed-variant": "#584324",
+                            "surface-container-highest": "#e4e2dd",
+                            "on-tertiary-fixed": "#0e1c2f",
+                            "on-background": "#000000",
+                            "on-tertiary-container": "#3d495f",
+                            "outline-variant": "#d1c5b8",
+                            "secondary": "#5f5e5e",
+                            "tertiary-fixed-dim": "#bac7e1",
+                            "secondary-fixed-dim": "#c8c6c5",
+                            "tertiary-fixed": "#d6e3fe",
+                            "error": "#ba1a1a",
+                            "primary-fixed": "#feddb3",
+                            "on-primary-container": "#000000",
+                            "on-secondary-fixed-variant": "#474747",
+                            "on-secondary": "#ffffff",
+                            "surface-container-lowest": "#ffffff",
+                            "inverse-on-surface": "#f2f1ec",
+                            "surface-dim": "#dbdad5",
+                            "surface-container": "#f0eee9",
+                            "error-container": "#ffdad6",
+                            "on-secondary-fixed": "#000000",
+                            "on-error": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface-container-high": "#eae8e3",
+                            "inverse-surface": "#30312e",
+                            "on-tertiary-fixed-variant": "#3b475d",
+                            "on-primary-fixed": "#000000",
+                            "secondary-fixed": "#e4e2e1",
+                            "surface": "#fbf9f4",
+                            "primary-fixed-dim": "#e1c299",
+                            "primary": "#D2B48C",
+                            "on-secondary-container": "#656464",
+                            "on-surface-variant": "#000000",
+                            "background": "#fbf9f4",
+                            "surface-tint": "#D2B48C",
+                            "surface-bright": "#fbf9f4",
+                            "on-surface": "#000000",
+                            "tertiary": "#525f76",
+                            "on-primary": "#000000",
+                            "surface-container-low": "#f5f3ee",
+                            "secondary-container": "#e4e2e1",
+                            "outline": "#7f766a",
+                            "surface-variant": "#e4e2dd",
+                            "tertiary-container": "#acb9d3",
+                            "primary-container": "#D2B48C",
+                            "on-tertiary": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "card-padding": "24px",
+                            "margin-desktop": "40px",
+                            "base": "8px",
+                            "margin-mobile": "16px",
+                            "gutter": "24px",
+                            "table-cell-padding": "12px 16px"
+                        },
+                        "fontFamily": {
+                            "data-table": ["Work Sans"],
+                            "body-lg": ["Manrope"],
+                            "label-md": ["Work Sans"],
+                            "title-md": ["Manrope"],
+                            "headline-md": ["Manrope"],
+                            "headline-lg-mobile": ["Manrope"],
+                            "body-md": ["Manrope"],
+                            "display-lg": ["Manrope"],
+                            "headline-lg": ["Manrope"]
+                        },
+                        "fontSize": {
+                            "data-table": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                            "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            body {
+                background-color: #fbf9f4;
+                color: #000000;
+            }
+
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            }
+
+            /* Custom scrollbar */
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #d1c5b8;
+                border-radius: 10px;
+            }
+
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #7f766a;
+                }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 right-0 left-0 z-30 flex justify-between items-center h-16 px-margin-desktop bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+        <div class="flex items-center gap-4 flex-1 max-w-xl">
+            <!-- Logo Carpintec en la barra superior -->
+            <div class="flex items-center gap-2 pr-4 border-r border-outline-variant">
+                <img alt="Carpintec Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLsk3Zho-0BKtA8McF4b6enPHBZbzMwn0jFHE7fKjodpPqXIRwzVkW8RG5ituz68m6QiNpMpUrfVNCBUiWmScdHBA501R3SO_EMasyX04TCSJTeY5dQDPJiT3OqyD8R4aiXH4hcrhIO3f74jHLBizsFzi_tHK83H8Gikj5ywByw_o9gShxB10YJlA4Dx5FV4zKdVbVZEJuUPJ7F9vQv8NNS7RPM7MAmDQFDHmePYJaQWhqdFxvVMoFUFvvclu3ImV4nbwTPjRvIEjA">
+                <span class="font-bold text-headline-md text-black">Carpintec</span>
+            </div>
+            <!-- Buscador -->
+            <div class="relative w-full">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-black">search</span>
+                <input class="w-full pl-10 pr-12 py-2 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all text-body-md font-body-md text-black placeholder:text-black/40" placeholder="Buscar cliente..." type="text">
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-primary text-black rounded-lg hover:bg-primary/80 transition-all flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-[20px]">search</span>
+                </button>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 text-black hover:bg-surface-container-low rounded-full transition-all">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+                </button>
+                <button class="p-2 text-black hover:bg-surface-container-low rounded-full transition-all">
+                    <span class="material-symbols-outlined">apps</span>
+                </button>
+            </div>
+            <div class="flex items-center gap-3 pl-6 border-l border-outline-variant">
+                <div class="text-right hidden lg:block">
+                    <p class="text-body-md font-bold text-black leading-tight">Admin Paula</p>
+                    <p class="text-label-md text-black/60">Carpintec S.A.S</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center overflow-hidden border border-outline-variant">
+                    <span class="material-symbols-outlined text-black">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-16 min-h-screen bg-background">
+        <div class="p-margin-desktop space-y-8">
+            <!-- Page Header & Action -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-headline-lg font-headline-lg text-black">Gestión de Clientes</h2>
+                    <p class="text-body-md font-body-md text-black/60">Administra la base de datos de clientes y su historial comercial.</p>
+                </div>
+                <button class="flex items-center gap-2 px-6 py-3 bg-primary text-black rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-95 group">
+                    <span class="material-symbols-outlined text-[20px] font-bold">person_add</span>
+                    <span class="font-title-md text-label-md font-bold">Nuevo Cliente</span>
+                </button>
+            </div>
+
+            <!-- Bento Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:border-primary transition-all">
+                    <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                        <span class="material-symbols-outlined text-[120px] text-black">group</span>
+                    </div>
+                    <span class="text-label-md font-label-md text-black/60 uppercase tracking-widest">Clientes Totales</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-headline-lg font-headline-lg text-black">1,243</span>
+                        <span class="text-label-md text-green-700 flex items-center gap-0.5 font-bold"><span class="material-symbols-outlined text-[14px] font-bold">trending_up</span>+12%</span>
+                    </div>
+                </div>
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:border-primary transition-all">
+                    <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                        <span class="material-symbols-outlined text-[120px] text-black">how_to_reg</span>
+                    </div>
+                    <span class="text-label-md font-label-md text-black/60 uppercase tracking-widest">Clientes Activos</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-headline-lg font-headline-lg text-black">842</span>
+                        <span class="text-label-md text-black/40">67.7% del total</span>
+                    </div>
+                </div>
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:border-primary transition-all">
+                    <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                        <span class="material-symbols-outlined text-[120px] text-black">new_releases</span>
+                    </div>
+                    <span class="text-label-md font-label-md text-black/60 uppercase tracking-widest">Nuevos este mes</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-headline-lg font-headline-lg text-black">25</span>
+                        <span class="text-label-md text-black bg-primary/20 px-2 py-0.5 rounded-full font-medium">Objetivo 30</span>
+                    </div>
+                </div>
+                <div class="bg-primary p-6 rounded-xl border border-black/10 shadow-lg flex flex-col gap-2 relative overflow-hidden group">
+                    <div class="absolute -right-4 -bottom-4 opacity-[0.1]">
+                        <span class="material-symbols-outlined text-[120px] text-black">payments</span>
+                    </div>
+                    <span class="text-label-md font-label-md text-black uppercase tracking-widest">Ventas este mes</span>
+                    <div class="flex flex-col">
+                        <span class="text-headline-md font-headline-md text-black">$25.680.000</span>
+                        <span class="text-label-md text-black/70">Facturación acumulada</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customers Table Section -->
+            <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden">
+                <div class="px-card-padding py-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+                    <h3 class="text-title-md font-title-md text-black">Listado de Clientes</h3>
+                    <div class="flex gap-2">
+                        <button class="p-2 text-black hover:bg-surface-container-low rounded-lg transition-all border border-outline-variant">
+                            <span class="material-symbols-outlined">filter_list</span>
+                        </button>
+                        <button class="p-2 text-black hover:bg-surface-container-low rounded-lg transition-all border border-outline-variant">
+                            <span class="material-symbols-outlined">download</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-surface-container-high/30">
+                                <th class="text-left px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Cliente</th>
+                                <th class="text-left px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Contacto</th>
+                                <th class="text-left px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Teléfono</th>
+                                <th class="text-left px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Email</th>
+                                <th class="text-center px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Pedidos</th>
+                                <th class="text-right px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Total Compras</th>
+                                <th class="text-center px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Estado</th>
+                                <th class="text-right px-6 py-4 text-label-md font-label-md text-black uppercase tracking-wider border-b border-outline-variant">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-outline-variant font-data-table text-data-table text-black">
+                            <tr class="hover:bg-primary/5 transition-colors group bg-primary/2">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-black font-bold text-xs">MV</div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold text-black">Muebles del Valle S.A.</span>
+                                            <span class="text-[10px] text-black font-bold uppercase tracking-tighter">Nuevo</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-black/80">Ricardo Torres</td>
+                                <td class="px-6 py-4 text-black/80 whitespace-nowrap">(601) 555 0123</td>
+                                <td class="px-6 py-4 text-black/80">contacto@mueblesdelvalle.co</td>
+                                <td class="px-6 py-4 text-center font-medium">0</td>
+                                <td class="px-6 py-4 text-right font-bold text-black">$ 0</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-green-100 text-green-800">Activo</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-1 hover:bg-primary/20 rounded-full transition-all text-black/40 group-hover:text-black">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-black font-bold text-xs">CG</div>
+                                        <span class="font-bold text-black">Carlos Gómez</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-black/80">Carlos Gómez</td>
+                                <td class="px-6 py-4 text-black/80 whitespace-nowrap">(601) 321 4567</td>
+                                <td class="px-6 py-4 text-black/80">carlos@gmail.com</td>
+                                <td class="px-6 py-4 text-center font-medium">8</td>
+                                <td class="px-6 py-4 text-right font-bold text-black">$ 28.500.000</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-green-100 text-green-800">Activo</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-1 hover:bg-primary/20 rounded-full transition-all text-black/40 group-hover:text-black">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-black font-bold text-xs">MR</div>
+                                        <span class="font-bold text-black">María Rodríguez</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-black/80">María Rodríguez</td>
+                                <td class="px-6 py-4 text-black/80 whitespace-nowrap">(601) 456 7890</td>
+                                <td class="px-6 py-4 text-black/80">maria@gmail.com</td>
+                                <td class="px-6 py-4 text-center font-medium">5</td>
+                                <td class="px-6 py-4 text-right font-bold text-black">$ 22.300.000</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-green-100 text-green-800">Activo</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-1 hover:bg-primary/20 rounded-full transition-all text-black/40 group-hover:text-black">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-black font-bold text-xs">JM</div>
+                                        <span class="font-bold text-black">Juan Martínez</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-black/80">Juan Martínez</td>
+                                <td class="px-6 py-4 text-black/80 whitespace-nowrap">(601) 777 8888</td>
+                                <td class="px-6 py-4 text-black/80">juan@gmail.com</td>
+                                <td class="px-6 py-4 text-center font-medium">6</td>
+                                <td class="px-6 py-4 text-right font-bold text-black">$ 18.750.000</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-green-100 text-green-800">Activo</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-1 hover:bg-primary/20 rounded-full transition-all text-black/40 group-hover:text-black">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-black font-bold text-xs">AL</div>
+                                        <span class="font-bold text-black">Ana López</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-black/80">Ana López</td>
+                                <td class="px-6 py-4 text-black/80 whitespace-nowrap">(601) 232 3333</td>
+                                <td class="px-6 py-4 text-black/80">ana@gmail.com</td>
+                                <td class="px-6 py-4 text-center font-medium">3</td>
+                                <td class="px-6 py-4 text-right font-bold text-black">$ 9.800.000</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-green-100 text-green-800">Activo</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-1 hover:bg-primary/20 rounded-full transition-all text-black/40 group-hover:text-black">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

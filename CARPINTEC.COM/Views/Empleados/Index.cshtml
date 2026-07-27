@@ -1,0 +1,361 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Carpintec - Gestión de Empleados</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            }
+
+            body {
+                background-color: #fbf9f4; /* Based on theme surface */
+                font-family: 'Manrope', sans-serif;
+                color: #000000;
+            }
+
+            .soft-wood-shadow {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            }
+
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #d1c5b8;
+                border-radius: 10px;
+            }
+    </style>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "primary": "#D2B48C",
+                            "on-primary": "#000000",
+                            "primary-container": "#D2B48C",
+                            "on-primary-container": "#000000",
+                            "background": "#fbf9f4",
+                            "on-background": "#000000",
+                            "surface": "#fbf9f4",
+                            "on-surface": "#000000",
+                            "surface-variant": "#e4e2dd",
+                            "on-surface-variant": "#000000",
+                            "outline": "#7f766a",
+                            "outline-variant": "#d1c5b8",
+                            "secondary": "#5f5e5e",
+                            "secondary-container": "#e4e2e1",
+                            "on-secondary-container": "#000000",
+                            "tertiary": "#525f76",
+                            "tertiary-container": "#acb9d3",
+                            "on-tertiary-container": "#000000",
+                            "error": "#ba1a1a",
+                            "surface-container-low": "#f5f3ee",
+                            "surface-container-lowest": "#ffffff",
+                            "surface-container": "#f0eee9",
+                            "surface-container-high": "#eae8e3",
+                            "surface-container-highest": "#e4e2dd"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "table-cell-padding": "12px 16px",
+                            "margin-mobile": "16px",
+                            "card-padding": "24px",
+                            "margin-desktop": "40px",
+                            "gutter": "24px",
+                            "base": "8px"
+                        },
+                        "fontFamily": {
+                            "headline-md": ["Manrope"],
+                            "display-lg": ["Manrope"],
+                            "headline-lg": ["Manrope"],
+                            "data-table": ["Work Sans"],
+                            "title-md": ["Manrope"],
+                            "body-md": ["Manrope"],
+                            "body-lg": ["Manrope"],
+                            "label-md": ["Work Sans"]
+                        }
+                    }
+                }
+            }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+    <!-- Top App Bar Full-Width -->
+    <header class="sticky top-0 z-30 flex justify-between items-center h-16 px-4 md:px-8 bg-surface/80 backdrop-blur-md border-b border-outline-variant w-full">
+        <div class="flex items-center gap-6 flex-1 max-w-7xl mx-auto w-full justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center p-1 border border-outline-variant">
+                    <img alt="Carpintec Logo" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida/AP1WRLsk3Zho-0BKtA8McF4b6enPHBZbzMwn0jFHE7fKjodpPqXIRwzVkW8RG5ituz68m6QiNpMpUrfVNCBUiWmScdHBA501R3SO_EMasyX04TCSJTeY5dQDPJiT3OqyD8R4aiXH4hcrhIO3f74jHLBizsFzi_tHK83H8Gikj5ywByw_o9gShxB10YJlA4Dx5FV4zKdVbVZEJuUPJ7F9vQv8NNS7RPM7MAmDQFDHmePYJaQWhqdFxvVMoFUFvvclu3ImV4nbwTPjRvIEjA">
+                </div>
+                <h1 class="text-headline-md font-headline-md font-bold text-on-surface leading-none hidden sm:block">Carpintec</h1>
+            </div>
+
+            <div class="relative w-full max-w-md group mx-4">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface">search</span>
+                <input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary focus:ring-opacity-20 transition-all outline-none text-on-surface" placeholder="Buscar empleados..." type="text">
+            </div>
+
+            <div class="flex items-center gap-4 shrink-0">
+                <button class="relative text-on-surface hover:bg-surface-container-low p-2 rounded-full transition-all">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+                </button>
+                <div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+                    <div class="text-right hidden md:block">
+                        <p class="text-body-md font-bold text-on-surface leading-none">Admin Paula</p>
+                        <p class="text-label-md text-on-surface opacity-70">Jefe de Taller</p>
+                    </div>
+                    <img class="w-10 h-10 rounded-full border-2 border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_yrY--aLufWMzzuZqQhzyw7FA6lpFGizA__BQV_zqFe8cp02PEzZvZlriegwoiYx7mCn_kbvkqOd5KybgCVJVmt9QEm3IS7OFOemYBpidaj9GRyKtALEnrXM2B_5twQ_RCsvV6zhuQpJ1HaFXkwXMeaeA5jTBVGB1Z0fTBCaPBFe2MZNN6ZD9-LbxeAQnYzAXHE29JtGn3Vt0VR99aOKtDXPpqkAaeU0-NUb8KQXib9_1Z6BFXlr9xW2nfLnuv7IJEl2AG6p3JTCA">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Canvas -->
+    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 bg-background">
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-8">
+            <div>
+                <button class="flex items-center gap-1 text-black hover:opacity-70 transition-opacity mb-4 group">
+                    <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    <span class="text-label-md font-bold uppercase tracking-wider">Volver</span>
+                </button>
+                <h2 class="text-headline-lg font-headline-lg text-on-surface text-3xl sm:text-4xl font-bold">Gestión Empleados</h2>
+                <p class="text-body-lg text-on-surface opacity-70 mt-1">Gestión de artesanos, operarios y personal administrativo.</p>
+            </div>
+            <button class="flex items-center justify-center gap-2 bg-primary text-black px-6 py-3 rounded-lg font-bold hover:brightness-95 transition-all soft-wood-shadow active:scale-95 shrink-0">
+                <span class="material-symbols-outlined">person_add</span>
+                <span class="text-body-md">Nuevo Empleado</span>
+            </button>
+        </div>
+
+        <!-- Metrics Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
+            <!-- Total Employees -->
+            <div class="bg-surface-container-lowest border border-outline-variant p-card-padding rounded-xl soft-wood-shadow relative overflow-hidden group">
+                <div class="relative z-10">
+                    <p class="text-label-md font-label-md text-on-surface opacity-60 mb-1 uppercase tracking-wider">Total Empleados</p>
+                    <h3 class="text-display-lg font-display-lg text-on-surface">24</h3>
+                    <div class="flex items-center gap-1 text-on-surface mt-2">
+                        <span class="material-symbols-outlined text-sm">trending_up</span>
+                        <span class="text-label-md font-medium">+2 este mes</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl text-primary opacity-10 group-hover:scale-110 transition-transform duration-500">groups</span>
+            </div>
+            <!-- In Workshop -->
+            <div class="bg-surface-container-lowest border border-outline-variant p-card-padding rounded-xl soft-wood-shadow relative overflow-hidden group">
+                <div class="relative z-10">
+                    <p class="text-label-md font-label-md text-on-surface opacity-60 mb-1 uppercase tracking-wider">En Taller</p>
+                    <h3 class="text-display-lg font-display-lg text-on-surface">18</h3>
+                    <div class="flex items-center gap-1 text-on-surface mt-2">
+                        <span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+                        <span class="text-label-md font-medium">Operativos ahora</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl text-primary opacity-10 group-hover:scale-110 transition-transform duration-500">handyman</span>
+            </div>
+            <!-- On Vacation -->
+            <div class="bg-surface-container-lowest border border-outline-variant p-card-padding rounded-xl soft-wood-shadow relative overflow-hidden group">
+                <div class="relative z-10">
+                    <p class="text-label-md font-label-md text-on-surface opacity-60 mb-1 uppercase tracking-wider">En Vacaciones</p>
+                    <h3 class="text-display-lg font-display-lg text-on-surface">3</h3>
+                    <div class="flex items-center gap-1 text-error mt-2">
+                        <span class="material-symbols-outlined text-sm">event_busy</span>
+                        <span class="text-label-md font-medium">Retorno próximo Lunes</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl text-primary opacity-10 group-hover:scale-110 transition-transform duration-500">beach_access</span>
+            </div>
+        </div>
+
+        <!-- Employees Table Section -->
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant soft-wood-shadow overflow-hidden">
+            <div class="px-6 py-4 border-b border-outline-variant flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <h4 class="text-title-md font-title-md text-on-surface font-bold">Listado de Personal</h4>
+                <div class="flex gap-2">
+                    <button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors border border-outline-variant flex items-center gap-2 text-label-md font-medium text-on-surface">
+                        <span class="material-symbols-outlined text-lg">filter_list</span> Filtrar
+                    </button>
+                    <button class="p-2 hover:bg-surface-container-low rounded-lg transition-colors border border-outline-variant flex items-center gap-2 text-label-md font-medium text-on-surface">
+                        <span class="material-symbols-outlined text-lg">download</span> Exportar
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left font-data-table text-data-table">
+                    <thead class="bg-surface-container-low text-on-surface border-b border-outline-variant">
+                        <tr>
+                            <th class="p-table-cell-padding uppercase tracking-wider font-bold text-xs">Empleado</th>
+                            <th class="p-table-cell-padding uppercase tracking-wider font-bold text-xs">Puesto</th>
+                            <th class="p-table-cell-padding uppercase tracking-wider font-bold text-xs">Contacto</th>
+                            <th class="p-table-cell-padding uppercase tracking-wider font-bold text-xs">Estado</th>
+                            <th class="p-table-cell-padding uppercase tracking-wider font-bold text-xs text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant">
+                        <!-- Employee Row 1 -->
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                            <td class="p-table-cell-padding">
+                                <div class="flex items-center gap-3">
+                                    <img class="w-10 h-10 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNwjgzDWKv2n7E4Zu8vwulV4wZTJthas9Cz7gGa-6XMbT_ePdNjWgH0E1BO41Cu2E6D77RqWfp-JbLxlYL5hHPUEGAVQ6AxBP1tpyrkcyqN9HxXVKukDIn5PqiS9rmUgw_AJandG-ZC24LOOqpJpPi5DZ8KYI79wEbq_Uzf2z_P15vWkj9wNcVbydXRZ4oi0ilcBzRxR64KxQlgYw9KSc5aj_oG7ULFfkgaA_RzH9lub1y8DYJ3gIQ6m3NyKUOjPp0lB_P6hZCdbj6">
+                                    <div>
+                                        <p class="font-bold text-on-surface">Roberto Gómez</p>
+                                        <p class="text-xs text-on-surface opacity-60">ID: EMP-1024</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="bg-primary/20 text-on-surface px-3 py-1 rounded-full text-xs font-bold">Carpintero Senior</span>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <div class="flex flex-col text-on-surface">
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">mail</span> r.gomez@carpintec.com</span>
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">phone</span> +52 55 1234 5678</span>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="inline-flex items-center gap-1 text-on-surface bg-primary/30 px-3 py-1 rounded-full text-xs font-bold border border-primary/20">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Activo
+                                </span>
+                            </td>
+                            <td class="p-table-cell-padding text-right">
+                                <button class="p-2 text-on-surface hover:text-black transition-colors">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Employee Row 2 -->
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                            <td class="p-table-cell-padding">
+                                <div class="flex items-center gap-3">
+                                    <img class="w-10 h-10 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU0ibW3Y2L1PH6uylmack5mHM_Zi437td06caPCuhKQkMaoYcvx5YC81ZMKSRJi8ARwqh7oGxi4pIcROowe7g0LotlnmpweFnFFr25TvvepBsLgbZtLUxgQRTDr0h9QtOxyFGODcdFhcsUqE6ZV_Ejo_2msq8BpNfRRVd8DcekaBCOqtBodnW5-ZKEaCEeE_Q516SjCi79UpJe80E2fQBIQ9UjqSJmChV-2x-MOv3ev42ag-n2nSuM00pUM1AkYaWVczdNeuOdUXip">
+                                    <div>
+                                        <p class="font-bold text-on-surface">Elena Martínez</p>
+                                        <p class="text-xs text-on-surface opacity-60">ID: EMP-1025</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="bg-primary/20 text-on-surface px-3 py-1 rounded-full text-xs font-bold">Lustradora Profesional</span>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <div class="flex flex-col text-on-surface">
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">mail</span> e.martinez@carpintec.com</span>
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">phone</span> +52 55 2345 6789</span>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="inline-flex items-center gap-1 text-on-surface bg-primary/30 px-3 py-1 rounded-full text-xs font-bold border border-primary/20">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Activo
+                                </span>
+                            </td>
+                            <td class="p-table-cell-padding text-right">
+                                <button class="p-2 text-on-surface hover:text-black transition-colors">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Employee Row 3 -->
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                            <td class="p-table-cell-padding">
+                                <div class="flex items-center gap-3">
+                                    <img class="w-10 h-10 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYo0gJck98JiF8Fun9Sp84tEqDEs1ZEdr64FbIX8vWvLinK9CVlx48KLgBm5ReL56QjEGraS2rYOG4MTTJgQpyugLiKKEpg-x6LA9UPZ6eKUAfdFbimVY3-Di92FO9At5XsCOe0LkVc0Szbsd5r17Sl-tP1RM47d0nLh93QpxJyezwegUjAAq6Ur3XLS9SmujIJN-oaRdhw6mxCD9ca5uEwJ8NZjOYcu80ZYulXhedgl7L7PQJ61q7eApuv1-vg3Sn70GMv0RfFi5h">
+                                    <div>
+                                        <p class="font-bold text-on-surface">Julián Soto</p>
+                                        <p class="text-xs text-on-surface opacity-60">ID: EMP-1011</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="bg-primary/20 text-on-surface px-3 py-1 rounded-full text-xs font-bold">Tallador Maestro</span>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <div class="flex flex-col text-on-surface">
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">mail</span> j.soto@carpintec.com</span>
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">phone</span> +52 55 3456 7890</span>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="inline-flex items-center gap-1 text-on-surface bg-surface-container-high px-3 py-1 rounded-full text-xs font-bold border border-outline-variant">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-on-surface opacity-50"></span> De Vacaciones
+                                </span>
+                            </td>
+                            <td class="p-table-cell-padding text-right">
+                                <button class="p-2 text-on-surface hover:text-black transition-colors">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Employee Row 4 -->
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                            <td class="p-table-cell-padding">
+                                <div class="flex items-center gap-3">
+                                    <img class="w-10 h-10 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABvmWxV2e_7-aF3pZj8w1v8oPim6t31nGUkP2LHUaS5nWV6h50Wd0q_wn9UcNnHxXrRBIyGyuIozFGsQo3r3CWaP1CrrFYW3C9FAc4KAyg4LrO1saU0do4Le9oMOsxM1kASyoyMx-f1yOgFqnjfdYyGRqCm8cp1YQWtnkhzhL1rx66lZ3uVGYTqcGEy04Gsz3VUszcOqB3kCzwXFgFcnLjiTVyDVZxouAkxUjIwFT-jIQKjKDbDiltZOuHvJ6QH__SEHszIRWpemIx">
+                                    <div>
+                                        <p class="font-bold text-on-surface">Marcos Peña</p>
+                                        <p class="text-xs text-on-surface opacity-60">ID: EMP-1033</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="bg-primary/20 text-on-surface px-3 py-1 rounded-full text-xs font-bold">Logística e Inventario</span>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <div class="flex flex-col text-on-surface">
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">mail</span> m.pena@carpintec.com</span>
+                                    <span class="flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-[14px]">phone</span> +52 55 4567 8901</span>
+                                </div>
+                            </td>
+                            <td class="p-table-cell-padding">
+                                <span class="inline-flex items-center gap-1 text-on-surface bg-primary/30 px-3 py-1 rounded-full text-xs font-bold border border-primary/20">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Activo
+                                </span>
+                            </td>
+                            <td class="p-table-cell-padding text-right">
+                                <button class="p-2 text-on-surface hover:text-black transition-colors">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Table Footer/Pagination -->
+            <div class="px-6 py-4 border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-label-md text-on-surface font-bold">Mostrando 1-4 de 24 empleados</p>
+                <div class="flex gap-2">
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled>
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-primary bg-primary text-black font-bold">1</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors">2</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors">3</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

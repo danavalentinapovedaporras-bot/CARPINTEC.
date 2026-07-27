@@ -1,0 +1,332 @@
+@{
+    Layout = null;
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CARPINTEC.COM - Artesanía en Madera</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Google Fonts: Montserrat & Work Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdbc9",
+                        "secondary-container": "#fd8a3e",
+                        "on-surface-variant": "#54433a",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#877369",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "surface-container-low": "#fef1ed",
+                        "on-secondary-container": "#672c00",
+                        "surface-dim": "#e4d7d4",
+                        "surface": "#fff8f6",
+                        "surface-container-highest": "#ede0dc",
+                        "primary-container": "#8b4513",
+                        "surface-tint": "#934b19",
+                        "tertiary-fixed": "#f7e0b5",
+                        "tertiary-container": "#665635",
+                        "on-primary-fixed": "#321200",
+                        "on-background": "#201a18",
+                        "secondary": "#9a4600",
+                        "secondary-fixed": "#ffdbc9",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#ede0dc",
+                        "outline-variant": "#dac2b6",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#763400",
+                        "surface-container": "#f9ebe7",
+                        "inverse-surface": "#362f2c",
+                        "on-tertiary-fixed": "#251a01",
+                        "on-primary-container": "#ffc29f",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#dac49b",
+                        "inverse-primary": "#ffb68c",
+                        "tertiary": "#4d3f20",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#201a18",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#fbeeea",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#321200",
+                        "background": "#fff8f6",
+                        "on-primary-fixed-variant": "#753401",
+                        "primary": "#6c2f00",
+                        "surface-bright": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#e2cca2",
+                        "surface-container-high": "#f3e5e1",
+                        "primary-fixed-dim": "#ffb68c",
+                        "on-tertiary-fixed-variant": "#544525"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "label-md": ["Work Sans"],
+                        "title-md": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-lg": ["Work Sans"],
+                        "body-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+        }
+
+        .section-frame {
+            border-bottom: 4px solid #6c2f00;
+        }
+
+        .mobile-nav-active {
+            color: #ffdbc9;
+            font-weight: 700;
+        }
+
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+    <!-- TopAppBar -->
+    <header class="bg-primary dark:bg-primary-container shadow-md fixed top-0 w-full z-50 border-b-4 border-primary dark:border-primary-fixed">
+        <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+            <div class="flex items-center gap-2">
+                <img alt="Carpintec Logo"
+                     class="h-8 w-8 object-contain mr-2"
+                     src="~/images/logo.png">
+
+                <span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-primary dark:text-on-primary-container tracking-tight">
+                    CARPINTEC.COM
+                </span>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-on-primary" id="mobile-menu-btn" type="button">
+                <span class="material-symbols-outlined text-4xl">menu</span>
+            </button>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a class="text-on-primary font-bold border-b-2 border-on-primary pb-1 font-label-md text-label-md" href="#inicio">Inicio</a>
+                <a class="text-on-primary/80 font-medium hover:text-secondary-fixed transition-colors font-label-md text-label-md" href="#acerca-de">Acerca de</a>
+                <a asp-controller="Login"
+                   asp-action="Index"
+                   class="bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-bold hover:bg-secondary-fixed transition-colors flex items-center justify-center font-label-md text-label-md">
+                    Iniciar sesión
+                </a>
+                <a class="bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-bold hover:bg-secondary-fixed transition-colors flex items-center justify-center" href="#contacto-form">Contacto</a>
+            </nav>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="hidden absolute top-full left-0 w-full bg-primary border-t border-on-primary/10 flex-col p-6 space-y-4 shadow-xl" id="mobile-menu">
+            <a class="mobile-nav-active font-label-md text-label-md" href="#inicio">Inicio</a>
+            <a class="text-on-primary/80 font-label-md text-label-md" href="#acerca-de">Acerca de</a>
+            <a class="text-on-primary/80 font-label-md text-label-md" href="#servicios">Servicios</a>
+            <a class="text-on-primary/80 font-label-md text-label-md" href="#trabajos">Trabajos</a>
+            <hr class="border-on-primary/20">
+            <a class="bg-primary-fixed text-on-primary-fixed px-6 py-3 rounded-full font-bold text-center" href="#contacto-form">Contacto</a>
+        </div>
+    </header>
+
+    <main class="mt-16">
+        <!-- Hero Section -->
+        <section class="relative min-h-[600px] flex items-center justify-center bg-cover bg-center" id="inicio" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIRI0zzQd6UKFQGDFcHlHhktv2loHmc-9CSBZq5t8E-5kVrgRgQtzAlvG5ih-eT1ZykFCypW9CooXTBwgTNR6am3ArTkLSpioPLADeUl5w5ZH7xinNNvWjJ1pINpFrz4a_E-jzNsO2M4oEY1JdZZtSDQ_3Mj7bEYsmzUGqBVPD2jobDC7xdE2ovb0u_D3KDx1IYyVXu1yocowQmJG3kcpBHOYPXpzlmL_MEioZJShFdlwyk5AULwv_MPPgKuavUfTt2NSR7XtEsncAJ2o');">
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="relative z-20 flex flex-col items-center justify-center text-center px-4">
+                <h1 class="font-display-lg text-display-lg text-white drop-shadow-lg mb-4">
+                    Pequeños detalles, grandes resultados
+                </h1>
+                <div class="w-24 h-1 bg-primary-fixed rounded-full shadow-sm"></div>
+            </div>
+        </section>
+
+        <!-- Acerca de Section -->
+        <section class="py-16 md:py-24 bg-surface section-frame" id="acerca-de">
+            <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 order-2 md:order-1">
+                    <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6 relative">
+                        Acerca de
+                        <span class="block w-16 h-1 bg-secondary mt-2"></span>
+                    </h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        CARPINTEC.COM es un proyecto dedicado al diseño y fabricación de muebles en madera, ofreciendo soluciones personalizadas con calidad, innovación y cumplimiento, apoyado en un sistema que optimiza la gestión de clientes, cotizaciones y pedidos.
+                    </p>
+                </div>
+                <div class="md:w-1/2 order-1 md:order-2">
+                    <div class="relative p-2 border-4 border-primary">
+                        <img alt="Artesana trabajando" class="w-full h-[400px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6W4-QZ06te5tSfP0ssLG7MS-A66MpUZLQJT74tjKeYPIa9jNhSpX3i00u3jTV6PG12_8QselkfHf4t_WlCl6C_k2WyyyPpo_rN0VtERK7y6bL7lo2DqbSUr-Pnb-W2TWz9ukAIQAyXbUIEpC7vE-HDqE4-sF2puoxcNcKbpt-rvZw8VbIwU_5niQbmn2wKMy_TN50DMpGtjvyyxBK-yYK1642IVCLS1f8BsLr0Pxp5-zCCpthRsyrepXVNHHFEjVM4TVTaTmE9HB4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestros Servicios Section -->
+        <section class="py-16 md:py-24 bg-surface-container section-frame" id="servicios">
+            <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Nuestros Servicios</h2>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Transformamos tus ideas en muebles únicos y funcionales para cada rincón de tu hogar.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white p-8 border-t-4 border-primary shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
+                        <span class="material-symbols-outlined text-primary text-5xl mb-6">countertops</span>
+                        <h3 class="font-title-md text-title-md text-primary mb-4">Cocinas Integrales</h3>
+                        <p class="font-body-md text-on-surface-variant mb-8">Diseño y fabricación de cocinas personalizadas que maximizan la funcionalidad.</p>
+                        <button class="mt-auto bg-primary text-white px-6 py-2 flex items-center gap-2 hover:bg-secondary transition-colors font-bold" type="button">
+                            Más información <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white p-8 border-t-4 border-primary shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
+                        <span class="material-symbols-outlined text-primary text-5xl mb-6">door_sliding</span>
+                        <h3 class="font-title-md text-title-md text-primary mb-4">Closets y Armarios</h3>
+                        <p class="font-body-md text-on-surface-variant mb-8">Armarios a medida que aprovechan cada centímetro de espacio en tu habitación.</p>
+                        <button class="mt-auto bg-primary text-white px-6 py-2 flex items-center gap-2 hover:bg-secondary transition-colors font-bold" type="button">
+                            Más información <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="bg-white p-8 border-t-4 border-primary shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
+                        <span class="material-symbols-outlined text-primary text-5xl mb-6">handyman</span>
+                        <h3 class="font-title-md text-title-md text-primary mb-4">Muebles a Medida</h3>
+                        <p class="font-body-md text-on-surface-variant mb-8">Mobiliario personalizado para el hogar y oficina con materiales de alta gama.</p>
+                        <button class="mt-auto bg-primary text-white px-6 py-2 flex items-center gap-2 hover:bg-secondary transition-colors font-bold" type="button">
+                            Más información <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trabajos Section -->
+        <section class="py-16 md:py-24 bg-white" id="trabajos">
+            <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+                <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background text-center mb-12">Trabajos</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="aspect-square border-2 border-primary overflow-hidden group">
+                        <img class="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Cocina integral" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWx2uU9oQspMy2wj1i-E0QS8frb1hpnH-h9Ucir2SJnm4CWKS7fIPnsv7jYcPFUnMrznT2b2G7Im5edtKOMI4Xh-iH1S5gT9Qa3_yLdpdq92Djv6YRpYIB9G-bVJCYfAA8v1RfGg86MjoywHI13_8_cIOZWhBTO4L1v2AdZNE2xosxU7vbXIPZFWd0Z5N-BWrEhg0Ig7uCxH8BDjiXs4bacWV_y7z7ezCz-GAMn1Hqd7SWcJ_-G3zuyXNh-yNDFpHAE2tqjVdyKjKW">
+                    </div>
+                    <div class="aspect-square border-2 border-primary overflow-hidden group">
+                        <img class="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Comedor moderno" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIivdY2Gb9c0cp_55zO1KO-Mw81wkFgQyE9ZspBE4tblED9dZ6aRrl_dtkqffOfbdfTCe_hiYS53pQppTDh_Dvll98WLZeslekI7_OTeSEsvURcGwuzrqucMf6-N5QgE5x07voRPhZ5eoRdW-UOKBwFfSNfM_6LKFSSdv8egizCPqnxrsbW7kQlBRv4z0qgJQ3F3_uYNVNo7nFEX5KWNCg1fu24mc_04TUnTp0ZLnPQCrYHOdTnCZiCL5TIj7x0uiVZdiUvzNL6Shm">
+                    </div>
+                    <div class="aspect-square border-2 border-primary overflow-hidden group">
+                        <img class="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Habitación principal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRoYY_6kM-IRQFuCwFDCeiO9K_G6EUjb6VDb-YGx3FJgc7OWmfRKujZo_MN0HY9wCJN9o9wdb6dGLQTlw3M9TS-CqtWHl55cH0_3PdKHfLzdOaDRKGOQIIVbGdNLXgbOx2rlzuc8dld1XSATgWYU-0MGyRVeq2UPb_lj43eMqj_91kBPC64oPX8G5PvLnx4KAJ1-PNoLWeM-6A00RVN1YWKGa7hEITR3Opc8MdtO_vgmqtgfaR22LxlSqTrTSVS8KOMoOWjGoRVx62">
+                    </div>
+                    <div class="aspect-square border-2 border-primary overflow-hidden group">
+                        <img class="w-full h-full object-cover transition-transform group-hover:scale-110" alt="Libreros de madera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-sB7v_REsgXa03PVrImCPBf-QVgT2If4UG7Ya_htXYxEFz6aUyZRwRFJ8196mnmjDQyUx7dvO0lWHSB7POghqHXjPpwbOzO3tQE1DIZlv0_KwyyObq_0S2frQhN1aiRe5qqFAKu7D7irafvJw7dQJl36RFP1-1kdbP0y8g7WVgg56NANaVZGtd5n-z9mW2KkmcgED91a733vwb05MHWzU9wRBO8qUH3gBZIEI9TuXPGiXlaTWQfN6hYK3oP9IQQvyDViZGU3LZoDB">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section class="py-16 md:py-24 bg-surface section-frame" id="contacto-form">
+            <div class="px-margin-mobile md:px-margin-desktop max-w-[800px] mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Envíanos un mensaje</h2>
+                    <p class="font-body-md text-on-surface-variant">¿Tienes un proyecto en mente? Cuéntanos tu idea y te ayudaremos a hacerla realidad.</p>
+                </div>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-8 rounded-xl shadow-sm border border-outline-variant">
+                    <div class="md:col-span-1">
+                        <label class="block font-label-md text-label-md text-on-surface-variant mb-2">Nombre</label>
+                        <input class="w-full px-4 py-3 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-background" placeholder="Tu nombre completo" type="text">
+                    </div>
+                    <div class="md:col-span-1">
+                        <label class="block font-label-md text-label-md text-on-surface-variant mb-2">Correo electrónico</label>
+                        <input class="w-full px-4 py-3 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-background" placeholder="ejemplo@correo.com" type="email">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block font-label-md text-label-md text-on-surface-variant mb-2">Asunto</label>
+                        <input class="w-full px-4 py-3 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-background" placeholder="¿En qué podemos ayudarte?" type="text">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block font-label-md text-label-md text-on-surface-variant mb-2">Mensaje</label>
+                        <textarea class="w-full px-4 py-3 border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-background" placeholder="Describe tu proyecto o consulta..." rows="4"></textarea>
+                    </div>
+                    <div class="md:col-span-2 flex justify-center">
+                        <button class="bg-primary text-white px-8 py-3 rounded font-bold hover:bg-secondary transition-all flex items-center gap-2" type="submit">
+                            Enviar Mensaje <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-on-background dark:bg-surface-dim border-t-4 border-primary" id="footer-info">
+        <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-12 w-full max-w-container-max mx-auto">
+            <div class="mb-8 md:mb-0 text-center md:text-left">
+                <div class="font-headline-lg text-headline-lg text-primary-fixed font-bold mb-2">CARPINTEC.COM</div>
+                <p class="font-label-md text-label-md text-surface-variant dark:text-on-surface-variant">© 2026 CARPINTEC.COM. Artesanía en Madera.</p>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-6">
+                <a class="font-label-md text-label-md text-primary-fixed font-bold" href="#inicio">Inicio</a>
+                <a class="font-label-md text-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#acerca-de">Acerca de</a>
+                <a class="font-label-md text-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#servicios">Servicios</a>
+                <a class="font-label-md text-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#trabajos">Trabajos</a>
+                <a class="font-label-md text-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Privacidad</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // Micro-interactions and Menu Toggle with null-checks
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+
+                const icon = menuBtn.querySelector('span');
+                if (icon) {
+                    icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

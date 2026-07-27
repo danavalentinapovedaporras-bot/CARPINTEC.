@@ -1,0 +1,398 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Carpintec - Gestión de Pedidos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+                display: inline-block;
+                line-height: 1;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #d1c5b8;
+                border-radius: 10px;
+            }
+
+            /* Level 1 Shadow: Soft Wood */
+            .shadow-soft-wood {
+                box-shadow: 0 4px 12px -2px rgba(75, 54, 33, 0.08);
+            }
+
+            /* Artisanal Precision - Subtle Texture */
+            .wood-texture-overlay {
+                background-image: url("https://www.transparenttextures.com/patterns/wood-pattern-with-holes.png");
+                opacity: 0.03;
+                pointer-events: none;
+            }
+    </style>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "inverse-primary": "#e1c299",
+                            "on-primary-fixed-variant": "#584324",
+                            "surface-container-highest": "#e4e2dd",
+                            "on-tertiary-fixed": "#0e1c2f",
+                            "on-background": "#000000",
+                            "on-tertiary-container": "#3d495f",
+                            "outline-variant": "#d1c5b8",
+                            "secondary": "#5f5e5e",
+                            "tertiary-fixed-dim": "#bac7e1",
+                            "secondary-fixed-dim": "#c8c6c5",
+                            "tertiary-fixed": "#d6e3fe",
+                            "error": "#ba1a1a",
+                            "primary-fixed": "#feddb3",
+                            "on-primary-container": "#000000",
+                            "on-secondary-fixed-variant": "#474747",
+                            "on-secondary": "#ffffff",
+                            "surface-container-lowest": "#ffffff",
+                            "inverse-on-surface": "#f2f1ec",
+                            "surface-dim": "#dbdad5",
+                            "surface-container": "#f0eee9",
+                            "error-container": "#ffdad6",
+                            "on-secondary-fixed": "#1b1c1c",
+                            "on-error": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface-container-high": "#eae8e3",
+                            "inverse-surface": "#30312e",
+                            "on-tertiary-fixed-variant": "#3b475d",
+                            "on-primary-fixed": "#000000",
+                            "secondary-fixed": "#e4e2e1",
+                            "surface": "#fbf9f4",
+                            "primary-fixed-dim": "#e1c299",
+                            "primary": "#D2B48C",
+                            "on-secondary-container": "#656464",
+                            "on-surface-variant": "#4d453c",
+                            "background": "#fbf9f4",
+                            "surface-tint": "#D2B48C",
+                            "surface-bright": "#fbf9f4",
+                            "on-surface": "#000000",
+                            "tertiary": "#525f76",
+                            "on-primary": "#000000",
+                            "surface-container-low": "#f5f3ee",
+                            "secondary-container": "#e4e2e1",
+                            "outline": "#7f766a",
+                            "surface-variant": "#e4e2dd",
+                            "tertiary-container": "#acb9d3",
+                            "primary-container": "#D2B48C",
+                            "on-tertiary": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "sidebar-width": "280px",
+                            "card-padding": "24px",
+                            "table-cell-padding": "12px 16px",
+                            "margin-mobile": "16px",
+                            "base": "8px",
+                            "margin-desktop": "40px",
+                            "gutter": "24px"
+                        },
+                        "fontFamily": {
+                            "title-md": ["Manrope"],
+                            "body-md": ["Work Sans"],
+                            "headline-lg": ["Manrope"],
+                            "body-lg": ["Work Sans"],
+                            "display-lg": ["Manrope"],
+                            "headline-lg-mobile": ["Manrope"],
+                            "headline-md": ["Manrope"],
+                            "label-md": ["Work Sans"],
+                            "data-table": ["Work Sans"]
+                        },
+                        "fontSize": {
+                            "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                            "data-table": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                        }
+                    },
+                },
+            }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen">
+    <!-- Main Content Area -->
+    <main class="w-full min-h-screen relative">
+        <div class="wood-texture-overlay absolute inset-0"></div>
+        <!-- Top App Bar -->
+        <header class="h-16 px-margin-desktop bg-surface/80 backdrop-blur-md flex justify-between items-center sticky top-0 z-40 border-b border-outline-variant">
+            <div class="flex items-center gap-8">
+                <div class="relative group">
+                    <span class="absolute inset-y-0 left-3 flex items-center text-on-surface">
+                        <span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+                    </span>
+                    <input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary w-64 transition-all text-on-surface placeholder-on-surface/50" placeholder="Buscar pedidos, clientes..." type="text">
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="text-on-surface hover:bg-surface-container-low p-2 rounded-full transition-colors relative">
+                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+                </button>
+                <div class="flex items-center gap-3 border-l border-outline-variant pl-6">
+                    <div class="text-right">
+                        <p class="font-label-md text-label-md text-on-surface font-bold">Admin Paula</p>
+                    </div>
+                    <img class="w-10 h-10 rounded-full object-cover border-2 border-primary shadow-sm" data-alt="A professional portrait of Paula" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUy6dDPirkqXMXzlMrQayFHgvlrtS15zHhnnyl0jM8fq6iCO9mzxWJ1IeQqmCdMXLmk9LPLjAIzN1xcZVnAs2CJj8O4TQS9SJftEQlitAQssNfFyemsnhD8nc-E3MKZ4bVsCGo8l2ghcGscyLATcSTCjk1ThCbpA2xisVHsbGZRU6iO_h32gtC7--i6qFO_Ru8Eijb_55wllNpllGP23SqvNx6gOjBGKfuQ4pIEFKKwteKU3jX4ozI_Q">
+                </div>
+            </div>
+        </header>
+        <!-- Content Canvas -->
+        <div class="p-margin-desktop space-y-gutter relative z-10">
+            <!-- Page Header -->
+            <button class="flex items-center gap-2 text-black hover:bg-black/5 px-2 py-1 rounded-lg transition-colors mb-4 group">
+                <span class="material-symbols-outlined text-[20px] transition-transform group-hover:-translate-x-1">arrow_back</span>
+                <span class="font-label-md text-label-md font-bold uppercase tracking-wider">Volver</span>
+            </button>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Gestión de Pedidos</h2>
+                    <p class="text-on-surface/70 font-body-md">Supervisa el flujo de producción artesanal y entregas.</p>
+                </div>
+                <button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-title-md text-title-md flex items-center gap-2 shadow-soft-wood hover:scale-[1.02] active:scale-[0.98] transition-all font-bold">
+                    <span class="material-symbols-outlined" data-icon="add">add</span>
+                    Nuevo Pedido
+                </button>
+            </div>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                <!-- Stat Card 1 -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-surface-container-highest shadow-soft-wood group hover:border-primary/20 transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-primary/20 rounded-lg text-on-surface">
+                            <span class="material-symbols-outlined text-[28px]" data-icon="assignment">assignment</span>
+                        </div>
+                        <span class="text-on-surface/60 text-[12px] font-bold">+12% vs mes ant.</span>
+                    </div>
+                    <p class="font-label-md text-label-md text-on-surface/70">Pedidos Activos</p>
+                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">42</h3>
+                </div>
+                <!-- Stat Card 2 -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-surface-container-highest shadow-soft-wood group hover:border-primary/20 transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-primary/20 rounded-lg text-on-surface">
+                            <span class="material-symbols-outlined text-[28px]" data-icon="precision_manufacturing">precision_manufacturing</span>
+                        </div>
+                        <span class="text-on-surface/60 text-[12px] font-bold">87% capacidad</span>
+                    </div>
+                    <p class="font-label-md text-label-md text-on-surface/70">En Producción</p>
+                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">18</h3>
+                </div>
+                <!-- Stat Card 3 -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-surface-container-highest shadow-soft-wood group hover:border-primary/20 transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-primary/20 rounded-lg text-on-surface">
+                            <span class="material-symbols-outlined text-[28px]" data-icon="local_shipping">local_shipping</span>
+                        </div>
+                        <span class="text-error text-[12px] font-bold">3 Urgentes</span>
+                    </div>
+                    <p class="font-label-md text-label-md text-on-surface/70">Pendientes Entrega</p>
+                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">7</h3>
+                </div>
+                <!-- Stat Card 4 -->
+                <div class="bg-black p-card-padding rounded-xl border border-black shadow-lg group relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-3 bg-white/10 rounded-lg text-primary">
+                                <span class="material-symbols-outlined text-[28px]" data-icon="payments">payments</span>
+                            </div>
+                        </div>
+                        <p class="font-label-md text-label-md text-white/80">Valor Total en Curso</p>
+                        <h3 class="font-display-lg text-[28px] text-primary font-bold">$142,500.00</h3>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 opacity-10">
+                        <span class="material-symbols-outlined text-[120px] text-white" data-icon="paid">paid</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Table Section -->
+            <div class="bg-surface-container-lowest rounded-xl border border-surface-container-highest shadow-soft-wood overflow-hidden">
+                <!-- Table Filters -->
+                <div class="p-6 border-b border-outline-variant flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="font-label-md text-label-md text-on-surface/70 uppercase tracking-wider">Filtrar por:</span>
+                        <div class="flex gap-2">
+                            <button class="px-4 py-1.5 rounded-full bg-black text-primary text-[12px] font-bold transition-all">Todos</button>
+                            <button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface text-[12px] font-medium hover:bg-primary/20 transition-all">Diseño</button>
+                            <button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface text-[12px] font-medium hover:bg-primary/20 transition-all">Corte</button>
+                            <button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface text-[12px] font-medium hover:bg-primary/20 transition-all">Producción</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-all">
+                            <span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span>
+                            <span class="font-label-md">Más filtros</span>
+                        </button>
+                        <button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-all">
+                            <span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                            <span class="font-label-md">Exportar</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Responsive Table Wrapper -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse font-data-table">
+                        <thead>
+                            <tr class="bg-surface-container-low border-b border-outline-variant">
+                                <th class="p-table-cell-padding font-label-md text-on-surface uppercase tracking-widest text-[11px] font-bold">ID Pedido</th>
+                                <th class="p-table-cell-padding font-label-md text-on-surface uppercase tracking-widest text-[11px] font-bold">Cliente</th>
+                                <th class="p-table-cell-padding font-label-md text-on-surface uppercase tracking-widest text-[11px] font-bold">Producto</th>
+                                <th class="p-table-cell-padding font-label-md text-on-surface uppercase tracking-widest text-[11px] font-bold">Registro</th>
+                                <th class="p-table-cell-padding font-label-md text-on-surface uppercase tracking-widest text-[11px] font-bold">Compromiso</th>
+                                <th class="p-table-cell-padding font-label-md text-on-surface uppercase tracking-widest text-[11px] font-bold">Estado</th>
+                                <th class="p-table-cell-padding font-label-md text-on-surface uppercase tracking-widest text-[11px] font-bold text-right">Valor</th>
+                                <th class="p-table-cell-padding"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-outline-variant/30">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface" style="cursor: pointer;">
+                                <td class="p-table-cell-padding font-bold text-black">P-2024-028</td>
+                                <td class="p-table-cell-padding">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">RM</div>
+                                        <span class="">Ricardo Mendoza</span>
+                                    </div>
+                                </td>
+                                <td class="p-table-cell-padding">Cocina Integral Roble</td>
+                                <td class="p-table-cell-padding text-on-surface/70">12 Oct 2023</td>
+                                <td class="p-table-cell-padding text-on-surface/70">15 Nov 2023</td>
+                                <td class="p-table-cell-padding">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-blue-100 text-blue-800 border border-blue-200">En Diseño</span>
+                                </td>
+                                <td class="p-table-cell-padding text-right font-bold text-black">$12,450.00</td>
+                                <td class="p-table-cell-padding text-right">
+                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface">
+                                        <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface" style="cursor: pointer;">
+                                <td class="p-table-cell-padding font-bold text-black">P-2024-025</td>
+                                <td class="p-table-cell-padding">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">SO</div>
+                                        <span class="">Sofía Ortiz</span>
+                                    </div>
+                                </td>
+                                <td class="p-table-cell-padding">Escritorio Nogal Ejecutivo</td>
+                                <td class="p-table-cell-padding text-on-surface/70">08 Oct 2023</td>
+                                <td class="p-table-cell-padding text-on-surface/70 font-bold text-error">28 Oct 2023</td>
+                                <td class="p-table-cell-padding">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-orange-100 text-orange-800 border border-orange-200">Corte</span>
+                                </td>
+                                <td class="p-table-cell-padding text-right font-bold text-black">$4,200.00</td>
+                                <td class="p-table-cell-padding text-right">
+                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface">
+                                        <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface" style="cursor: pointer;">
+                                <td class="p-table-cell-padding font-bold text-black">P-2024-019</td>
+                                <td class="p-table-cell-padding">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">JC</div>
+                                        <span class="">Javier Castro</span>
+                                    </div>
+                                </td>
+                                <td class="p-table-cell-padding">Cava Vinos Modular</td>
+                                <td class="p-table-cell-padding text-on-surface/70">25 Sep 2023</td>
+                                <td class="p-table-cell-padding text-on-surface/70">20 Oct 2023</td>
+                                <td class="p-table-cell-padding">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-purple-100 text-purple-800 border border-purple-200">Ensamble</span>
+                                </td>
+                                <td class="p-table-cell-padding text-right font-bold text-black">$8,900.00</td>
+                                <td class="p-table-cell-padding text-right">
+                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface">
+                                        <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface" style="cursor: pointer;">
+                                <td class="p-table-cell-padding font-bold text-black">P-2024-012</td>
+                                <td class="p-table-cell-padding">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">EL</div>
+                                        <span class="">Elena Luna</span>
+                                    </div>
+                                </td>
+                                <td class="p-table-cell-padding">Puerta Principal Tallada</td>
+                                <td class="p-table-cell-padding text-on-surface/70">15 Sep 2023</td>
+                                <td class="p-table-cell-padding text-on-surface/70">10 Oct 2023</td>
+                                <td class="p-table-cell-padding">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-yellow-100 text-yellow-800 border border-yellow-200">Pintura</span>
+                                </td>
+                                <td class="p-table-cell-padding text-right font-bold text-black">$22,000.00</td>
+                                <td class="p-table-cell-padding text-right">
+                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface">
+                                        <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 5 -->
+                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface" style="cursor: pointer;">
+                                <td class="p-table-cell-padding font-bold text-black">P-2024-008</td>
+                                <td class="p-table-cell-padding">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">MM</div>
+                                        <span class="">Manuel Morales</span>
+                                    </div>
+                                </td>
+                                <td class="p-table-cell-padding">Juego de Comedor Caoba</td>
+                                <td class="p-table-cell-padding text-on-surface/70">01 Sep 2023</td>
+                                <td class="p-table-cell-padding text-on-surface/70">25 Sep 2023</td>
+                                <td class="p-table-cell-padding">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-green-100 text-green-800 border border-green-200">Completado</span>
+                                </td>
+                                <td class="p-table-cell-padding text-right font-bold text-black">$18,500.00</td>
+                                <td class="p-table-cell-padding text-right">
+                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface">
+                                        <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

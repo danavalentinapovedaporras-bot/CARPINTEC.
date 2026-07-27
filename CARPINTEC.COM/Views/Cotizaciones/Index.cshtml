@@ -1,0 +1,401 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Carpintec - Gestión de Cotizaciones</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet">
+    <style>
+            .material-symbols-outlined {
+                vertical-align: middle;
+            }
+
+            .fill-icon {
+                font-variation-settings: 'FILL' 1;
+            }
+
+            body {
+                background-color: #fbf9f4;
+                overflow-x: hidden;
+            }
+
+            .custom-shadow-level-1 {
+                box-shadow: 0 4px 12px rgba(75, 54, 33, 0.08);
+            }
+
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f5f3ee;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #d1c5b8;
+                border-radius: 10px;
+            }
+    </style>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "inverse-primary": "#e1c299",
+                            "on-primary-fixed-variant": "#584324",
+                            "surface-container-highest": "#e4e2dd",
+                            "on-tertiary-fixed": "#0e1c2f",
+                            "on-background": "#000000",
+                            "on-tertiary-container": "#3d495f",
+                            "outline-variant": "#d1c5b8",
+                            "secondary": "#5f5e5e",
+                            "tertiary-fixed-dim": "#bac7e1",
+                            "secondary-fixed-dim": "#c8c6c5",
+                            "tertiary-fixed": "#d6e3fe",
+                            "error": "#ba1a1a",
+                            "primary-fixed": "#feddb3",
+                            "on-primary-container": "#000000",
+                            "on-secondary-fixed-variant": "#474747",
+                            "on-secondary": "#ffffff",
+                            "surface-container-lowest": "#ffffff",
+                            "inverse-on-surface": "#f2f1ec",
+                            "surface-dim": "#dbdad5",
+                            "surface-container": "#f0eee9",
+                            "error-container": "#ffdad6",
+                            "on-secondary-fixed": "#1b1c1c",
+                            "on-error": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface-container-high": "#eae8e3",
+                            "inverse-surface": "#30312e",
+                            "on-tertiary-fixed-variant": "#3b475d",
+                            "on-primary-fixed": "#000000",
+                            "secondary-fixed": "#e4e2e1",
+                            "surface": "#fbf9f4",
+                            "primary-fixed-dim": "#e1c299",
+                            "primary": "#D2B48C",
+                            "on-secondary-container": "#656464",
+                            "on-surface-variant": "#000000",
+                            "background": "#fbf9f4",
+                            "surface-tint": "#D2B48C",
+                            "surface-bright": "#fbf9f4",
+                            "on-surface": "#000000",
+                            "tertiary": "#525f76",
+                            "on-primary": "#000000",
+                            "surface-container-low": "#f5f3ee",
+                            "secondary-container": "#e4e2e1",
+                            "outline": "#7f766a",
+                            "surface-variant": "#e4e2dd",
+                            "tertiary-container": "#acb9d3",
+                            "primary-container": "#D2B48C",
+                            "on-tertiary": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "fontFamily": {
+                            "body-md": ["Work Sans", "sans-serif"],
+                            "body-sm": ["Work Sans", "sans-serif"],
+                            "headline-lg": ["Manrope", "sans-serif"],
+                            "headline-md": ["Manrope", "sans-serif"]
+                        },
+                        "fontSize": {
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }]
+                        }
+                    },
+                }
+            }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md">
+
+    <!-- TopAppBar Header -->
+    <header class="fixed top-0 right-0 left-0 z-30 flex justify-between items-center h-16 px-6 md:px-10 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+
+        <!-- Brand Logo & Search -->
+        <div class="flex items-center gap-6 flex-1 max-w-xl">
+            <div class="flex items-center gap-3 pr-4 border-r border-outline-variant">
+                <img alt="Carpintec Logo" class="w-9 h-9 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLsk3Zho-0BKtA8McF4b6enPHBZbzMwn0jFHE7fKjodpPqXIRwzVkW8RG5ituz68m6QiNpMpUrfVNCBUiWmScdHBA501R3SO_EMasyX04TCSJTeY5dQDPJiT3OqyD8R4aiXH4hcrhIO3f74jHLBizsFzi_tHK83H8Gikj5ywByw_o9gShxB10YJlA4Dx5FV4zKdVbVZEJuUPJ7F9vQv8NNS7RPM7MAmDQFDHmePYJaQWhqdFxvVMoFUFvvclu3ImV4nbwTPjRvIEjA">
+                <h1 class="text-[18px] font-bold text-black hidden sm:block">Carpintec</h1>
+            </div>
+
+            <div class="relative w-full group">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-black">search</span>
+                <input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary focus:ring-opacity-40 transition-all text-body-md outline-none text-black placeholder:text-black/40" placeholder="Buscar cotizaciones, clientes o folios..." type="text">
+            </div>
+        </div>
+
+        <!-- User Actions -->
+        <div class="flex items-center gap-4 md:gap-6">
+            <button class="p-2 rounded-full hover:bg-surface-container-low transition-all relative">
+                <span class="material-symbols-outlined text-black">notifications</span>
+                <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-error rounded-full"></span>
+            </button>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <p class="text-body-md font-bold text-black">Admin Paula</p>
+                    <p class="text-label-md text-black/60 font-semibold">Director de Proyectos</p>
+                </div>
+                <img class="w-10 h-10 rounded-full object-cover ring-2 ring-primary" alt="Perfil del usuario Admin Paula" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJw-DlWjX2vLnFeJbcTfN6qnd1-g-YybIkVZItlcjcc0O6FrGt2B6w5cC19QVRO_vWNwzfaktXymW2AnQezpTwdyPXZWbkoa5uxsfCtZkL7Plao_5xS-ZVIYQhAvRSc-viz2h7UJmO-1hWFLzuvowtm9ecQymLbrHB2jttuKAshOwLj39KjyHpYntRs4mrNqcp938YE0QM7UImFv7SzU59SMZ_yNEhl9Oalo6LVjBzQgpd-iHxsA-yvhpRIcRuZHjR6cF_t4fGAK5y">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Canvas -->
+    <main class="mt-16 p-6 md:p-10 min-h-screen max-w-7xl mx-auto">
+
+        <!-- Header Page Title & Primary Actions -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+                <button class="flex items-center gap-1 text-black hover:text-primary transition-colors group mb-2">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    <span class="text-label-md font-bold uppercase tracking-wider">Volver</span>
+                </button>
+                <h2 class="text-headline-lg font-headline-lg text-black">Cotizaciones</h2>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3">
+                <button class="bg-surface-container text-black font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:bg-surface-container-high transition-all border border-outline-variant active:scale-95 text-body-sm">
+                    <span class="material-symbols-outlined">straighten</span>
+                    <span>Instructivo de medición</span>
+                </button>
+                <button class="bg-primary text-black font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:brightness-95 transition-all shadow-md active:scale-95 text-body-sm">
+                    <span class="material-symbols-outlined">add</span>
+                    <span>Nueva Cotización</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Summary Cards (Bento Style) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Card 1 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant custom-shadow-level-1 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform"></div>
+                <div class="flex items-start justify-between relative">
+                    <div>
+                        <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Total Cotizaciones</p>
+                        <h3 class="text-headline-md text-black">148</h3>
+                        <p class="text-label-md text-black font-bold mt-2 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">trending_up</span> +12% este mes
+                        </p>
+                    </div>
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-black">analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant custom-shadow-level-1 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-secondary-container/30 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform"></div>
+                <div class="flex items-start justify-between relative">
+                    <div>
+                        <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Pendientes de Aprobación</p>
+                        <h3 class="text-headline-md text-black">32</h3>
+                        <p class="text-label-md text-black/80 font-bold mt-2 flex items-center gap-1">
+                            Valuadas en $2.4M
+                        </p>
+                    </div>
+                    <div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-black">pending_actions</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant custom-shadow-level-1 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform"></div>
+                <div class="flex items-start justify-between relative">
+                    <div>
+                        <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Tasa de Conversión</p>
+                        <h3 class="text-headline-md text-black">68.4%</h3>
+                        <div class="w-full bg-surface-container-low h-2 rounded-full mt-3 overflow-hidden">
+                            <div class="bg-primary h-full rounded-full" style="width: 68.4%"></div>
+                        </div>
+                    </div>
+                    <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-black">moving</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div class="flex flex-wrap gap-2">
+                <button class="px-4 py-2 rounded-full bg-primary text-black text-label-md font-bold border border-primary">Todas</button>
+                <button class="px-4 py-2 rounded-full bg-transparent text-black border border-outline-variant hover:bg-surface-container-low transition-colors text-label-md font-bold">Pendientes</button>
+                <button class="px-4 py-2 rounded-full bg-transparent text-black border border-outline-variant hover:bg-surface-container-low transition-colors text-label-md font-bold">Aprobadas</button>
+                <button class="px-4 py-2 rounded-full bg-transparent text-black border border-outline-variant hover:bg-surface-container-low transition-colors text-label-md font-bold">Rechazadas</button>
+            </div>
+            <button class="flex items-center gap-2 text-black hover:text-primary transition-colors font-bold uppercase tracking-wider text-xs">
+                <span class="material-symbols-outlined text-[20px]">filter_list</span>
+                <span>Filtros Avanzados</span>
+            </button>
+        </div>
+
+        <!-- Data Table Section -->
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow-level-1 overflow-x-auto">
+            <table class="w-full border-collapse text-left min-w-[700px]">
+                <thead class="bg-surface-container">
+                    <tr>
+                        <th class="px-6 py-4 text-label-md font-bold text-black uppercase tracking-wider">Folio</th>
+                        <th class="px-6 py-4 text-label-md font-bold text-black uppercase tracking-wider">Cliente</th>
+                        <th class="px-6 py-4 text-label-md font-bold text-black uppercase tracking-wider">Fecha</th>
+                        <th class="px-6 py-4 text-label-md font-bold text-black uppercase tracking-wider">Monto</th>
+                        <th class="px-6 py-4 text-label-md font-bold text-black uppercase tracking-wider">Estado</th>
+                        <th class="text-right px-6 py-4 text-label-md font-bold text-black uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant/50">
+                    <!-- Row 1 -->
+                    <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="px-6 py-5">
+                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-001</span>
+                        </td>
+                        <td class="px-6 py-5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-black text-xs font-bold shrink-0">HM</div>
+                                <div>
+                                    <p class="text-body-md font-bold text-black">Hoteles México S.A.</p>
+                                    <p class="text-label-md text-black/60 font-semibold">Licitación Mobiliario Lobby</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">24 May 2024</td>
+                        <td class="px-6 py-5 text-body-md font-bold text-black">$1,245,000.00</td>
+                        <td class="px-6 py-5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-black text-label-md font-bold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Pendiente
+                            </span>
+                        </td>
+                        <td class="px-6 py-5 text-right">
+                            <div class="flex justify-end gap-1">
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                                <button class="p-2 text-black hover:text-error transition-all" title="Eliminar"><span class="material-symbols-outlined">delete</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="px-6 py-5">
+                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-002</span>
+                        </td>
+                        <td class="px-6 py-5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded bg-primary/40 flex items-center justify-center text-black text-xs font-bold shrink-0">RE</div>
+                                <div>
+                                    <p class="text-body-md font-bold text-black">Residencial Encinos</p>
+                                    <p class="text-label-md text-black/60 font-semibold">Cocinas Integrales Mod. Oak</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">22 May 2024</td>
+                        <td class="px-6 py-5 text-body-md font-bold text-black">$890,400.00</td>
+                        <td class="px-6 py-5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary text-black text-label-md font-bold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Aprobada
+                            </span>
+                        </td>
+                        <td class="px-6 py-5 text-right">
+                            <div class="flex justify-end gap-1">
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Imprimir"><span class="material-symbols-outlined">print</span></button>
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Compartir"><span class="material-symbols-outlined">share</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="px-6 py-5">
+                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-003</span>
+                        </td>
+                        <td class="px-6 py-5">
+                            <div class="flex items-center gap-3">
+                                <img class="w-8 h-8 rounded object-cover border border-outline-variant shrink-0" alt="Ing. Ricardo Salas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaXhwaLQeEVTk3UE_eLKTYGhn_zKZcWcA3R95n9FCIGyCeXDZJ8JKczKRoEzj1mKR2RHsOdkNhbYBlCM0cPkEV_EVHqT8bVhKW-5m5ZEvDFqD2w9cVj4gFJVsxnoHVKBE7b_QYtc8ihVadd9x0f3taIu0y2BKnqUa3lmomisWD_1IvX_K5wV7SnQfqBq9u3cQRcpX_qzCpTYobxgEpbvgoNbgc5zmdPe2NxxfbK1Kx-k88wM1atjoe4Y_FZlDrPkbs60Nzvh0B94Va">
+                                <div>
+                                    <p class="text-body-md font-bold text-black">Ing. Ricardo Salas</p>
+                                    <p class="text-label-md text-black/60 font-semibold">Estudio Particular</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">20 May 2024</td>
+                        <td class="px-6 py-5 text-body-md font-bold text-black">$120,000.00</td>
+                        <td class="px-6 py-5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-label-md font-bold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-on-error-container"></span> Rechazada
+                            </span>
+                        </td>
+                        <td class="px-6 py-5 text-right">
+                            <div class="flex justify-end gap-1">
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Historial"><span class="material-symbols-outlined">history</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="px-6 py-5">
+                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-004</span>
+                        </td>
+                        <td class="px-6 py-5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center text-black text-xs font-bold shrink-0">CC</div>
+                                <div>
+                                    <p class="text-body-md font-bold text-black">Centro Comercial Altra</p>
+                                    <p class="text-label-md text-black/60 font-semibold">Bancas Área Común</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">19 May 2024</td>
+                        <td class="px-6 py-5 text-body-md font-bold text-black">$456,200.00</td>
+                        <td class="px-6 py-5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-black text-label-md font-bold">
+                                <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Pendiente
+                            </span>
+                        </td>
+                        <td class="px-6 py-5 text-right">
+                            <div class="flex justify-end gap-1">
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
+                                <button class="p-2 text-black hover:text-primary transition-all" title="Editar"><span class="material-symbols-outlined">edit</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Table Pagination -->
+            <div class="bg-surface-container/30 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-outline-variant">
+                <p class="text-label-md text-black/60 font-bold">Mostrando 4 de 148 cotizaciones</p>
+                <div class="flex items-center gap-2">
+                    <button class="p-2 rounded hover:bg-surface-container text-black disabled:opacity-30" disabled>
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button class="px-3 py-1 rounded bg-black text-primary text-label-md font-bold">1</button>
+                    <button class="px-3 py-1 rounded hover:bg-surface-container text-black text-label-md font-bold">2</button>
+                    <button class="px-3 py-1 rounded hover:bg-surface-container text-black text-label-md font-bold">3</button>
+                    <span class="text-black/60 font-bold">...</span>
+                    <button class="px-3 py-1 rounded hover:bg-surface-container text-black text-label-md font-bold">37</button>
+                    <button class="p-2 rounded hover:bg-surface-container text-black">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

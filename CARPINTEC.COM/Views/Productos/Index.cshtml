@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-100">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carpintec - Catálogo de Productos</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            carp: {
+              dark: '#2A1A08',     
+              wood: '#8B5A2B',     
+              accent: '#C86D27',   
+              light: '#F4EBE1',    
+              gold: '#D4AF37',     
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="h-full text-slate-800 antialiased selection:bg-carp-accent selection:text-white">
+
+  <div class="flex h-screen overflow-hidden">
+
+    <!-- ÁREA PRINCIPAL -->
+    <div class="flex flex-1 flex-col overflow-hidden">
+      
+      <!-- Topbar Header -->
+      <header class="flex h-16 items-center justify-between border-b border-carp-wood/10 bg-white px-6">
+        <div class="flex items-center gap-4">
+          <!-- Espacio para título o navegación según se requiera -->
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button class="relative rounded-full p-2 text-slate-500 hover:bg-slate-100 hover:text-carp-wood transition">
+                <i class="fa-regular fa-bell text-lg"></i>
+                <span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-carp-accent"></span>
+            </button>
+            <div class="h-6 w-px bg-slate-200"></div>
+            <div class="flex items-center gap-3 pl-2">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256" alt="Avatar" class="h-8 w-8 rounded-full object-cover ring-2 ring-carp-wood/20" />
+                <div class="hidden text-left md:block">
+                    <p class="text-xs font-semibold text-slate-700">María González</p>
+                    <p class="text-[10px] text-slate-500">Diseñadora Senior</p>
+                </div>
+            </div>
+        </div>
+      </header>
+
+      <!-- Main Scrollable Content Area -->
+      <main class="flex-1 overflow-y-auto bg-slate-50/50 p-6">
+        <div class="mx-auto max-w-7xl">
+          
+          <!-- Encabezado de la página -->
+          <div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+            <div>
+              <h1 class="text-2xl font-bold tracking-tight text-carp-dark">Catálogo de Productos</h1>
+              <p class="text-sm text-slate-500">Gestione y explore los muebles disponibles en el inventario.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 transition">
+                <i class="fa-solid fa-file-export text-slate-400"></i> Exportar
+              </button>
+              <button class="inline-flex items-center gap-2 rounded-lg bg-carp-wood px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-carp-dark transition">
+                <i class="fa-solid fa-plus"></i> Nuevo Producto
+              </button>
+            </div>
+          </div>
+
+          <!-- Filtros y Búsqueda -->
+          <div class="mb-6 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm">
+            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              
+              <!-- Buscador -->
+              <div class="relative flex-1">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" placeholder="Buscar por código, nombre o material..." class="w-full rounded-lg border border-slate-200 pl-10 pr-4 py-2 text-sm focus:border-carp-wood focus:outline-none focus:ring-1 focus:ring-carp-wood">
+              </div>
+
+              <!-- Filtros Dropdowns -->
+              <div class="flex flex-wrap items-center gap-3">
+                <select class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:border-carp-wood focus:outline-none">
+                  <option>Todas las Categorías</option>
+                  <option>Cocinas</option>
+                  <option>Dormitorios</option>
+                  <option>Oficina</option>
+                  <option>Salón</option>
+                </select>
+
+                <select class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 focus:border-carp-wood focus:outline-none">
+                  <option>Estado: Todos</option>
+                  <option>En Stock</option>
+                  <option>Bajo Pedido</option>
+                  <option>Agotado</option>
+                </select>
+
+                <div class="flex items-center rounded-lg border border-slate-200 bg-slate-50 p-1">
+                  <button class="rounded-md bg-white p-1.5 text-carp-dark shadow-sm">
+                    <i class="fa-solid fa-border-all text-sm"></i>
+                  </button>
+                  <button class="rounded-md p-1.5 text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-list text-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Rejilla Principal de Contenido (Productos + Panel Detalle Lateral) -->
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-4">
+            
+            <!-- Listado de Productos (Ocupa 3 columnas en pantallas grandes) -->
+            <div class="lg:col-span-3">
+              <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                
+                <!-- Card Producto 1 -->
+                <div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
+                  <div class="aspect-video w-full overflow-hidden bg-slate-100 relative">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600" alt="Sofá" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+                    <span class="absolute top-3 right-3 rounded-full bg-emerald-500/90 px-2.5 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">En Stock</span>
+                  </div>
+                  <div class="flex flex-1 flex-col p-4">
+                    <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                      <span>REF: MUE-094</span>
+                      <span class="font-medium text-carp-wood">Salón</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base mb-1 group-hover:text-carp-accent transition">Sofá Roble Nórdico</h3>
+                    <p class="text-xs text-slate-500 line-clamp-2 mb-4">Estructura de roble macizo con acabado natural y tapizado de lino gris resistente.</p>
+                    
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-3">
+                      <div>
+                        <span class="text-xs text-slate-400 block">Precio base</span>
+                        <span class="text-lg font-extrabold text-carp-dark">$850.00</span>
+                      </div>
+                      <button class="rounded-lg bg-carp-light p-2 text-carp-wood hover:bg-carp-wood hover:text-white transition">
+                        <i class="fa-solid fa-chevron-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Producto 2 -->
+                <div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
+                  <div class="aspect-video w-full overflow-hidden bg-slate-100 relative">
+                    <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80&w=600" alt="Silla" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+                    <span class="absolute top-3 right-3 rounded-full bg-amber-500/90 px-2.5 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">Bajo Pedido</span>
+                  </div>
+                  <div class="flex flex-1 flex-col p-4">
+                    <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                      <span>REF: MUE-012</span>
+                      <span class="font-medium text-carp-wood">Comedor</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base mb-1 group-hover:text-carp-accent transition">Silla Artesanal Nogal</h3>
+                    <p class="text-xs text-slate-500 line-clamp-2 mb-4">Silla de comedor esculpida a mano en madera de nogal americano con barniz satinado.</p>
+                    
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-3">
+                      <div>
+                        <span class="text-xs text-slate-400 block">Precio base</span>
+                        <span class="text-lg font-extrabold text-carp-dark">$180.00</span>
+                      </div>
+                      <button class="rounded-lg bg-carp-light p-2 text-carp-wood hover:bg-carp-wood hover:text-white transition">
+                        <i class="fa-solid fa-chevron-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Producto 3 -->
+                <div class="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md">
+                  <div class="aspect-video w-full overflow-hidden bg-slate-100 relative">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=600" alt="Mesa" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+                    <span class="absolute top-3 right-3 rounded-full bg-emerald-500/90 px-2.5 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">En Stock</span>
+                  </div>
+                  <div class="flex flex-1 flex-col p-4">
+                    <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                      <span>REF: MUE-088</span>
+                      <span class="font-medium text-carp-wood">Oficina</span>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base mb-1 group-hover:text-carp-accent transition">Escritorio Ejecutivo Pino</h3>
+                    <p class="text-xs text-slate-500 line-clamp-2 mb-4">Mesa de trabajo espaciosa con pasacables integrado y cajonera suave.</p>
+                    
+                    <div class="mt-auto flex items-center justify-between border-t border-slate-100 pt-3">
+                      <div>
+                        <span class="text-xs text-slate-400 block">Precio base</span>
+                        <span class="text-lg font-extrabold text-carp-dark">$420.00</span>
+                      </div>
+                      <button class="rounded-lg bg-carp-light p-2 text-carp-wood hover:bg-carp-wood hover:text-white transition">
+                        <i class="fa-solid fa-chevron-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Panel Detalle Lateral (Ocupa 1 columna) -->
+            <div class="lg:col-span-1">
+              <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sticky top-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <h2 class="font-bold text-slate-800 text-sm">Resumen del Producto</h2>
+                  <button class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+                
+                <div class="py-4">
+                  <div class="mb-3 aspect-video w-full overflow-hidden rounded-lg bg-slate-100">
+                     <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600" alt="Detalle" class="h-full w-full object-cover" />
+                  </div>
+                  <h4 class="font-bold text-slate-800 text-base">Sofá Roble Nórdico</h4>
+                  <p class="text-xs text-carp-wood font-medium">Categoría: Salón</p>
+                  
+                  <div class="mt-4 space-y-2 text-xs">
+                    <div class="flex justify-between py-1 border-b border-slate-50">
+                      <span class="text-slate-400">Dimensiones:</span>
+                      <span class="font-semibold text-slate-700">210 x 90 x 85 cm</span>
+                    </div>
+                    <div class="flex justify-between py-1 border-b border-slate-50">
+                      <span class="text-slate-400">Material Primario:</span>
+                      <span class="font-semibold text-slate-700">Roble Macizo</span>
+                    </div>
+                    <div class="flex justify-between py-1 border-b border-slate-50">
+                      <span class="text-slate-400">Tiempo Fabricación:</span>
+                      <span class="font-semibold text-slate-700">12 días hábiles</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-2 pt-2">
+                  <button class="w-full rounded-lg bg-carp-wood py-2 text-center text-xs font-semibold text-white hover:bg-carp-dark transition">
+                    Editar Producto
+                  </button>
+                  <button class="w-full rounded-lg border border-slate-200 py-2 text-center text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
+                    Ver Planos Técnicos
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+</body>
+</html>
