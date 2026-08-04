@@ -15,8 +15,6 @@ public partial class Producto
 
     public decimal? Precio { get; set; }
 
-    public int? Stock { get; set; }
-
     public string? Categoria { get; set; }
 
     public string? Material { get; set; }

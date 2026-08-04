@@ -1,20 +1,39 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CARPINTEC.COM.Data;
+using CARPINTEC.COM.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CARPINTEC.COM.Controllers
 {
     public class UsuariosController : Controller
     {
+        private readonly CarpintecContext _context;
+
+        public UsuariosController(CarpintecContext context)
+        {
+            _context = context;
+        }
         // GET: UsuariosController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var usuarios = await _context.Usuarios.ToListAsync();
+            return View(usuarios);
+        }
+        public IActionResult NuevoUsuario()
         {
             return View();
         }
 
-        // GET: UsuariosController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var usuario = await _context.Usuarios.FindAsync(id);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
         }
 
         // GET: UsuariosController/Create
@@ -38,25 +57,52 @@ namespace CARPINTEC.COM.Controllers
             }
         }
 
-        // GET: UsuariosController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var usuario = await _context.Usuarios.FindAsync(id);
+
+            if (usuario == null)
+                return NotFound();
+
+            return View(usuario);
         }
 
         // POST: UsuariosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+       
+        public async Task<IActionResult> CambiarEstado(int id)
         {
-            try
+            var usuario = await _context.Usuarios.FindAsync(id);
+
+            if (usuario == null)
+                return NotFound();
+
+            usuario.Estado = usuario.Estado == "Activo" ? "Inactivo" : "Activo";
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Usuario usuario)
+        {
+            if (id != usuario.IdUsuario)
             {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _context.Update(usuario);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(usuario);
         }
 
         // GET: UsuariosController/Delete/5

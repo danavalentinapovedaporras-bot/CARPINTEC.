@@ -1,0 +1,291 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            try {
+                tailwind.config = {
+                    darkMode: "class",
+                    theme: {
+                        extend: {
+                            "colors": {
+                                "on-primary": "#ffffff",
+                                "error-container": "#ffdad6",
+                                "on-background": "#1b1c1c",
+                                "primary-fixed": "#ffdbd0",
+                                "on-surface": "#1b1c1c",
+                                "background": "#fcf9f8",
+                                "surface": "#fcf9f8",
+                                "on-secondary-fixed": "#1b1d0e",
+                                "on-surface-variant": "#504441",
+                                "error": "#ba1a1a",
+                                "tertiary-fixed": "#cde8e5",
+                                "surface-tint": "#77574d",
+                                "surface-bright": "#fcf9f8",
+                                "on-primary-fixed-variant": "#5d4037",
+                                "surface-container-highest": "#e5e2e1",
+                                "on-primary-fixed": "#2c160e",
+                                "on-secondary": "#ffffff",
+                                "outline-variant": "#d4c3be",
+                                "on-tertiary-container": "#a0bab7",
+                                "surface-container": "#f0eded",
+                                "tertiary-fixed-dim": "#b1ccc9",
+                                "inverse-surface": "#303030",
+                                "secondary": "#5e604d",
+                                "primary": "#442a22",
+                                "inverse-on-surface": "#f3f0ef",
+                                "surface-container-low": "#f6f3f2",
+                                "surface-variant": "#e5e2e1",
+                                "on-error": "#ffffff",
+                                "on-secondary-container": "#636451",
+                                "tertiary": "#1c3433",
+                                "on-error-container": "#93000a",
+                                "secondary-fixed": "#e4e4cc",
+                                "secondary-container": "#e1e1c9",
+                                "surface-dim": "#dcd9d9",
+                                "on-secondary-fixed-variant": "#474836",
+                                "inverse-primary": "#e7bdb1",
+                                "on-tertiary": "#ffffff",
+                                "surface-container-high": "#eae7e7",
+                                "tertiary-container": "#334b49",
+                                "primary-container": "#5d4037",
+                                "outline": "#827470",
+                                "primary-fixed-dim": "#e7bdb1",
+                                "surface-container-lowest": "#ffffff",
+                                "on-primary-container": "#d4ada1",
+                                "secondary-fixed-dim": "#c8c8b0",
+                                "on-tertiary-fixed-variant": "#334b49",
+                                "on-tertiary-fixed": "#061f1e"
+                            },
+                            "borderRadius": {
+                                "DEFAULT": "0.25rem",
+                                "lg": "0.5rem",
+                                "xl": "0.75rem",
+                                "full": "9999px"
+                            },
+                            "spacing": {
+                                "lg": "40px",
+                                "sm": "12px",
+                                "base": "8px",
+                                "xs": "4px",
+                                "xl": "64px",
+                                "md": "24px",
+                                "margin": "32px",
+                                "gutter": "24px"
+                            },
+                            "fontFamily": {
+                                "headline-lg-mobile": ["Manrope"],
+                                "body-sm": ["Hanken Grotesk"],
+                                "label-md": ["Hanken Grotesk"],
+                                "headline-xl": ["Manrope"],
+                                "headline-md": ["Manrope"],
+                                "headline-lg": ["Manrope"],
+                                "body-md": ["Hanken Grotesk"],
+                                "body-lg": ["Hanken Grotesk"]
+                            },
+                            "fontSize": {
+                                "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                                "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                                "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                                "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                                "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                                "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                                "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                                "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                            }
+                        },
+                    },
+                }
+        } catch (_e) { }</script>
+    </head>
+    <body class="bg-background text-on-surface font-body-md min-h-screen pb-xl">
+
+        <!-- Header (Shared Component: TopAppBar logic) -->
+        <header class="fixed top-0 w-full z-50 glass-header shadow-sm h-16 flex items-center px-margin justify-between">
+            <div class="flex items-center gap-md">
+                
+                <div class="flex items-center gap-base">
+                    <img src="~/images/logo.png" alt="Logo CARPINTEC" class="w-20 h-20 object-contain mb-2">
+                    <h1 class="font-headline-md text-headline-md text-primary tracking-tight">Carpintec</h1>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Portal Administrativo</span>
+            </div>
+            <div class="w-10"></div> <!-- Spacer for symmetry -->
+        </header>
+
+        <!-- Main Content -->
+        <main class="pt-24 max-w-4xl mx-auto px-margin">
+
+            <!-- Welcome/Page Title Area -->
+            <div class="mb-lg">
+                <h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Nuevo Proveedor</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant">Agregue un nuevo socio comercial a la red de suministros de Carpintec.</p>
+            </div>
+
+            <!-- Form Layout -->
+            <form class="space-y-md">
+
+                <!-- Section 1: General Information -->
+                <section class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant relative overflow-hidden group hover:shadow-md transition-shadow">
+                    <div class="wood-texture-overlay absolute inset-0"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-base mb-md">
+                            <span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">business</span>
+                            <h3 class="font-headline-md text-headline-md text-primary">Información General</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant px-xs">Nombre de la Empresa</label>
+                                <input type="text" placeholder="Ej. Maderas del Roble S.A." class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                            </div>
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant px-xs">NIT / Tax ID</label>
+                                <input type="text" placeholder="900.123.456-7" class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                            </div>
+                            <div class="flex flex-col gap-xs md:col-span-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant px-xs">Categoría Principal</label>
+                                <select class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all cursor-pointer">
+                                    <option value="" disabled="" selected="">Seleccione una categoría</option>
+                                    <option value="maderas">Maderas</option>
+                                    <option value="herrajes">Herrajes</option>
+                                    <option value="quimicos">Químicos</option>
+                                    <option value="herramientas">Herramientas</option>
+                                    <option value="varios">Varios</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Contact Details -->
+                <section class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant relative overflow-hidden group hover:shadow-md transition-shadow">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-base mb-md">
+                            <span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">contact_phone</span>
+                            <h3 class="font-headline-md text-headline-md text-primary">Datos de Contacto</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant px-xs">Persona de Contacto</label>
+                                <input type="text" placeholder="Nombre completo" class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                            </div>
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant px-xs">Teléfono</label>
+                                <input type="tel" placeholder="+57 300 000 0000" class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                            </div>
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant px-xs">Email Corporativo</label>
+                                <input type="email" placeholder="contacto@empresa.com" class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                            </div>
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant px-xs">Sitio Web</label>
+                                <input type="url" placeholder="https://www.empresa.com" class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Logistics & Location -->
+                <section class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant group hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-base mb-md">
+                        <span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">local_shipping</span>
+                        <h3 class="font-headline-md text-headline-md text-primary">Logística y Ubicación</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                        <div class="flex flex-col gap-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant px-xs">Ciudad</label>
+                            <input type="text" placeholder="Ej. Bogotá D.C." class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                        </div>
+                        <div class="flex flex-col gap-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant px-xs">Dirección de Despacho</label>
+                            <input type="text" placeholder="Calle, Carrera, Bodega" class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all">
+                        </div>
+                        <div class="flex flex-col gap-xs md:col-span-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant px-xs">Tiempo de Entrega Estimado</label>
+                            <div class="relative">
+                                <input type="text" placeholder="Ej. 3-5 días hábiles" class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-sm pl-11 font-body-md form-input-focus transition-all">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-60">schedule</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Services & Products -->
+                <section class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant group hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-base mb-md">
+                        <span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">inventory_2</span>
+                        <h3 class="font-headline-md text-headline-md text-primary">Servicios y Productos</h3>
+                    </div>
+
+                    <div class="flex flex-col gap-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant px-xs">Productos Suministrados (Etiquetas)</label>
+                        <div class="bg-surface-container-low border border-outline-variant rounded-lg p-sm min-h-[80px] flex flex-wrap gap-xs items-start" id="tags-container">
+                            <div class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full flex items-center gap-xs text-body-sm font-semibold">
+                                Corte de lámina
+                                <button type="button" class="material-symbols-outlined text-sm hover:text-error transition-colors">close</button>
+                            </div>
+                            <div class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full flex items-center gap-xs text-body-sm font-semibold">
+                                Canto PVC
+                                <button type="button" class="material-symbols-outlined text-sm hover:text-error transition-colors">close</button>
+                            </div>
+                            <input type="text" placeholder="Escriba y presione Enter..." class="bg-transparent border-none focus:ring-0 flex-grow font-body-sm py-xs min-w-[150px]">
+                        </div>
+                        <p class="text-[12px] text-on-surface-variant mt-xs italic">Añada los servicios específicos o insumos clave que este proveedor ofrece al taller.</p>
+                    </div>
+                </section>
+
+                <!-- Section 5: Notes -->
+                <section class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant group hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-base mb-md">
+                        <span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">description</span>
+                        <h3 class="font-headline-md text-headline-md text-primary">Notas / Observaciones</h3>
+                    </div>
+                    <div class="flex flex-col gap-xs">
+                        <textarea rows="4" placeholder="Detalles adicionales sobre condiciones comerciales, calidad de materiales o acuerdos especiales..." class="bg-surface-container-low border border-outline-variant rounded-lg p-sm font-body-md form-input-focus transition-all resize-none"></textarea>
+                    </div>
+                </section>
+
+                <!-- Sticky Actions (Bottom) -->
+                <div class="flex flex-col sm:flex-row items-center justify-end gap-md pt-lg pb-xl">
+                    <button type="button" class="w-full sm:w-auto px-xl py-sm rounded-xl font-label-md text-label-md text-primary border-2 border-primary hover:bg-surface-container transition-all active:scale-95">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="w-full sm:w-auto px-xl py-sm rounded-xl font-label-md text-label-md bg-primary text-on-primary shadow-lg hover:opacity-90 transition-all active:scale-[0.98]">
+                        Guardar Proveedor
+                    </button>
+                </div>
+
+            </form>
+        </main>
+
+        <!-- Visual Polish: Floating Decoration -->
+        <div class="fixed bottom-margin right-margin opacity-10 pointer-events-none select-none hidden lg:block">
+            <span class="material-symbols-outlined text-[120px] text-primary">carpenter</span>
+        </div>
+
+        <!-- Micro-interaction Script -->
+        <script class="">
+                document.addEventListener('DOMContentLoaded', () => {
+                    const inputs = document.querySelectorAll('input, select, textarea');
+
+                    inputs.forEach(input => {
+                        input.addEventListener('focus', () => {
+                            input.parentElement.querySelector('label')?.classList.add('text-primary');
+                            input.parentElement.querySelector('label')?.classList.remove('text-on-surface-variant');
+                        });
+
+                        input.addEventListener('blur', () => {
+            input.parentElement.querySelector('label')?.classList.</script></body>
+        </html>

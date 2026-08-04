@@ -10,7 +10,14 @@ namespace CARPINTEC.COM.Controllers
         {
             return View();
         }
-
+        public IActionResult Rebastecimiento()
+        {
+            return View();
+        }
+        public IActionResult GestionFacturas()
+        {
+            return View();
+        }
         // GET: InventarioController/Details/5
         public ActionResult Details(int id)
         {

@@ -1,20 +1,44 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CARPINTEC.COM.Data;
+using CARPINTEC.COM.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CARPINTEC.COM.Controllers
 {
     public class CotizacionesController : Controller
     {
-        // GET: CotizacionesController
-        public ActionResult Index()
+        private readonly CarpintecContext _context;
+
+        public CotizacionesController(CarpintecContext context)
         {
-            return View();
+            _context = context;
+        }
+
+
+
+        public async Task<IActionResult> Index()
+        {
+            var cotizaciones = await _context.Cotizacions
+                .Include(c => c.IdClienteNavigation)
+                .ToListAsync();
+
+            return View(cotizaciones);
         }
 
         // GET: CotizacionesController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var cotizacion = await _context.Cotizacions
+                .Include(c => c.IdClienteNavigation)
+                .Include(c => c.IdEmpleadoNavigation)
+                .FirstOrDefaultAsync(c => c.IdCotizacion == id);
+
+            if (cotizacion == null)
+            {
+                return NotFound();
+            }
+
+            return View(cotizacion);
         }
 
         // GET: CotizacionesController/Create
@@ -39,26 +63,41 @@ namespace CARPINTEC.COM.Controllers
         }
 
         // GET: CotizacionesController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var cotizacion = await _context.Cotizacions
+                .FirstOrDefaultAsync(c => c.IdCotizacion == id);
+
+            if (cotizacion == null)
+            {
+                return NotFound();
+            }
+
+            return View(cotizacion);
         }
 
         // POST: CotizacionesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Cotizacion cotizacion)
         {
+            if (id != cotizacion.IdCotizacion)
+            {
+                return NotFound();
+            }
+
             try
             {
+                _context.Entry(cotizacion).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Content(ex.ToString());
             }
         }
-
         // GET: CotizacionesController/Delete/5
         public ActionResult Delete(int id)
         {

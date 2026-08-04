@@ -1,5 +1,5 @@
 @{
-    Layout = null;
+    ViewData["Title"] = "Usuarios";
 }
 <!DOCTYPE html>
 <html class="light" lang="es" style="">
@@ -145,31 +145,7 @@
 </head>
 <body class="bg-background text-on-background font-body-md text-body-md min-h-screen">
     <!-- Main Content Area -->
-    <main class="w-full min-h-screen relative">
-        <div class="wood-texture-overlay absolute inset-0"></div>
-        <!-- Top App Bar -->
-        <header class="h-16 px-margin-desktop bg-surface/80 backdrop-blur-md flex justify-between items-center sticky top-0 z-40 border-b border-outline-variant">
-            <div class="flex items-center gap-8">
-                <div class="relative group">
-                    <span class="absolute inset-y-0 left-3 flex items-center text-on-surface">
-                        <span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
-                    </span>
-                    <input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary w-64 transition-all text-on-surface placeholder-on-surface/50" placeholder="Buscar pedidos, clientes..." type="text">
-                </div>
-            </div>
-            <div class="flex items-center gap-6">
-                <button class="text-on-surface hover:bg-surface-container-low p-2 rounded-full transition-colors relative">
-                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-                    <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
-                </button>
-                <div class="flex items-center gap-3 border-l border-outline-variant pl-6">
-                    <div class="text-right">
-                        <p class="font-label-md text-label-md text-on-surface font-bold">Admin Paula</p>
-                    </div>
-                    <img class="w-10 h-10 rounded-full object-cover border-2 border-primary shadow-sm" data-alt="A professional portrait of Paula" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUy6dDPirkqXMXzlMrQayFHgvlrtS15zHhnnyl0jM8fq6iCO9mzxWJ1IeQqmCdMXLmk9LPLjAIzN1xcZVnAs2CJj8O4TQS9SJftEQlitAQssNfFyemsnhD8nc-E3MKZ4bVsCGo8l2ghcGscyLATcSTCjk1ThCbpA2xisVHsbGZRU6iO_h32gtC7--i6qFO_Ru8Eijb_55wllNpllGP23SqvNx6gOjBGKfuQ4pIEFKKwteKU3jX4ozI_Q">
-                </div>
-            </div>
-        </header>
+    <main class="pt-4 min-h-screen bg-background">
         <!-- Content Canvas -->
         <div class="p-margin-desktop space-y-gutter relative z-10">
             <!-- Page Header -->
@@ -182,6 +158,9 @@
                     <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Gestión de Pedidos</h2>
                     <p class="text-on-surface/70 font-body-md">Supervisa el flujo de producción artesanal y entregas.</p>
                 </div>
+                <input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary w-64 transition-all text-on-surface placeholder-on-surface/50"
+                       placeholder="Buscar pedidos, clientes..."
+                       type="text">
                 <button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-title-md text-title-md flex items-center gap-2 shadow-soft-wood hover:scale-[1.02] active:scale-[0.98] transition-all font-bold">
                     <span class="material-symbols-outlined" data-icon="add">add</span>
                     Nuevo Pedido
@@ -256,10 +235,14 @@
                             <span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span>
                             <span class="font-label-md">Más filtros</span>
                         </button>
-                        <button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-all">
-                            <span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                        <a asp-controller="Pedidos"
+                           asp-action="ExportarExcel"
+                           class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-all">
+
+                            <span class="material-symbols-outlined text-[20px]">download</span>
                             <span class="font-label-md">Exportar</span>
-                        </button>
+
+                        </a>
                     </div>
                 </div>
                 <!-- Responsive Table Wrapper -->

@@ -1,150 +1,474 @@
-
-
+@{
+    ViewData["Title"] = "Usuarios";
+}
 <!DOCTYPE html>
-<html lang="es">
+<html class="light" lang="es" style="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Productos</title>
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Inventario - CARPINTEC</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "secondary-container": "#e1e1c9",
+                            "on-secondary-fixed-variant": "#474836",
+                            "tertiary-container": "#334b49",
+                            "on-surface-variant": "#504441",
+                            "tertiary-fixed": "#cde8e5",
+                            "surface": "#fcf9f8",
+                            "outline-variant": "#d4c3be",
+                            "on-surface": "#1b1c1c",
+                            "surface-container-high": "#eae7e7",
+                            "error-container": "#ffdad6",
+                            "primary-container": "#5d4037",
+                            "primary-fixed": "#ffdbd0",
+                            "surface-container": "#f0eded",
+                            "error": "#ba1a1a",
+                            "on-error-container": "#93000a",
+                            "inverse-surface": "#303030",
+                            "on-tertiary-container": "#a0bab7",
+                            "surface-variant": "#e5e2e1",
+                            "secondary": "#5e604d",
+                            "surface-bright": "#fcf9f8",
+                            "surface-container-highest": "#e5e2e1",
+                            "primary": "#442a22",
+                            "on-secondary-fixed": "#1b1d0e",
+                            "on-tertiary-fixed": "#061f1e",
+                            "on-error": "#ffffff",
+                            "primary-fixed-dim": "#e7bdb1",
+                            "on-secondary-container": "#636451",
+                            "surface-tint": "#77574d",
+                            "tertiary": "#1c3433",
+                            "on-primary-fixed-variant": "#5d4037",
+                            "on-primary-container": "#d4ada1",
+                            "surface-container-lowest": "#ffffff",
+                            "surface-dim": "#dcd9d9",
+                            "outline": "#827470",
+                            "inverse-primary": "#e7bdb1",
+                            "background": "#fcf9f8",
+                            "inverse-on-surface": "#f3f0ef",
+                            "secondary-fixed": "#e4e4cc",
+                            "secondary-fixed-dim": "#c8c8b0",
+                            "on-secondary": "#ffffff",
+                            "tertiary-fixed-dim": "#b1ccc9",
+                            "on-tertiary": "#ffffff",
+                            "surface-container-low": "#f6f3f2",
+                            "on-primary-fixed": "#2c160e",
+                            "on-primary": "#ffffff",
+                            "on-background": "#1b1c1c",
+                            "on-tertiary-fixed-variant": "#334b49"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "md": "24px",
+                            "sm": "12px",
+                            "base": "8px",
+                            "lg": "40px",
+                            "gutter": "24px",
+                            "xl": "64px",
+                            "xs": "4px",
+                            "margin": "32px"
+                        },
+                        "fontFamily": {
+                            "body-md": ["Hanken Grotesk"],
+                            "headline-lg-mobile": ["Manrope"],
+                            "body-lg": ["Hanken Grotesk"],
+                            "body-sm": ["Hanken Grotesk"],
+                            "headline-xl": ["Manrope"],
+                            "headline-md": ["Manrope"],
+                            "headline-lg": ["Manrope"],
+                            "label-md": ["Hanken Grotesk"]
+                        },
+                        "fontSize": {
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            body {
+                font-family: 'Hanken Grotesk', sans-serif;
+                background-color: #FAFAFA;
+                color: #1b1c1c;
+            }
+
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                vertical-align: middle;
+            }
+
+            .glass-card {
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(245, 245, 220, 0.5);
+            }
+
+            .wood-shadow {
+                box-shadow: 0 4px 12px rgba(68, 42, 34, 0.08);
+            }
+
+            .zebra-row:nth-child(even) {
+                background-color: rgba(245, 245, 220, 0.3);
+            }
+
+            .swatch-glow {
+                transition: all 0.3s ease;
+            }
+
+                .swatch-glow:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 16px rgba(68, 42, 34, 0.12);
+                }
+
+            .sidebar-item-active {
+                background-color: rgba(255, 219, 208, 0.15);
+                color: #ffdbd0;
+                border-left: 4px solid #ffdbd0;
+            }
+    </style>
+    <style>
+            body {
+                min-height: max(884px, 100dvh);
+            }
+    </style>
 </head>
-<body>
-    <div class="app-container">
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="top-header">
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterTable()">
-                </div>
-                <div class="user-profile">
-                    <i class="fas fa-bell notification-icon"></i>
-                    <div class="avatar">A</div>
-                    <span class="user-name">Administrador</span>
-                </div>
-            </header>
+<body class="bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- Sidebar Navigation Drawer -->
+    <button onclick="history.back()"
+            class="flex items-center gap-2 text-primary hover:underline mb-4">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Volver
+    </button>
 
-            <!-- Page Content -->
-            <div class="content-body">
-                <div class="page-header">
-                    <div>
-                        <h2>Listado de Productos</h2>
-                        <p class="subtitle">Administra el inventario y catálogo de productos</p>
+    <!-- Main Content Canvas -->
+    <main class="pt-4 min-h-screen bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6"><h1 class="text-headline-xl font-headline-xl font-bold text-primary dark:text-primary-fixed">Inventario</h1></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-lg">
+            <!-- Summary Stats Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+                <div class="bg-surface-container-lowest p-md rounded-xl wood-shadow border border-outline-variant/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-label-md text-on-surface-variant">Productos Totales</span>
+                        <span class="material-symbols-outlined text-primary">inventory</span>
                     </div>
-                    <a asp-action="Create" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Nuevo Producto
-                    </a>
+                    <p class="text-headline-lg font-headline-lg text-primary">342</p>
+                    <p class="text-body-sm text-tertiary mt-2">↑ 12 nuevos este mes</p>
                 </div>
-
-                <!-- Table Card -->
-                <div class="card table-card">
-                    <div class="table-responsive">
-                        <table class="table" id="productsTable">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Producto</th>
-                                    <th>Categoría</th>
-                                    <th>Precio</th>
-                                    <th>Stock</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (Model != null && Model.Any())
-                                {
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>@item.Id</td>
-                                            <td>
-                                                <div class="product-info">
-                                                    <span class="product-name">@item.Nombre</span>
-                                                </div>
-                                            </td>
-                                            <td>@item.Categoria</td>
-                                            <td>$@item.Precio.ToString("N2")</td>
-                                            <td>@item.Stock</td>
-                                            <td>
-                                                @if (item.Stock > 0)
-                                                {
-                                                    <span class="badge badge-success">Disponible</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="badge badge-danger">Agotado</span>
-                                                }
-                                            </td>
-                                            <td class="actions-cell">
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn-icon btn-edit" title="Editar">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a asp-action="Details" asp-route-id="@item.Id" class="btn-icon btn-details" title="Detalles">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </a>
-                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn-icon btn-delete" title="Eliminar">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td colspan="7" class="text-center">No hay productos registrados.</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                <div class="bg-error-container/30 p-md rounded-xl wood-shadow border border-error/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-label-md text-on-surface-variant">Stock Bajo</span>
+                        <span class="material-symbols-outlined text-error">warning</span>
                     </div>
-
-                    <!-- Pagination / Table Footer -->
-                    <div class="table-footer">
-                        <span class="table-info">Mostrando registros del catálogo</span>
-                        <div class="pagination">
-                            <button class="btn-page" disabled><i class="fas fa-chevron-left"></i></button>
-                            <button class="btn-page active">1</button>
-                            <button class="btn-page">2</button>
-                            <button class="btn-page">3</button>
-                            <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
-                        </div>
+                    <p class="text-headline-lg font-headline-lg text-error">18</p>
+                    <p class="text-body-sm text-error mt-2">Requieren atención inmediata</p>
+                </div>
+                <div class="bg-surface-container-lowest p-md rounded-xl wood-shadow border border-outline-variant/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-label-md text-on-surface-variant">Valor Inventario</span>
+                        <span class="material-symbols-outlined text-primary">payments</span>
+                    </div>
+                    <p class="text-headline-lg font-headline-lg text-primary">$285.600k</p>
+                    <p class="text-body-sm text-on-surface-variant mt-2">Basado en precio de compra</p>
+                </div>
+                <div class="bg-surface-container-lowest p-md rounded-xl wood-shadow border border-outline-variant/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-label-md text-on-surface-variant">Movimientos</span>
+                        <span class="material-symbols-outlined text-primary">sync_alt</span>
+                    </div>
+                    <p class="text-headline-lg font-headline-lg text-primary">128</p>
+                    <p class="text-body-sm text-on-surface-variant mt-2">Últimos 30 días</p>
+                </div>
+            </div>
+            <!-- Main Actions & Filters -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex bg-surface-container-high p-1 rounded-lg">
+                    <button class="px-6 py-2 rounded-md text-label-md font-label-md transition-all" style="background-color: rgb(210, 180, 140); color: rgb(0, 0, 0);">Madera</button>
+                    <button class="px-6 py-2 hover:bg-surface-container-highest text-on-surface-variant rounded-md text-label-md font-label-md transition-all">Herrajes</button>
+                    <button class="px-6 py-2 hover:bg-surface-container-highest text-on-surface-variant rounded-md text-label-md font-label-md transition-all">Herramientas</button>
+                    <button class="px-6 py-2 hover:bg-surface-container-highest text-on-surface-variant rounded-md text-label-md font-label-md transition-all">Químicos</button>
+                </div>
+                <a asp-controller="GestionFacturas"
+                   asp-action="Index"
+                   class="bg-primary px-6 py-3 rounded-full flex items-center gap-2 font-bold shadow-md hover:opacity-90 active:scale-95 transition-all text-on-background"
+                   style="background-color: rgb(210, 180, 140); text-decoration: none;">
+                    Facturas PDF
+                </a>
+            </div>
+            <!-- Inventory List Table Card -->
+            <div class="bg-surface-container-lowest rounded-xl wood-shadow overflow-hidden border border-outline-variant/20">
+                <div class="p-6 border-b border-outline-variant/30 bg-surface-container-low/50 flex justify-between items-center">
+                    <h3 class="text-headline-md font-headline-md text-primary">Catálogo de Materiales</h3>
+                    <div class="flex gap-2">
+                        <span class="text-body-sm text-on-surface-variant">Filtro: Todo el stock</span>
+                        <span class="material-symbols-outlined text-on-surface-variant cursor-pointer">filter_list</span>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-surface-container text-on-surface-variant text-label-md border-b border-outline-variant/30">
+                                <th class="px-6 py-4 font-semibold">PRODUCTO</th>
+                                <th class="px-6 py-4 font-semibold">CATEGORÍA</th>
+                                <th class="px-6 py-4 font-semibold text-center">STOCK</th>
+                                <th class="px-6 py-4 font-semibold">UNIDAD</th>
+                                <th class="px-6 py-4 font-semibold">PRECIO UNIT.</th>
+                                <th class="px-6 py-4 font-semibold">ESTADO</th>
+                                <th class="px-6 py-4 font-semibold text-right">ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-outline-variant/20">
+                            <!-- Low Stock Alert Row -->
+                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group bg-primary-fixed/10">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
+                                            <img alt="Roble" class="w-full h-full object-cover" data-alt="A macro high-definition photograph of natural oak wood grain. The texture is intricate with warm honey and brown tones. The lighting is soft and professional, highlighting the organic patterns of the timber. The style is clean, minimalist, and aligns with high-end carpentry craftsmanship and luxury interiors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABhbceZ_3xBvveIRXOMvc7viZsUmY09mLKZIBJ7AWttKc0rlNXcBTC7es-mnI5vktnecnllgHtZnDMz-Hzo0pZn_Sr0m47p2ycqQRL-tvIitg9vqHdPRM5WiWkikCD1ux-nVvI1u7SUAV0bcaBoe5dbzbgoOuXbSyBWopiaxDi_N4QcyluNsa_qkhS3NwZe_hIL9CV0mXwqWTTl4vrS3uIMBD21oyshVKPmOm_gkLfybvhAicAkFTT4spXR9zt_yAscJWa9bvxaK4">
+                                        </div>
+                                        <div>
+                                            <p class="text-body-md font-bold text-primary">Madera Roble Macizo</p>
+                                            <p class="text-body-sm text-on-surface-variant">Ref: WD-RB-001</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-sm">Maderas Nobles</td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-3 py-1 rounded-full bg-error-container text-error text-label-md font-bold">15</span>
+                                </td>
+                                <td class="px-6 py-4 text-body-sm">Tablones</td>
+                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$120.000</td>
+                                <td class="px-6 py-4">
+                                    <span class="flex items-center gap-1 text-error text-label-md font-bold uppercase tracking-wider">
+                                        <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span> Stock Bajo
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+                                </td>
+                            </tr>
+                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group bg-primary-fixed/10">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
+                                            <img alt="Cedro" class="w-full h-full object-cover" data-alt="A close-up shot of rich cedar wood planks stacked in a workshop. The wood has a deep reddish-brown hue and a visible vertical grain. The atmosphere is warm and professional, suggesting a high-quality carpentry environment. Soft ambient lighting creates subtle highlights on the wooden surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCh3rCl9fkCdpVMIhga5AKkkmTbQytr8dwdlknVRNcc6odqGAyPEO287odKwPwe-orchqRSJLw5XGaVizG_Dhr1oe1QoWw6ar67Ft_EOWdOULFJ4JbP9X_VIvrfH8Qb-wkCVwE1kz1xWkDIgMh4QjIzRYdw1mtD1XXR9PTKrJkEhilr4_vmktMJQdHMriuCCuMptHkmX8QyYXEkWUEAmRBRbhK1sR-a_M1gWtctW42vwGnBTEPtigTP6eLBIUM9eTuwM2849sXhDk">
+                                        </div>
+                                        <div>
+                                            <p class="text-body-md font-bold text-primary">Madera Cedro Rojo</p>
+                                            <p class="text-body-sm text-on-surface-variant">Ref: WD-CD-044</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-sm">Maderas Nobles</td>
+                                <td class="px-6 py-4 text-center text-body-md font-bold text-primary">28</td>
+                                <td class="px-6 py-4 text-body-sm">Tablones</td>
+                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$85.000</td>
+                                <td class="px-6 py-4">
+                                    <span class="flex items-center gap-1 text-tertiary text-label-md font-bold uppercase tracking-wider">
+                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Disponible
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+                                </td>
+                            </tr>
+                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
+                                            <span class="material-symbols-outlined text-primary text-3xl">build</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-body-md font-bold text-primary">Tornillo 1 1/2" Cabeza Plana</p>
+                                            <p class="text-body-sm text-on-surface-variant">Ref: HJ-TR-102</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-sm">Herrajes</td>
+                                <td class="px-6 py-4 text-center text-body-md font-bold text-primary">1,250</td>
+                                <td class="px-6 py-4 text-body-sm">Unidades</td>
+                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$150</td>
+                                <td class="px-6 py-4">
+                                    <span class="flex items-center gap-1 text-tertiary text-label-md font-bold uppercase tracking-wider">
+                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Disponible
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+                                </td>
+                            </tr>
+                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group bg-primary-fixed/10">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
+                                            <img alt="Adhesivo" class="w-full h-full object-cover" data-alt="A studio shot of industrial-strength wood adhesive containers arranged neatly on a clean white surface. The packaging is professional, featuring neutral earth tones and clear labeling. The lighting is bright and airy, emphasizing a clean and organized production environment. The overall aesthetic is minimalist and functional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW_ATHEdXO8i-Glt9WIpMbZk5SSdJjMOjynTU6SzDD7WLcm8T-aax80xVkF3fKvx4uyhHkUkXa5SyuS4OZhg9ih11IfvXH7et3meno_FSyqLBJbGqTfdNO54brNXQSXveSQCur8Y-xHemOdtzzGhcYSLLjrnNX42vkp6qX69oMTHffyqf3Ujq-Y47nZ7L3iby4QNOzGR_gU7-PyO4ciFKxV0KDQwEVXciNg8WL-8bhL6ybpXL6jarcPzU-EOGhrnVbMvK3lXU0nJI">
+                                        </div>
+                                        <div>
+                                            <p class="text-body-md font-bold text-primary">Pegante para Madera PVA</p>
+                                            <p class="text-body-sm text-on-surface-variant">Ref: CH-PG-009</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-body-sm">Químicos</td>
+                                <td class="px-6 py-4 text-center text-body-md font-bold text-primary">42</td>
+                                <td class="px-6 py-4 text-body-sm">Galones</td>
+                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$45.000</td>
+                                <td class="px-6 py-4">
+                                    <span class="flex items-center gap-1 text-tertiary text-label-md font-bold uppercase tracking-wider">
+                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Disponible
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-6 border-t border-outline-variant/30 bg-surface-container-low/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-body-sm text-on-surface-variant">Mostrando 1 - 4 de 342 productos</p>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">1</button>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">2</button>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">3</button>
+                        <span class="px-2 self-center">...</span>
+                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">86</button>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
-
+            <!-- Recent Stock History / Entries & Exits -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+                <div class="lg:col-span-2 bg-surface-container-lowest p-md rounded-xl wood-shadow border border-outline-variant/20">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-headline-md font-headline-md text-primary">Historial de Movimientos</h3>
+                        <a class="text-label-md font-bold text-primary hover:underline" href="#">Ver reporte completo</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant/10">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center">
+                                    <span class="material-symbols-outlined">south_east</span>
+                                </div>
+                                <div>
+                                    <p class="text-body-md font-bold text-primary">Entrada: Madera Roble</p>
+                                    <p class="text-body-sm text-on-surface-variant">Orden de compra #OC-2024-081</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-body-md font-bold text-tertiary">+50 Tablones</p>
+                                <p class="text-body-sm text-on-surface-variant">Hoy, 09:15 AM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant/10">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center">
+                                    <span class="material-symbols-outlined">north_east</span>
+                                </div>
+                                <div>
+                                    <p class="text-body-md font-bold text-primary">Salida: Pegante PVA</p>
+                                    <p class="text-body-sm text-on-surface-variant">Proyecto: Cocina Integral #24-01</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-body-md font-bold text-error">-2 Galones</p>
+                                <p class="text-body-sm text-on-surface-variant">Ayer, 04:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant/10">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center">
+                                    <span class="material-symbols-outlined">north_east</span>
+                                </div>
+                                <div>
+                                    <p class="text-body-md font-bold text-primary">Salida: Madera Cedro</p>
+                                    <p class="text-body-sm text-on-surface-variant">Mobiliario Oficina "Torre 4"</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-body-md font-bold text-error">-12 Tablones</p>
+                                <p class="text-body-sm text-on-surface-variant">15 Mayo, 11:00 AM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Custom Material Swatches / Specialty Component -->
+                <div class="bg-primary text-on-primary p-md rounded-xl wood-shadow flex flex-col justify-between" style="background-color: rgb(210, 180, 140); color: rgb(27, 28, 28);"><div><h3 class="text-headline-md font-headline-md mb-2">&nbsp;Agotados</h3><p class="text-body-sm mb-6 text-on-surface-variant">Materiales y suministros con stock en cero</p><div class="space-y-4"><div class="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/10"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-error">block</span><span class="text-body-md font-bold">Madera de Cedro</span></div><span class="text-label-md font-bold text-error uppercase">Agotado</span></div><div class="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/10"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-error">block</span><span class="text-body-md font-bold">Bisagras de Bronce</span></div><span class="text-label-md font-bold text-error uppercase">Agotado</span></div><div class="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/10"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-error">block</span><span class="text-body-md font-bold">Barniz Mate 1L</span></div><span class="text-label-md font-bold text-error uppercase">Agotado</span></div></div></div>
+                    <a asp-controller="Rebastecimiento"
+                       asp-action="Index"
+                       class="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg">
+                        <span class="material-symbols-outlined">inventory</span>
+                        Solicitar Reposición
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Bottom Navigation Bar (Mobile only) -->
+    <nav class="fixed bottom-0 w-full lg:hidden z-50 rounded-t-xl bg-surface dark:bg-surface-container-highest border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(68,42,34,0.08)]">
+        <div class="flex justify-around items-center h-16 pb-safe">
+            <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-all p-2 rounded-lg" href="#">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-label-md font-label-md">Home</span>
+            </a>
+            <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-all p-2 rounded-lg" href="#">
+                <span class="material-symbols-outlined">groups</span>
+                <span class="text-label-md font-label-md">Clientes</span>
+            </a>
+            <a class="flex flex-col items-center justify-center text-on-surface-variant bg-primary-fixed/30 rounded-full px-4 py-1" href="#">
+                <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL:&quot; 1;">add_circle</span>
+                <span class="text-label-md font-label-md font-bold text-primary">Cotizar</span>
+            </a>
+            <a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold" href="#">
+                <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">inventory_2</span>
+                <span class="text-label-md font-label-md">Inv.</span>
+            </a>
+            <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-all p-2 rounded-lg" href="#">
+                <span class="material-symbols-outlined">more_horiz</span>
+                <span class="text-label-md font-label-md">Más</span>
+            </a>
+        </div>
+    </nav>
     <script>
-        function filterTable() {
-            var input, filter, table, tr, td, i, j, txtValue, found;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("productsTable");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 1; i < tr.length; i++) {
-                found = false;
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length - 1; j++) {
-                    if (td[j]) {
-                        txtValue = td[j].textContent || td[j].innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-                if (found) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
+            // Simple micro-interaction for rows
+            document.querySelectorAll('.zebra-row').forEach(row => {
+                row.addEventListener('click', () => {
+                    row.classList.toggle('bg-primary-fixed/10');
+                });
+            });
     </script>
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

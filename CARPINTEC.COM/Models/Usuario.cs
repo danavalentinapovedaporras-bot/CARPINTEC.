@@ -19,5 +19,7 @@ public partial class Usuario
 
     public string? Estado { get; set; }
 
+    public virtual ICollection<ActividadTaller> ActividadTallers { get; set; } = new List<ActividadTaller>();
+
     public virtual ICollection<Empleado> Empleados { get; set; } = new List<Empleado>();
 }

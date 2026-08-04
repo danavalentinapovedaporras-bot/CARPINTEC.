@@ -14,11 +14,16 @@ public class LoginController : Controller
     {
         return View();
     }
+    public IActionResult CerrarSesion()
+    {
+        return RedirectToAction("Index", "Login");
+    }
+
 
     [HttpPost]
     public IActionResult Ingresar(string username, string password, string rol = "empleado")
     {
-        // Validar que los campos no estén vacíos
+        // 1. Validar que no envíe campos vacíos
         if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
         {
             TempData["Error"] = "Por favor ingrese usuario y contraseña";
@@ -27,47 +32,48 @@ public class LoginController : Controller
 
         try
         {
-            // Buscar el usuario en la BD por correo (case-insensitive) o nombre
+            // 2. Buscar al usuario en la Base de Datos (sirve para Admin, Cliente o Empleado)
             var usuario = _context.Usuarios
-                .FirstOrDefault(u => (u.Correo.ToLower() == username.ToLower() || u.Nombre.ToLower() == username.ToLower()) && u.Estado == "Activo");
+                .FirstOrDefault(u =>
+                    (u.Correo.ToLower() == username.ToLower() ||
+                     u.Nombre.ToLower() == username.ToLower()) &&
+                     u.Estado == "Activo");
 
+            // Si el usuario no existe
             if (usuario == null)
             {
-                // Log para debugging
-                Console.WriteLine($"Usuario no encontrado con username: {username}");
                 TempData["Error"] = "Usuario o contraseña incorrectos";
                 return RedirectToAction("Index");
             }
 
-            // Validar la contraseña (comparación directa - está en texto plano en la BD)
+            // Validar contraseña
             if (usuario.Contraseña != password)
             {
-                // Log para debugging
-                Console.WriteLine($"Contraseña incorrecta para usuario: {usuario.Nombre}");
                 TempData["Error"] = "Usuario o contraseña incorrectos";
                 return RedirectToAction("Index");
             }
 
-            // Guardar en sesión
+            // Guardar datos de sesión
             HttpContext.Session.SetInt32("IdUsuario", usuario.IdUsuario);
             HttpContext.Session.SetString("NombreUsuario", usuario.Nombre);
             HttpContext.Session.SetString("Rol", usuario.Rol ?? "Usuario");
-            HttpContext.Session.SetString("Correo", usuario.Correo ?? "");
 
-            // IMPORTANTE: Log de login exitoso
-            Console.WriteLine($"Login exitoso para usuario: {usuario.Nombre} ({usuario.Correo}) - Rol: {usuario.Rol}");
+            // Redireccionar según el rol
+            string rolBD = (usuario.Rol ?? "").Trim().ToLower();
 
-            // Redirigir al Dashboard
-            return RedirectToAction("Index", "Dashboard");
+            if (rolBD == "cliente")
+            {
+                return RedirectToAction("Index", "DashboardCliente");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
         }
         catch (Exception ex)
         {
-            // Log de error
-            Console.WriteLine($"Error en login: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
-            TempData["Error"] = "Ocurrió un error al procesar la solicitud";
+            TempData["Error"] = "Error al procesar la solicitud";
             return RedirectToAction("Index");
         }
     }
 }
-

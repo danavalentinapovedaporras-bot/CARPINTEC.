@@ -1,0 +1,471 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es" style="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            try {
+                tailwind.config = {
+                    darkMode: "class",
+                    theme: {
+                        extend: {
+                            "colors": {
+                                "secondary-fixed-dim": "#c8c8b0",
+                                "inverse-on-surface": "#f3f0ef",
+                                "on-secondary-container": "#636451",
+                                "background": "#fcf9f8",
+                                "surface-container-high": "#eae7e7",
+                                "surface-container": "#f0eded",
+                                "primary-fixed": "#ffdbd0",
+                                "surface-bright": "#fcf9f8",
+                                "on-tertiary": "#ffffff",
+                                "on-surface-variant": "#504441",
+                                "surface-variant": "#e5e2e1",
+                                "on-primary-fixed": "#2c160e",
+                                "surface-container-lowest": "#ffffff",
+                                "surface-container-low": "#f6f3f2",
+                                "primary-fixed-dim": "#e7bdb1",
+                                "on-error": "#ffffff",
+                                "surface-tint": "#77574d",
+                                "on-primary-fixed-variant": "#5d4037",
+                                "outline": "#827470",
+                                "primary-container": "#5d4037",
+                                "on-primary": "#ffffff",
+                                "tertiary-fixed-dim": "#b1ccc9",
+                                "tertiary-container": "#334b49",
+                                "surface-container-highest": "#e5e2e1",
+                                "inverse-primary": "#e7bdb1",
+                                "on-tertiary-fixed": "#061f1e",
+                                "on-background": "#1b1c1c",
+                                "inverse-surface": "#303030",
+                                "on-secondary": "#ffffff",
+                                "on-secondary-fixed-variant": "#474836",
+                                "secondary": "#5e604d",
+                                "tertiary": "#1c3433",
+                                "on-tertiary-fixed-variant": "#334b49",
+                                "error-container": "#ffdad6",
+                                "surface": "#fcf9f8",
+                                "primary": "#442a22",
+                                "on-primary-container": "#d4ada1",
+                                "on-error-container": "#93000a",
+                                "outline-variant": "#d4c3be",
+                                "secondary-fixed": "#e4e4cc",
+                                "on-tertiary-container": "#a0bab7"
+                            },
+                            "borderRadius": {
+                                "DEFAULT": "0.25rem",
+                                "lg": "0.5rem",
+                                "xl": "0.75rem",
+                                "full": "9999px"
+                            },
+                            "spacing": {
+                                "lg": "40px",
+                                "xs": "4px",
+                                "margin": "32px",
+                                "gutter": "24px",
+                                "xl": "64px",
+                                "md": "24px",
+                                "sm": "12px",
+                                "base": "8px"
+                            },
+                            "fontFamily": {
+                                "body-lg": ["Hanken Grotesk"],
+                                "headline-md": ["Manrope"],
+                                "headline-lg-mobile": ["Manrope"],
+                                "headline-lg": ["Manrope"],
+                                "body-md": ["Hanken Grotesk"],
+                                "headline-xl": ["Manrope"],
+                                "body-sm": ["Hanken Grotesk"],
+                                "label-md": ["Hanken Grotesk"]
+                            },
+                            "fontSize": {
+                                "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                                "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                                "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                                "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                                "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                                "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                                "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                                "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                            }
+                        },
+                    },
+                }
+        } catch (_e) { }</script>
+        <meta charset="utf-8">
+    </head>
+    <body class="bg-surface overflow-x-hidden min-h-screen">
+        <!-- Top AppBar -->
+        <header class="fixed top-0 left-0 right-0 z-[100] bg-surface shadow-sm transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-margin py-sm flex justify-between items-center h-16 md:h-20">
+                <div class="flex items-center gap-4">
+                    <button class="md:hidden p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+                        <span class="material-symbols-outlined text-primary">menu</span>
+                    </button>
+                    <div class="flex items-center gap-2 group cursor-pointer">
+                        <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center group-hover:rotate-6 transition-transform">
+                             <img src="~/images/logo.png" alt="Logo CARPINTEC" class="w-20 h-20 object-contain mb-2">
+                        </div>
+                        <span class="font-headline-md text-headline-md font-extrabold tracking-tight text-primary">Carpintec</span>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center gap-gutter">
+                    <a href="#" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2 px-1 relative group">
+                        Inventario
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                    </a>
+                    <a href="#" class="font-label-md text-label-md text-primary font-bold transition-colors py-2 px-1 relative">
+                        Facturas
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary"></span>
+                    </a>
+                    <a asp-controller="Proveedores"
+                       asp-action="Index"
+                       class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2 px-1 relative group">
+                        Proveedores
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                    </a>
+                    <a href="#" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors py-2 px-1 relative group">
+                        Ajustes
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                    </a>
+                </nav>
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex flex-col items-end mr-2">
+                        <span class="font-label-md text-label-md text-on-surface font-bold">Admin</span>
+                        <span class="text-[10px] text-on-surface-variant uppercase tracking-widest">Panel de Control</span>
+                    </div>
+                    <button class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim overflow-hidden hover:scale-105 transition-transform">
+                        <img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged male carpentry business manager, wearing a smart casual linen shirt, with a soft-focus woodworking studio background. The lighting is warm and organic, matching the artisanal precision brand aesthetic with soft brown and beige tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-QWk4g49820sKMkFvE-qRd0lFagk3Q0lA5jmboDI3bWKAqzcZk8Vx_Gn6qVS9nU2xNA3V1TAf1ALMMMzvD7xNoIJIJKwaqbsakl4NM4hbieqrNST_m29scjh3EYlo5ltLzkGhTUrZ6I3YTZ5SvBhhRlSOa5LEJ7dLIosCM4Mp_-buEjBy9Wgo5-PEgpBf9IqNNBfLrACpTed60fmG8_e_1Sd_vQ9UU9vGkv1vSsqz-6NoR5lxGL-B">
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main class="pt-24 pb-20 md:pt-32 px-4 md:px-margin max-w-7xl mx-auto wood-texture-overlay min-h-screen">
+            <!-- Welcome & Breadcrumbs -->
+            <section class="mb-lg animate-fade-in">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <nav class="flex items-center gap-2 mb-2 text-on-surface-variant font-label-md text-label-md">
+                            <span class="">Inventario</span>
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                            <span class="text-primary font-bold">Registro de Facturas</span>
+                        </nav>
+                        <h1 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary">Gestión de Facturas</h1>
+                        <p class="text-body-md font-body-md text-on-surface-variant mt-1">Supervise y registre el flujo de entrada de materiales y suministros.</p>
+                    </div>
+                    <button class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-95 transition-all"><span class="material-symbols-outlined">history</span> Historial de Facturas</button>
+                </div>
+            </section>
+            <!-- Summary Section (Bento Style) -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-lg">
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-6 animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="w-14 h-14 rounded-full bg-secondary-fixed-dim/20 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined text-3xl">receipt_long</span>
+                    </div>
+                    <div>
+                        <p class="text-on-surface-variant font-label-md text-label-md">Facturas Totales</p>
+                        <p class="text-headline-md font-headline-md text-primary">1,248</p>
+                        <span class="text-[12px] text-green-600 font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">trending_up</span> +12% este mes
+                        </span>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-6 animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="w-14 h-14 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center text-tertiary">
+                        <span class="material-symbols-outlined text-3xl">pending_actions</span>
+                    </div>
+                    <div>
+                        <p class="text-on-surface-variant font-label-md text-label-md">Pendientes de Entrega</p>
+                        <p class="text-headline-md font-headline-md text-primary">18</p>
+                        <span class="text-[12px] text-amber-600 font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">schedule</span> 3 urgentes
+                        </span>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex items-center gap-6 animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="w-14 h-14 rounded-full bg-primary-fixed-dim/20 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-3xl">payments</span>
+                    </div>
+                    <div>
+                        <p class="text-on-surface-variant font-label-md text-label-md">Gasto Total (Mes)</p>
+                        <p class="text-headline-md font-headline-md text-primary">$45.8M</p>
+                        <span class="text-[12px] text-on-surface-variant font-medium">Octubre 2023</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Top Requested & Analytics -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-lg">
+                <!-- Analytics Column -->
+                <div class="lg:col-span-8 glass-card rounded-2xl p-6 animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="font-headline-md text-headline-md text-primary">Productos con Mayor Demanda</h2>
+                        <button class="text-on-surface-variant hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">more_horiz</span>
+                        </button>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="group">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed-dim transition-colors">
+                                        <span class="material-symbols-outlined text-primary">forest</span>
+                                    </div>
+                                    <span class="font-body-md text-body-md text-on-surface font-semibold">Madera de Roble Blanco (Tablas)</span>
+                                </div>
+                                <span class="font-label-md text-label-md text-on-surface-variant">42 pedidos</span>
+                            </div>
+                            <div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+                                <div class="bg-primary h-full rounded-full transition-all duration-1000 ease-out" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed-dim transition-colors">
+                                        <span class="material-symbols-outlined text-primary">hardware</span>
+                                    </div>
+                                    <span class="font-body-md text-body-md text-on-surface font-semibold">Bisagras de Acero Inoxidable 4"</span>
+                                </div>
+                                <span class="font-label-md text-label-md text-on-surface-variant">28 pedidos</span>
+                            </div>
+                            <div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+                                <div class="bg-secondary h-full rounded-full transition-all duration-1000 ease-out" style="width: 62%;"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed-dim transition-colors">
+                                        <span class="material-symbols-outlined text-primary">format_paint</span>
+                                    </div>
+                                    <span class="font-body-md text-body-md text-on-surface font-semibold">Barniz Satinado "Rich Walnut"</span>
+                                </div>
+                                <span class="font-label-md text-label-md text-on-surface-variant">21 pedidos</span>
+                            </div>
+                            <div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+                                <div class="bg-tertiary h-full rounded-full transition-all duration-1000 ease-out" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Material Swatch Card -->
+                <div class="lg:col-span-4 glass-card rounded-2xl overflow-hidden animate-fade-in" style="animation-delay: 0.5s;">
+                    <div class="h-48 relative overflow-hidden group">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A macro high-definition photograph of a premium solid cherry wood texture, showing intricate grain patterns and a warm, honey-toned finish. The lighting emphasizes the tactile surface quality and natural imperfections, aligned with the artisanal woodcraft theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjWkr_ixCfFmPojT8P59eftWD5T9qHs7aFWbNW6u1xU15rleXuSL4FZDjXqKUNGlJu97gtGlJMwcfdgroqDBw3uRBpD-CXt-wmmGFSH8jhDGdy-eMTH75LouTrsthRwjHu4F2czj-xixkx0HELDk-ywwJkUjQZdMuDL_I1zay0KJZqiLrXxkHqt8X09Vwp_qLm3vPHRsjD-ULPD1r6FzHkqQ5nOmFS7a3kN_LGFbZa4oXC5a4957GY">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="inline-block bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-2">Producto Estrella</span>
+                            <h3 class="text-white font-headline-md text-headline-md">Cerezo Macizo</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Dimensiones</p>
+                                <p class="font-body-md text-body-md font-bold">2400 x 300 x 50mm</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Stock</p>
+                                <p class="font-body-md text-body-md font-bold text-primary">124 u.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
+                            <p class="text-body-sm text-on-surface-variant leading-relaxed">
+                                "Madera de alta densidad ideal para mobiliario de lujo. Favorito actual para proyectos de oficina."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Search and Filters -->
+            <section class="glass-card p-4 rounded-2xl mb-gutter flex flex-col md:flex-row items-center gap-4 animate-fade-in" style="animation-delay: 0.6s;">
+                <div class="w-full md:flex-1 relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                    <input class="w-full pl-10 pr-4 py-3 rounded-xl border-none bg-surface-container-low focus:ring-2 focus:ring-primary/20 text-body-md placeholder:text-on-surface-variant/50" placeholder="Buscar por factura o proveedor..." type="text">
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <select class="flex-1 md:flex-none py-3 pl-4 pr-10 rounded-xl border-none bg-surface-container-low focus:ring-2 focus:ring-primary/20 font-label-md text-label-md text-on-surface-variant">
+                        <option>Todos los Estados</option>
+                        <option>Entregado</option>
+                        <option>Pendiente</option>
+                        <option>Parcial</option>
+                    </select>
+                    <button class="p-3 bg-surface-container-high rounded-xl text-primary hover:bg-primary hover:text-white transition-all active:scale-95">
+                        <span class="material-symbols-outlined">tune</span>
+                    </button>
+                </div>
+            </section>
+            <!-- Invoice List (Desktop Table) -->
+            <section class="hidden lg:block glass-card rounded-2xl overflow-hidden mb-xl animate-fade-in" style="animation-delay: 0.7s;">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-surface-container-low">
+                            <th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">Factura ID</th>
+                            <th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">Fecha</th>
+                            <th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">Proveedor</th>
+                            <th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">Monto Total</th>
+                            <th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant">Estado</th>
+                            <th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant/20">
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                            <td class="px-6 py-4 font-body-md font-bold text-primary">#FAC-2023-084</td>
+                            <td class="px-6 py-4 text-body-sm text-on-surface-variant">14 Oct, 2023</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-[12px] font-bold">M</div>
+                                    <span class="font-body-md text-on-surface">Maderas del Valle</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 font-body-md font-semibold">$12,450.00</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center gap-1 bg-green-100 text-green-800 px-3 py-1 rounded-full text-[12px] font-bold uppercase tracking-wider">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Entregado
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors"><span class="material-symbols-outlined text-on-surface-variant">visibility</span></button>
+                                <button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors"><span class="material-symbols-outlined text-on-surface-variant">download</span></button>
+                            </td>
+                        </tr>
+                        <tr class="bg-surface-container-low/30 hover:bg-surface-container-low/50 transition-colors">
+                            <td class="px-6 py-4 font-body-md font-bold text-primary">#FAC-2023-082</td>
+                            <td class="px-6 py-4 text-body-sm text-on-surface-variant">12 Oct, 2023</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-[12px] font-bold">F</div>
+                                    <span class="font-body-md text-on-surface">Ferretería Central</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 font-body-md font-semibold">$3,200.00</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-[12px] font-bold uppercase tracking-wider">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> Pendiente
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors"><span class="material-symbols-outlined text-on-surface-variant">visibility</span></button>
+                                <button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors"><span class="material-symbols-outlined text-on-surface-variant">edit</span></button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                            <td class="px-6 py-4 font-body-md font-bold text-primary">#FAC-2023-079</td>
+                            <td class="px-6 py-4 text-body-sm text-on-surface-variant">09 Oct, 2023</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-[12px] font-bold">L</div>
+                                    <span class="font-body-md text-on-surface">Lacas y Barnices S.A.</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 font-body-md font-semibold">$1,850.50</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center gap-1 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-[12px] font-bold uppercase tracking-wider">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Parcial
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors"><span class="material-symbols-outlined text-on-surface-variant">visibility</span></button>
+                                <button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors"><span class="material-symbols-outlined text-on-surface-variant">download</span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!-- Invoice List (Mobile Vertical Cards) -->
+            <section class="lg:hidden space-y-4 mb-xl animate-fade-in" style="animation-delay: 0.7s;">
+                <div class="glass-card p-5 rounded-2xl flex flex-col gap-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-body-md font-bold text-primary">#FAC-2023-084</p>
+                            <p class="text-body-sm text-on-surface-variant">14 Oct, 2023</p>
+                        </div>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Entregado</span>
+                    </div>
+                    <div class="flex items-center gap-3 py-3 border-y border-outline-variant/20">
+                        <div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-[14px] font-bold">M</div>
+                        <div>
+                            <p class="font-body-md text-on-surface font-semibold">Maderas del Valle</p>
+                            <p class="text-body-sm text-primary font-bold">$12,450.00</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button class="flex-1 text-center py-2 text-primary font-label-md text-label-md hover:bg-surface-container rounded-lg">Ver Detalles</button>
+                        <button class="flex-1 text-center py-2 text-primary font-label-md text-label-md hover:bg-surface-container rounded-lg">Descargar</button>
+                    </div>
+                </div>
+                <div class="glass-card p-5 rounded-2xl flex flex-col gap-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-body-md font-bold text-primary">#FAC-2023-082</p>
+                            <p class="text-body-sm text-on-surface-variant">12 Oct, 2023</p>
+                        </div>
+                        <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Pendiente</span>
+                    </div>
+                    <div class="flex items-center gap-3 py-3 border-y border-outline-variant/20">
+                        <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-[14px] font-bold">F</div>
+                        <div>
+                            <p class="font-body-md text-on-surface font-semibold">Ferretería Central</p>
+                            <p class="text-body-sm text-primary font-bold">$3,200.00</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button class="flex-1 text-center py-2 text-primary font-label-md text-label-md hover:bg-surface-container rounded-lg">Ver Detalles</button>
+                        <button class="flex-1 text-center py-2 text-primary font-label-md text-label-md hover:bg-surface-container rounded-lg">Editar</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-surface border-t border-outline-variant/30 px-6 py-2 flex justify-around items-center rounded-t-xl shadow-lg">
+            <button class="flex flex-col items-center gap-1 p-2 text-on-surface-variant">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="text-[10px] font-bold">Inventario</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 p-2 bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+                <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">receipt_long</span>
+                <span class="text-[10px] font-bold">Facturas</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 p-2 text-on-surface-variant">
+                <span class="material-symbols-outlined">local_shipping</span>
+                <span class="text-[10px] font-bold">Envíos</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 p-2 text-on-surface-variant">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-[10px] font-bold">Ajustes</span>
+            </button>
+        </nav>
+        <script>
+                // Smooth scroll reveal logic for micro-interactions
+                window.addEventListener('scroll', () => {
+                    const header = document.querySelector('header');
+                    if (window.scrollY > 50) {
+                        header.classList.add('py-2', 'md:py-2');
+                        header.classList.remove('py-sm');
+                        header.querySelector('.md\\:h-20').classList.remove('md:h-20');
+                        header.querySelector('.md\\:h-16')?.classList.add('md:h-16');
+                    } else {
+                        header.classList.remove('py-2', 'md:py-2');
+                        header.classList.add('py-sm');
+                    }
+                }
+
+                // Simple animation trigger for progress bars on load
+                document.addEventListener('DOMContentLoaded', () => {
+                    const bars = document.querySelectorAll('.h-full.rounded-full');
+                    bars.forEach(bar => {
+                        const targetWidth = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = targetWidth;
+                        }, 400);
+                    });
+                });
+        </script>
+
+    </body></html>

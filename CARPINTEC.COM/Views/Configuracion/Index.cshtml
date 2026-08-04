@@ -1,80 +1,69 @@
 @{
-    Layout = null;
+    ViewData["Title"] = "Usuarios";
 }
+
 <!DOCTYPE html>
-<html class="light" lang="es" style="">
+<html class="light" lang="es">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Configuración - Carpintec Admin</title>
+    <title>Configuración - Carpintec</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-    <style>
-            .material-symbols-outlined {
-                font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-            }
-
-            .active-tab .material-symbols-outlined {
-                font-variation-settings: 'FILL' 1;
-            }
-
-            body {
-                background-color: #fbf9f4; /* Based on theme surface/background */
-                font-family: 'Manrope', sans-serif;
-            }
-
-            .glass-card {
-                background: rgba(255, 255, 255, 0.8);
-                backdrop-filter: blur(8px);
-                border: 1px solid #E5E5E5;
-            }
-
-            .wood-shadow {
-                box-shadow: 0 4px 12px rgba(75, 54, 33, 0.08);
-            }
-
-            .custom-scrollbar::-webkit-scrollbar {
-                width: 6px;
-            }
-
-            .custom-scrollbar::-webkit-scrollbar-track {
-                background: transparent;
-            }
-
-            .custom-scrollbar::-webkit-scrollbar-thumb {
-                background: #d1c5b8;
-                border-radius: 10px;
-            }
-    </style>
     <script id="tailwind-config">
             tailwind.config = {
                 darkMode: "class",
                 theme: {
                     extend: {
                         "colors": {
-                            "primary": "#D2B48C",
-                            "on-primary": "#000000",
-                            "primary-container": "#D2B48C",
-                            "on-primary-container": "#000000",
-                            "background": "#fbf9f4",
-                            "on-background": "#000000",
-                            "surface": "#fbf9f4",
-                            "on-surface": "#000000",
-                            "surface-variant": "#e4e2dd",
-                            "on-surface-variant": "#000000",
-                            "outline": "#7f766a",
-                            "outline-variant": "#d1c5b8",
-                            "secondary": "#5f5e5e",
-                            "on-secondary": "#ffffff",
-                            "tertiary": "#525f76",
+                            "on-secondary-container": "#636451",
+                            "primary-container": "#5d4037",
+                            "inverse-primary": "#e7bdb1",
+                            "primary-fixed-dim": "#e7bdb1",
+                            "on-error": "#ffffff",
+                            "tertiary-container": "#334b49",
                             "on-tertiary": "#ffffff",
+                            "surface-tint": "#77574d",
+                            "surface-bright": "#fcf9f8",
+                            "on-secondary-fixed": "#1b1d0e",
+                            "primary-fixed": "#ffdbd0",
+                            "surface-container-lowest": "#ffffff",
+                            "surface": "#fcf9f8",
+                            "primary": "#2D221B",
+                            "tertiary-fixed": "#cde8e5",
+                            "on-primary-container": "#d4ada1",
+                            "surface-container-low": "#f6f3f2",
+                            "on-primary-fixed-variant": "#5d4037",
+                            "on-surface-variant": "#504441",
+                            "on-primary": "#ffffff",
+                            "on-secondary-fixed-variant": "#474836",
+                            "secondary-fixed": "#e4e4cc",
+                            "on-tertiary-fixed": "#061f1e",
+                            "surface-container": "#f0eded",
+                            "secondary-fixed-dim": "#c8c8b0",
+                            "on-tertiary-fixed-variant": "#334b49",
+                            "outline-variant": "#d4c3be",
+                            "surface-container-high": "#eae7e7",
+                            "secondary": "#5e604d",
+                            "on-tertiary-container": "#a0bab7",
+                            "on-primary-fixed": "#2c160e",
+                            "error-container": "#ffdad6",
+                            "on-surface": "#1b1c1c",
+                            "inverse-on-surface": "#f3f0ef",
                             "error": "#ba1a1a",
-                            "surface-container": "#f0eee9",
-                            "surface-container-low": "#f5f3ee",
-                            "surface-container-high": "#eae8e3",
-                            "surface-container-highest": "#e4e2dd",
-                            "surface-container-lowest": "#ffffff"
+                            "tertiary": "#1c3433",
+                            "on-error-container": "#93000a",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#303030",
+                            "tertiary-fixed-dim": "#b1ccc9",
+                            "surface-container-highest": "#e5e2e1",
+                            "outline": "#827470",
+                            "surface-variant": "#e5e2e1",
+                            "surface-dim": "#dcd9d9",
+                            "secondary-container": "#e1e1c9",
+                            "on-background": "#1b1c1c",
+                            "background": "#fcf9f8"
                         },
                         "borderRadius": {
                             "DEFAULT": "0.25rem",
@@ -83,280 +72,334 @@
                             "full": "9999px"
                         },
                         "spacing": {
+                            "sm": "12px",
+                            "lg": "40px",
                             "base": "8px",
-                            "margin-desktop": "40px",
                             "gutter": "24px",
-                            "table-cell-padding": "12px 16px",
-                            "sidebar-width": "280px",
-                            "card-padding": "24px",
-                            "margin-mobile": "16px"
+                            "xs": "4px",
+                            "margin": "32px",
+                            "xl": "64px",
+                            "md": "24px"
                         },
                         "fontFamily": {
-                            "display-lg": ["Manrope"],
-                            "title-md": ["Manrope"],
-                            "body-md": ["Work Sans"],
+                            "headline-lg-mobile": ["Manrope"],
+                            "label-md": ["Hanken Grotesk"],
+                            "body-sm": ["Hanken Grotesk"],
+                            "body-lg": ["Hanken Grotesk"],
+                            "body-md": ["Hanken Grotesk"],
+                            "headline-xl": ["Manrope"],
                             "headline-lg": ["Manrope"],
-                            "data-table": ["Work Sans"],
-                            "body-lg": ["Manrope"],
-                            "headline-md": ["Manrope"],
-                            "label-md": ["Work Sans"]
+                            "headline-md": ["Manrope"]
+                        },
+                        "fontSize": {
+                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                            "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
                         }
-                    }
-                }
+                    },
+                },
             }
     </script>
+    <style>
+            body {
+                background-color: #fcf9f8;
+                color: #1b1c1c;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .artisanal-card {
+                background: #FFFFFF;
+                border-radius: 1.5rem;
+                box-shadow: 0 4px 12px rgba(45, 34, 27, 0.04);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border: 1px solid rgba(45, 34, 27, 0.05);
+            }
+
+                .artisanal-card:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 24px rgba(45, 34, 27, 0.08);
+                }
+
+            .custom-toggle {
+                position: relative;
+                display: inline-block;
+                width: 48px;
+                height: 26px;
+            }
+
+                .custom-toggle input {
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #e5e2e1;
+                transition: .3s;
+                border-radius: 34px;
+            }
+
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 20px;
+                    width: 20px;
+                    left: 3px;
+                    bottom: 3px;
+                    background-color: white;
+                    transition: .3s;
+                    border-radius: 50%;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+
+            input:checked + .slider {
+                background-color: #2D221B;
+            }
+
+                input:checked + .slider:before {
+                    transform: translateX(22px);
+                }
+
+            .settings-row {
+                transition: background-color 0.2s ease;
+            }
+
+                .settings-row:active {
+                    background-color: #f0eded;
+                }
+
+            details summary::-webkit-details-marker {
+                display: none;
+            }
+    </style>
 </head>
-<body class="bg-background text-on-background overflow-hidden flex h-screen">
-    <!-- Main Content Shell -->
-    <div class="flex-1 ml-0 flex flex-col h-full overflow-hidden">
-        <!-- TopAppBar -->
-        <header class="fixed top-0 right-0 left-0 z-30 flex justify-between items-center h-16 px-margin-desktop bg-surface/80 backdrop-blur-md border-b border-outline-variant">
-            <div class="flex items-center gap-4">
-                <a href="#" class="flex items-center gap-1 text-black hover:opacity-70 transition-opacity mr-2"><span class="material-symbols-outlined text-[20px]">arrow_back</span><span class="text-label-md font-label-md">Volver</span></a><a href="#" class="flex items-center gap-1 text-black hover:opacity-70 transition-opacity ml-2">
-                <span class="material-symbols-outlined text-[20px]">help_outline</span>
-                <span class="text-label-md font-label-md">Instructivo</span>
-            </a>
-            <h2 class="text-title-md font-title-md text-black">Configuración</h2>
-            <div class="h-4 w-px bg-outline-variant"></div>
-
-        </div>
-        <div class="flex items-center gap-6">
-            <button class="relative p-2 text-black hover:bg-surface-container-low rounded-full transition-all">
-                <span class="material-symbols-outlined">notifications</span>
-                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
-            </button>
-            <div class="flex items-center gap-3 pl-6 border-l border-outline-variant">
-                <div class="text-right">
-                    <p class="text-label-md font-label-md font-bold text-black">Admin Paula</p>
-
-                </div>
-                <img class="w-10 h-10 rounded-full border-2 border-primary object-cover shadow-sm" data-alt="A professional headshot of a mature business manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVLe_269egTX2e9txub80Vq2MeBExSmsJcqu9t8_f3annvfFa2iHY-0Py4tujGI20OzpQTV6C1aMz9kCGpkKhUlgTlRFUCLuYms5KNGOpGvhKw_RP9H-ti_im8L6n--9qBpCfCnJEPLYOEpMAwFHxYQbHPCP1BYwO5A-lJBBANeQ9ctyp6ypHkywV-8wKBuyfWI1DXe_YCB_EMamtSY9lsH2Ch8xv_xGIQh78IiPwYBOjFxc7nIQ4Sfk8DwqIinLaCxKDmsIIWSUtl">
-            </div>
+<body class="font-body-md text-body-md pb-32">
+    <!-- Header -->
+    <header class="w-full top-0 sticky z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant px-margin py-sm">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <img alt="Carpintec Logo" class="h-10 w-10 mb-1 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvUaCrJFCALtgbEPf7SexO3dwyQyy9YaZmq9hCOok-uD5opDKpSEW0oRRVraduCqwmn0bsBXebnTFD-Yuh-dmeEwIszpcFY25BjK60KgRDVR0ERxDeS3t_pZDSveomKdxQxUBmvxe4ZFfAkO5pBMzFfchL4LObOQzHri-ET1spGiVhQdy8d3Zvouez1CmVzPchhmPmxeGP8hu_zgQOFsEUPJlfL9hOe45B1R_0uCecqRZf-0K4Q-fmsIfCFIYhW8Y88ZXDRRPCd6g">
+            <h1 class="font-headline-md text-[18px] font-bold text-primary tracking-[0.2em]">CARPINTEC</h1>
         </div>
     </header>
-    <!-- Scrollable Content Canvas -->
-    <main class="mt-16 p-margin-desktop overflow-y-auto custom-scrollbar flex-1 bg-background relative">
-        <!-- Bento Grid Layout for Settings -->
-        <div class="max-w-6xl mx-auto space-y-gutter">
-            <!-- Section 1: Profile & Shop Header -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-                <!-- Profile Card -->
-                <div class="md:col-span-4 glass-card p-card-padding rounded-xl wood-shadow relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-4 opacity-5">
-                        <span class="material-symbols-outlined text-[120px]">person</span>
-                    </div>
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class="relative group/avatar mb-4">
-                            <img class="w-24 h-24 rounded-full object-cover border-4 border-surface-container-high shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpSiIALpW-tJ76xqWydVtAm7gEudMsNFypNCrBk7nEqISNlxLjFnrVbOzWLrTTQC4uwg-KwL6gG5dAXMgTDm0s5h5N_lgQw_n2_zTL752g_DXOBDSJoLEO9NmHtu8K-bXbd5ht4w09OwoS51w3s8kYSpNUfZET4uBOBAfHzuQJpq4ssp_wtJSadHH7UNYQrQZq5x4CuCGGFhx90hPjW4oLqNCbLgkK9ktReAZN0eJGRASLYF7QOqNcFY8bM5aOh85q5jjXTANJqZp3">
-                            <button class="absolute bottom-0 right-0 bg-primary text-black p-1.5 rounded-full shadow-lg hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-[18px]">edit</span>
+    <main class="max-w-4xl mx-auto px-margin pt-lg">
+        <!-- Introduction -->
+        <div class="mb-lg text-center md:text-left">
+            <h2 class="font-headline-xl text-headline-xl text-primary mb-2">Configuración</h2>
+            <p class="text-on-surface-variant font-body-lg">Personaliza tu experiencia y gestiona la seguridad de tu taller.</p>
+        </div>
+        <div class="flex flex-col gap-gutter">
+            <!-- Cuenta Section -->
+            <section class="artisanal-card overflow-hidden">
+                <div class="p-md bg-surface-container-low/50 border-b border-outline-variant flex items-center gap-md">
+                    <span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+                    <h3 class="font-headline-md text-headline-md text-primary">Cuenta</h3>
+                </div>
+                <div class="p-md">
+                    <div class="flex flex-col md:flex-row items-center gap-md">
+                        <div class="relative">
+                            <div class="w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-md ring-1 ring-outline-variant"><div class="w-full h-full flex items-center justify-center bg-surface-container-high text-primary"><span class="material-symbols-outlined text-5xl" data-icon="person">person</span></div></div>
+                            <button class="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full shadow-lg hover:bg-primary/90 transition-all active:scale-90">
+                                <span class="material-symbols-outlined text-[18px]" data-icon="photo_camera">photo_camera</span>
                             </button>
                         </div>
-                        <h3 class="text-headline-md font-headline-md text-black">Paula Robles</h3>
-                        <p class="text-body-md font-body-md text-black/60">Director de Operaciones</p>
-                        <div class="mt-6 w-full space-y-3">
-                            <button class="w-full py-2 bg-primary text-black rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors shadow-sm">Actualizar Perfil</button>
-                            <button class="w-full py-2 border border-black text-black rounded-lg font-label-md text-label-md hover:bg-black/5 transition-colors">Ver Registro de Actividad</button>
+                        <div class="flex-grow text-center md:text-left mt-4 md:mt-0">
+                            <div class="mb-2">
+                                <span class="text-[10px] font-bold text-outline uppercase tracking-widest">Maestra Artesana</span>
+                                <h4 class="font-headline-md text-primary text-2xl">Marta Soler</h4>
+                            </div>
+                            <p class="font-body-md text-on-surface-variant flex items-center justify-center md:justify-start gap-1"><span class="material-symbols-outlined text-sm" data-icon="mail">mail</span> admin@carpintec.com</p>
                         </div>
+                        <button class="w-full md:w-auto bg-primary text-white px-md py-3 rounded-xl font-label-md hover:opacity-90 active:scale-95 transition-all">
+                            EDITAR PERFIL
+                        </button>
                     </div>
                 </div>
-                <!-- Shop Information Card -->
-                <div class="md:col-span-8 glass-card p-card-padding rounded-xl wood-shadow">
-                    <div class="flex items-center justify-between mb-6 border-b border-outline-variant pb-4">
-                        <div class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-black">store</span>
-                            <h3 class="text-title-md font-title-md text-black">Información del Taller</h3>
-                        </div>
-                        <span class="text-label-md text-black font-bold px-3 py-1 bg-primary rounded-full">Sede Central</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-4">
+            </section>
+            <!-- Seguridad Section -->
+            <section class="artisanal-card overflow-hidden">
+                <div class="p-md bg-surface-container-low/50 border-b border-outline-variant flex items-center gap-md">
+                    <span class="material-symbols-outlined text-primary" data-icon="shield_lock">shield_lock</span>
+                    <h3 class="font-headline-md text-headline-md text-primary">Seguridad</h3>
+                </div>
+                <div class="divide-y divide-outline-variant">
+                    <button class="w-full text-left p-md settings-row flex justify-between items-center group">
+                        <div class="flex gap-md items-center">
+                            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="lock_reset">lock_reset</span>
                             <div>
-                                <label class="block text-label-md font-label-md text-black/50 mb-1">Nombre Comercial</label>
-                                <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md text-black focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="text" value="Carpintec Diseño y Madera S.A. de C.V.">
-                            </div>
-                            <div>
-                                <label class="block text-label-md font-label-md text-black/50 mb-1">NIT / Registro Fiscal</label>
-                                <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md text-black focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="text" value="C-782-001293-MX">
+                                <p class="font-body-md font-semibold text-primary">Cambiar Contraseña</p>
+                                <p class="font-body-sm text-on-surface-variant">Actualizada hace 3 meses</p>
                             </div>
                         </div>
-                        <div class="space-y-4">
+                        <span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+                    </button>
+                    <div class="p-md flex justify-between items-center">
+                        <div class="flex gap-md items-center">
+                            <span class="material-symbols-outlined text-on-surface-variant" data-icon="vibration">vibration</span>
                             <div>
-                                <label class="block text-label-md font-label-md text-black/50 mb-1">Dirección Física</label>
-                                <div class="relative">
-                                    <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-4 pr-10 py-2 text-body-md text-black focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="text" value="Calzada de los Leones 145, Ciudad de México">
-                                    <span class="material-symbols-outlined absolute right-3 top-2 text-black/40 text-[20px]">location_on</span>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-label-md font-label-md text-black/50 mb-1">Teléfono de Contacto</label>
-                                <div class="relative">
-                                    <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-4 pr-10 py-2 text-body-md text-black focus:ring-2 focus:ring-primary focus:border-primary transition-all" type="text" value="+52 (55) 4129-8800">
-                                    <span class="material-symbols-outlined absolute right-3 top-2 text-black/40 text-[20px]">phone</span>
-                                </div>
+                                <p class="font-body-md font-semibold text-primary">Autenticación de Dos Factores</p>
+                                <p class="font-body-sm text-on-surface-variant">Protección vía SMS o App</p>
                             </div>
                         </div>
+                        <label class="custom-toggle">
+                            <input checked="" type="checkbox">
+                            <span class="slider"></span>
+                        </label>
                     </div>
                 </div>
-            </div>
-            <!-- Section 2: System Prefs & Security -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-                <!-- System Preferences -->
-                <div class="md:col-span-7 glass-card p-card-padding rounded-xl wood-shadow">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="material-symbols-outlined text-black">settings_suggest</span>
-                        <h3 class="text-title-md font-title-md text-black">Preferencias del Sistema</h3>
+            </section>
+            <!-- Notificaciones Section -->
+            <section class="artisanal-card overflow-hidden">
+                <div class="p-md bg-surface-container-low/50 border-b border-outline-variant flex items-center gap-md">
+                    <span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+                    <h3 class="font-headline-md text-headline-md text-primary">Notificaciones</h3>
+                </div>
+                <div class="p-md space-y-md">
+                    <div class="flex items-start gap-md">
+                        <div class="p-2 bg-surface-container-high rounded-lg text-primary">
+                            <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                        </div>
+                        <div class="flex-grow pt-1">
+                            <p class="font-body-md font-semibold text-primary">Alertas de Stock</p>
+                            <p class="font-body-sm text-on-surface-variant">Avisos de materiales críticos</p>
+                        </div>
+                        <label class="custom-toggle mt-1">
+                            <input checked="" type="checkbox">
+                            <span class="slider"></span>
+                        </label>
                     </div>
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center border border-outline-variant shadow-sm">
-                                    <span class="material-symbols-outlined text-black">language</span>
-                                </div>
-                                <div>
-                                    <p class="font-title-md text-body-lg text-black">Idioma de Interfaz</p>
-                                    <p class="text-label-md text-black/60">Cambia el idioma global del panel</p>
-                                </div>
-                            </div>
-                            <select class="bg-white border border-outline-variant rounded-lg px-3 py-1.5 text-body-md text-black focus:ring-2 focus:ring-primary transition-all">
-                                <option selected="">Español (Latinoamérica)</option>
-                                <option>English (US)</option>
-                                <option>Italiano</option>
-                            </select>
+                    <div class="flex items-start gap-md">
+                        <div class="p-2 bg-surface-container-high rounded-lg text-primary">
+                            <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
                         </div>
-                        <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center border border-outline-variant shadow-sm">
-                                    <span class="material-symbols-outlined text-black">payments</span>
-                                </div>
-                                <div>
-                                    <p class="font-title-md text-body-lg text-black">Moneda Principal</p>
-                                    <p class="text-label-md text-black/60">Usada para cotizaciones y pagos</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-body-md font-bold text-black">MXN ($)</span>
-                                <button class="text-black hover:bg-white p-1 rounded transition-colors">
-                                    <span class="material-symbols-outlined">sync_alt</span>
-                                </button>
-                            </div>
+                        <div class="flex-grow pt-1">
+                            <p class="font-body-md font-semibold text-primary">Nuevos Pedidos</p>
+                            <p class="font-body-sm text-on-surface-variant">Confirmación inmediata de órdenes</p>
                         </div>
-                        <div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant/30">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center border border-outline-variant shadow-sm">
-                                        <span class="material-symbols-outlined text-black">notifications_active</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-title-md text-body-lg text-black">Notificaciones</p>
-                                        <p class="text-label-md text-black/60">Gestiona alertas de sistema</p>
-                                    </div>
-                                </div>
-                                <div class="relative inline-flex items-center cursor-pointer">
-                                    <input checked="" class="sr-only peer" type="checkbox">
-                                    <div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 ml-14">
-                                <label class="flex items-center gap-2 text-label-md cursor-pointer text-black">
-                                    <input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
-                                    <span class="">Alertas de Inventario</span>
-                                </label>
-                                <label class="flex items-center gap-2 text-label-md cursor-pointer text-black">
-                                    <input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox">
-                                    <span class="">Cotizaciones Nuevas</span>
-                                </label>
-                            </div>
-                        </div>
+                        <label class="custom-toggle mt-1">
+                            <input checked="" type="checkbox">
+                            <span class="slider"></span>
+                        </label>
                     </div>
                 </div>
-                <!-- Security Settings -->
-                <div class="md:col-span-5 glass-card p-card-padding rounded-xl wood-shadow flex flex-col">
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="material-symbols-outlined text-black">security</span>
-                        <h3 class="text-title-md font-title-md text-black">Seguridad y Acceso</h3>
+            </section>
+            <!-- Preferencias del Sistema Section -->
+            <section class="artisanal-card overflow-hidden">
+                <div class="p-md bg-surface-container-low/50 border-b border-outline-variant flex items-center gap-md">
+                    <span class="material-symbols-outlined text-primary" data-icon="settings_suggest">settings_suggest</span>
+                    <h3 class="font-headline-md text-headline-md text-primary">Preferencias del Sistema</h3>
+                </div>
+                <div class="p-md grid grid-cols-1 md:grid-cols-2 gap-md">
+                    <div class="space-y-2">
+                        <label class="block font-label-md text-outline uppercase tracking-wider text-[10px]">Idioma de Interfaz</label>
+                        <select class="w-full bg-surface-container-low border-outline-variant rounded-xl text-primary focus:ring-primary focus:border-primary py-3 px-4">
+                            <option selected="" value="es">Español (Castellano)</option>
+                            <option value="en">English (UK)</option>
+                        </select>
                     </div>
-                    <div class="flex-1 space-y-6">
-                        <div class="space-y-4">
-                            <h4 class="text-label-md font-bold uppercase tracking-widest text-black/40">Cambiar Contraseña</h4>
-                            <div>
-                                <label class="block text-label-md font-label-md text-black/60 mb-1">Contraseña Actual</label>
-                                <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md text-black focus:ring-2 focus:ring-primary transition-all" placeholder="••••••••••••" type="password">
-                            </div>
-                            <div>
-                                <label class="block text-label-md font-label-md text-black/60 mb-1">Nueva Contraseña</label>
-                                <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md text-black focus:ring-2 focus:ring-primary transition-all" placeholder="Mínimo 8 caracteres" type="password">
-                            </div>
-                            <div>
-                                <label class="block text-label-md font-label-md text-black/60 mb-1">Confirmar Contraseña</label>
-                                <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 text-body-md text-black focus:ring-2 focus:ring-primary transition-all" placeholder="Repite la contraseña" type="password">
-                            </div>
-                            <button class="w-full py-2.5 bg-primary text-black rounded-lg font-title-md text-body-md hover:bg-primary/90 transition-all shadow-md mt-2">
-                                Actualizar Seguridad
+                    <div class="space-y-2">
+                        <label class="block font-label-md text-outline uppercase tracking-wider text-[10px]">Tema Visual</label>
+                        <div class="flex p-1 bg-surface-container-low rounded-xl border border-outline-variant">
+                            <button class="flex-1 bg-white shadow-sm text-primary py-2 rounded-lg flex items-center justify-center gap-2 font-semibold">
+                                <span class="material-symbols-outlined text-[18px]" data-icon="light_mode">light_mode</span> Claro
+                            </button>
+                            <button class="flex-1 text-on-surface-variant py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-white/50 transition-colors">
+                                <span class="material-symbols-outlined text-[18px]" data-icon="dark_mode">dark_mode</span> Oscuro
                             </button>
                         </div>
-                        <div class="pt-6 border-t border-outline-variant">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="font-title-md text-body-lg text-black">Autenticación 2FA</p>
-                                    <p class="text-label-md text-black/60">Capa extra de protección</p>
-                                </div>
-                                <button class="px-4 py-1.5 border-2 border-black text-black rounded-lg text-label-md font-bold hover:bg-black/5 transition-all">
-                                    Configurar
-                                </button>
-                            </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Configuración Avanzada -->
+            <details class="artisanal-card overflow-hidden group">
+                <summary class="p-md bg-surface-container-low/30 cursor-pointer flex justify-between items-center hover:bg-surface-container-low/50 transition-colors">
+                    <div class="flex items-center gap-md">
+                        <span class="material-symbols-outlined text-outline group-open:text-primary transition-colors" data-icon="terminal">terminal</span>
+                        <h3 class="font-headline-md text-headline-md text-primary/60 group-open:text-primary">Configuración Avanzada</h3>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+                </summary>
+                <div class="p-md bg-white divide-y divide-outline-variant/30">
+                    <div class="py-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-body-md font-semibold text-primary/80">API Keys</p>
+                            <p class="font-body-sm text-on-surface-variant">Gestión de integraciones externas</p>
                         </div>
+                        <button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">Gestionar</button>
+                    </div>
+                    <div class="py-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-body-md font-semibold text-primary/80">Logs del Sistema</p>
+                            <p class="font-body-sm text-on-surface-variant">Registro de actividad técnica</p>
+                        </div>
+                        <button class="text-primary font-bold text-xs uppercase tracking-widest hover:underline">Descargar</button>
                     </div>
                 </div>
-            </div>
-            <!-- Footer Stats / Meta (Floating Aesthetic) -->
-            <div class="flex items-center justify-between py-6 px-4 bg-white/40 rounded-2xl border border-white/60 backdrop-blur-sm">
-                <div class="flex items-center gap-8">
-                    <div class="flex items-center gap-2">
-                        <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-
-                    </div>
-
-                </div>
-
+            </details>
+            <!-- Logout Action -->
+            <div class="mt-md flex flex-col items-center">
+                <button class="w-full max-w-sm flex items-center justify-center gap-3 text-error border-2 border-error/20 bg-error/5 py-4 rounded-2xl font-bold tracking-widest hover:bg-error/10 transition-all active:scale-95 mb-8">
+                    <span class="material-symbols-outlined" data-icon="logout">logout</span> CERRAR SESIÓN
+                </button>
             </div>
         </div>
     </main>
-</div>
-<!-- Success Toast Notification -->
-
-<script>
-        // Micro-interactions and Toast Simulation
-        const actionButtons = document.querySelectorAll('button.bg-primary');
-        const toast = document.getElementById('toast');
-
-        actionButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.classList.add('scale-95');
-                setTimeout(() => btn.classList.remove('scale-95'), 150);
-
-                // Show toast
-                if (toast) {
-                    toast.classList.remove('translate-y-24');
-                    setTimeout(() => {
-                        toast.classList.add('translate-y-24');
-                    }, 3000);
-                }
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-surface border-t border-outline-variant shadow-[0_-8px_20px_-10px_rgba(45,34,27,0.1)]">
+        <a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors" href="#">
+            <span class="material-symbols-outlined" data-icon="handyman">handyman</span>
+            <span class="font-label-md text-[10px] mt-1">PROYECTOS</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors" href="#">
+            <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+            <span class="font-label-md text-[10px] mt-1">INVENTARIO</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-outline hover:text-primary transition-colors" href="#">
+            <span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+            <span class="font-label-md text-[10px] mt-1">HORARIO</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary" href="#">
+            <div class="bg-primary-container/20 px-4 py-1.5 rounded-xl flex flex-col items-center">
+                <span class="material-symbols-outlined fill-1" data-icon="settings">settings</span>
+                <span class="font-label-md text-[10px] mt-1 font-bold">AJUSTES</span>
+            </div>
+        </a>
+    </nav>
+    <script>
+            // Micro-interactions for buttons
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('mousedown', () => {
+                    btn.style.transform = 'scale(0.96)';
+                });
+                btn.addEventListener('mouseup', () => {
+                    btn.style.transform = '';
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = '';
+                });
             });
-        });
 
-        // Input Focus Effects
-        const inputs = document.querySelectorAll('input, select');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                const card = input.parentElement.closest('.glass-card');
-                if (card) card.style.borderColor = '#D2B48C';
+            // Handle toggle states
+            document.querySelectorAll('.custom-toggle input').forEach(toggle => {
+                toggle.addEventListener('change', (e) => {
+                    const row = e.target.closest('.artisanal-card');
+                    if (row) {
+                        // Potential feedback or API call simulation
+                        console.log(`Setting updated: ${e.target.checked}`);
+                    }
+                });
             });
-            input.addEventListener('blur', () => {
-                const card = input.parentElement.closest('.glass-card');
-                if (card) card.style.borderColor = '#E5E5E5';
-            });
-        });
-</script>
+    </script>
+
 
 </body></html>

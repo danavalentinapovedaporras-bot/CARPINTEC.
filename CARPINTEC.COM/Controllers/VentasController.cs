@@ -1,83 +1,43 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CARPINTEC.COM.Data;
+using CARPINTEC.COM.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CARPINTEC.COM.Controllers
 {
-    public class Ventas_y_FacturacionController : Controller
+    public class VentasController : Controller
     {
-        // GET: Ventas_y_FacturacionController
-        public ActionResult Index()
+        // Aquí va el contexto
+        private readonly CarpintecContext _context;
+
+        // Aquí va el constructor
+        public VentasController(CarpintecContext context)
         {
-            return View();
+            _context = context;
         }
 
-        // GET: Ventas_y_FacturacionController/Details/5
-        public ActionResult Details(int id)
+        // Después siguen los métodos
+      public IActionResult Index()
+{
+    var facturas = _context.Facturas.ToList();
+    return View(facturas);
+}
+
+
+
+public IActionResult VerFactura(int id)
+    {
+        var factura = _context.Facturas
+            .Include(f => f.DetallesFactura)
+                .ThenInclude(d => d.Producto)
+            .FirstOrDefault(f => f.IdFactura == id);
+
+        if (factura == null)
         {
-            return View();
+            return NotFound();
         }
 
-        // GET: Ventas_y_FacturacionController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Ventas_y_FacturacionController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Ventas_y_FacturacionController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Ventas_y_FacturacionController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Ventas_y_FacturacionController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Ventas_y_FacturacionController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        return View(factura);
     }
+}
 }

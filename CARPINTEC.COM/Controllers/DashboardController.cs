@@ -79,5 +79,10 @@ namespace CARPINTEC.COM.Controllers
                 return View();
             }
         }
+
+        public IActionResult Calendario()
+        {
+            return View();
+        }
     }
 }

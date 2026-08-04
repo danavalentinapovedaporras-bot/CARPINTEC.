@@ -1,0 +1,397 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Carpintec - Tus Pedidos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "tertiary-fixed": "#f7e0b5",
+                            "on-primary-fixed": "#321200",
+                            "surface-container-lowest": "#ffffff",
+                            "surface-container-highest": "#ede0dc",
+                            "on-tertiary-container": "#e2cca2",
+                            "error": "#ba1a1a",
+                            "tertiary": "#4d3f20",
+                            "primary-container": "#8b4513",
+                            "error-container": "#ffdad6",
+                            "surface-container-low": "#fef1ed",
+                            "background": "#fff8f6",
+                            "on-tertiary-fixed-variant": "#544525",
+                            "secondary-fixed": "#ffdbc9",
+                            "secondary": "#9a4600",
+                            "on-secondary-container": "#672c00",
+                            "surface-bright": "#fff8f6",
+                            "primary-fixed-dim": "#ffb68c",
+                            "outline": "#877369",
+                            "surface-tint": "#934b19",
+                            "surface": "#fff8f6",
+                            "on-primary-fixed-variant": "#753401",
+                            "inverse-on-surface": "#fbeeea",
+                            "secondary-fixed-dim": "#ffb68d",
+                            "on-primary-container": "#ffc29f",
+                            "surface-container-high": "#f3e5e1",
+                            "on-background": "#201a18",
+                            "on-tertiary": "#ffffff",
+                            "on-surface": "#201a18",
+                            "on-secondary-fixed-variant": "#763400",
+                            "secondary-container": "#fd8a3e",
+                            "primary-fixed": "#ffdbc9",
+                            "on-primary": "#ffffff",
+                            "tertiary-container": "#665635",
+                            "on-surface-variant": "#54433a",
+                            "inverse-surface": "#362f2c",
+                            "surface-container": "#f9ebe7",
+                            "primary": "#6c2f00",
+                            "outline-variant": "#dac2b6",
+                            "on-error-container": "#93000a",
+                            "surface-dim": "#e4d7d4",
+                            "surface-variant": "#ede0dc",
+                            "on-error": "#ffffff",
+                            "tertiary-fixed-dim": "#dac49b",
+                            "inverse-primary": "#ffb68c",
+                            "on-secondary": "#ffffff",
+                            "on-tertiary-fixed": "#251a01",
+                            "on-secondary-fixed": "#321200"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "container-max": "1280px",
+                            "base": "8px",
+                            "margin-mobile": "16px",
+                            "margin-desktop": "64px",
+                            "gutter": "24px"
+                        },
+                        "fontFamily": {
+                            "label-md": ["Work Sans"],
+                            "title-md": ["Montserrat"],
+                            "headline-lg": ["Montserrat"],
+                            "body-lg": ["Work Sans"],
+                            "headline-lg-mobile": ["Montserrat"],
+                            "display-lg": ["Montserrat"],
+                            "body-md": ["Work Sans"]
+                        },
+                        "fontSize": {
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                display: inline-block;
+                line-height: 1;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
+            }
+
+            .order-card-border {
+                border-left: 4px solid #6c2f00;
+            }
+
+            .active-tab {
+                border-bottom: 3px solid #6c2f00;
+            }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+    <!-- TopAppBar -->
+    <header class="bg-primary text-on-primary sticky top-0 z-50 w-full shadow-sm border-b-4 border-primary-container">
+        <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-container-max mx-auto">
+            <div class="flex items-center gap-3">
+                <img alt="Carpintec Logo" class="h-10 w-10 object-contain rounded-lg bg-on-primary" src="https://lh3.googleusercontent.com/aida/AP1WRLtv_SjY_1DFUTv8VsAokGXauDn4FJXhXyhWo0RrASheZWAtLTYVBJ0QTyPq4QPcRDM3_53hToMllAvSMQ7t83Ju3zz6JZHhBFa33YL-rFrTlf3YQkci7_iuKBnubyu16JAOKv_egkealZhuu37X7djl56jMEXDm3UqXk2vYHfXZ_ktflGsMlyQPhXQ8Ydr9hc3Oz_BvRjpZk_Yc3ksTe5Sd5AEKYjK2rYbn58OmO9ikjD4fIh2swHOMm7oX0hiG3tbLO6cE-s8UNs8" />
+                <span class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary uppercase tracking-wider">Carpintec</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <button class="font-label-md text-label-md text-on-primary-fixed-variant hover:bg-secondary-container transition-colors p-2 rounded">Inicio</button>
+                <button class="font-label-md text-label-md text-on-primary-fixed-variant hover:bg-secondary-container transition-colors p-2 rounded">Catálogo</button>
+                <button class="font-label-md text-label-md text-on-primary font-bold p-2 rounded">Pedidos</button>
+                <button class="bg-on-primary text-primary px-4 py-1 rounded-full font-bold hover:bg-secondary-fixed transition-colors">Perfil</button>
+            </div>
+            <button class="md:hidden flex items-center p-2">
+                <span class="material-symbols-outlined text-on-primary">menu</span>
+            </button>
+        </div>
+    </header>
+    <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 pb-32">
+        <section class="flex flex-col gap-8">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h1 class="font-display-lg text-display-lg text-primary mb-2">Tus Pedidos</h1>
+                    <p class="text-on-surface-variant font-body-lg text-body-lg">Gestiona y rastrea tus piezas artesanales en tiempo real.</p>
+                </div>
+                <div class="flex bg-surface-container-high rounded-xl p-1 w-fit border border-outline-variant">
+                    <button class="px-6 py-2 rounded-lg font-label-md text-label-md transition-all bg-primary text-on-primary shadow-sm" id="tab-activos" onclick="switchTab('activos')">Activos</button>
+                    <button class="px-6 py-2 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:bg-surface-container-highest" id="tab-finalizados" onclick="switchTab('finalizados')">Finalizados</button>
+                </div>
+            </div>
+            <!-- Orders Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter" id="orders-container">
+                <div class="order-item active bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant order-card-border flex flex-col sm:flex-row group transition-transform hover:-translate-y-1"><div class="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden"><img alt="Armario de Nogal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLvZQFkFIIgnS3_Ypv5vL_vUfl2l25DlupjH-xBZujtfs3Mhp7MU3gd-UMFPKjdt9prsVUJTTOnvdUCVnJ5TVPdkMlO_4Pzj41w9VKTCajeW2CMR6Mg7cUMOP6Zto6azVYLtGlUS8pXjLtMLuOna6j6QBtROhS_hzk5zsTuA_qa2DatexGe_O9PJcFyjaIAMx4Tj1qZ6ewW_jHjFvFiX6z0kLh0pqyKy5x5BO28OKRKLW78Y8LiNYAUvTxcUymKKZQZMgW_Pmg_rzxY" /><div class="absolute top-2 left-2 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-md text-[12px] uppercase">En Diseño</div></div><div class="p-6 flex-1 flex flex-col justify-between"><div><div class="flex justify-between items-start mb-2"><h3 class="font-title-md text-title-md text-primary">Armario de Nogal</h3><span class="font-label-md text-label-md text-on-surface-variant">#CP-9012</span></div><p class="text-on-surface-variant mb-4 font-body-md">Madera de nogal premium, herrajes de hierro forjado.</p><div class="flex flex-wrap gap-4 mb-4"><div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">calendar_today</span><span class="text-label-md">15 Nov 2023</span></div><div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">payments</span><span class="text-label-md">$3,450.00</span></div></div><div class="mt-4 mb-6"><div class="flex justify-between items-center mb-2"><span class="text-label-md font-bold text-primary">Progreso: 10%</span><span class="text-label-md text-on-surface-variant">Diseño</span></div><div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden"><div class="bg-primary h-full rounded-full" style="width: 10%"></div></div><div class="flex justify-between mt-2"><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-primary"></div><span class="text-[10px] text-primary font-bold">Diseño</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-outline-variant"></div><span class="text-[10px] text-on-surface-variant">Corte</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-outline-variant"></div><span class="text-[10px] text-on-surface-variant">Ensamblaje</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-outline-variant"></div><span class="text-[10px] text-on-surface-variant">Acabado</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-outline-variant"></div><span class="text-[10px] text-on-surface-variant">Calidad</span></div></div></div></div><button class="w-full sm:w-max px-6 py-2 bg-primary text-on-primary rounded font-bold hover:bg-secondary transition-colors uppercase tracking-tight active:scale-95 duration-150">Ver detalles</button></div></div>
+                <!-- Order Card 1 (Active) -->
+                <div class="order-item active bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant order-card-border flex flex-col sm:flex-row group transition-transform hover:-translate-y-1">
+                    <div class="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden">
+                        <img alt="Mesa de Roble Premium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLvlL3oQOGCEvTB_HTGEjU76LVB8uTZKFuGQAGx4GyqxbApkWQ9od-xlAYaxNq1yQ-_V_Q-kZDLRIiD4rmNA68pTN303g2kRQhJLAPpZThpU7xXKLKA3raIhJNYlBc_N7J5Hr9UsQnR1Fvk0EG88lhe8QO_iLEBvCD-WcOI8RWQmZ2sobco4ARl37PKy_uIXJQisjJu12fUYSielaNMtgXTGbchnUTEDt6dY4j36FZMfoiKyp1j8ZSmzfPiIjeunW_oKmuPGcJPrGYM" />
+                        <div class="absolute top-2 left-2 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-md text-[12px] uppercase">
+                            En fabricación
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-title-md text-title-md text-primary">Mesa de Roble</h3>
+                                <span class="font-label-md text-label-md text-on-surface-variant">#CP-8842</span>
+                            </div>
+                            <p class="text-on-surface-variant mb-4 font-body-md">Madera maciza, acabado mate natural.</p>
+                            <div class="flex flex-wrap gap-4 mb-4">
+                                <div class="flex items-center gap-1 text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                                    <span class="text-label-md">12 Oct 2023</span>
+                                </div>
+                                <div class="flex items-center gap-1 text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-[18px]">payments</span>
+                                    <span class="text-label-md">$1,240.00</span>
+                                </div>
+                            </div><div class="mt-4 mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-label-md font-bold text-primary">Progreso: 65%</span>
+                                <span class="text-label-md text-on-surface-variant">Ensamblaje</span>
+                            </div>
+                            <div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full rounded-full" style="width: 65%"></div>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                    <span class="text-[10px] text-primary font-bold">Diseño</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                    <span class="text-[10px] text-primary font-bold">Corte</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-primary"></div>
+                                    <span class="text-[10px] text-primary font-bold">Ensamblaje</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+                                    <span class="text-[10px] text-on-surface-variant">Acabado</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+                                    <span class="text-[10px] text-on-surface-variant">Calidad</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full sm:w-max px-6 py-2 bg-primary text-on-primary rounded font-bold hover:bg-secondary transition-colors uppercase tracking-tight active:scale-95 duration-150">
+                        Ver detalles
+                    </button>
+                </div>
+            </div>
+            <!-- Order Card 2 (Active) -->
+            <div class="order-item active bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant order-card-border flex flex-col sm:flex-row group transition-transform hover:-translate-y-1">
+                <div class="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden">
+                    <img alt="Silla de Cedro Handcrafted" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLswj121nsKI-0Bhg1gQvcP6M73gtXHs03UlnbahpbevcRZxdSB4QXX6qT4T10X7FOBKngq05xGbr3R3JfR92l7gLXiFohCg8WiAwCvS1DoB6JLRpfQ5M_JNLoViG-YNQ274zUCNW68IAv3RRAeiVbViBBx6C1pK0onfVgtXZ7CT3frBwmhj3tjpCBGWsiJIprLulCpQFyf-7J_MeOsQzg9UFTSO3YIkuk986IcWmrsS_C5Kwjf0D4YXuSqHkYCIYB7tY_9BR83xAUc" />
+                    <div class="absolute top-2 left-2 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-md text-[12px] uppercase">
+                        Listo para entrega
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-title-md text-title-md text-primary">Silla de Cedro (x4)</h3>
+                            <span class="font-label-md text-label-md text-on-surface-variant">#CP-8890</span>
+                        </div>
+                        <p class="text-on-surface-variant mb-4 font-body-md">Diseño ergonómico, ensambles artesanales.</p>
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <div class="flex items-center gap-1 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                                <span class="text-label-md">28 Oct 2023</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[18px]">payments</span>
+                                <span class="text-label-md">$860.00</span>
+                            </div>
+                        </div><div class="mt-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-label-md font-bold text-secondary">Completado: 100%</span>
+                            <span class="text-label-md text-secondary">Listo para entrega</span>
+                        </div>
+                        <div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+                            <div class="bg-secondary h-full rounded-full" style="width: 100%"></div>
+                        </div>
+                        <div class="flex justify-between mt-2">
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                <span class="text-[10px] text-secondary font-bold">Diseño</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                <span class="text-[10px] text-secondary font-bold">Corte</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                <span class="text-[10px] text-secondary font-bold">Ensamblaje</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                <span class="text-[10px] text-secondary font-bold">Acabado</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                <span class="text-[10px] text-secondary font-bold">Calidad</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full sm:w-max px-6 py-2 bg-primary text-on-primary rounded font-bold hover:bg-secondary transition-colors uppercase tracking-tight active:scale-95 duration-150">
+                    Ver detalles
+                </button>
+            </div>
+        </div>
+        <!-- Order Card 3 (Finished - Hidden by default) -->
+        <div class="order-item finished hidden bg-surface-container rounded-xl overflow-hidden border border-outline-variant flex flex-col sm:flex-row group opacity-80 grayscale-[0.5]">
+            <div class="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden">
+                <div class="w-full h-full bg-surface-dim flex items-center justify-center">
+                    <span class="material-symbols-outlined text-6xl text-outline-variant">inventory_2</span>
+                </div>
+                <div class="absolute top-2 left-2 bg-outline text-on-primary px-3 py-1 rounded-full font-label-md text-[12px] uppercase">
+                    Entregado
+                </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-title-md text-title-md text-on-surface">Escritorio Nórdico</h3>
+                        <span class="font-label-md text-label-md text-on-surface-variant">#CP-7712</span>
+                    </div>
+                    <p class="text-on-surface-variant mb-4 font-body-md">Madera de fresno, cajonera integrada.</p>
+                    <div class="flex flex-wrap gap-4 mb-4">
+                        <div class="flex items-center gap-1 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            <span class="text-label-md">05 Sep 2023</span>
+                        </div>
+                        <div class="flex items-center gap-1 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[18px]">payments</span>
+                            <span class="text-label-md">$2,100.00</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full sm:w-max px-6 py-2 border-2 border-primary text-primary rounded font-bold hover:bg-secondary-fixed transition-colors uppercase tracking-tight active:scale-95 duration-150">
+                    Ver historial
+                </button>
+            </div>
+        </div>
+        <div class="order-item active bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant order-card-border flex flex-col sm:flex-row group transition-transform hover:-translate-y-1"><div class="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden"><img alt="Mueble de TV Encina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLvlL3oQOGCEvTB_HTGEjU76LVB8uTZKFuGQAGx4GyqxbApkWQ9od-xlAYaxNq1yQ-_V_Q-kZDLRIiD4rmNA68pTN303g2kRQhJLAPpZThpU7xXKLKA3raIhJNYlBc_N7J5Hr9UsQnR1Fvk0EG88lhe8QO_iLEBvCD-WcOI8RWQmZ2sobco4ARl37PKy_uIXJQisjJu12fUYSielaNMtgXTGbchnUTEDt6dY4j36FZMfoiKyp1j8ZSmzfPiIjeunW_oKmuPGcJPrGYM" /><div class="absolute top-2 left-2 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-md text-[12px] uppercase">Entregado</div></div><div class="p-6 flex-1 flex flex-col justify-between"><div><div class="flex justify-between items-start mb-2"><h3 class="font-title-md text-title-md text-primary">Mueble de TV Encina</h3><span class="font-label-md text-label-md text-on-surface-variant">#CP-8750</span></div><p class="text-on-surface-variant mb-4 font-body-md">Diseño minimalista en madera de encina maciza.</p><div class="flex flex-wrap gap-4 mb-4"><div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">calendar_today</span><span class="text-label-md">20 Sep 2023</span></div><div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">payments</span><span class="text-label-md">$1,890.00</span></div></div><div class="mt-4 mb-6"><div class="flex justify-between items-center mb-2"><span class="text-label-md font-bold text-secondary">Completado: 100%</span><span class="text-label-md text-secondary">Entregado</span></div><div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden"><div class="bg-secondary h-full rounded-full" style="width: 100%"></div></div><div class="flex justify-between mt-2"><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-secondary"></div><span class="text-[10px] text-secondary font-bold">Diseño</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-secondary"></div><span class="text-[10px] text-secondary font-bold">Corte</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-secondary"></div><span class="text-[10px] text-secondary font-bold">Ensamblaje</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-secondary"></div><span class="text-[10px] text-secondary font-bold">Acabado</span></div><div class="flex flex-col items-center gap-1"><div class="w-2 h-2 rounded-full bg-secondary"></div><span class="text-[10px] text-secondary font-bold">Calidad</span></div></div></div></div><button class="w-full sm:w-max px-6 py-2 bg-primary text-on-primary rounded font-bold hover:bg-secondary transition-colors uppercase tracking-tight active:scale-95 duration-150">Ver detalles</button></div></div>
+    </div>
+    <!-- Empty State (Placeholder logic) -->
+    <div class="hidden flex-col items-center justify-center py-20 text-center" id="empty-state">
+        <span class="material-symbols-outlined text-8xl text-outline-variant mb-4">history_edu</span>
+        <h3 class="font-title-md text-title-md text-primary">No hay pedidos para mostrar</h3>
+        <p class="text-on-surface-variant max-w-sm">Parece que aún no tienes pedidos en esta categoría. ¡Explora nuestro catálogo y empieza a crear tu hogar!</p>
+        <button class="mt-6 px-8 py-3 bg-primary text-on-primary rounded font-bold hover:bg-secondary transition-colors uppercase">Explorar catálogo</button>
+    </div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center bg-surface px-2 pb-2 h-20 z-50 border-t-2 border-primary">
+    <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary active:scale-90 transition-transform">
+        <span class="material-symbols-outlined">home</span>
+        <span class="font-label-md text-label-md">Inicio</span>
+    </button>
+    <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary active:scale-90 transition-transform">
+        <span class="material-symbols-outlined">chair</span>
+        <span class="font-label-md text-label-md">Catálogo</span>
+    </button>
+    <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary active:scale-90 transition-transform">
+        <span class="material-symbols-outlined">calculate</span>
+        <span class="font-label-md text-label-md">Cotizar</span>
+    </button>
+    <button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+        <span class="font-label-md text-label-md">Pedidos</span>
+    </button>
+    <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary active:scale-90 transition-transform">
+        <span class="material-symbols-outlined">person</span>
+        <span class="font-label-md text-label-md">Perfil</span>
+    </button>
+</nav>
+<script>
+        function switchTab(type) {
+            const activosBtn = document.getElementById('tab-activos');
+            const finalizadosBtn = document.getElementById('tab-finalizados');
+            const orders = document.querySelectorAll('.order-item');
+            const emptyState = document.getElementById('empty-state');
+
+            let visibleCount = 0;
+
+            if (type === 'activos') {
+                activosBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+                activosBtn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-highest');
+                finalizadosBtn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+                finalizadosBtn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-highest');
+
+                orders.forEach(order => {
+                    if (order.classList.contains('active')) {
+                        order.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        order.classList.add('hidden');
+                    }
+                });
+            } else {
+                finalizadosBtn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+                finalizadosBtn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-highest');
+                activosBtn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+                activosBtn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-highest');
+
+                orders.forEach(order => {
+                    if (order.classList.contains('finished')) {
+                        order.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        order.classList.add('hidden');
+                    }
+                });
+            }
+
+            if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+            } else {
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+            }
+        }
+</script>
+</body></html>

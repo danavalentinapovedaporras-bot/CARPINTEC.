@@ -11,11 +11,15 @@ public partial class CarpintecContext : DbContext
     {
     }
 
+
     public CarpintecContext(DbContextOptions<CarpintecContext> options)
         : base(options)
     {
     }
 
+    public DbSet<Factura> Facturas { get; set; }
+
+    public DbSet<DetalleFactura> DetalleFacturas { get; set; }
     public virtual DbSet<Cliente> Clientes { get; set; }
     public virtual DbSet<Configuracion> Configuracions { get; set; }
     public virtual DbSet<Cotizacion> Cotizacions { get; set; }
@@ -24,9 +28,11 @@ public partial class CarpintecContext : DbContext
     public virtual DbSet<Empleado> Empleados { get; set; }
     public virtual DbSet<Inventario> Inventarios { get; set; }
     public virtual DbSet<ManoObra> ManoObras { get; set; }
+    
     public virtual DbSet<Pedido> Pedidos { get; set; }
     public virtual DbSet<Pqr> Pqrs { get; set; }
     public virtual DbSet<Producto> Productos { get; set; }
+    public virtual DbSet<ActividadTaller> ActividadTallers { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
     public virtual DbSet<Ventum> Venta { get; set; }
 
@@ -216,7 +222,58 @@ public partial class CarpintecContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ManoObra_Producto");
         });
+        modelBuilder.Entity<Factura>(entity =>
+        {
+            entity.HasKey(e => e.IdFactura);
 
+            entity.ToTable("Factura");
+
+            entity.Property(e => e.Folio)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+
+            entity.Property(e => e.Cliente)
+                .HasMaxLength(150)
+                .IsUnicode(false);
+
+            entity.Property(e => e.Fecha)
+                .HasColumnType("date");
+
+            entity.Property(e => e.Total)
+                .HasColumnType("decimal(12,2)");
+
+            entity.Property(e => e.Estado)
+                .HasMaxLength(20)
+                .IsUnicode(false);
+        });
+        modelBuilder.Entity<DetalleFactura>(entity =>
+        {
+            entity.HasKey(e => e.IdDetalleFactura);
+
+            entity.ToTable("DetalleFactura");
+
+            entity.Property(e => e.PrecioUnitario)
+                  .HasColumnType("decimal(18,2)");
+
+            entity.Property(e => e.Subtotal)
+                  .HasColumnType("decimal(18,2)");
+
+            entity.Property(e => e.Observacion)
+                  .HasMaxLength(200)
+                  .IsUnicode(false);
+
+            entity.HasOne(d => d.Factura)
+      .WithMany(f => f.DetallesFactura)
+                  .HasForeignKey(d => d.IdFactura)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_DetalleFactura_Factura");
+
+            entity.HasOne(d => d.Producto)
+                  .WithMany()
+                  .HasForeignKey(d => d.IdProducto)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_DetalleFactura_Producto");
+        });
         modelBuilder.Entity<Pedido>(entity =>
         {
             entity.HasKey(e => e.IdPedido).HasName("PK__Pedido__9D335DC38C87F4A5");
@@ -276,6 +333,23 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.Medidas).HasMaxLength(50).IsUnicode(false);
             entity.Property(e => e.Nombre).HasMaxLength(100).IsUnicode(false);
             entity.Property(e => e.Precio).HasColumnType("decimal(12, 2)");
+        });
+
+        modelBuilder.Entity<ActividadTaller>(entity =>
+        {
+            entity.HasKey(e => e.IdActividad).HasName("PK_ActividadTaller");
+
+            entity.ToTable("ActividadTaller");
+
+            entity.HasIndex(e => e.Fecha, "IX_ActividadTaller_Fecha");
+
+            entity.Property(e => e.Categoria).HasMaxLength(30).IsUnicode(false);
+            entity.Property(e => e.FechaRegistro).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
+            entity.Property(e => e.Texto).HasMaxLength(140).IsUnicode(false);
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.ActividadTallers)
+                .HasForeignKey(d => d.IdUsuario)
+                .HasConstraintName("FK_ActividadTaller_Usuario");
         });
 
         modelBuilder.Entity<Usuario>(entity =>

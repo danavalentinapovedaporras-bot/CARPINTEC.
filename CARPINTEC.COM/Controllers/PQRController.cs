@@ -1,20 +1,54 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CARPINTEC.COM.Data;
+using CARPINTEC.COM.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 namespace CARPINTEC.COM.Controllers
 {
     public class PQRController : Controller
+    
     {
-        // GET: PQRController
-        public ActionResult Index()
+        private readonly CarpintecContext _context;
+
+        public PQRController(CarpintecContext context)
         {
-            return View();
+            _context = context;
+        }
+        // GET: PQRController
+        public async Task<IActionResult> Index()
+        {
+            var listaPqr = await _context.Pqrs
+                .Include(p => p.IdClienteNavigation)
+                .ToListAsync();
+
+            return View(listaPqr);
         }
 
         // GET: PQRController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var pqr = await _context.Pqrs
+                .Include(p => p.IdClienteNavigation)
+                .FirstOrDefaultAsync(p => p.IdPqr == id);
+
+            if (pqr == null)
+            {
+                return NotFound();
+            }
+
+            return View(pqr);
+        }
+        public async Task<IActionResult> Responder(int id)
+        {
+            var pqr = await _context.Pqrs
+                .Include(p => p.IdClienteNavigation)
+                .FirstOrDefaultAsync(p => p.IdPqr == id);
+
+            if (pqr == null)
+            {
+                return NotFound();
+            }
+
+            return View(pqr);
         }
 
         // GET: PQRController/Create
@@ -24,6 +58,30 @@ namespace CARPINTEC.COM.Controllers
         }
 
         // POST: PQRController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Responder(int id, Pqr pqr)
+        {
+            if (id != pqr.IdPqr)
+            {
+                return NotFound();
+            }
+
+            var pqrDB = await _context.Pqrs.FindAsync(id);
+
+            if (pqrDB == null)
+            {
+                return NotFound();
+            }
+
+            pqrDB.Respuesta = pqr.Respuesta;
+            pqrDB.Estado = pqr.Estado;
+            pqrDB.FechaRespuesta = DateOnly.FromDateTime(DateTime.Now);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -39,9 +97,18 @@ namespace CARPINTEC.COM.Controllers
         }
 
         // GET: PQRController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var pqr = await _context.Pqrs
+                .Include(p => p.IdClienteNavigation)
+                .FirstOrDefaultAsync(p => p.IdPqr == id);
+
+            if (pqr == null)
+            {
+                return NotFound();
+            }
+
+            return View(pqr);
         }
 
         // POST: PQRController/Edit/5

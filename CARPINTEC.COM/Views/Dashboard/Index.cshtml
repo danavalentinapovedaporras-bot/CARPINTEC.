@@ -133,22 +133,7 @@
     </style>
 </head>
 <body class="bg-background font-body-md text-on-background min-h-screen">
-
-    <!-- Top App Bar (Ancho Completo) -->
-    <header class="fixed top-0 right-0 w-full z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center h-16 px-gutter lg:px-margin">
-        <div class="flex items-center gap-4">
-            <div class="flex items-center gap-3">
-                <img alt="Carpintec Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBghr0OMGc1A3wJcUzoZ4Gf7p1Ght8v94wgAkPz1IjOAsILgT_JM7dPBvWB6lg798IFUBGibdEDExw5RGJU7zhMSDCqKbSMIDPrZGYFjte2Hn0P8o6M5I8bpfMz_QFnIjWF07GPfw2rJ0yrbxJv2hYZCE-CBZsCurv682gtgannLrfF105bnhUgcFD7acupblPbnVDE2H7Ig-mkDkVSArNTPwAAg5kxPCxfkpwW2-OGzExqZ2OTEylvkOzn663FZW7KGgXXY8pyrQ8">
-                <div>
-                    <h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed leading-none">Dashboard</h1>
-                    <p class="text-on-surface-variant font-semibold text-body-sm">Bienvenido Admin</p>
-                </div>
-            </div>
-        </div>
-        <div class="flex items-center gap-3">
-            <img alt="Admin Profile" class="w-9 h-9 rounded-full object-cover border-2 border-primary/30" src="https://lh3.googleusercontent.com/aida/ADBb0uhAznwpcIbB1w21WsVsI_dVFzedIvHFUjmpwvZONYCfN7_8kSMYbU4NPkWTlPkXvm-64viUJxLVr79rVPJ9KTNhFQNHhLoGfrWDcwTtVbc1j4iwDIwBAG86NPlqJjDzYMwQvTycZYpJoPOML4nHvyFnM6Nygr1sNK_kipnFWzqN3u7qExUYb3yqruGb2-WHkVwr3iuWqVt7urFFLZNxbUBTGdYZsbFBHUo31PQar2pA4a5GVT_kJa4BgKo">
-        </div>
-    </header>
+   
 
     <!-- Main Content Canvas (Sin margen para Sidebar) -->
     <main class="pt-24 pb-12 px-gutter lg:px-margin max-w-7xl mx-auto">
@@ -283,22 +268,42 @@
                     <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">add_box</span>
                     <span class="text-label-md">Nueva Cotización</span>
                 </button>
-                <button class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
-                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">post_add</span>
-                    <span class="text-label-md">Nuevo Pedido</span>
-                </button>
-                <button class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
-                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">move_to_inbox</span>
-                    <span class="text-label-md">Entrada Stock</span>
-                </button>
+                <a asp-controller="NuevoPedido"
+                   asp-action="Index"
+                   class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm text-decoration-none">
+
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">
+                        post_add
+                    </span>
+
+                    <span class="text-label-md">
+                        Nuevo Pedido
+                    </span>
+                </a>
+                <a asp-controller="Stock"
+                   asp-action="Index"
+                   class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm text-decoration-none">
+
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">
+                        move_to_inbox
+                    </span>
+
+                    <span class="text-label-md">
+                        Entrada Stock
+                    </span>
+                </a>
                 <button class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
                     <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">engineering</span>
                     <span class="text-label-md">Asignar Mano Obra</span>
                 </button>
-                <button class="hidden lg:flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
-                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">calendar_month</span>
+                <a asp-controller="Calendario"
+                   asp-action="Index"
+                   class="hidden lg:flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">
+                        calendar_month
+                    </span>
                     <span class="text-label-md">Calendario Prod.</span>
-                </button>
+                </a>
             </div>
         </section>
 
