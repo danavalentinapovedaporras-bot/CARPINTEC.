@@ -1,0 +1,358 @@
+@model IEnumerable<CARPINTEC_App.Models.Factura>
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<!DOCTYPE html>
+
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            try {
+                tailwind.config = {
+                    darkMode: "class",
+                    theme: {
+                        extend: {
+                            "colors": {
+                                "on-error-container": "#93000a",
+                                "secondary": "#5f5e5e",
+                                "inverse-primary": "#e1c299",
+                                "tertiary": "#525f76",
+                                "surface": "#fbf9f4",
+                                "inverse-surface": "#30312e",
+                                "secondary-container": "#e4e2e1",
+                                "primary-container": "#d2b48c",
+                                "on-surface": "#1b1c19",
+                                "on-primary-fixed-variant": "#584324",
+                                "on-tertiary": "#ffffff",
+                                "background": "#fbf9f4",
+                                "on-primary": "#ffffff",
+                                "primary-fixed": "#feddb3",
+                                "inverse-on-surface": "#f2f1ec",
+                                "surface-bright": "#fbf9f4",
+                                "error": "#ba1a1a",
+                                "surface-tint": "#725a39",
+                                "surface-container-low": "#f5f3ee",
+                                "on-surface-variant": "#4d453c",
+                                "on-error": "#ffffff",
+                                "primary-fixed-dim": "#e1c299",
+                                "surface-container-highest": "#e4e2dd",
+                                "surface-dim": "#dbdad5",
+                                "on-tertiary-container": "#3d495f",
+                                "on-secondary-container": "#656464",
+                                "tertiary-container": "#acb9d3",
+                                "on-primary-container": "#5b4526",
+                                "surface-container": "#f0eee9",
+                                "on-primary-fixed": "#281801",
+                                "surface-variant": "#e4e2dd",
+                                "outline-variant": "#d1c5b8",
+                                "on-secondary-fixed": "#1b1c1c",
+                                "on-background": "#1b1c19",
+                                "surface-container-high": "#eae8e3",
+                                "secondary-fixed-dim": "#c8c6c5",
+                                "error-container": "#ffdad6",
+                                "tertiary-fixed": "#d6e3fe",
+                                "outline": "#7f766a",
+                                "on-secondary-fixed-variant": "#474747",
+                                "secondary-fixed": "#e4e2e1",
+                                "on-tertiary-fixed": "#0e1c2f",
+                                "primary": "#725a39",
+                                "on-secondary": "#ffffff",
+                                "on-tertiary-fixed-variant": "#3b475d",
+                                "tertiary-fixed-dim": "#bac7e1",
+                                "surface-container-lowest": "#ffffff"
+                            },
+                            "borderRadius": {
+                                "DEFAULT": "0.25rem",
+                                "lg": "0.5rem",
+                                "xl": "0.75rem",
+                                "full": "9999px"
+                            },
+                            "spacing": {
+                                "base": "8px",
+                                "container-max": "1200px",
+                                "margin-mobile": "16px",
+                                "margin-desktop": "40px",
+                                "gutter": "24px"
+                            },
+                            "fontFamily": {
+                                "body-md": ["Work Sans"],
+                                "label-md": ["Work Sans"],
+                                "headline-lg-mobile": ["Manrope"],
+                                "headline-lg": ["Manrope"],
+                                "body-sm": ["Work Sans"],
+                                "headline-xl": ["Manrope"]
+                            },
+                            "fontSize": {
+                                "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                                "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                                "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                                "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                                "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                                "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                            }
+                        },
+                    },
+                }
+        } catch (_e) { }</script>
+        <meta charset="utf-8" />
+    </head>
+    <body class="bg-surface font-body-md text-on-surface overflow-x-hidden text-black">
+        <!-- Navigation Shell (SideNav) -->
+        <!-- Main Content Canvas -->
+        <main class="min-h-screen bg-surface flex flex-col">
+            <!-- Top App Bar - Integrated into Canvas Header -->
+            <header class="flex justify-between items-center w-full h-20 px-margin-desktop bg-surface-container-lowest">
+                <div class="flex flex-col">
+                    <nav class="flex items-center text-label-md text-on-surface-variant mb-1">
+                        <a href="#"
+   onclick="history.back(); return false;"
+   class="flex items-center gap-1 text-black hover:opacity-70 transition-opacity mr-4">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+    <span class="font-semibold">Volver</span>
+</a>
+                  
+ 
+                    </nav>
+                    <h1 class="font-headline-lg text-headline-lg font-black text-on-surface tracking-tight uppercase text-black">VENTAS Y FACTURACIÓN</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="bg-primary text-on-primary font-bold px-6 py-3 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all active:scale-[0.98] shadow-sm">
+                        <span class="material-symbols-outlined">add_circle</span>
+                        EMITIR NUEVA FACTURA
+                    </button>
+                    <div class="flex items-center gap-2 ml-4">
+                        <button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors">
+                            <span class="material-symbols-outlined">notifications</span>
+                        </button>
+                        <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center border border-outline-variant overflow-hidden">
+                            <img class="w-full h-full object-cover" data-alt="A professional headshot of a mature male executive in a well-lit architect's studio, wearing a tailored charcoal shirt. The lighting is warm and directional, emphasizing the artisanal precision and professional reliability of the Carpintec brand. The background is softly blurred with wood samples and blueprints." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt2ieV24lsfMi5OG4Fvr2fiHFTWz1G26rQjGaZlY5tXXySywt_BhjdQchbpHTRwQO59KiEgdXJ9jDNqmevYWx2fo-bCeqml4aAN_HAxcdicuUzUQ56bnyMn2fDW9PMsEfkK0aLdA25lmSyd7VUH6FWv-HTIe0YBT-iXt8dOH3Ix9Qh1GWCJIDGDYxMnN3iP0rgMQHP-FFXwvlUPTFD0s9GtkEgh8cqwOSSTFGlLlvq9T6DOXpbaOQpKQ" />
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Page Content -->
+            <div class="p-margin-desktop flex flex-col gap-gutter max-w-container-max mx-auto w-full">
+                <!-- Stats Bento Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+                    <div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-primary flex flex-col gap-2">
+                        <div class="flex justify-between items-start">
+                            <span class="text-label-md text-on-surface-variant font-bold uppercase tracking-wider text-black">Ventas Totales (Mes)</span>
+                            <span class="material-symbols-outlined text-primary">trending_up</span>
+                        </div>
+                        <p class="font-headline-lg text-headline-lg font-bold text-on-surface">$1,452,300</p>
+                        <div class="flex items-center gap-1 text-label-md text-on-primary-fixed-variant">
+                            <span class="material-symbols-outlined text-sm">arrow_upward</span>
+                            <span class="">+12.4% vs mes anterior</span>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-tertiary flex flex-col gap-2">
+                        <div class="flex justify-between items-start">
+                            <span class="text-label-md text-on-surface-variant font-bold uppercase tracking-wider text-black">Facturas Pendientes</span>
+                            <span class="material-symbols-outlined text-tertiary">pending_actions</span>
+                        </div>
+                        <p class="font-headline-lg text-headline-lg font-bold text-on-surface">24</p>
+                        <p class="text-label-md text-on-surface-variant">Valor total: $382,000</p>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-on-primary-container flex flex-col gap-2">
+                        <div class="flex justify-between items-start">
+                            <span class="text-label-md text-on-surface-variant font-bold uppercase tracking-wider text-black">Total Recaudado</span>
+                            <span class="material-symbols-outlined text-on-primary-container">payments</span>
+                        </div>
+                        <p class="font-headline-lg text-headline-lg font-bold text-on-surface">$1,070,300</p>
+                        <div class="w-full bg-outline-variant h-1 rounded-full mt-1">
+                            <div class="bg-primary h-1 rounded-full w-3/4"></div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-xl border-b-4 border-error flex flex-col gap-2">
+                        <div class="flex justify-between items-start">
+                            <span class="text-label-md text-on-surface-variant font-bold uppercase tracking-wider text-black">Próximos Vencimientos</span>
+                            <span class="material-symbols-outlined text-error">event_busy</span>
+                        </div>
+                        <p class="font-headline-lg text-headline-lg font-bold text-error">08</p>
+                        <p class="text-label-md text-on-surface-variant font-semibold">Siguiente: 15 Oct, 2023</p>
+                    </div>
+                </div>
+                <!-- Table Section -->
+                <section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+                    <div class="px-8 py-6 border-b border-outline-variant flex justify-between items-center">
+                        <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">FACTURAS RECIENTES</h2>
+                        <div class="flex gap-2">
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                                <input class="pl-10 pr-4 py-2 border border-outline-variant rounded-lg bg-surface text-body-sm w-64 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Buscar por folio o cliente..." type="text" />
+                            </div>
+                            <button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-variant transition-colors">
+                                <span class="material-symbols-outlined">filter_list</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container text-left">
+                                    <th class="px-8 py-4 font-bold text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant text-black">Folio</th>
+                                    <th class="px-8 py-4 font-bold text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant text-black">Cliente</th>
+                                    <th class="px-8 py-4 font-bold text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant text-black">Fecha</th>
+                                    <th class="px-8 py-4 font-bold text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant text-right text-black">Monto</th>
+                                    <th class="px-8 py-4 font-bold text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant text-black">Estado</th>
+                                    <th class="px-8 py-4 font-bold text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant text-center text-black">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-outline-variant">
+                                
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="hover:bg-surface-container-low transition-colors group">
+
+                                            <!-- Folio -->
+                                            <td class="px-8 py-4 font-bold text-on-surface text-black">
+                                                @item.Folio
+                                            </td>
+
+                                            <!-- Cliente -->
+                                            <td class="px-8 py-4 text-on-surface text-black">
+                                                @item.Cliente
+                                            </td>
+
+                                            <!-- Fecha -->
+                                            <td class="px-8 py-4 text-on-surface-variant text-black">
+                                                @item.Fecha.ToShortDateString()
+                                            </td>
+
+                                            <!-- Monto -->
+                                            <td class="px-8 py-4 text-right font-bold text-on-surface text-black">
+                                                $@item.Total
+                                            </td>
+
+                                            <!-- Estado -->
+                                            <td class="px-8 py-4">
+
+                                                @if (item.Estado == "Pendiente")
+                                                {
+                                                    <span style="background-color:#facc15; color:#000; padding:5px 12px; border-radius:20px; font-weight:bold;">
+                                                        Pendiente
+                                                    </span>
+                                                }
+                                                else if (item.Estado == "Pagado")
+                                                {
+                                                    <span style="background-color:#22c55e; color:white; padding:5px 12px; border-radius:20px; font-weight:bold;">
+                                                        Pagado
+                                                    </span>
+                                                }
+                                                else if (item.Estado == "Vencido")
+                                                {
+                                                    <span style="background-color:#f97316; color:white; padding:5px 12px; border-radius:20px; font-weight:bold;">
+                                                        Vencido
+                                                    </span>
+                                                }
+                                                else if (item.Estado == "Cancelado")
+                                                {
+                                                    <span style="background-color:#ef4444; color:white; padding:5px 12px; border-radius:20px; font-weight:bold;">
+                                                        Cancelado
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="background-color:#3b82f6; color:white; padding:5px 12px; border-radius:20px; font-weight:bold;">
+                                                        @item.Estado
+                                                    </span>
+                                                }
+
+                                            </td>
+
+                                            <!-- Acciones -->
+                                            <td class="px-8 py-4 text-center">
+                                                <a asp-controller="Ventas"
+                                                   asp-action="VerFactura"
+                                                   asp-route-id="@item.IdFactura"
+                                                   class="bg-secondary text-white px-4 py-2 rounded text-label-md font-bold hover:bg-on-surface transition-all active:scale-95 text-decoration-none">
+                                                    VER FACTURA
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                                        <td class="px-8 py-4 text-center">
+                                            <a asp-controller="Ventas"
+                                               asp-action="VerFactura"
+                                               asp-route-id="@@item.IdFactura"
+                                               class="bg-secondary text-white px-4 py-1.5 rounded text-label-md font-bold hover:bg-on-surface transition-all active:scale-95 text-decoration-none">
+                                                VER FACTURA
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="px-8 py-4 flex justify-between items-center border-t border-outline-variant bg-surface-container-low">
+                        <span class="text-body-sm text-on-surface-variant">Mostrando 1-4 de 42 facturas</span>
+                        <div class="flex gap-1">
+                            <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-white transition-all disabled:opacity-50" disabled="">
+                                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                            </button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded border border-primary bg-primary text-on-primary font-bold text-body-sm">1</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-white text-body-sm transition-all">2</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-white text-body-sm transition-all">3</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-white transition-all">
+                                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- Promotional Banner -->
+                <div class="relative w-full rounded-2xl overflow-hidden min-h-[160px] flex items-center group">
+                    <div class="absolute inset-0 z-0 bg-on-surface">
+                        <div class="absolute inset-0 opacity-40 mix-blend-multiply bg-center bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="A macro close-up of dark, polished mahogany wood grain with shallow depth of field. The texture is rich and tactile, illuminated by a warm, golden side light that creates high contrast and a premium artisanal feel. This background signifies the precision and quality inherent in Carpintec's craftsmanship." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCul2sr5afiWkQ0OZe2uU4RDKtKgXPpBpnifa_aNVgPrxN_ViQNW-MxQK-dnqvV4Q3CNE1tpEtsm_TK4VUd81IpixHa4lr4bk63SZdy0AcwErM3KlajjOai7G45rqAyvcYP3v2KC2WBl1_7APwJjezaS7kVTE7vaIQn23qhszgrWXJ01t13UjPZE3yobA9nehcGixBAJyliTwRdf0CyB2qsH-Sj2J5b1jcvNOCeRo9v97G9mvRuAoZQVg");'></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-on-surface via-on-surface/80 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 px-12 py-10 flex flex-col md:flex-row justify-between items-center w-full gap-6">
+                        <div class="flex flex-col gap-2 max-w-xl text-center md:text-left">
+                            <h3 class="font-headline-lg text-headline-lg font-bold text-on-primary-fixed leading-tight">Optimiza tus cobros</h3>
+                            <p class="text-on-secondary-fixed text-body-md opacity-90">Automatiza tus procesos de cobranza y reduce la morosidad con nuestro sistema de recordatorios inteligentes.</p>
+                        </div>
+                        <button class="bg-primary text-on-primary font-extrabold px-8 py-4 rounded-lg flex items-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-xl whitespace-nowrap">
+                            <span class="material-symbols-outlined">notifications_active</span>
+                            CONFIGURAR RECORDATORIOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Margin -->
+            <div class="h-margin-desktop"></div>
+        </main>
+        <script>
+                // Simple micro-interactions
+                document.querySelectorAll('button, a').forEach(elem => {
+                    elem.addEventListener('mousedown', () => {
+                        elem.style.transform = 'scale(0.97)';
+                    });
+                    elem.addEventListener('mouseup', () => {
+                        elem.style.transform = '';
+                    });
+                    elem.addEventListener('mouseleave', () => {
+                        elem.style.transform = '';
+                    });
+                });
+
+                // Hover effect for table rows
+                const rows = document.querySelectorAll('tbody tr');
+                rows.forEach(row => {
+                    row.addEventListener('mouseenter', () => {
+                        row.classList.add('shadow-inner');
+                    });
+                    row.addEventListener('mouseleave', () => {
+                        row.classList.remove('shadow-inner');
+                    });
+                });
+        </script>
+    </body></html>
