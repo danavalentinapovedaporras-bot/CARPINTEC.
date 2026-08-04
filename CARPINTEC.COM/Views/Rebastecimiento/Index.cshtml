@@ -1,0 +1,286 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Carpintec - Solicitud de Reabastecimiento</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "surface-dim": "#dcd9d9",
+                            "on-tertiary-container": "#a0bab7",
+                            "on-secondary-container": "#636451",
+                            "surface-container-highest": "#e5e2e1",
+                            "tertiary-container": "#334b49",
+                            "on-primary-container": "#d4ada1",
+                            "on-background": "#1b1c1c",
+                            "on-secondary-fixed": "#1b1d0e",
+                            "surface-container-high": "#eae7e7",
+                            "surface-container": "#f0eded",
+                            "on-primary-fixed": "#2c160e",
+                            "outline-variant": "#d4c3be",
+                            "surface-variant": "#e5e2e1",
+                            "secondary-fixed": "#e4e4cc",
+                            "secondary-fixed-dim": "#c8c8b0",
+                            "error-container": "#ffdad6",
+                            "tertiary-fixed": "#cde8e5",
+                            "outline": "#827470",
+                            "on-secondary-fixed-variant": "#474836",
+                            "tertiary-fixed-dim": "#b1ccc9",
+                            "surface-container-lowest": "#ffffff",
+                            "on-tertiary-fixed": "#061f1e",
+                            "on-tertiary-fixed-variant": "#334b49",
+                            "primary": "#442a22",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#303030",
+                            "on-error-container": "#93000a",
+                            "tertiary": "#1c3433",
+                            "surface": "#fcf9f8",
+                            "secondary": "#5e604d",
+                            "inverse-primary": "#e7bdb1",
+                            "on-surface": "#1b1c1c",
+                            "on-primary-fixed-variant": "#5d4037",
+                            "on-tertiary": "#ffffff",
+                            "background": "#fcf9f8",
+                            "secondary-container": "#e1e1c9",
+                            "primary-container": "#5d4037",
+                            "primary-fixed": "#ffdbd0",
+                            "inverse-on-surface": "#f3f0ef",
+                            "surface-bright": "#fcf9f8",
+                            "error": "#ba1a1a",
+                            "on-primary": "#ffffff",
+                            "surface-tint": "#77574d",
+                            "primary-fixed-dim": "#e7bdb1",
+                            "surface-container-low": "#f6f3f2",
+                            "on-surface-variant": "#504441",
+                            "on-error": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "md": "24px",
+                            "gutter": "24px",
+                            "xs": "4px",
+                            "sm": "12px",
+                            "margin": "32px",
+                            "base": "8px",
+                            "lg": "40px",
+                            "xl": "64px"
+                        },
+                        "fontFamily": {
+                            "body-lg": ["Hanken Grotesk"],
+                            "headline-md": ["Manrope"],
+                            "body-sm": ["Hanken Grotesk"],
+                            "headline-xl": ["Manrope"],
+                            "label-md": ["Hanken Grotesk"],
+                            "headline-lg": ["Manrope"],
+                            "body-md": ["Hanken Grotesk"]
+                        },
+                        "fontSize": {
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            .priority-card input:checked + div {
+                border-color: currentColor;
+                background-color: rgba(var(--tw-bg-opacity), 0.1);
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+                transform: translateY(-2px);
+            }
+
+            .glass-effect {
+                background: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(225, 225, 201, 0.5);
+            }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-xl">
+    <!-- TopAppBar -->
+    <nav class="bg-surface sticky top-0 z-50 shadow-sm">
+        <div class="flex justify-between items-center w-full px-margin py-sm max-w-7xl mx-auto h-16">
+            <div class="flex items-center gap-4">
+                <button class="hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-100">
+                    <span class="material-symbols-outlined text-primary">arrow_back</span>
+                </button>
+            </div>
+            <div class="flex items-center gap-2"><img src="https://lh3.googleusercontent.com/aida/AP1WRLtrajNywkNQzMQZ7bU6YiNI4metWWTU3vDCJqOBz_p6w_MRBxGQBMv7hkKIu95AtHRLMIN9IOUzKcq3Rdu9VyayLOs9xQc6EgJkYqdtB1Onaw_DW_gr3DDSOMm1Fj3sgvBZdRtkVwXfxfcTL6tzcnvCutG5f9jw4fg0gMJ-i2uFNH3T78eG7F6GDj2xxvEU3_VE_kBsyT-u9k2gGIA0greIkDgs73Pk0ywVIWR9M0JM96RfzBFRXa6cP-8pLfnNzwRmSxQ2vsps5Q" alt="Carpintec Logo" class="h-8 w-8 object-contain"><h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Carpintec</h1></div>
+            <div class="w-10"></div> <!-- Spacer to center the logo -->
+        </div>
+    </nav>
+    <main class="max-w-4xl mx-auto px-margin mt-lg">
+        <!-- Header Section -->
+        <header class="mb-lg">
+            <h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Solicitud de Reabastecimiento</h2>
+            <p class="text-on-surface-variant font-body-md">Complete los detalles para generar una nueva orden de materiales.</p>
+        </header>
+        <form class="space-y-gutter">
+            <!-- Product Identity Card -->
+            <section class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                <div class="md:col-span-1 h-full min-h-[160px] rounded-lg overflow-hidden relative group">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A high-quality close-up photograph of a solid oak wood plank showing intricate grain details. The lighting is soft and warm, highlighting the natural artisanal texture of the timber. The composition is minimalist and professional, set against a clean white studio background to reflect an enterprise resource planning aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK-cI5ff4LHgAlrO5ZR-yvu9TE0tM5ueC1VUQDnbaQIgAz2BqDG0oiLlaHuNmVF2raGmXACRpMpKqPOKpy65t14CohZdrvkx2ZhMrLA67YZ20R_-TR5i56GJ8GGvlI3uVt3hgs2lX7KoH1EdbUL2wV1mtzDQh87_vsMH_Y3fHw48rMjjJlzhBE2UVNRwBVJNcUvzuw3ZWhl0F0cKqY4B7c56kfiAVQdJPHwc8LhJI0oxXbkf9CWmoW">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+                </div>
+                <div class="md:col-span-2 space-y-md">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-sm">
+                        <div class="space-y-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant">CÓDIGO DEL PRODUCTO</label>
+                            <input class="w-full bg-surface-container border-none rounded-lg font-body-md text-primary focus:ring-primary" readonly="" type="text" value="WD-RB-001">
+                        </div>
+                        <div class="space-y-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant">CATEGORÍA</label>
+                            <select class="w-full bg-surface-bright border-outline-variant rounded-lg font-body-md text-on-surface focus:ring-primary focus:border-primary">
+                                <option>Maderas</option>
+                                <option>Herrajes</option>
+                                <option>Herramientas</option>
+                                <option>Químicos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant">NOMBRE DEL PRODUCTO</label>
+                        <input class="w-full bg-surface-bright border-outline-variant rounded-lg font-body-md text-on-surface focus:ring-primary focus:border-primary" placeholder="Ej: Madera Roble Macizo" type="text">
+                    </div>
+                </div>
+            </section>
+            <!-- Inventory Logic & Numbers -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <!-- Stock Details -->
+                <div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 space-y-md">
+                    <h3 class="font-headline-md text-body-lg text-primary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">inventory</span>
+                        Estado de Inventario
+                    </h3>
+                    <div class="grid grid-cols-2 gap-sm">
+                        <div class="space-y-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant uppercase">Disponible</label>
+                            <input class="w-full bg-surface-bright border-outline-variant rounded-lg font-body-md text-on-surface focus:ring-primary" type="number" value="12">
+                        </div>
+                        <div class="space-y-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant uppercase">Stock Mínimo</label>
+                            <input class="w-full bg-surface-bright border-outline-variant rounded-lg font-body-md text-on-surface focus:ring-primary" type="number" value="25">
+                        </div>
+                    </div>
+                    <div class="pt-sm border-t border-outline-variant/20">
+                        <div class="space-y-xs">
+                            <label class="font-label-md text-label-md text-primary uppercase">Cantidad a Solicitar</label>
+                            <input class="w-full bg-primary-fixed border-primary/20 rounded-lg font-body-lg text-primary font-bold focus:ring-primary" placeholder="0" type="number">
+                        </div>
+                    </div>
+                </div>
+                <!-- Logistics Details -->
+                <div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 space-y-md">
+                    <h3 class="font-headline-md text-body-lg text-primary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">local_shipping</span>
+                        Detalles de Logística
+                    </h3>
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant uppercase">Proveedor Sugerido</label>
+                        <input class="w-full bg-surface-bright border-outline-variant rounded-lg font-body-md text-on-surface focus:ring-primary" placeholder="Nombre del proveedor" type="text">
+                    </div>
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant uppercase">Fecha de Solicitud</label>
+                        <input class="w-full bg-surface-bright border-outline-variant rounded-lg font-body-md text-on-surface focus:ring-primary" type="date">
+                    </div>
+                </div>
+            </section>
+            <!-- Priority Selector -->
+            <section class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 space-y-md">
+                <h3 class="font-headline-md text-body-lg text-primary">Nivel de Prioridad</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-sm">
+                    <!-- Alta -->
+                    <label class="priority-card cursor-pointer group">
+                        <input checked="" class="hidden" name="priority" type="radio">
+                        <div class="p-sm rounded-lg border-2 border-outline-variant/20 flex flex-col items-center gap-2 transition-all duration-200 text-error hover:border-error/50">
+                            <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: &quot;FILL&quot; 1;">priority_high</span>
+                            <span class="font-label-md">Alta - Urgente</span>
+                        </div>
+                    </label>
+                    <!-- Media -->
+                    <label class="priority-card cursor-pointer group">
+                        <input class="hidden" name="priority" type="radio">
+                        <div class="p-sm rounded-lg border-2 border-outline-variant/20 flex flex-col items-center gap-2 transition-all duration-200 text-[#D97706] hover:border-[#D97706]/50">
+                            <span class="material-symbols-outlined text-[32px]">warning</span>
+                            <span class="font-label-md">Media - Preventiva</span>
+                        </div>
+                    </label>
+                    <!-- Baja -->
+                    <label class="priority-card cursor-pointer group">
+                        <input class="hidden" name="priority" type="radio">
+                        <div class="p-sm rounded-lg border-2 border-outline-variant/20 flex flex-col items-center gap-2 transition-all duration-200 text-secondary hover:border-secondary/50">
+                            <span class="material-symbols-outlined text-[32px]">low_priority</span>
+                            <span class="font-label-md">Baja - Repuesta</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+            <!-- Observations -->
+            <section class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 space-y-md">
+                <div class="space-y-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant uppercase">Observaciones adicionales</label>
+                    <textarea class="w-full bg-surface-bright border-outline-variant rounded-xl font-body-md text-on-surface focus:ring-primary focus:border-primary resize-none" placeholder="Detalle cualquier especificación técnica, cambio de dimensiones o notas especiales para el proveedor..." rows="4"></textarea>
+                </div>
+            </section>
+            <!-- Action Buttons -->
+            <footer class="flex flex-col sm:flex-row items-center justify-end gap-sm pt-md">
+                <button class="w-full sm:w-auto px-xl py-sm rounded-full font-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 duration-100 order-2 sm:order-1" type="button">
+                    Cancelar
+                </button>
+                <button class="w-full sm:w-auto px-xl py-sm rounded-full bg-primary text-white font-label-md hover:shadow-lg hover:-translate-y-0.5 transition-all active:scale-95 duration-100 order-1 sm:order-2 flex items-center justify-center gap-2" type="submit">
+                    <span class="material-symbols-outlined text-sm">send</span>
+                    Solicitar pedido
+                </button>
+            </footer>
+        </form>
+    </main>
+    <!-- Bottom Spacing for mobile comfort -->
+    <div class="h-xl md:hidden"></div>
+    <script>
+            // Simple micro-interaction for priority cards
+            document.querySelectorAll('.priority-card input').forEach(input => {
+                input.addEventListener('change', function() {
+                    // The CSS takes care of the visual change via :checked
+                    console.log('Prioridad seleccionada:', this.parentNode.innerText.trim());
+                });
+            });
+
+            // Form submission prevention for demo
+            document.querySelector('form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Solicitud enviada correctamente al sistema de Carpintec.');
+            });
+    </script>
+
+
+
+</body></html>

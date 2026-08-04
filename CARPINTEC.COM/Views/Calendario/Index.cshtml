@@ -1,0 +1,981 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpintec — Registro de actividades</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+            :root {
+                --walnut-950: #1c130d;
+                --walnut-900: #241811;
+                --walnut-800: #382518;
+                --walnut-700: #4a3220;
+                --oak-500: #c9a66b;
+                --oak-300: #e2cda0;
+                --linen-100: #f3ead9;
+                --linen-50: #faf5ea;
+                --brass-400: #b8894a;
+                --sienna-500: #9c4b23;
+                --sienna-600: #7d3a1a;
+                --shadow: 0 10px 30px rgba(28,19,13,0.35);
+                --cat-corte: #9c4b23;
+                --cat-lijado: #c9a66b;
+                --cat-ensamblado: #b8894a;
+                --cat-acabado: #7a8450;
+                --cat-entrega: #5b7a8c;
+                --cat-reunion: #7b5c6b;
+                --cat-otro: #8a8378;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                background: radial-gradient(ellipse at 20% 0%, rgba(184,137,74,0.10), transparent 55%), var(--walnut-950);
+                color: var(--linen-100);
+                font-family: 'Inter', sans-serif;
+                min-height: 100vh;
+                padding: 28px 18px 60px;
+            }
+
+            .wrap {
+                max-width: 1080px;
+                margin: 0 auto;
+            }
+
+            /* ---- Header / signature ruler ---- */
+            header.top {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                gap: 16px;
+                flex-wrap: wrap;
+                margin-bottom: 18px;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+                .brand svg {
+                    flex: none;
+                }
+
+                .brand h1 {
+                    font-family: 'Fraunces', serif;
+                    font-weight: 700;
+                    font-size: clamp(28px,4vw,38px);
+                    letter-spacing: 0.5px;
+                    margin: 0;
+                    color: var(--linen-50);
+                }
+
+                .brand p {
+                    margin: 2px 0 0;
+                    font-size: 13px;
+                    color: var(--oak-300);
+                    font-family: 'JetBrains Mono', monospace;
+                    letter-spacing: 0.5px;
+                }
+
+            .view-toggle {
+                display: flex;
+                background: var(--walnut-800);
+                border: 1px solid var(--walnut-700);
+                border-radius: 999px;
+                padding: 4px;
+                gap: 4px;
+            }
+
+                .view-toggle button {
+                    border: none;
+                    background: transparent;
+                    color: var(--oak-300);
+                    font-family: 'Inter',sans-serif;
+                    font-weight: 600;
+                    font-size: 13px;
+                    padding: 8px 18px;
+                    border-radius: 999px;
+                    cursor: pointer;
+                    transition: background .18s, color .18s;
+                }
+
+                    .view-toggle button.active {
+                        background: var(--brass-400);
+                        color: var(--walnut-950);
+                    }
+
+            /* ruler divider - signature element */
+            .ruler {
+                position: relative;
+                height: 22px;
+                margin: 6px 0 22px;
+                background-image: repeating-linear-gradient( to right, var(--oak-500) 0, var(--oak-500) 1px, transparent 1px, transparent 20px );
+                background-position: 0 bottom;
+                background-size: 100% 10px;
+                background-repeat: repeat-x;
+                opacity: 0.55;
+                border-bottom: 1px solid var(--walnut-700);
+            }
+
+                .ruler::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 16px;
+                    background-image: repeating-linear-gradient( to right, var(--oak-500) 0, var(--oak-500) 1px, transparent 1px, transparent 100px );
+                }
+
+            /* ---- Nav row ---- */
+            .nav-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+                .nav-row .title {
+                    font-family: 'Fraunces', serif;
+                    font-weight: 600;
+                    font-size: 22px;
+                    color: var(--linen-50);
+                    text-transform: capitalize;
+                    min-width: 220px;
+                }
+
+            .nav-btns {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .icon-btn {
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+                border: 1px solid var(--walnut-700);
+                background: var(--walnut-800);
+                color: var(--linen-100);
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background .15s, transform .1s;
+            }
+
+                .icon-btn:hover {
+                    background: var(--walnut-700);
+                }
+
+                .icon-btn:active {
+                    transform: scale(0.94);
+                }
+
+            .today-btn {
+                border: 1px solid var(--brass-400);
+                background: transparent;
+                color: var(--oak-300);
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 12px;
+                padding: 8px 14px;
+                border-radius: 8px;
+                cursor: pointer;
+                letter-spacing: 0.5px;
+            }
+
+                .today-btn:hover {
+                    background: rgba(184,137,74,0.12);
+                }
+
+            /* ---- Month grid ---- */
+            .weekdays {
+                display: grid;
+                grid-template-columns: repeat(7,1fr);
+                gap: 8px;
+                margin-bottom: 8px;
+            }
+
+                .weekdays span {
+                    text-align: center;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 11px;
+                    color: var(--oak-500);
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                }
+
+            .month-grid {
+                display: grid;
+                grid-template-columns: repeat(7,1fr);
+                gap: 8px;
+            }
+
+            .day-cell {
+                position: relative;
+                background: var(--walnut-800);
+                border: 1px solid var(--walnut-700);
+                border-radius: 10px;
+                min-height: 92px;
+                padding: 8px;
+                cursor: pointer;
+                transition: border-color .15s, transform .1s, background .15s;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                overflow: hidden;
+            }
+
+                .day-cell:hover {
+                    border-color: var(--brass-400);
+                    background: var(--walnut-700);
+                }
+
+                .day-cell:active {
+                    transform: scale(0.98);
+                }
+
+                .day-cell.empty {
+                    background: transparent;
+                    border-color: transparent;
+                    cursor: default;
+                }
+
+                .day-cell.today {
+                    border-color: var(--sienna-500);
+                    box-shadow: 0 0 0 1px var(--sienna-500) inset;
+                }
+
+            .day-num {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--linen-100);
+            }
+
+            .day-cell.today .day-num {
+                color: var(--oak-300);
+            }
+
+            .tag-line {
+                font-size: 10.5px;
+                padding: 2px 6px;
+                border-radius: 5px;
+                color: #fff;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 500;
+            }
+
+            .more-line {
+                font-size: 10px;
+                color: var(--oak-300);
+                font-family: 'JetBrains Mono', monospace;
+            }
+
+            /* ---- Year view ---- */
+            .year-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+            }
+
+            @@media (max-width:900px) {
+                .year-grid {
+                    grid-template-columns: repeat(2,1fr);
+                }
+            }
+
+            @@media (max-width:520px) {
+                .year-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .mini-month {
+                background: var(--walnut-800);
+                border: 1px solid var(--walnut-700);
+                border-radius: 12px;
+                padding: 14px;
+                cursor: pointer;
+                transition: border-color .15s, transform .12s;
+            }
+
+                .mini-month:hover {
+                    border-color: var(--brass-400);
+                    transform: translateY(-2px);
+                }
+
+                .mini-month h3 {
+                    margin: 0 0 10px;
+                    font-family: 'Fraunces', serif;
+                    font-size: 16px;
+                    text-transform: capitalize;
+                    color: var(--linen-50);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: baseline;
+                }
+
+                    .mini-month h3 small {
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 10px;
+                        color: var(--oak-500);
+                        font-weight: 400;
+                    }
+
+            .mini-grid {
+                display: grid;
+                grid-template-columns: repeat(7,1fr);
+                gap: 3px;
+            }
+
+            .mini-day {
+                aspect-ratio: 1;
+                border-radius: 3px;
+                font-size: 9px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--oak-300);
+                background: var(--walnut-900);
+                position: relative;
+            }
+
+                .mini-day.has-activity {
+                    background: var(--brass-400);
+                    color: var(--walnut-950);
+                    font-weight: 700;
+                }
+
+                .mini-day.today-mini {
+                    outline: 1px solid var(--sienna-500);
+                }
+
+                .mini-day.empty-mini {
+                    background: transparent;
+                }
+
+            /* ---- Modal / day drawer ---- */
+            .overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(28,19,13,0.6);
+                backdrop-filter: blur(2px);
+                display: none;
+                align-items: flex-end;
+                justify-content: center;
+                z-index: 50;
+            }
+
+                .overlay.open {
+                    display: flex;
+                }
+
+            @@media (min-width:640px) {
+                .overlay {
+                    align-items: center;
+                }
+            }
+
+            .panel {
+                background: var(--linen-50);
+                color: var(--walnut-950);
+                width: 100%;
+                max-width: 520px;
+                max-height: 88vh;
+                overflow-y: auto;
+                border-radius: 18px 18px 0 0;
+                padding: 22px 22px 26px;
+                box-shadow: var(--shadow);
+                animation: slideup .22s ease;
+            }
+
+            @@media (min-width:640px) {
+                .panel {
+                    border-radius: 18px;
+                    margin: 20px;
+                }
+            }
+
+            @@keyframes slideup {
+                from {
+                    transform: translateY(16px);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .panel-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 16px;
+            }
+
+                .panel-head h2 {
+                    font-family: 'Fraunces', serif;
+                    font-size: 22px;
+                    margin: 0 0 4px;
+                    text-transform: capitalize;
+                }
+
+                .panel-head p {
+                    margin: 0;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 11px;
+                    color: var(--sienna-600);
+                }
+
+            .close-x {
+                border: none;
+                background: none;
+                cursor: pointer;
+                color: var(--walnut-700);
+                font-size: 20px;
+                line-height: 1;
+                padding: 4px;
+            }
+
+            .activity-list {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 18px;
+            }
+
+            .activity-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background: var(--linen-100);
+                border: 1px solid rgba(28,19,13,0.08);
+                border-radius: 10px;
+                padding: 10px 12px;
+            }
+
+            .cat-dot {
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                flex: none;
+            }
+
+            .activity-item .txt {
+                flex: 1;
+                font-size: 14px;
+            }
+
+            .activity-item .cat-label {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 10px;
+                text-transform: uppercase;
+                color: var(--walnut-700);
+                opacity: 0.65;
+            }
+
+            .del-btn {
+                border: none;
+                background: none;
+                cursor: pointer;
+                color: var(--sienna-600);
+                font-size: 16px;
+                padding: 2px 6px;
+                opacity: 0.55;
+            }
+
+                .del-btn:hover {
+                    opacity: 1;
+                }
+
+            .empty-state {
+                font-size: 13px;
+                color: var(--walnut-700);
+                opacity: 0.6;
+                font-style: italic;
+                padding: 6px 2px 4px;
+            }
+
+            .add-form {
+                border-top: 1px dashed rgba(28,19,13,0.15);
+                padding-top: 16px;
+            }
+
+                .add-form label {
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 10px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    color: var(--walnut-700);
+                    display: block;
+                    margin-bottom: 6px;
+                }
+
+            .cat-select {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .cat-chip {
+                border: 1.5px solid transparent;
+                background: var(--linen-100);
+                border-radius: 999px;
+                padding: 6px 12px;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                color: var(--walnut-900);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+                .cat-chip.selected {
+                    border-color: var(--walnut-950);
+                    background: var(--linen-50);
+                }
+
+                .cat-chip .cat-dot {
+                    width: 8px;
+                    height: 8px;
+                }
+
+            .text-row {
+                display: flex;
+                gap: 8px;
+            }
+
+                .text-row input {
+                    flex: 1;
+                    padding: 11px 13px;
+                    border-radius: 10px;
+                    border: 1.5px solid rgba(28,19,13,0.15);
+                    background: #fff;
+                    font-family: 'Inter',sans-serif;
+                    font-size: 14px;
+                    color: var(--walnut-950);
+                }
+
+                    .text-row input:focus {
+                        outline: none;
+                        border-color: var(--brass-400);
+                    }
+
+            .add-btn {
+                background: var(--sienna-500);
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                padding: 0 18px;
+                font-weight: 600;
+                font-size: 14px;
+                cursor: pointer;
+                transition: background .15s;
+            }
+
+                .add-btn:hover {
+                    background: var(--sienna-600);
+                }
+
+                .add-btn:disabled {
+                    opacity: 0.4;
+                    cursor: default;
+                }
+
+            .loading-note {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 12px;
+                color: var(--oak-500);
+                padding: 30px 0;
+                text-align: center;
+            }
+
+            .storage-note {
+                margin-top: 26px;
+                text-align: center;
+                font-size: 11.5px;
+                color: var(--oak-500);
+                font-family: 'JetBrains Mono', monospace;
+                opacity: 0.75;
+            }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+
+        <header class="top">
+            <div class="brand">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="4" y="4" width="32" height="32" rx="8" fill="#382518" stroke="#c9a66b" stroke-width="1.5" />
+                    <path d="M11 27 L27 11" stroke="#b8894a" stroke-width="2.5" stroke-linecap="round" />
+                    <path d="M11 11 L15 11 L15 15" stroke="#e2cda0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M27 27 L23 27 L23 23" stroke="#e2cda0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div>
+                    <h1>Carpintec</h1>
+                    <p>REGISTRO DE ACTIVIDADES DEL TALLER</p>
+                </div>
+            </div>
+            <div class="view-toggle">
+                <button id="btn-view-year">Año</button>
+                <button id="btn-view-month" class="active">Mes</button>
+            </div>
+        </header>
+
+        <div class="ruler"></div>
+
+        <div class="nav-row">
+            <div class="title" id="nav-title">—</div>
+            <div class="nav-btns">
+                <button class="today-btn" id="btn-today">Hoy</button>
+                <button class="icon-btn" id="btn-prev" aria-label="Anterior">‹</button>
+                <button class="icon-btn" id="btn-next" aria-label="Siguiente">›</button>
+            </div>
+        </div>
+
+        <div id="content"></div>
+
+        <div class="storage-note">Los registros se guardan automáticamente en la base de datos de Carpintec.</div>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="panel">
+            <div class="panel-head">
+                <div>
+                    <h2 id="panel-date-title">—</h2>
+                    <p id="panel-date-sub">—</p>
+                </div>
+                <button class="close-x" id="btn-close">✕</button>
+            </div>
+            <div class="activity-list" id="activity-list"></div>
+            <div class="add-form">
+                <label>Categoría</label>
+                <div class="cat-select" id="cat-select"></div>
+                <label>Actividad</label>
+                <div class="text-row">
+                    <input type="text" id="activity-input" placeholder="Ej: corte de tablones de roble" maxlength="140">
+                    <button class="add-btn" id="btn-add">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            const MONTH_NAMES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+            const DAY_NAMES = ["L", "M", "X", "J", "V", "S", "D"];
+            const CATEGORIES = [
+                { id: "corte", label: "Corte", color: "var(--cat-corte)" },
+                { id: "lijado", label: "Lijado", color: "var(--cat-lijado)" },
+                { id: "ensamblado", label: "Ensamblado", color: "var(--cat-ensamblado)" },
+                { id: "acabado", label: "Acabado", color: "var(--cat-acabado)" },
+                { id: "entrega", label: "Entrega", color: "var(--cat-entrega)" },
+                { id: "reunion", label: "Reunión", color: "var(--cat-reunion)" },
+                { id: "otro", label: "Otro", color: "var(--cat-otro)" },
+            ];
+            const catMap = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
+
+            const now = new Date();
+            let state = {
+                view: "month", // 'year' | 'month'
+                year: now.getFullYear(),
+                month: now.getMonth(), // 0-11
+                selectedDate: null, // 'YYYY-MM-DD'
+                selectedCat: "corte",
+                yearData: {}, // { 'YYYY-MM-DD': [ {id, cat, text} ] }
+                loadedYears: {}, // cache flags
+                loading: true,
+            };
+
+            function pad(n) { return n < 10 ? "0" + n : "" + n; }
+            function dateKey(y, m, d) { return `${y}-${pad(m + 1)}-${pad(d)}`; }
+            function todayKey() { return dateKey(now.getFullYear(), now.getMonth(), now.getDate()); }
+
+            const API = {
+                obtenerAnio: (anio) => `/Calendario/ObtenerAnio?anio=${anio}`,
+                agregar: '/Calendario/Agregar',
+                eliminar: (id) => `/Calendario/Eliminar?id=${id}`
+            };
+
+            async function loadYear(year) {
+                if (state.loadedYears[year]) return;
+                state.loading = true;
+                render();
+                try {
+                    const res = await fetch(API.obtenerAnio(year));
+                    if (!res.ok) throw new Error('Error al cargar');
+                    const data = await res.json();
+                    state.yearData = { ...state.yearData, ...data };
+                } catch (e) {
+                    console.error("No se pudieron cargar los registros", e);
+                }
+                state.loadedYears[year] = true;
+                state.loading = false;
+                render();
+            }
+
+            function getFirstDayOffset(year, month) {
+                // Monday = 0
+                const jsDay = new Date(year, month, 1).getDay(); // 0=Sun
+                return (jsDay + 6) % 7;
+            }
+            function daysInMonth(year, month) {
+                return new Date(year, month + 1, 0).getDate();
+            }
+
+            /* ---------- rendering ---------- */
+            function render() {
+                document.getElementById("btn-view-year").classList.toggle("active", state.view === "year");
+                document.getElementById("btn-view-month").classList.toggle("active", state.view === "month");
+
+                const navTitle = document.getElementById("nav-title");
+                const content = document.getElementById("content");
+
+                if (state.view === "year") {
+                    navTitle.textContent = state.year;
+                    renderYearView(content);
+                } else {
+                    navTitle.textContent = `${MONTH_NAMES[state.month]} ${state.year}`;
+                    renderMonthView(content);
+                }
+            }
+
+            function renderMonthView(container) {
+                if (state.loading) {
+                    container.innerHTML = `<div class="loading-note">Cargando registros…</div>`;
+                    return;
+                }
+                let html = `<div class="weekdays">${DAY_NAMES.map(d => `<span>${d}</span>`).join("")}</div><div class="month-grid">`;
+                const offset = getFirstDayOffset(state.year, state.month);
+                const total = daysInMonth(state.year, state.month);
+                const tKey = todayKey();
+
+                for (let i = 0; i < offset; i++) html += `<div class="day-cell empty"></div>`;
+
+                for (let d = 1; d <= total; d++) {
+                    const key = dateKey(state.year, state.month, d);
+                    const acts = state.yearData[key] || [];
+                    const isToday = key === tKey;
+                    html += `<div class="day-cell ${isToday ? 'today' : ''}" data-key="${key}">
+                              <span class="day-num">${d}</span>`;
+                    acts.slice(0, 2).forEach(a => {
+                        const c = catMap[a.cat] || catMap.otro;
+                        html += `<span class="tag-line" style="background:${c.color}">${escapeHtml(a.text)}</span>`;
+                    });
+                    if (acts.length > 2) html += `<span class="more-line">+${acts.length - 2} más</span>`;
+                    html += `</div>`;
+                }
+                html += `</div>`;
+                container.innerHTML = html;
+
+                container.querySelectorAll(".day-cell[data-key]").forEach(cell => {
+                    cell.addEventListener("click", () => openDay(cell.dataset.key));
+                });
+            }
+
+            function renderYearView(container) {
+                let html = `<div class="year-grid">`;
+                const tKey = todayKey();
+                for (let m = 0; m < 12; m++) {
+                    const offset = getFirstDayOffset(state.year, m);
+                    const total = daysInMonth(state.year, m);
+                    let count = 0;
+                    let miniHtml = `<div class="mini-grid">`;
+                    for (let i = 0; i < offset; i++) miniHtml += `<div class="mini-day empty-mini"></div>`;
+                    for (let d = 1; d <= total; d++) {
+                        const key = dateKey(state.year, m, d);
+                        const has = (state.yearData[key] || []).length > 0;
+                        if (has) count++;
+                        const isToday = key === tKey;
+                        miniHtml += `<div class="mini-day ${has ? 'has-activity' : ''} ${isToday ? 'today-mini' : ''}">${d}</div>`;
+                    }
+                    miniHtml += `</div>`;
+                    html += `<div class="mini-month" data-month="${m}">
+                              <h3>${MONTH_NAMES[m]} <small>${count ? count + ' días' : 'sin registros'}</small></h3>
+                              ${miniHtml}
+                            </div>`;
+                }
+                html += `</div>`;
+                if (state.loading) html = `<div class="loading-note">Cargando registros…</div>`;
+                container.innerHTML = html;
+
+                container.querySelectorAll(".mini-month").forEach(el => {
+                    el.addEventListener("click", () => {
+                        state.month = parseInt(el.dataset.month, 10);
+                        state.view = "month";
+                        render();
+                    });
+                });
+            }
+
+            function escapeHtml(str) {
+                const d = document.createElement("div");
+                d.textContent = str;
+                return d.innerHTML;
+            }
+
+            /* ---------- day panel ---------- */
+            function openDay(key) {
+                state.selectedDate = key;
+                state.selectedCat = "corte";
+                const [y, m, d] = key.split("-").map(Number);
+                const dateObj = new Date(y, m - 1, d);
+                document.getElementById("panel-date-title").textContent =
+                    dateObj.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" });
+                document.getElementById("panel-date-sub").textContent = key;
+
+                renderCatChips();
+                renderActivityList();
+                document.getElementById("activity-input").value = "";
+                document.getElementById("overlay").classList.add("open");
+                setTimeout(() => document.getElementById("activity-input").focus(), 50);
+            }
+
+            function renderCatChips() {
+                const wrap = document.getElementById("cat-select");
+                wrap.innerHTML = CATEGORIES.map(c => `
+                            <button type="button" class="cat-chip ${state.selectedCat === c.id ? 'selected' : ''}" data-cat="${c.id}">
+                              <span class="cat-dot" style="background:${c.color}"></span>${c.label}
+                            </button>
+                          `).join("");
+                wrap.querySelectorAll(".cat-chip").forEach(chip => {
+                    chip.addEventListener("click", () => {
+                        state.selectedCat = chip.dataset.cat;
+                        renderCatChips();
+                    });
+                });
+            }
+
+            function renderActivityList() {
+                const list = document.getElementById("activity-list");
+                const acts = state.yearData[state.selectedDate] || [];
+                if (acts.length === 0) {
+                    list.innerHTML = `<div class="empty-state">Todavía no hay actividades registradas este día.</div>`;
+                    return;
+                }
+                list.innerHTML = acts.map(a => {
+                    const c = catMap[a.cat] || catMap.otro;
+                    return `<div class="activity-item">
+                              <span class="cat-dot" style="background:${c.color}"></span>
+                              <span class="txt">${escapeHtml(a.text)}</span>
+                              <span class="cat-label">${c.label}</span>
+                              <button class="del-btn" data-id="${a.id}">✕</button>
+                            </div>`;
+                }).join("");
+                list.querySelectorAll(".del-btn").forEach(btn => {
+                    btn.addEventListener("click", () => deleteActivity(btn.dataset.id));
+                });
+            }
+
+            async function addActivity() {
+                const input = document.getElementById("activity-input");
+                const text = input.value.trim();
+                if (!text) return;
+                const key = state.selectedDate;
+                try {
+                    const res = await fetch(API.agregar, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ fecha: key, cat: state.selectedCat, texto: text })
+                    });
+                    if (!res.ok) throw new Error('Error al guardar');
+                    const saved = await res.json();
+                    if (!state.yearData[key]) state.yearData[key] = [];
+                    state.yearData[key].push(saved);
+                    input.value = "";
+                    renderActivityList();
+                    render();
+                } catch (e) {
+                    console.error("No se pudo guardar", e);
+                    alert("No se pudo guardar la actividad. Verifica la conexión con el servidor.");
+                }
+            }
+
+            async function deleteActivity(id) {
+                const key = state.selectedDate;
+                try {
+                    const res = await fetch(API.eliminar(id), { method: 'DELETE' });
+                    if (!res.ok) throw new Error('Error al eliminar');
+                    state.yearData[key] = (state.yearData[key] || []).filter(a => a.id !== id);
+                    renderActivityList();
+                    render();
+                } catch (e) {
+                    console.error("No se pudo eliminar", e);
+                    alert("No se pudo eliminar la actividad.");
+                }
+            }
+
+            /* ---------- events ---------- */
+            document.getElementById("btn-view-year").addEventListener("click", async () => {
+                state.view = "year";
+                await loadYear(state.year);
+                render();
+            });
+            document.getElementById("btn-view-month").addEventListener("click", async () => {
+                state.view = "month";
+                await loadYear(state.year);
+                render();
+            });
+            document.getElementById("btn-prev").addEventListener("click", async () => {
+                if (state.view === "year") { state.year--; await loadYear(state.year); }
+                else {
+                    state.month--;
+                    if (state.month < 0) { state.month = 11; state.year--; }
+                    await loadYear(state.year);
+                }
+                render();
+            });
+            document.getElementById("btn-next").addEventListener("click", async () => {
+                if (state.view === "year") { state.year++; await loadYear(state.year); }
+                else {
+                    state.month++;
+                    if (state.month > 11) { state.month = 0; state.year++; }
+                    await loadYear(state.year);
+                }
+                render();
+            });
+            document.getElementById("btn-today").addEventListener("click", async () => {
+                state.year = now.getFullYear();
+                state.month = now.getMonth();
+                await loadYear(state.year);
+                render();
+            });
+            document.getElementById("btn-close").addEventListener("click", () => {
+                document.getElementById("overlay").classList.remove("open");
+            });
+            document.getElementById("overlay").addEventListener("click", (e) => {
+                if (e.target.id === "overlay") document.getElementById("overlay").classList.remove("open");
+            });
+            document.getElementById("btn-add").addEventListener("click", addActivity);
+            document.getElementById("activity-input").addEventListener("keydown", (e) => {
+                if (e.key === "Enter") addActivity();
+            });
+
+            /* ---------- init ---------- */
+            loadYear(state.year).then(render);
+            render();
+    </script>
+</body>
+</html>

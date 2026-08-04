@@ -1,5 +1,6 @@
+@model IEnumerable<CARPINTEC.COM.Models.Cotizacion>
 @{
-    Layout = null;
+    ViewData["Title"] = "Usuarios";
 }
 <!DOCTYPE html>
 <html class="light" lang="es">
@@ -120,48 +121,19 @@
 </head>
 <body class="bg-background text-on-background font-body-md">
 
-    <!-- TopAppBar Header -->
-    <header class="fixed top-0 right-0 left-0 z-30 flex justify-between items-center h-16 px-6 md:px-10 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
-
-        <!-- Brand Logo & Search -->
-        <div class="flex items-center gap-6 flex-1 max-w-xl">
-            <div class="flex items-center gap-3 pr-4 border-r border-outline-variant">
-                <img alt="Carpintec Logo" class="w-9 h-9 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLsk3Zho-0BKtA8McF4b6enPHBZbzMwn0jFHE7fKjodpPqXIRwzVkW8RG5ituz68m6QiNpMpUrfVNCBUiWmScdHBA501R3SO_EMasyX04TCSJTeY5dQDPJiT3OqyD8R4aiXH4hcrhIO3f74jHLBizsFzi_tHK83H8Gikj5ywByw_o9gShxB10YJlA4Dx5FV4zKdVbVZEJuUPJ7F9vQv8NNS7RPM7MAmDQFDHmePYJaQWhqdFxvVMoFUFvvclu3ImV4nbwTPjRvIEjA">
-                <h1 class="text-[18px] font-bold text-black hidden sm:block">Carpintec</h1>
-            </div>
-
-            <div class="relative w-full group">
-                <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-black">search</span>
-                <input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary focus:ring-opacity-40 transition-all text-body-md outline-none text-black placeholder:text-black/40" placeholder="Buscar cotizaciones, clientes o folios..." type="text">
-            </div>
-        </div>
-
-        <!-- User Actions -->
-        <div class="flex items-center gap-4 md:gap-6">
-            <button class="p-2 rounded-full hover:bg-surface-container-low transition-all relative">
-                <span class="material-symbols-outlined text-black">notifications</span>
-                <span class="absolute top-2.5 right-2.5 w-2 h-2 bg-error rounded-full"></span>
-            </button>
-            <div class="flex items-center gap-3">
-                <div class="text-right hidden sm:block">
-                    <p class="text-body-md font-bold text-black">Admin Paula</p>
-                    <p class="text-label-md text-black/60 font-semibold">Director de Proyectos</p>
-                </div>
-                <img class="w-10 h-10 rounded-full object-cover ring-2 ring-primary" alt="Perfil del usuario Admin Paula" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJw-DlWjX2vLnFeJbcTfN6qnd1-g-YybIkVZItlcjcc0O6FrGt2B6w5cC19QVRO_vWNwzfaktXymW2AnQezpTwdyPXZWbkoa5uxsfCtZkL7Plao_5xS-ZVIYQhAvRSc-viz2h7UJmO-1hWFLzuvowtm9ecQymLbrHB2jttuKAshOwLj39KjyHpYntRs4mrNqcp938YE0QM7UImFv7SzU59SMZ_yNEhl9Oalo6LVjBzQgpd-iHxsA-yvhpRIcRuZHjR6cF_t4fGAK5y">
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Canvas -->
-    <main class="mt-16 p-6 md:p-10 min-h-screen max-w-7xl mx-auto">
+  
+   <!-- Main Content Canvas -->
+    <main class="pt-4 min-h-screen bg-background">
 
         <!-- Header Page Title & Primary Actions -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-                <button class="flex items-center gap-1 text-black hover:text-primary transition-colors group mb-2">
-                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
-                    <span class="text-label-md font-bold uppercase tracking-wider">Volver</span>
-                </button>
+                <a href="#"
+   onclick="history.back(); return false;"
+   class="flex items-center gap-1 text-black hover:opacity-70 transition-opacity mr-4">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+    <span class="font-semibold">Volver</span>
+</a>
                 <h2 class="text-headline-lg font-headline-lg text-black">Cotizaciones</h2>
             </div>
 
@@ -259,120 +231,59 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-outline-variant/50">
-                    <!-- Row 1 -->
-                    <tr class="hover:bg-surface-container-low/50 transition-colors">
-                        <td class="px-6 py-5">
-                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-001</span>
-                        </td>
-                        <td class="px-6 py-5">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-black text-xs font-bold shrink-0">HM</div>
-                                <div>
-                                    <p class="text-body-md font-bold text-black">Hoteles México S.A.</p>
-                                    <p class="text-label-md text-black/60 font-semibold">Licitación Mobiliario Lobby</p>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+
+                            <td class="px-6 py-5">
+                                @item.Folio
+                            </td>
+
+                            <td class="px-6 py-5">
+                                @item.IdClienteNavigation.Nombre
+                            </td>
+
+                            <td class="px-6 py-5">
+                                @item.Fecha
+                            </td>
+
+                            <td class="px-6 py-5">
+                                @item.Total
+                            </td>
+
+                            <td class="px-6 py-5">
+                                @item.Estado
+                            </td>
+
+                            <td class="px-6 py-5 text-right">
+                                <div class="flex justify-end gap-1">
+
+                                    <a asp-controller="Cotizaciones"
+                                       asp-action="Details"
+                                       asp-route-id="@item.IdCotizacion"
+                                       class="p-2 text-black hover:text-primary">
+                                        <span class="material-symbols-outlined">visibility</span>
+                                    </a>
+
+                                    <a asp-controller="Cotizaciones"
+                                       asp-action="Edit"
+                                       asp-route-id="@item.IdCotizacion"
+                                       class="p-2 text-black hover:text-primary">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+
+                                    <a asp-controller="Cotizaciones"
+                                       asp-action="Delete"
+                                       asp-route-id="@item.IdCotizacion"
+                                       class="p-2 text-red-600 hover:text-red-800">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </a>
+
                                 </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">24 May 2024</td>
-                        <td class="px-6 py-5 text-body-md font-bold text-black">$1,245,000.00</td>
-                        <td class="px-6 py-5">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-black text-label-md font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Pendiente
-                            </span>
-                        </td>
-                        <td class="px-6 py-5 text-right">
-                            <div class="flex justify-end gap-1">
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Editar"><span class="material-symbols-outlined">edit</span></button>
-                                <button class="p-2 text-black hover:text-error transition-all" title="Eliminar"><span class="material-symbols-outlined">delete</span></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Row 2 -->
-                    <tr class="hover:bg-surface-container-low/50 transition-colors">
-                        <td class="px-6 py-5">
-                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-002</span>
-                        </td>
-                        <td class="px-6 py-5">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-primary/40 flex items-center justify-center text-black text-xs font-bold shrink-0">RE</div>
-                                <div>
-                                    <p class="text-body-md font-bold text-black">Residencial Encinos</p>
-                                    <p class="text-label-md text-black/60 font-semibold">Cocinas Integrales Mod. Oak</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">22 May 2024</td>
-                        <td class="px-6 py-5 text-body-md font-bold text-black">$890,400.00</td>
-                        <td class="px-6 py-5">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary text-black text-label-md font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Aprobada
-                            </span>
-                        </td>
-                        <td class="px-6 py-5 text-right">
-                            <div class="flex justify-end gap-1">
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Imprimir"><span class="material-symbols-outlined">print</span></button>
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Compartir"><span class="material-symbols-outlined">share</span></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Row 3 -->
-                    <tr class="hover:bg-surface-container-low/50 transition-colors">
-                        <td class="px-6 py-5">
-                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-003</span>
-                        </td>
-                        <td class="px-6 py-5">
-                            <div class="flex items-center gap-3">
-                                <img class="w-8 h-8 rounded object-cover border border-outline-variant shrink-0" alt="Ing. Ricardo Salas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaXhwaLQeEVTk3UE_eLKTYGhn_zKZcWcA3R95n9FCIGyCeXDZJ8JKczKRoEzj1mKR2RHsOdkNhbYBlCM0cPkEV_EVHqT8bVhKW-5m5ZEvDFqD2w9cVj4gFJVsxnoHVKBE7b_QYtc8ihVadd9x0f3taIu0y2BKnqUa3lmomisWD_1IvX_K5wV7SnQfqBq9u3cQRcpX_qzCpTYobxgEpbvgoNbgc5zmdPe2NxxfbK1Kx-k88wM1atjoe4Y_FZlDrPkbs60Nzvh0B94Va">
-                                <div>
-                                    <p class="text-body-md font-bold text-black">Ing. Ricardo Salas</p>
-                                    <p class="text-label-md text-black/60 font-semibold">Estudio Particular</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">20 May 2024</td>
-                        <td class="px-6 py-5 text-body-md font-bold text-black">$120,000.00</td>
-                        <td class="px-6 py-5">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-label-md font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-on-error-container"></span> Rechazada
-                            </span>
-                        </td>
-                        <td class="px-6 py-5 text-right">
-                            <div class="flex justify-end gap-1">
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Historial"><span class="material-symbols-outlined">history</span></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Row 4 -->
-                    <tr class="hover:bg-surface-container-low/50 transition-colors">
-                        <td class="px-6 py-5">
-                            <span class="font-mono text-body-md font-bold text-black">#COT-2024-004</span>
-                        </td>
-                        <td class="px-6 py-5">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center text-black text-xs font-bold shrink-0">CC</div>
-                                <div>
-                                    <p class="text-body-md font-bold text-black">Centro Comercial Altra</p>
-                                    <p class="text-label-md text-black/60 font-semibold">Bancas Área Común</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-5 text-body-md text-black/80 font-medium">19 May 2024</td>
-                        <td class="px-6 py-5 text-body-md font-bold text-black">$456,200.00</td>
-                        <td class="px-6 py-5">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-black text-label-md font-bold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-black"></span> Pendiente
-                            </span>
-                        </td>
-                        <td class="px-6 py-5 text-right">
-                            <div class="flex justify-end gap-1">
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Ver detalles"><span class="material-symbols-outlined">visibility</span></button>
-                                <button class="p-2 text-black hover:text-primary transition-all" title="Editar"><span class="material-symbols-outlined">edit</span></button>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+
+                        </tr>
+                    }
                 </tbody>
             </table>
 

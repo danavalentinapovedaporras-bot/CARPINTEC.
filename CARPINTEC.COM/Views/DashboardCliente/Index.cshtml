@@ -1,0 +1,376 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Carpintec Studio - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "surface-bright": "#fff8f6",
+                            "on-secondary-fixed-variant": "#763400",
+                            "background": "#fff8f6",
+                            "surface-dim": "#e4d7d4",
+                            "surface-tint": "#934b19",
+                            "primary-container": "#8b4513",
+                            "on-primary-fixed": "#321200",
+                            "error": "#ba1a1a",
+                            "surface-container": "#f9ebe7",
+                            "on-secondary": "#ffffff",
+                            "outline": "#877369",
+                            "on-primary": "#ffffff",
+                            "on-secondary-fixed": "#321200",
+                            "surface-container-high": "#f3e5e1",
+                            "tertiary-fixed": "#f7e0b5",
+                            "secondary": "#9a4600",
+                            "on-surface": "#201a18",
+                            "primary-fixed-dim": "#ffb68c",
+                            "tertiary-container": "#665635",
+                            "on-tertiary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "inverse-on-surface": "#fbeeea",
+                            "primary-fixed": "#ffdbc9",
+                            "on-surface-variant": "#54433a",
+                            "surface-container-low": "#fef1ed",
+                            "error-container": "#ffdad6",
+                            "on-primary-container": "#ffc29f",
+                            "on-primary-fixed-variant": "#753401",
+                            "tertiary-fixed-dim": "#dac49b",
+                            "secondary-fixed-dim": "#ffb68d",
+                            "inverse-primary": "#ffb68c",
+                            "surface-variant": "#ede0dc",
+                            "surface": "#fff8f6",
+                            "secondary-fixed": "#ffdbc9",
+                            "on-secondary-container": "#672c00",
+                            "secondary-container": "#fd8a3e",
+                            "outline-variant": "#dac2b6",
+                            "on-tertiary-container": "#e2cca2",
+                            "primary": "#6c2f00",
+                            "on-error": "#ffffff",
+                            "inverse-surface": "#362f2c",
+                            "tertiary": "#4d3f20",
+                            "on-tertiary-fixed": "#251a01",
+                            "surface-container-lowest": "#ffffff",
+                            "on-tertiary-fixed-variant": "#544525",
+                            "surface-container-highest": "#ede0dc",
+                            "on-background": "#201a18"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "container-max": "1280px",
+                            "margin-mobile": "16px",
+                            "gutter": "24px",
+                            "margin-desktop": "64px",
+                            "base": "8px"
+                        },
+                        "fontFamily": {
+                            "headline-lg-mobile": ["Montserrat"],
+                            "body-lg": ["Work Sans"],
+                            "display-lg": ["Montserrat"],
+                            "headline-lg": ["Montserrat"],
+                            "body-md": ["Work Sans"],
+                            "title-md": ["Montserrat"],
+                            "label-md": ["Work Sans"]
+                        },
+                        "fontSize": {
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+                display: inline-block;
+                line-height: 1;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr
+            }
+
+            .wood-texture-overlay {
+                background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBdsp5zdxcEwwbdmAUOorUR_KGtBRLYFt0dPZoCTTfa-mn_Xu2Dg49mjMnQ7REavED1JElIhGUQhg5SZGAc4-lTc2-eNXQXOzYGGUE-lTMYA9OYNc_AoIIRE7qugeTLziYyy-SCMtIYUS-tIH204SR_M6ljrvmYKmP1WcRg4ZQUcDi7d_9j50r_KCyXJHmBqRZ9bdXDS9VJxjWW2zilhFvsOfD7OVRip4GeSw-FqSmKPo6wktPfQ9pl0VxaGcafiT_WQtC4uHsFFhZ5);
+                opacity: 0.05
+            }
+
+            ::-webkit-scrollbar {
+                width: 8px
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f9ebe7
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #6c2f00;
+                border-radius: 4px
+        }</style>
+        <style>
+                body {
+                    min-height: max(884px, 100dvh);
+                }
+        </style>
+    </head>
+    <body class="text-on-background font-body-md text-body-md min-h-screen pb-20 md:pb-0 bg-surface-container-lowest">
+        <!-- TopAppBar -->
+        <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container w-full top-0 sticky z-50 border-b-4 border-secondary shadow-sm flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16">
+            <div class="flex items-center gap-2 cursor-pointer active:scale-95">
+                <img alt="Carpintec Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhPBa3FNhnVsKyZk362FfEl0Kv-N5XlDnFRRK8InEdBpDsvLW5_ZIqeuqaxS4KOuilyqL3q-yz-SVrI_M9bY1gIrRifJI9UC-FYxdQqXltg0QJ75Opx4Mm_0mHLUZWB0_YdFSamF1l0s1PStytkHB6-FAxIIkiuz6G8FgLMsX39rg_I621fx9MAwADhfYDI4CtBcaAcwWN681hEKKY5o9LFzb232odz0bASfW0-u31-3QDe6Ucao2NqaHf9Yo4fHqGm9W4lhcG9zcC5fA">
+                <span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-primary">CARPINTEC</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a class="font-title-md text-title-md text-on-primary font-bold transition-colors hover:text-secondary-container" href="#">Inicio</a>
+                <a asp-controller="Catalogos"
+                   asp-action="Index"
+                   class="font-title-md text-title-md text-on-primary/80 transition-colors hover:text-on-primary">
+                    Catálogo
+                </a>
+                <a asp-controller="ConfiguracionCliente"
+                   asp-action="Index"
+                   class="font-title-md text-title-md text-on-primary/80 transition-colors hover:text-on-primary">
+                    Configuración
+                </a>
+                <div class="flex items-center gap-3 ml-4 bg-primary-container/30 px-4 py-2 rounded-full border border-on-primary/20">
+                    <span class="font-label-md text-label-md">¡Hola, Carlos!</span>
+                    <img alt="Carlos Profile Photo" class="w-8 h-8 rounded-full border-2 border-secondary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdHT6cUHueBrAVyfl__FXQi-CrXv411Jsy8qS9z_KCNV6QN9ovrMI57RvH8bh2rJolB1HH6ISfboJ6ZTpDxIvtxCDsvJAibG_eGtFDqHvY6EEIvI850Taemm67mXSBvXqIlVGfndkNOKYBTVe0DofoJcEkz8qULXersH7o9eeyXeK8WXixHt2VduxKxFKunXSJJ-LHdATeKgm5Kb4Ct5zXEvpNxn8FtEQ5iVJ2raYFTRAemAmwVhQNz-wsuMrMPFS2AhyIybh3cwv7">
+                </div>
+            </nav>
+            <button class="md:hidden p-2 rounded-full hover:bg-white/10">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </header>
+        <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12">
+            <!-- Welcome Section -->
+            <section class="mb-12">
+                <h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">¡Bienvenido, Carlos!</h1>
+                <p class="text-on-surface-variant font-body-md max-w-2xl">Gestiona tus proyectos de carpintería a medida, revisa tus pedidos activos y explora nuestro catálogo de maderas premium desde tu panel personal.</p>
+            </section>
+            <!-- Quick Navigation Cards (Bento-ish) -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-12">
+
+                <!-- Cotizaciones -->
+                <div class="bg-surface-container-lowest border-2 border-primary p-6 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-primary-fixed p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-3xl">request_quote</span>
+                        </div>
+                    </div>
+
+                    <h3 class="font-title-md text-title-md text-primary mb-2">Cotizaciones</h3>
+
+                    <p class="text-on-surface-variant text-label-md mb-6">
+                        Consulta o edita tus cotizaciones pendientes de aprobación.
+                    </p>
+
+                    <a asp-controller="MiCotizacion"
+                       asp-action="Index"
+                       class="w-full bg-primary text-on-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 group-hover:bg-secondary transition-colors">
+                        Ver cotizaciones
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+
+                <!-- Pedidos -->
+                <div class="bg-surface-container-lowest border-2 border-primary p-6 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-primary-fixed p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+                        </div>
+                    </div>
+
+                    <h3 class="font-title-md text-title-md text-primary mb-2">Pedidos</h3>
+
+                    <p class="text-on-surface-variant text-label-md mb-6">
+                        Seguimiento en tiempo real de tus muebles en proceso de fabricación.
+                    </p>
+
+                    <a asp-controller="MiPedidos"
+                       asp-action="Index"
+                       class="w-full bg-primary text-on-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 group-hover:bg-secondary transition-colors">
+                        Ver pedidos
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+
+                <!-- Mis Productos -->
+                <div class="bg-surface-container-lowest border-2 border-primary p-6 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="bg-primary-fixed p-3 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-3xl">menu_book</span>
+                        </div>
+                    </div>
+
+                    <h3 class="font-title-md text-title-md text-primary mb-2">Mis productos</h3>
+
+                    <p class="text-on-surface-variant text-label-md mb-6">
+                        Explora el catálogo personalizado y tus diseños guardados.
+                    </p>
+
+                    <a asp-controller="MisProductos"
+                       asp-action="Index"
+                       class="w-full bg-primary text-on-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 group-hover:bg-secondary transition-colors">
+                        Ver productos
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+
+            </section>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+                <!-- Stats Summary -->
+                <div class="lg:col-span-2 space-y-gutter">
+                    <div class="bg-surface-container-high p-8 border-2 border-primary relative overflow-hidden">
+                        <div class="wood-texture-overlay absolute inset-0"></div>
+                        <h2 class="font-title-md text-title-md text-primary mb-6 relative z-10">Resumen de Actividad</h2>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 relative z-10">
+                            <div class="bg-white p-4 border border-outline-variant text-center">
+                                <span class="block text-headline-lg text-secondary font-bold">4</span>
+                                <span class="text-label-md text-on-surface-variant uppercase tracking-wider">Cotizaciones</span>
+                            </div>
+                            <div class="bg-white p-4 border border-outline-variant text-center">
+                                <span class="block text-headline-lg text-secondary font-bold">2</span>
+                                <span class="text-label-md text-on-surface-variant uppercase tracking-wider">Pedidos</span>
+                            </div>
+                            <div class="bg-white p-4 border border-outline-variant text-center">
+                                <span class="block text-headline-lg text-secondary font-bold">15</span>
+                                <span class="text-label-md text-on-surface-variant uppercase tracking-wider">Entregas</span>
+                            </div>
+                            <div class="bg-white p-4 border border-outline-variant text-center">
+                                <span class="block text-headline-lg text-secondary font-bold">32</span>
+                                <span class="text-label-md text-on-surface-variant uppercase tracking-wider">Catálogo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent Projects Gallery -->
+                    <div class="bg-surface-container-lowest border-2 border-primary p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="font-title-md text-title-md text-primary">Proyectos Recientes</h2>
+                            <a class="text-secondary font-bold text-label-md hover:underline" href="#">Ver todos</a>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="group cursor-pointer">
+                                <div class="aspect-video overflow-hidden border border-outline-variant mb-3">
+                                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A luxurious custom-made walk-in closet with rich mahogany wood shelving and warm interior LED lighting. The setting is a high-end modern bedroom suite with soft neutral walls and premium finishes. The photography is clean, sharp, and highlights the tactile texture of the wood grain in a professional carpentry portfolio style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXP39LidB5uD0IDkSa0ymyBKTHkiBFhuMFFaoxboNzoDN62mLVS6V5vmOpG0eQjeF0hVtR7zJgBjc0l7lKcBoir8toeWzT9TpCFGfb1HSGn0a2RpJU5jD2q34CxgG1ybYiea3E_b7QOWpIBK0Kp1Z9yPS0vwAy05eUPVXehkt3PFvUjZmM683wETcMNjJtaq0UAMpuA1xUNv9vTF5vizVEMvoIVwb-8wgLbzTpLtxsXLxFHGdI-30mgWahaOW9lSQFwakwrIvvOhSq">
+                                </div>
+                                <h4 class="font-bold text-on-surface">Closet personalizado</h4>
+                                <p class="text-label-md text-on-surface-variant">Cedro y acabados mate</p>
+                            </div>
+                            <div class="group cursor-pointer">
+                                <div class="aspect-video overflow-hidden border border-outline-variant mb-3">
+                                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist solid oak dining table set for six in a sunlit contemporary dining room. The room features large windows and minimalist decor that emphasizes the natural honey-toned wood of the table. The craftsmanship is visible in the smooth joints and polished surface, presented in a corporate lifestyle aesthetic with warm lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHjGqC93Is0sRw7F2UO-NMCs6zm74domRYY7NqpsFqqlKZm7C_fcy-sFvhgKG8kKrml_gDEnXcj6IKs-G6huFzHHehoDhrYPyLXA4aM16CZgd4ApqIHWBlMGrnks7H13ybQhENVC2hYjbWLGuI26NPthsMgZyZi8UM900veEtvx1vJWi5J-JdIwyHufRZeGUJoAkJEz9pZjtWC6OOCjUv4xtjxtt6iNRTZYch2xcm7wCq1eo3iW39gSLt_rHg_McIdai0kgtdruNVT">
+                                </div>
+                                <h4 class="font-bold text-on-surface">Comedor moderno</h4>
+                                <p class="text-label-md text-on-surface-variant">Roble macizo natural</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar / Action Area -->
+                <div class="space-y-gutter">
+                    <!-- Profile Mini Card -->
+                    <div class="p-6 border-2 border-primary">
+                        <div class="bg-surface-container-low p-6 border-2 border-primary">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="relative mb-4">
+                                    <img alt="Carlos P." class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtDT86UjujxnzPDEx33bGhBkrvoeM9LbcNcWMfTcqxu0QxlNIGn6-VUkeC4KPJ1w_efsG-SVWowUO2ljCdDnINBGpjSg_0P9yuHC7OoZU-xAg8EVqJXbYGeenBzFKufGz_OYcqPmwj6FEeHdmOLHXlP2n1T0wR3CxmOtmjt3fe2yn50rmrzigou-7jUeHPjx5lOYK0XfCafk6Ew7Hmfqm-nVchR1mP5xNqUZyooGJ6FrqlCbncNKbrYkQhEyQwqR20DfTvvp3GhOJI">
+                                    <div class="absolute bottom-0 right-0 bg-green-500 w-6 h-6 rounded-full border-2 border-white"></div>
+                                </div>
+                                <h2 class="font-title-md text-title-md text-on-surface">Carlos Hernández</h2>
+                                <p class="text-on-surface-variant text-label-md mb-4">Cliente Premium</p>
+                                <a asp-controller="MiPerfil"
+                                   asp-action="Index"
+                                   class="bg-primary text-on-primary w-full py-2 rounded font-bold hover:bg-secondary transition-colors flex items-center justify-center">
+                                    Editar Perfil
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Call to Action -->
+                    <div class="bg-primary p-8 border-2 border-secondary relative">
+                        <span class="material-symbols-outlined text-on-primary opacity-10 absolute -right-4 -bottom-4 text-[120px]">carpenter</span>
+                        <h3 class="font-title-md text-title-md text-on-primary mb-4 relative z-10">¿Tienes un nuevo proyecto?</h3>
+                        <p class="text-on-primary/80 text-body-md mb-6 relative z-10">Inicia una nueva cotización ahora y recibe un presupuesto detallado en menos de 24 horas.</p>
+                        <<a asp-controller="NuevaCotizacion"
+                            asp-action="Index"
+                            class="bg-secondary text-on-secondary w-full py-4 rounded-lg font-bold text-headline-lg-mobile shadow-lg active:scale-95 transition-all relative z-10 flex items-center justify-center">
+                            Crear Cotización
+                        </a>
+                    </div>
+                    <!-- Helpful Tip -->
+                    <div class="bg-surface-container border-2 border-outline-variant p-6">
+                        <div class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-secondary">lightbulb</span>
+                            <div>
+                                <h4 class="font-bold text-on-surface mb-1">Tip de Mantenimiento</h4>
+                                <p class="text-label-md text-on-surface-variant leading-relaxed">Aplica aceite de linaza a tus muebles de roble cada 6 meses para mantener el brillo y la hidratación natural de la madera.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- BottomNavBar (Mobile Only) -->
+        <nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-highest dark:bg-surface-container-low border-t-4 border-primary shadow-lg flex justify-around items-center h-20 pb-safe px-2">
+            <button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-transform active:scale-90">
+                <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">dashboard</span>
+                <span class="font-label-md text-label-md">Home</span>
+            </button>
+            <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 px-4 py-1">
+                <span class="material-symbols-outlined">handyman</span>
+                <span class="font-label-md text-label-md">Catalog</span>
+            </button>
+            <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 px-4 py-1">
+                <span class="material-symbols-outlined">add_circle</span>
+                <span class="font-label-md text-label-md">Quote</span>
+            </button>
+            <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 px-4 py-1">
+                <span class="material-symbols-outlined">receipt_long</span>
+                <span class="font-label-md text-label-md">Orders</span>
+            </button>
+            <button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 px-4 py-1">
+                <span class="material-symbols-outlined">person</span>
+                <span class="font-label-md text-label-md">Profile</span>
+            </button>
+        </nav>
+        <script>
+                // Simple interaction for cards
+                document.querySelectorAll('button, .group').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        // Potential for wood sound or tiny haptic feedback simulation
+                    });
+                });
+
+                // Responsive Dashboard Layout Adjustment Logic
+                window.addEventListener('resize', () => {
+                    const isDesktop = window.innerWidth >= 768;
+                    // Additional layout adjustments if needed beyond Tailwind
+                });
+        </script>
+
+
+
+
+    </body></html>

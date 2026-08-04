@@ -1,5 +1,6 @@
+@model IEnumerable<CARPINTEC.COM.Models.Pqr>
 @{
-    Layout = null;
+    ViewData["Title"] = "Usuarios";
 }
 <!DOCTYPE html>
 <html class="light" lang="es" style="">
@@ -124,49 +125,8 @@
 </head>
 <body class="bg-background text-on-background font-body-md min-h-screen flex">
     <!-- SideNavBar -->
-    <aside class="h-screen w-64 fixed left-0 top-0 shadow-xl flex flex-col py-lg z-50" style="background-color: rgb(210, 180, 140);">
-        <div class="px-md mb-lg">
-            <div class="text-center mb-lg">
-                <h1 class="font-headline-md text-headline-md font-extrabold text-primary">Carpintec</h1>
-                <p class="text-primary/80 text-[10px] tracking-widest uppercase">Artisanal Precision</p>
-            </div>
-        </div>
-        <nav class="flex-1 px-sm space-y-xs">
-            <a class="flex items-center gap-md text-primary mx-sm mb-md px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-semibold">Dashboard</span></a>
-
-            <div class="px-md py-xs mt-lg mb-sm">
-                <p class="text-[11px] text-primary/60 font-extrabold uppercase tracking-widest">Administración</p>
-            </div>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">group</span><span class="">Gestión de usuarios</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">work</span><span class="">Gestión de empleados</span></a>
-
-            <div class="px-md py-xs mt-lg mb-sm">
-                <p class="text-[11px] text-primary/60 font-extrabold uppercase tracking-widest">Gestión Comercial</p>
-            </div>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">groups</span><span class="">Gestión de clientes</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">description</span><span class="">Cotizaciones</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">assignment</span><span class="">Pedidos</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">payments</span><span class="">Ventas y facturación</span></a>
-
-            <div class="px-md py-xs mt-lg mb-sm">
-                <p class="text-[11px] text-primary/60 font-extrabold uppercase tracking-widest">Producción</p>
-            </div>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">inventory_2</span><span class="">Productos</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">shelves</span><span class="">Inventario</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">handyman</span><span class="">Mano de obra</span></a>
-
-            <div class="px-md py-xs mt-lg mb-sm">
-                <p class="text-[11px] text-primary/60 font-extrabold uppercase tracking-widest">Reportes y Soporte</p>
-            </div>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">bar_chart</span><span class="">Reportes</span></a>
-            <a class="flex items-center gap-md bg-primary text-on-primary rounded-lg mx-sm my-sm px-md py-sm" href="#"><span class="material-symbols-outlined">mail</span><span class="">PQR</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">smart_toy</span><span class="">Ayuda / Chatbot</span></a>
-            <a class="flex items-center gap-md text-primary mx-sm my-sm px-md py-sm hover:bg-primary/10 rounded-lg transition-all duration-300" href="#"><span class="material-symbols-outlined">settings</span><span class="">Configuración</span></a>
-        </nav>
-        <div class="mt-auto px-sm pt-md border-t border-primary/20"><a class="flex items-center gap-md text-primary font-bold mx-sm my-xs px-md py-sm hover:bg-primary/10 rounded-lg transition-all" href="#"><span class="material-symbols-outlined">logout</span><span class="">Cerrar Sesión</span></a></div>
-    </aside>
     <!-- Main Content Area -->
-    <main class="flex-1 ml-64 flex flex-col relative">
+    <main class="flex-1 flex flex-col relative">
         <!-- TopNavBar -->
         <header class="w-full h-16 flex justify-between items-center px-margin py-base bg-surface-bright shadow-sm sticky top-0 z-40">
             <div class="flex items-center gap-md">
@@ -284,90 +244,80 @@
                             </tr>
                         </thead>
                         <tbody class="text-body-sm divide-y divide-outline-variant/30">
-                            <tr class="hover:bg-primary-fixed-variant/5 transition-colors group cursor-pointer" onclick="toggleDetail()">
-                                <td class="px-md py-md font-bold text-primary">PQR-24-012</td>
-                                <td class="px-md py-md">
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-on-surface">Julián Restrepo</span>
-                                        <span class="text-xs text-on-surface-variant">CC 1.032.455.xxx</span>
-                                    </div>
-                                </td>
-                                <td class="px-md py-md">Reclamo</td>
-                                <td class="px-md py-md truncate max-w-[200px]">Retraso en entrega de comedor tallado</td>
-                                <td class="px-md py-md text-on-surface-variant">24/05/2024</td>
-                                <td class="px-md py-md">
-                                    <span class="bg-yellow-100 text-yellow-800 px-sm py-xs rounded-full text-[11px] font-bold uppercase">Pendiente</span>
-                                </td>
-                                <td class="px-md py-md">
-                                    <div class="flex items-center gap-xs">
-                                        <div class="w-2 h-2 rounded-full bg-error"></div>
-                                        <span class="">Alta</span>
-                                    </div>
-                                </td>
-                                <td class="px-md py-md text-center">
-                                    <div class="flex justify-center gap-sm opacity-60 group-hover:opacity-100 transition-opacity">
-                                        <button class="text-primary hover:scale-110 transition-transform"><span class="material-symbols-outlined">visibility</span></button>
-                                        <button class="text-primary hover:scale-110 transition-transform"><span class="material-symbols-outlined">reply</span></button>
-                                        <button class="text-primary hover:scale-110 transition-transform"><span class="material-symbols-outlined">edit_note</span></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-primary-fixed-variant/5 transition-colors group cursor-pointer">
-                                <td class="px-md py-md font-bold text-primary">PQR-24-011</td>
-                                <td class="px-md py-md">
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-on-surface">Martha Lucía Gómez</span>
-                                        <span class="text-xs text-on-surface-variant">CC 52.411.xxx</span>
-                                    </div>
-                                </td>
-                                <td class="px-md py-md">Sugerencia</td>
-                                <td class="px-md py-md truncate max-w-[200px]">Catálogo de maderas exóticas</td>
-                                <td class="px-md py-md text-on-surface-variant">22/05/2024</td>
-                                <td class="px-md py-md">
-                                    <span class="bg-blue-100 text-blue-800 px-sm py-xs rounded-full text-[11px] font-bold uppercase">En Proceso</span>
-                                </td>
-                                <td class="px-md py-md">
-                                    <div class="flex items-center gap-xs">
-                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                        <span class="">Baja</span>
-                                    </div>
-                                </td>
-                                <td class="px-md py-md text-center">
-                                    <div class="flex justify-center gap-sm opacity-60 group-hover:opacity-100 transition-opacity">
-                                        <button class="text-primary hover:scale-110"><span class="material-symbols-outlined">visibility</span></button>
-                                        <button class="text-primary hover:scale-110"><span class="material-symbols-outlined">reply</span></button>
-                                        <button class="text-primary hover:scale-110"><span class="material-symbols-outlined">edit_note</span></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-primary-fixed-variant/5 transition-colors group cursor-pointer">
-                                <td class="px-md py-md font-bold text-primary">PQR-24-009</td>
-                                <td class="px-md py-md">
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-on-surface">Andrés Villamil</span>
-                                        <span class="text-xs text-on-surface-variant">NIT 900.231.xxx</span>
-                                    </div>
-                                </td>
-                                <td class="px-md py-md">Petición</td>
-                                <td class="px-md py-md truncate max-w-[200px]">Certificado de garantía puerta roble</td>
-                                <td class="px-md py-md text-on-surface-variant">15/05/2024</td>
-                                <td class="px-md py-md">
-                                    <span class="bg-green-100 text-green-800 px-sm py-xs rounded-full text-[11px] font-bold uppercase">Respondida</span>
-                                </td>
-                                <td class="px-md py-md">
-                                    <div class="flex items-center gap-xs">
-                                        <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                                        <span class="">Media</span>
-                                    </div>
-                                </td>
-                                <td class="px-md py-md text-center">
-                                    <div class="flex justify-center gap-sm opacity-60 group-hover:opacity-100 transition-opacity">
-                                        <button class="text-primary hover:scale-110"><span class="material-symbols-outlined">visibility</span></button>
-                                        <button class="text-primary hover:scale-110"><span class="material-symbols-outlined">reply</span></button>
-                                        <button class="text-primary hover:scale-110"><span class="material-symbols-outlined">edit_note</span></button>
-                                    </div>
-                                </td>
-                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr class="hover:bg-primary-fixed-variant/5 transition-colors group">
+
+                                    <td class="px-md py-md font-bold text-primary">
+                                        @item.CodigoPqr
+                                    </td>
+
+                                    <td class="px-md py-md">
+                                        @item.IdClienteNavigation.Nombre @item.IdClienteNavigation.Apellido
+                                    </td>
+
+                                    <td class="px-md py-md">
+                                        @item.Tipo
+                                    </td>
+
+                                    <td class="px-md py-md">
+                                        @item.Asunto
+                                    </td>
+
+                                    <td class="px-md py-md">
+                                        @item.FechaRegistro.ToString("dd/MM/yyyy")
+                                    </td>
+
+                                    <td class="px-md py-md">
+                                        @item.Estado
+                                    </td>
+
+                                    <td class="px-md py-md">
+                                        -
+                                    </td>
+
+                                    <td class="px-md py-md text-center">
+
+                                        <div class="flex justify-center gap-sm">
+
+                                            <a asp-action="Details"
+                                               asp-route-id="@item.IdPqr"
+                                               class="text-primary hover:scale-110 transition-transform">
+
+                                                <span class="material-symbols-outlined">
+                                                    visibility
+                                                </span>
+
+                                            </a>
+
+                                            <a asp-action="Responder"
+                                               asp-route-id="@item.IdPqr"
+                                               class="text-primary hover:scale-110 transition-transform">
+
+                                                <span class="material-symbols-outlined">
+                                                    reply
+                                                </span>
+
+                                            </a>
+
+                                            <a asp-action="Edit"
+                                               asp-route-id="@item.IdPqr"
+                                               class="text-primary hover:scale-110 transition-transform">
+
+                                                <span class="material-symbols-outlined">
+                                                    edit_note
+                                                </span>
+
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            }
+
                         </tbody>
                     </table>
                 </div>
@@ -520,6 +470,8 @@
                 }
             }
     </script>
+
+
 
 
 </body></html>

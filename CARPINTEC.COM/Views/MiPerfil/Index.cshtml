@@ -1,0 +1,290 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html><html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CARPINTEC - Mi Perfil</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fff8f6",
+                    "on-secondary-fixed-variant": "#763400",
+                    "background": "#fff8f6",
+                    "surface-dim": "#e4d7d4",
+                    "surface-tint": "#934b19",
+                    "primary-container": "#8b4513",
+                    "on-primary-fixed": "#321200",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f9ebe7",
+                    "on-secondary": "#ffffff",
+                    "outline": "#877369",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#321200",
+                    "surface-container-high": "#f3e5e1",
+                    "tertiary-fixed": "#f7e0b5",
+                    "secondary": "#9a4600",
+                    "on-surface": "#201a18",
+                    "primary-fixed-dim": "#ffb68c",
+                    "tertiary-container": "#665635",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#fbeeea",
+                    "primary-fixed": "#ffdbc9",
+                    "on-surface-variant": "#54433a",
+                    "surface-container-low": "#fef1ed",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#ffc29f",
+                    "on-primary-fixed-variant": "#753401",
+                    "tertiary-fixed-dim": "#dac49b",
+                    "secondary-fixed-dim": "#ffb68d",
+                    "inverse-primary": "#ffb68c",
+                    "surface-variant": "#ede0dc",
+                    "surface": "#fff8f6",
+                    "secondary-fixed": "#ffdbc9",
+                    "on-secondary-container": "#672c00",
+                    "secondary-container": "#fd8a3e",
+                    "outline-variant": "#dac2b6",
+                    "on-tertiary-container": "#e2cca2",
+                    "primary": "#6c2f00",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#362f2c",
+                    "tertiary": "#4d3f20",
+                    "on-tertiary-fixed": "#251a01",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#544525",
+                    "surface-container-highest": "#ede0dc",
+                    "on-background": "#201a18"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Montserrat"],
+                    "body-lg": ["Work Sans"],
+                    "display-lg": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "body-md": ["Work Sans"],
+                    "title-md": ["Montserrat"],
+                    "label-md": ["Work Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .wood-texture-overlay {
+            background-image: radial-gradient(circle at 2px 2px, rgba(108, 47, 0, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-bright text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container border-b-4 border-secondary shadow-sm flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16">
+<div class="flex items-center gap-3">
+<img alt="CARPINTEC Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujXTWGiMUJ27cbfJB5F5tUq9INp3VfUFc6zxbKaRDrhTllex4-XbX22fONDlzKv445GGLKgOR5_UxDoq0mjAwruqetB4Jd00b3Gw6uv4KZJ6HxBOf_r9lCV5Vv_TO6e4Ir_NFsThUXkDmppfOS9_9u6yzHz3gYFm46sO89qC4sbUvpjFNwdva5JsMFw0sDthyHYJ1OPZX60CXQzH0fyRQLS9v6ycpW3wx4cguWtjrYBWCokfVkPiYL_SvRobsPwUKFoyyfz_HvFEQA">
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-primary tracking-tight">CARPINTEC</h1>
+</div>
+<div class="hidden md:flex items-center gap-8"><a class="text-on-primary/80 font-label-md hover:text-on-primary transition-colors" href="#">Inicio</a><a class="text-on-primary/80 font-label-md hover:text-on-primary transition-colors" href="#">Acerca de</a><a class="text-on-primary/80 font-label-md hover:text-on-primary transition-colors" href="#">Contacto</a><a class="text-on-primary font-bold font-label-md" href="#">MI PERFIL</a><button class="bg-secondary text-on-secondary px-6 py-2 rounded-lg font-label-md hover:bg-secondary-container transition-transform active:scale-95">Cerrar Sesión</button></div>
+<div class="md:hidden">
+<span class="material-symbols-outlined cursor-pointer">menu</span>
+</div>
+</header>
+<main class="min-h-[calc(100vh-144px)] pb-24 md:pb-12 wood-texture-overlay">
+<!-- Hero Header -->
+<section class="bg-primary py-8 px-margin-mobile md:px-margin-desktop mb-8">
+<div class="max-w-container-max mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-on-primary text-center md:text-left">MI PERFIL</h2>
+</div>
+</section>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Panel: User Info Card -->
+<div class="md:col-span-5 lg:col-span-4">
+<div class="bg-surface-container-lowest border-4 border-primary rounded-xl shadow-lg p-8 sticky top-24">
+<div class="flex flex-col items-center mb-8">
+<div class="w-32 h-32 rounded-full border-4 border-secondary overflow-hidden mb-4 shadow-sm">
+<img alt="Carlos Perez" class="w-full h-full object-cover" data-alt="A professional headshot of Carlos Perez, a friendly man in his late 30s, wearing a crisp denim shirt in a bright, modern studio setting. The lighting is warm and cinematic, highlighting natural wood textures in the background. The overall aesthetic is clean, corporate yet approachable, with soft earthy tones and sharp focus on the subject." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjEtMinfJFicotQLwvdjs6lW-iHS5Z740yXd191tg6lP-Ez-ZQW5EwoZc47VBcbqN2pNSRxXKXAWKQlnVRKo-5TGFlShjBJhDzc_bQGM0zy5NNXqhYGOYQ2zDgJb9k57pgnrcRwfR188gSgzNBoBgEYYVildqCsVtr4Y1wLBixy5p-MjyqBuh3YgMLZiZ5cQ47bWUKYnSJmn_SjJMls3WqUCBJ-zogItyAPMdolN8a9lyhpF3WhF_yc6nnGyCu7w8CHxXzvDccS_Sl">
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold">Carlos Perez</h3>
+<p class="font-label-md text-on-surface-variant">Cliente Premium</p>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">NOMBRE</p>
+<p class="font-body-md font-semibold text-on-surface">Carlos Hernandez</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">CORREO</p>
+<p class="font-body-md font-semibold text-on-surface">carlos@gmail.com</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary">call</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">TELÉFONO</p>
+<p class="font-body-md font-semibold text-on-surface">3001234567</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">DIRECCIÓN</p>
+<p class="font-body-md font-semibold text-on-surface">Cali, Valle del Cauca</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Options & Actions -->
+<div class="md:col-span-7 lg:col-span-8">
+<div class="bg-surface-container border-2 border-outline-variant rounded-xl overflow-hidden mb-gutter"><div class="p-6 space-y-6">
+<button class="w-full flex items-center gap-4 border-b-2 border-outline-variant pb-4 mb-4 hover:bg-surface-variant/50 transition-colors cursor-pointer text-left">
+  <div class="w-12 h-12 bg-primary-container text-on-primary-container flex items-center justify-center rounded-lg shadow-sm">
+    <span class="material-symbols-outlined">settings</span>
+  </div>
+  <h4 class="font-headline-lg-mobile text-on-surface font-bold">Configuración</h4>
+</button>
+<div class="grid grid-cols-1 gap-4"><a class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">lock_reset</span>
+<span class="font-title-md text-on-surface">Cambiar contraseña</span>
+</div>
+
+</a>
+<a class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">person</span>
+<span class="font-title-md text-on-surface">Información personal</span>
+</div>
+
+</a>
+<a class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="font-title-md text-on-surface">Preferencias de notificaciones</span>
+</div>
+
+</a></div>
+</div></div>
+<!-- Secondary Actions -->
+<div class="flex flex-col sm:flex-row gap-4 mb-gutter">
+<button class="flex-1 bg-surface-container-lowest border-2 border-primary py-4 px-6 rounded-lg text-primary font-bold hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit</span>
+                        Editar información
+                    </button>
+<button class="flex-1 bg-surface-container-lowest border-2 border-primary py-4 px-6 rounded-lg text-primary font-bold hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">lock_reset</span>
+                        Cambiar contraseña
+                    </button>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-secondary text-on-secondary py-5 rounded-lg font-headline-lg-mobile text-headline-lg-mobile font-bold shadow-lg hover:bg-on-secondary-fixed-variant transition-all active:scale-95 flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-3xl">logout</span>
+                    CERRAR SESION
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-highest dark:bg-surface-container-low border-t-4 border-primary shadow-lg flex justify-around items-center h-20 pb-safe px-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">handyman</span>
+<span class="font-label-md text-label-md">Catalog</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md">Quote</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple interactivity for feedback
+        document.querySelectorAll('button, [cursor-pointer]').forEach(el => {
+            el.addEventListener('click', function(e) {
+                // Micro-interaction logic could be added here
+                console.log('Action triggered:', this.innerText || 'Icon Button');
+            });
+        });
+
+        // Sticky header opacity change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-xl');
+            } else {
+                header.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+
+
+
+
+</body></html>

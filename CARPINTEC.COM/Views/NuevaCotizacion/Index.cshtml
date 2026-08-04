@@ -1,0 +1,461 @@
+﻿
+
+@{
+    Layout = null;
+}<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CARPINTEC - Nueva Cotización</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "surface-bright": "#fff8f6",
+                            "on-secondary-fixed-variant": "#763400",
+                            "background": "#fff8f6",
+                            "surface-dim": "#e4d7d4",
+                            "surface-tint": "#934b19",
+                            "primary-container": "#8b4513",
+                            "on-primary-fixed": "#321200",
+                            "error": "#ba1a1a",
+                            "surface-container": "#f9ebe7",
+                            "on-secondary": "#ffffff",
+                            "outline": "#877369",
+                            "on-primary": "#ffffff",
+                            "on-secondary-fixed": "#321200",
+                            "surface-container-high": "#f3e5e1",
+                            "tertiary-fixed": "#f7e0b5",
+                            "secondary": "#9a4600",
+                            "on-surface": "#201a18",
+                            "primary-fixed-dim": "#ffb68c",
+                            "tertiary-container": "#665635",
+                            "on-tertiary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "inverse-on-surface": "#fbeeea",
+                            "primary-fixed": "#ffdbc9",
+                            "on-surface-variant": "#54433a",
+                            "surface-container-low": "#fef1ed",
+                            "error-container": "#ffdad6",
+                            "on-primary-container": "#ffc29f",
+                            "on-primary-fixed-variant": "#753401",
+                            "tertiary-fixed-dim": "#dac49b",
+                            "secondary-fixed-dim": "#ffb68d",
+                            "inverse-primary": "#ffb68c",
+                            "surface-variant": "#ede0dc",
+                            "surface": "#fff8f6",
+                            "secondary-fixed": "#ffdbc9",
+                            "on-secondary-container": "#672c00",
+                            "secondary-container": "#fd8a3e",
+                            "outline-variant": "#dac2b6",
+                            "on-tertiary-container": "#e2cca2",
+                            "primary": "#6c2f00",
+                            "on-error": "#ffffff",
+                            "inverse-surface": "#362f2c",
+                            "tertiary": "#4d3f20",
+                            "on-tertiary-fixed": "#251a01",
+                            "surface-container-lowest": "#ffffff",
+                            "on-tertiary-fixed-variant": "#544525",
+                            "surface-container-highest": "#ede0dc",
+                            "on-background": "#201a18"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "container-max": "1280px",
+                            "margin-mobile": "16px",
+                            "gutter": "24px",
+                            "margin-desktop": "64px",
+                            "base": "8px"
+                        },
+                        "fontFamily": {
+                            "headline-lg-mobile": ["Montserrat"],
+                            "body-lg": ["Work Sans"],
+                            "display-lg": ["Montserrat"],
+                            "headline-lg": ["Montserrat"],
+                            "body-md": ["Work Sans"],
+                            "title-md": ["Montserrat"],
+                            "label-md": ["Work Sans"]
+                        },
+                        "fontSize": {
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                        }
+                    }
+                }
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            .form-input-focus:focus {
+                outline: none;
+                border-color: #6c2f00;
+                box-shadow: 0 0 0 2px rgba(108, 47, 0, 0.1);
+            }
+
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f9ebe7;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #6c2f00;
+                border-radius: 10px;
+            }
+    </style>
+    <style>
+            body {
+                min-height: max(884px, 100dvh);
+            }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-0">
+    <!-- TopAppBar -->
+    <header class="w-full top-0 sticky bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container border-b-4 border-secondary shadow-sm z-50">
+        <div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full">
+            <div class="flex items-center gap-3 cursor-pointer active:scale-95">
+                <img src="~/images/logo.png" alt="Logo CARPINTEC" class="w-20 h-20 object-contain mb-2">
+                <h1 class="font-headline-lg text-headline-lg font-bold text-on-primary uppercase tracking-tight">CARPINTEC</h1>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <nav class="flex gap-6">
+                    <a class="font-title-md text-title-md text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#">Inicio</a>
+                    <a class="font-title-md text-title-md text-on-primary text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#" style="opacity: 0;">Acerca de</a>
+                    <a class="font-title-md text-title-md text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#">Contacto</a>
+                    <a asp-controller="Instructivos"
+                       asp-action="Index"
+                       class="font-title-md text-title-md bg-primary-container text-white hover:bg-secondary transition-colors px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
+                        Instructivos
+                    </a>
+                </nav>
+                <div class="flex items-center gap-3 ml-4 bg-primary-container px-4 py-2 rounded-full border border-on-primary/20">
+
+                    <span class="font-label-md text-label-md">CARLOS</span>
+                </div>
+            </div>
+            <button class="md:hidden p-2">
+                <span class="material-symbols-outlined" data-icon="menu">menu</span>
+            </button>
+        </div>
+    </header>
+    <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+        <div class="flex flex-col lg:flex-row gap-gutter">
+            <!-- Left Column: Form Section -->
+            <div class="w-full lg:w-2/3 bg-white border-4 border-primary p-6 md:p-10 shadow-xl relative overflow-hidden">
+                <!-- Background Texture Effect -->
+                <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBnbxPW7Knq4EWrzkr61dMk9G-06RGMDwTYkQZLLZmwRJ2GBFzltli760YDmGuFyL5OlWnm9Zb0vGuiym4VaGHbaOn0EJPMXAALCmNALSjMVIZnmIyQm4kTi1dQcfSKi8IRpeb4M-X-LUmZksZiS3Ac3dJzsmXMZVwUyAC3gLt-90RZvFoOBbLdwKMVqtjITJdpYi6mwgLH-laH2_IjF1Jz6KicpBZ1TNLnoBZK4vOUYH9jbzq13QX8wNOhWRM8UV5Y4HqhMzQ1GfeG&quot;);"></div>
+                <div class="relative z-10">
+                    <header class="mb-8 border-b-2 border-surface-variant pb-4">
+                        <h2 class="font-display-lg text-headline-lg md:text-display-lg text-primary uppercase">Nueva Cotización</h2>
+                        <p class="font-body-md text-on-surface-variant italic">Define los detalles técnicos para tu pieza personalizada.</p>
+                    </header>
+                    <form class="space-y-8" id="quote-form">
+                        <!-- Basic Info Group -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant block">CLIENTE</label>
+                                <input class="w-full bg-surface-container-lowest border border-outline px-4 py-3 font-body-md form-input-focus rounded-none" readonly="" type="text" value="Carlos Hernandez">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant block">PRODUCTO</label>
+                                <select class="w-full bg-white border border-outline px-4 py-3 font-body-md form-input-focus rounded-none appearance-none">
+                                    <option>Mesa de Comedor</option>
+                                    <option>Silla de Diseño</option>
+                                    <option>Escritorio Studio</option>
+                                    <option>Repisa Minimalista</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Material & Quantity -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant block">TIPO DE MADERA</label>
+                                <select class="w-full bg-white border border-outline px-4 py-3 font-body-md form-input-focus rounded-none" id="wood-type">
+                                    <option value="320000">Pino Macizo ($320.000)</option>
+                                    <option value="550000">Roble Americano ($550.000)</option>
+                                    <option value="780000">Nogal Oscuro ($780.000)</option>
+                                    <option value="420000">Cedro Perfumado ($420.000)</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant block">CANTIDAD</label>
+                                <div class="flex">
+                                    <button class="px-4 py-2 border border-primary bg-primary text-white hover:bg-secondary transition-colors" id="qty-minus" type="button">-</button>
+                                    <input class="w-full border-t border-b border-outline text-center font-bold text-primary focus:ring-0 focus:outline-none" id="quantity" min="1" type="number" value="1">
+                                    <button class="px-4 py-2 border border-primary bg-primary text-white hover:bg-secondary transition-colors" id="qty-plus" type="button">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dimensions Group -->
+                        <div class="p-6 bg-surface-container border-2 border-dashed border-outline-variant rounded-lg">
+                            <h3 class="font-title-md text-title-md text-primary mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined" data-icon="straighten">straighten</span>
+                                MEDIDAS (cm)
+                            </h3>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="space-y-1 text-center">
+                                    <label class="font-label-md text-label-md text-on-surface-variant block">ALTO</label>
+                                    <input class="w-full bg-white border border-outline px-2 py-3 text-center font-body-md form-input-focus rounded-none" placeholder="80" type="number">
+                                </div>
+                                <div class="space-y-1 text-center">
+                                    <label class="font-label-md text-label-md text-on-surface-variant block">ANCHO</label>
+                                    <input class="w-full bg-white border border-outline px-2 py-3 text-center font-body-md form-input-focus rounded-none" placeholder="120" type="number">
+                                </div>
+                                <div class="space-y-1 text-center">
+                                    <label class="font-label-md text-label-md text-on-surface-variant block">PROFUNDIDAD</label>
+                                    <input class="w-full bg-white border border-outline px-2 py-3 text-center font-body-md form-input-focus rounded-none" placeholder="60" type="number">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pricing Breakdown -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 pt-4 border-t-2 border-surface-variant">
+                            <div class="flex justify-between items-center py-2 border-b border-outline-variant">
+                                <span class="font-body-md">Precio Unitario</span>
+                                <span class="font-title-md font-bold text-secondary" id="display-unit-price">$320.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-outline-variant">
+                                <span class="font-body-md">Subtotal</span>
+                                <span class="font-title-md font-bold" id="display-subtotal">$320.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-outline-variant">
+                                <span class="font-body-md">Mano de Obra</span>
+                                <span class="font-title-md font-bold" id="labor-cost">$120.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-outline-variant">
+                                <span class="font-body-md">Descuento (5%)</span>
+                                <span class="font-title-md font-bold text-error" id="display-discount">-$16.000</span>
+                            </div>
+                        </div>
+                        <!-- Final Metadata -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant block">FECHA</label>
+                                <input class="w-full bg-white border border-outline px-4 py-3 font-body-md form-input-focus rounded-none" type="date" value="2023-11-20">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant block">TIEMPO DE ENTREGA</label>
+                                <input class="w-full bg-white border border-outline px-4 py-3 font-body-md form-input-focus rounded-none" placeholder="15 días hábiles" type="text">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-md text-label-md text-on-surface-variant block">OBSERVACIONES</label>
+                            <textarea class="w-full bg-white border border-outline px-4 py-3 font-body-md form-input-focus rounded-none" placeholder="Detalles específicos sobre el acabado o ensamblaje..." rows="3"></textarea>
+                        </div>
+                        <div class="space-y-4 pt-6 border-t-2 border-surface-variant">
+                            <h3 class="font-title-md text-title-md text-primary uppercase tracking-tight">MÉTODOS DE PAGO</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="flex flex-col items-center p-3 border border-outline-variant bg-surface-container-lowest rounded">
+                                    <span class="material-symbols-outlined text-primary mb-1" data-icon="account_balance_wallet">account_balance_wallet</span>
+                                    <span class="font-label-md text-label-md">Nequi</span>
+                                </div>
+                                <div class="flex flex-col items-center p-3 border border-outline-variant bg-surface-container-lowest rounded">
+                                    <span class="material-symbols-outlined text-primary mb-1" data-icon="payments">payments</span>
+                                    <span class="font-label-md text-label-md">Daviplata</span>
+                                </div>
+                                <div class="flex flex-col items-center p-3 border border-outline-variant bg-surface-container-lowest rounded">
+                                    <span class="material-symbols-outlined text-primary mb-1" data-icon="account_balance">account_balance</span>
+                                    <span class="font-label-md text-label-md">PSE</span>
+                                </div>
+                                <div class="flex flex-col items-center p-3 border border-outline-variant bg-surface-container-lowest rounded">
+                                    <span class="material-symbols-outlined text-primary mb-1" data-icon="credit_card">credit_card</span>
+                                    <span class="font-label-md text-label-md">Tarjetas</span>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-primary-container/10 border-2 border-primary border-dashed flex items-center gap-4 cursor-pointer hover:bg-primary-container/20 transition-colors">
+                                <div class="bg-primary text-white p-2 rounded-full">
+                                    <span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-title-md text-primary text-sm font-bold">Pago a Cuotas</h4>
+                                    <p class="font-body-md text-on-surface-variant text-xs">Financia tu proyecto artesanal con plazos flexibles.</p>
+                                </div>
+                            </div>
+                        </div><a asp-controller="Factura"
+                             asp-action="Index"
+                             class="w-full bg-primary hover:bg-secondary text-white font-headline-lg-mobile py-5 rounded-none shadow-lg transform active:scale-95 transition-all flex items-center justify-center gap-3">
+
+                        GENERAR COTIZACIÓN
+                    </a>
+                </form>
+            </div>
+        </div>
+        <!-- Right Column -->
+        <div class="w-full lg:w-1/3 space-y-6">
+            <!-- Reference Image Card -->
+            <div class="bg-surface-container border-2 border-primary overflow-hidden shadow-md">
+                <img class="w-full h-64 object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500" data-alt="Woodworking workshop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtB-sJjbrIcya7eD6TyZtTpXc3a1xZ3X3Vm5_80rzLwKW5MOzHKsbugYLYgXeK3z1sifKEwuejJ3i2IqHi90r_mMZKPMpgBxZG7S_CX_7CoQ5jGGhDN48xskXNxG-927wxm37sERsbQSfyzrxFbAYjun-B1GkZ2xGnc0nssZdemKtCsFgpkqI4L02DWZaGhA8oDykSTQNaKuk_zjgfhdGL2CcphFSXsYAA4Eb9PxESug-OEipKS2KYcvdVaByWOAuUXxO5az5_7s3S">
+                <div class="p-6">
+                    <h4 class="font-title-md text-primary uppercase mb-2">Referencia de Calidad</h4>
+                    <p class="font-body-md text-on-surface-variant">Visualiza el tipo de acabado que logramos. El Pino Macizo ofrece durabilidad y una estética rústica moderna inigualable.</p>
+                </div>
+            </div>
+            <!-- Info Card: Wood Types -->
+            <div class="bg-primary text-white p-8 border-l-8 border-secondary shadow-lg">
+                <h4 class="font-headline-lg-mobile mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined" data-icon="forest">forest</span>
+                    Guía de Maderas
+                </h4>
+                <ul class="space-y-4 font-body-md">
+                    <li class="flex items-start gap-3">
+                        <span class="text-secondary font-bold">1.</span>
+                        <div><strong class="block">Cedro</strong><span class="text-white/80 text-label-md">Resistente a la humedad.</span></div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-secondary font-bold">2.</span>
+                        <div><strong class="block">Roble</strong><span class="text-white/80 text-label-md">Dureza extrema.</span></div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-secondary font-bold">3.</span>
+                        <div><strong class="block">Abeto</strong><span class="text-white/80 text-label-md">Ligero y económico.</span></div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-secondary font-bold">4.</span>
+                        <div><strong class="block">Nogal</strong><span class="text-white/80 text-label-md">Acabado de lujo.</span></div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Total Summary Card -->
+            <div class="sticky top-24 bg-secondary-container text-on-secondary-container p-6 border-4 border-primary shadow-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-label-md uppercase tracking-widest">Resumen Total</span>
+                    <span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+                </div>
+                <div class="text-4xl font-headline-lg font-bold mb-2" id="resumen-total">$424.000</div>
+                <p class="font-label-md opacity-80 border-t border-on-secondary-container/20 pt-2">
+                    *IVA incluido. Válido por 15 días.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-highest dark:bg-surface-container-low text-primary dark:text-primary-fixed border-t-4 border-primary shadow-lg flex justify-around items-center h-20 pb-safe px-2">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+        <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+        <span class="font-label-md text-label-md">Home</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+        <span class="material-symbols-outlined" data-icon="handyman">handyman</span>
+        <span class="font-label-md text-label-md">Catalog</span>
+    </a>
+    <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-transform active:scale-90" href="#">
+        <span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+        <span class="font-label-md text-label-md">New Quote</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+        <span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+        <span class="font-label-md text-label-md">Orders</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform active:scale-90" href="#">
+        <span class="material-symbols-outlined" data-icon="person">person</span>
+        <span class="font-label-md text-label-md">Profile</span>
+    </a>
+</nav>
+<script>
+        const form = document.getElementById('quote-form');
+        const woodTypeSelect = document.getElementById('wood-type');
+        const quantityInput = document.getElementById('quantity');
+        const displayUnitPrice = document.getElementById('display-unit-price');
+        const displaySubtotal = document.getElementById('display-subtotal');
+        const displayDiscount = document.getElementById('display-discount');
+        const resumenTotal = document.getElementById('resumen-total');
+
+        // Fixed labor cost for this demonstration
+        const fixedLabor = 120000;
+
+        function formatCurrency(value) {
+            return '$' + value.toLocaleString('es-CO');
+        }
+
+        function calculateValues() {
+            const unitPrice = parseInt(woodTypeSelect.value);
+            const quantity = Math.max(1, parseInt(quantityInput.value) || 1);
+
+            const subtotal = unitPrice * quantity;
+            const discount = Math.round(subtotal * 0.05);
+            const total = subtotal + fixedLabor - discount;
+
+            // Update UI
+            displayUnitPrice.innerText = formatCurrency(unitPrice);
+            displaySubtotal.innerText = formatCurrency(subtotal);
+            displayDiscount.innerText = '-' + formatCurrency(discount);
+            resumenTotal.innerText = formatCurrency(total);
+        }
+
+        // Input Events
+        woodTypeSelect.addEventListener('change', calculateValues);
+        quantityInput.addEventListener('input', calculateValues);
+
+        // Quantity Stepper
+        document.getElementById('qty-plus').onclick = () => {
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+            calculateValues();
+        };
+        document.getElementById('qty-minus').onclick = () => {
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+                calculateValues();
+            }
+        };
+
+        // Form Submission Handling
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+
+            btn.innerHTML = `
+                    <span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span>
+                    PROCESANDO...
+                `;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = `
+                        <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                        COTIZACIÓN CREADA
+                    `;
+                btn.classList.replace('bg-primary', 'bg-green-700');
+
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.classList.replace('bg-green-700', 'bg-primary');
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+
+        // Initial calculation
+        calculateValues();
+</script>
+
+
+
+
+</body></html>

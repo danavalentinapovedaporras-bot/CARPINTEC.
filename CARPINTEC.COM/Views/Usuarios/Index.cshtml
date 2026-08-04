@@ -1,5 +1,6 @@
+@model IEnumerable<CARPINTEC.COM.Models.Usuario>
 @{
-    Layout = null;
+    ViewData["Title"] = "Usuarios";
 }
 <!DOCTYPE html>
 <html lang="es" class="light">
@@ -101,38 +102,29 @@
 <body class="font-body-md text-on-surface bg-background">
 
     <!-- Top App Bar -->
-    <header class="fixed top-0 right-0 w-full z-40 bg-surface border-b border-outline-variant/30 flex justify-between items-center px-gutter py-sm h-16">
-        <div class="flex items-center gap-4">
-            <button class="flex items-center gap-2 px-3 py-2 hover:bg-surface-container rounded-lg transition-colors text-primary font-label-md">
-                <span class="material-symbols-outlined">arrow_back</span>
-                <span>Volver</span>
-            </button>
-        </div>
-        <div class="flex items-center gap-md">
-            <div class="flex flex-col items-end">
-                <span class="font-label-md text-primary font-bold">Elena Martínez</span>
-                <span class="text-[12px] text-on-surface-variant">Administradora General</span>
-            </div>
-            <div class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim overflow-hidden bg-surface-container">
-                <img class="w-full h-full object-cover" alt="Elena Martínez" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUR2kMNUHKh5c_iqqJupkQI6k4rRrWDH1G78ZuIkndRA85R7W4SXuA56dtrxXrEMInGhXOqoBkkIbsdt9tSSy-LljwiQDTHHX_dZb_COZR2CvTeACCCrdkp68sHBTFpqv96Tz2xlEJo0cgCUz0RSvhn0JpyN6RFDel5jmw4hG6Yq2gVe_CidzlKtW34FvwqXy_X_z-JwVT4JaufOE-yCPxaJlxzeZRAHwj8pBQmqJC22h9A3X1Mn0B">
-            </div>
-        </div>
-    </header>
+    <button onclick="history.back()"
+            class="flex items-center gap-2 text-primary hover:underline mb-4">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Volver
+    </button>
 
     <!-- Main Content Canvas -->
-    <main class="pt-16 min-h-screen">
+    <main class="pt-4 min-h-screen bg-background">
         <div class="p-margin max-w-7xl mx-auto">
 
             <!-- Header Section -->
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
                 <div>
                     <h3 class="font-headline-xl text-headline-xl text-primary mb-xs">Gestión de Usuarios</h3>
-                    <p class="font-body-md text-on-surface-variant">Administra los accesos y roles del equipo de CARPINTEC.COM.</p>
+                    <p class="font-body-md text-on-surface-variant">Administra los accesos y roles del equipo de Carpintec</p>
                 </div>
-                <button class="px-lg py-sm rounded-xl font-label-md flex items-center gap-2 shadow-md hover:opacity-90 transition-all active:scale-95" style="background-color: rgb(210, 180, 140); color: rgb(0, 0, 0);">
+                <a asp-controller="Usuarios"
+                   asp-action="NuevoUsuario"
+                   class="px-lg py-sm rounded-xl font-label-md flex items-center gap-2 shadow-md hover:opacity-90 transition-all active:scale-95"
+                   style="background-color: rgb(210, 180, 140); color: black; text-decoration:none;">
                     <span class="material-symbols-outlined">person_add</span>
                     Crear Usuario
-                </button>
+                </a>
             </div>
 
             <!-- Stats Grid -->
@@ -208,135 +200,70 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-outline-variant/20">
-                            <!-- User Row 1 -->
-                            <tr class="hover:bg-surface-container-low transition-colors">
-                                <td class="px-md py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container border-2 border-outline-variant/20">
-                                            <img class="w-full h-full object-cover" alt="Carlos Rivera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPfAAN5zk7fsswYGdsTbTjghecRy2S8j2UrBhHn8ppsS-kE4lj9QF0z0LPE_3j-uJ_Afy0uxWGjcZ1OdLX7UFSPBTsd1xOXSZCU-siNXpUt3DZgVd7j7CNp-u0uB3tLa-gttxawXo7UtcHxmLvZcHXW8QM4VRl_MVy0nil9l0b1974HS3xpJCFLU-mZr8fs9fyu2vxu-EiDBkIObUJ5JCN3FSgNM6e1ptXtcX5f0gdPo3WyDoYgULC">
-                                        </div>
-                                        <div>
-                                            <p class="font-bold text-primary">Carlos Rivera</p>
-                                            <p class="text-xs text-on-surface-variant">ID: CT-2934</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-md py-4 text-on-surface-variant">carlos.rivera@carpintec.com</td>
-                                <td class="px-md py-4">
-                                    <span class="px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-xs font-label-md">Jefe de Producción</span>
-                                </td>
-                                <td class="px-md py-4 text-center">
-                                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-tertiary">
-                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Activo
-                                    </span>
-                                </td>
-                                <td class="px-md py-4">
-                                    <div class="flex items-center justify-end gap-2">
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Ver detalles">
-                                            <span class="material-symbols-outlined text-[20px]">visibility</span>
-                                        </button>
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Editar">
-                                            <span class="material-symbols-outlined text-[20px]">edit</span>
-                                        </button>
-                                        <button class="p-2 text-outline hover:text-error hover:bg-error/10 rounded-lg transition-all" title="Desactivar">
-                                            <span class="material-symbols-outlined text-[20px]">person_off</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
 
-                            <!-- User Row 2 -->
-                            <tr class="hover:bg-surface-container-low transition-colors">
-                                <td class="px-md py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container border-2 border-outline-variant/20">
-                                            <img class="w-full h-full object-cover" alt="Lucía Méndez" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByUIcefJQSlJgtDmyGcZVBmRZddejR4LRiJiJJpjXpbSQ67eHOEB5p9HhUXBgKfReyYIuSXrQMEdsSyUg7FXUSh6wwGkiLrdAjzpzgjHIJ53JilMjZ3b8f9gZW8IVpMfRssnkecWRhl_ILfBfwTZI2TOU1pn4Nm2_wiWq4fo4OWW_t3abaP7YhM47CMUqqN8SPrqCTbo3JTdg5jxe114-LeQ4xTuKs9x0RljJAOlatb7PH-HhKUxwz">
-                                        </div>
-                                        <div>
-                                            <p class="font-bold text-primary">Lucía Méndez</p>
-                                            <p class="text-xs text-on-surface-variant">ID: CT-1102</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-md py-4 text-on-surface-variant">lucia.m@carpintec.com</td>
-                                <td class="px-md py-4">
-                                    <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-label-md">Diseñador de Muebles</span>
-                                </td>
-                                <td class="px-md py-4 text-center">
-                                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-tertiary">
-                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Activo
-                                    </span>
-                                </td>
-                                <td class="px-md py-4">
-                                    <div class="flex items-center justify-end gap-2">
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Ver detalles"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
-                                        <button class="p-2 text-outline hover:text-error hover:bg-error/10 rounded-lg transition-all" title="Desactivar"><span class="material-symbols-outlined text-[20px]">person_off</span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="hover:bg-surface-container-low transition-colors">
 
-                            <!-- User Row 3 -->
-                            <tr class="hover:bg-surface-container-low transition-colors">
-                                <td class="px-md py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container border-2 border-outline-variant/20">
-                                            <img class="w-full h-full object-cover" alt="Roberto Gómez" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPvwa_tAzkrvuFkIjK7AiO9vj2ztAQtCEAG6fpGPPn-eWkgixA4o0ns5KX0_fPq-TkpjHp9qquRv9qIYLIQ0VwjemXtiDMydJqOUvhTU19TCOiZ8B2jyoSGoMznWwKMbYbNqnkz4GTlqS3rHQTYqTP3QOZM6zPnO4pIAeIUd3PY7744ohld1OZIRj6_0UusJwTHpHTNN5WXM8Tlt9Ng3P2GDQ7KSEyQc1XZfa_6A2iRwa8dkHBL4kP">
-                                        </div>
-                                        <div>
-                                            <p class="font-bold text-primary">Roberto Gómez</p>
-                                            <p class="text-xs text-on-surface-variant">ID: CT-4552</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-md py-4 text-on-surface-variant">roberto.g@carpintec.com</td>
-                                <td class="px-md py-4">
-                                    <span class="px-3 py-1 bg-tertiary-container text-tertiary-fixed rounded-full text-xs font-label-md">Operario de Carpintería</span>
-                                </td>
-                                <td class="px-md py-4 text-center">
-                                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-error">
-                                        <span class="w-2 h-2 rounded-full bg-error"></span> Inactivo
-                                    </span>
-                                </td>
-                                <td class="px-md py-4">
-                                    <div class="flex items-center justify-end gap-2">
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Ver detalles"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
-                                        <button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-all" title="Reactivar"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">person</span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                                    <td class="px-md py-4">
+                                        @item.Nombre @item.Apellido
+                                    </td>
 
-                            <!-- User Row 4 -->
-                            <tr class="hover:bg-surface-container-low transition-colors">
-                                <td class="px-md py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container border-2 border-outline-variant/20">
-                                            <img class="w-full h-full object-cover" alt="Andrés Silva" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClNEAVS3zVuF6rjP_68ctAOED5ZS8TzqKXRHU_7M2fWRC6MXdLVQBn0C_y0xkEGTYXmkDyLRlJYYlYwvIyo9x-s1B7AYp8L2jHf_Gitm3oZ42_AF6Ia0jw00GX2CF6uCtMrw25mvtgsEEKXY12eiIeXC_xS6kaVCGg9Vj0TdlnSRKdRR-8F5Wz4n1aP8kkeh5NOXqgNnswVf2OlyWDxzcX0yN9A3615z81w09d59yQBIPjhuAstdNA">
+                                    <td class="px-md py-4">
+                                        @item.Correo
+                                    </td>
+
+                                    <td class="px-md py-4">
+                                        @item.Rol
+                                    </td>
+
+                                    <td class="px-md py-4 text-center">
+                                        @item.Estado
+                                    </td>
+
+                                    <td class="px-md py-4">
+                                        <div class="flex items-center justify-end gap-2">
+
+                                            <a asp-action="Details"
+                                               asp-route-id="@item.IdUsuario">
+                                                <span class="material-symbols-outlined">
+                                                    visibility
+                                                </span>
+                                            </a>
+
+                                            <a asp-action="Edit"
+                                               asp-route-id="@item.IdUsuario">
+                                                <span class="material-symbols-outlined">
+                                                    edit
+                                                </span>
+                                            </a>
+
+                                            <form asp-action="CambiarEstado"
+                                                  asp-route-id="@item.IdUsuario"
+                                                  method="post">
+
+                                                @Html.AntiForgeryToken()
+
+                                                <button type="submit">
+
+                                                    <span class="material-symbols-outlined">
+
+                                                        @(item.Estado == "Activo"
+                                                            ? "person_off"
+                                                            : "person")
+
+                                                    </span>
+
+                                                </button>
+
+                                            </form>
+
                                         </div>
-                                        <div>
-                                            <p class="font-bold text-primary">Andrés Silva</p>
-                                            <p class="text-xs text-on-surface-variant">ID: CT-8821</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-md py-4 text-on-surface-variant">andres.silva@carpintec.com</td>
-                                <td class="px-md py-4">
-                                    <span class="px-3 py-1 bg-surface-container-high text-on-surface rounded-full text-xs font-label-md">Encargado de Inventario</span>
-                                </td>
-                                <td class="px-md py-4 text-center">
-                                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-tertiary">
-                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Activo
-                                    </span>
-                                </td>
-                                <td class="px-md py-4">
-                                    <div class="flex items-center justify-end gap-2">
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Ver detalles"><span class="material-symbols-outlined text-[20px]">visibility</span></button>
-                                        <button class="p-2 text-outline hover:text-primary hover:bg-primary/10 rounded-lg transition-all" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
-                                        <button class="p-2 text-outline hover:text-error hover:bg-error/10 rounded-lg transition-all" title="Desactivar"><span class="material-symbols-outlined text-[20px]">person_off</span></button>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+
+                                </tr>
+                            }
+
                         </tbody>
                     </table>
                 </div>

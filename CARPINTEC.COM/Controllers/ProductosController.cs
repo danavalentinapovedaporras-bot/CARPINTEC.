@@ -22,7 +22,10 @@ namespace CARPINTEC.COM.Controllers
         {
             return View();
         }
-
+        public IActionResult NuevoProducto()
+        {
+            return View();
+        }
         // POST: ProductosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

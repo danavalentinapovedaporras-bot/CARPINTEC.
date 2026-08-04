@@ -3,27 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CARPINTEC.COM.Controllers
 {
-    public class Mano_obraController : Controller
+    public class MiPerfilController : Controller
     {
-        // GET: Mano_obraController
+        // GET: MiPerfilController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Mano_obraController/Details/5
+        // GET: MiPerfilController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Mano_obraController/Create
+        // GET: MiPerfilController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Mano_obraController/Create
+        // POST: MiPerfilController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -38,13 +38,13 @@ namespace CARPINTEC.COM.Controllers
             }
         }
 
-        // GET: Mano_obraController/Edit/5
+        // GET: MiPerfilController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Mano_obraController/Edit/5
+        // POST: MiPerfilController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -59,13 +59,13 @@ namespace CARPINTEC.COM.Controllers
             }
         }
 
-        // GET: Mano_obraController/Delete/5
+        // GET: MiPerfilController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Mano_obraController/Delete/5
+        // POST: MiPerfilController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

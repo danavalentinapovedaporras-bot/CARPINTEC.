@@ -1,5 +1,5 @@
 @{
-    Layout = null;
+    ViewData["Title"] = "Usuarios";
 }
 <!DOCTYPE html>
 <html class="light" lang="es">
@@ -100,45 +100,19 @@
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
     <!-- Top App Bar Full-Width -->
-    <header class="sticky top-0 z-30 flex justify-between items-center h-16 px-4 md:px-8 bg-surface/80 backdrop-blur-md border-b border-outline-variant w-full">
-        <div class="flex items-center gap-6 flex-1 max-w-7xl mx-auto w-full justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center p-1 border border-outline-variant">
-                    <img alt="Carpintec Logo" class="w-full h-full object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida/AP1WRLsk3Zho-0BKtA8McF4b6enPHBZbzMwn0jFHE7fKjodpPqXIRwzVkW8RG5ituz68m6QiNpMpUrfVNCBUiWmScdHBA501R3SO_EMasyX04TCSJTeY5dQDPJiT3OqyD8R4aiXH4hcrhIO3f74jHLBizsFzi_tHK83H8Gikj5ywByw_o9gShxB10YJlA4Dx5FV4zKdVbVZEJuUPJ7F9vQv8NNS7RPM7MAmDQFDHmePYJaQWhqdFxvVMoFUFvvclu3ImV4nbwTPjRvIEjA">
-                </div>
-                <h1 class="text-headline-md font-headline-md font-bold text-on-surface leading-none hidden sm:block">Carpintec</h1>
-            </div>
-
-            <div class="relative w-full max-w-md group mx-4">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface">search</span>
-                <input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary focus:ring-opacity-20 transition-all outline-none text-on-surface" placeholder="Buscar empleados..." type="text">
-            </div>
-
-            <div class="flex items-center gap-4 shrink-0">
-                <button class="relative text-on-surface hover:bg-surface-container-low p-2 rounded-full transition-all">
-                    <span class="material-symbols-outlined">notifications</span>
-                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
-                </button>
-                <div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
-                    <div class="text-right hidden md:block">
-                        <p class="text-body-md font-bold text-on-surface leading-none">Admin Paula</p>
-                        <p class="text-label-md text-on-surface opacity-70">Jefe de Taller</p>
-                    </div>
-                    <img class="w-10 h-10 rounded-full border-2 border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_yrY--aLufWMzzuZqQhzyw7FA6lpFGizA__BQV_zqFe8cp02PEzZvZlriegwoiYx7mCn_kbvkqOd5KybgCVJVmt9QEm3IS7OFOemYBpidaj9GRyKtALEnrXM2B_5twQ_RCsvV6zhuQpJ1HaFXkwXMeaeA5jTBVGB1Z0fTBCaPBFe2MZNN6ZD9-LbxeAQnYzAXHE29JtGn3Vt0VR99aOKtDXPpqkAaeU0-NUb8KQXib9_1Z6BFXlr9xW2nfLnuv7IJEl2AG6p3JTCA">
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- Top App Bar -->
+    <button onclick="history.back()"
+            class="flex items-center gap-2 text-primary hover:underline mb-4">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Volver
+    </button>
 
     <!-- Main Content Canvas -->
-    <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 bg-background">
+    <main class="pt-4 min-h-screen bg-background">
         <!-- Header Section -->
         <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-8">
             <div>
-                <button class="flex items-center gap-1 text-black hover:opacity-70 transition-opacity mb-4 group">
-                    <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                    <span class="text-label-md font-bold uppercase tracking-wider">Volver</span>
-                </button>
+           
                 <h2 class="text-headline-lg font-headline-lg text-on-surface text-3xl sm:text-4xl font-bold">Gestión Empleados</h2>
                 <p class="text-body-lg text-on-surface opacity-70 mt-1">Gestión de artesanos, operarios y personal administrativo.</p>
             </div>

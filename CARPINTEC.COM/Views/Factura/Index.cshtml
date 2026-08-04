@@ -1,0 +1,371 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Carpintec - Factura Electrónica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "secondary-fixed-dim": "#ffb68d",
+                            "on-tertiary-fixed-variant": "#544525",
+                            "outline-variant": "#dac2b6",
+                            "tertiary": "#4d3f20",
+                            "on-primary-fixed": "#321200",
+                            "on-secondary": "#ffffff",
+                            "on-surface": "#201a18",
+                            "on-error-container": "#93000a",
+                            "surface": "#fff8f6",
+                            "outline": "#877369",
+                            "primary-fixed": "#ffdbc9",
+                            "on-tertiary-container": "#e2cca2",
+                            "on-secondary-fixed-variant": "#763400",
+                            "surface-container-low": "#fef1ed",
+                            "primary-container": "#8b4513",
+                            "tertiary-container": "#665635",
+                            "surface-container-lowest": "#ffffff",
+                            "tertiary-fixed-dim": "#dac49b",
+                            "surface-container-highest": "#ede0dc",
+                            "on-primary": "#ffffff",
+                            "error-container": "#ffdad6",
+                            "background": "#fff8f6",
+                            "surface-tint": "#934b19",
+                            "primary-fixed-dim": "#ffb68c",
+                            "inverse-on-surface": "#fbeeea",
+                            "primary": "#6c2f00",
+                            "tertiary-fixed": "#f7e0b5",
+                            "on-secondary-fixed": "#321200",
+                            "surface-container-high": "#f3e5e1",
+                            "on-surface-variant": "#54433a",
+                            "secondary-fixed": "#ffdbc9",
+                            "inverse-primary": "#ffb68c",
+                            "on-tertiary": "#ffffff",
+                            "on-secondary-container": "#672c00",
+                            "inverse-surface": "#362f2c",
+                            "secondary-container": "#fd8a3e",
+                            "on-error": "#ffffff",
+                            "error": "#ba1a1a",
+                            "surface-container": "#f9ebe7",
+                            "on-tertiary-fixed": "#251a01",
+                            "surface-variant": "#ede0dc",
+                            "surface-bright": "#fff8f6",
+                            "secondary": "#9a4600",
+                            "on-primary-container": "#ffc29f",
+                            "surface-dim": "#e4d7d4",
+                            "on-primary-fixed-variant": "#753401",
+                            "on-background": "#201a18"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "margin-mobile": "16px",
+                            "container-max": "1280px",
+                            "base": "8px",
+                            "margin-desktop": "64px",
+                            "gutter": "24px"
+                        },
+                        "fontFamily": {
+                            "display-lg": ["Montserrat"],
+                            "title-md": ["Montserrat"],
+                            "body-lg": ["Work Sans"],
+                            "headline-lg-mobile": ["Montserrat"],
+                            "headline-lg": ["Montserrat"],
+                            "body-md": ["Work Sans"],
+                            "label-md": ["Work Sans"]
+                        },
+                        "fontSize": {
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            .wood-texture {
+                background-image: linear-gradient(rgba(108, 47, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(108, 47, 0, 0.05) 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+
+            .invoice-card {
+                box-shadow: 0 10px 30px -10px rgba(108, 47, 0, 0.2);
+            }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen pb-24">
+    <!-- TopAppBar -->
+    <header class="bg-primary flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 border-b-4 border-on-primary-fixed-variant docked full-width top-0 sticky z-50">
+        <div class="flex items-center gap-2">
+            <a class="flex items-center gap-1 text-black hover:opacity-70 transition-opacity mr-4" href="#"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span class="font-semibold">Volver</span></a> necesito que el volver se devuelva a la anterior vista
+            <span class="font-headline-lg text-headline-lg font-bold text-on-primary">Carpintec</span>
+        </div>
+        <nav class="hidden md:flex gap-8">
+            <a class="text-on-primary/80 font-label-md text-label-md hover:bg-secondary transition-colors px-3 py-2" href="#">Home</a>
+            <a class="text-on-primary/80 font-label-md text-label-md hover:bg-secondary transition-colors px-3 py-2" href="#">Catálogo</a>
+            <a class="text-on-primary font-bold border-b-2 border-on-primary font-label-md text-label-md px-3 py-2" href="#">Cotizaciones</a>
+        </nav>
+        <button class="bg-surface-container-highest text-primary font-bold rounded-full px-6 py-2 text-label-md hover:bg-secondary-container transition-all">
+            Contacto
+        </button>
+    </header>
+    <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+        <!-- Dashboard Header -->
+        <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+                <span class="text-primary font-bold tracking-widest uppercase text-xs mb-2 block">Documento de Venta</span>
+                <h1 class="font-display-lg text-display-lg text-primary">Factura Electrónica</h1>
+            </div>
+            <div class="flex gap-4">
+                <button class="flex items-center gap-2 bg-white border-2 border-primary text-primary px-6 py-3 font-bold hover:bg-secondary-container transition-all" onclick="window.print()">
+                    <span class="material-symbols-outlined">download</span>
+                    DESCARGAR PDF
+                </button>
+                <button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-3 font-bold hover:bg-secondary transition-all">
+                    <span class="material-symbols-outlined">home</span>
+                    INICIO
+                </button>
+            </div>
+        </div>
+        <!-- The Invoice Paper -->
+        <div class="invoice-card bg-white border-2 border-primary overflow-hidden relative">
+            <!-- Decorative wood grain pattern overlay -->
+            <div class="absolute inset-0 wood-texture pointer-events-none opacity-40"></div>
+            <!-- Invoice Header Section -->
+            <div class="relative z-10 p-8 md:p-12 border-b-2 border-primary bg-surface-container-low">
+                <div class="flex flex-col md:flex-row justify-between gap-8">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                        <img alt="Carpintec Logo" class="w-32 h-32 object-contain border-4 border-primary p-2 bg-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVt4rQtmfyS2VawFpyJs1VDLhqT671e-UTWS8CnKWk63C5LmkOpIo8HrpCClvd_ZldTowyDEVLYrB8ayxQO_G49TQRolK17vwlQcLz-TmYkM1nbZJ-n3LkMkQViCpi8qqHv7_AYEEuQ4o3IJ11AA2owbZrKaSnLS_-T9sPKkFm89zkBOpzGARyfKHhLuugz6p8wHTSsWznPMU7H5kp-iNMg1qTg1IptP9pJc8jO5Rzsh1ef1DE5hKmhlRKUuCOB2TYcNYEzQG5HOtI">
+                        <div class="text-center md:text-left">
+                            <h2 class="font-headline-lg text-headline-lg text-primary">CARPINTEC S.A.S</h2>
+                            <p class="font-label-md text-label-md text-on-surface-variant font-bold">NIT: 901.432.556-1</p>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-2">Calle de los Artesanos #45-12<br>Cali, Valle del Cauca, Colombia</p>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Tel: +57 300 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="bg-primary p-8 text-center md:text-right min-w-[240px]">
+                        <p class="text-on-primary font-bold text-label-md uppercase tracking-widest">Factura No.</p>
+                        <p class="text-on-primary font-display-lg text-display-lg mt-1">#2024-089</p>
+                        <div class="mt-4 pt-4 border-t border-on-primary/30">
+                            <p class="text-on-primary/80 text-xs">Fecha de Emisión</p>
+                            <p class="text-on-primary font-bold">25 de Octubre, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Client & Shipping Info -->
+            <div class="relative z-10 p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-12 bg-white">
+                <div>
+                    <h3 class="font-title-md text-title-md text-primary border-b-4 border-primary-container pb-2 mb-6 inline-block">Información del Cliente</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-primary">person</span>
+                            <div>
+                                <p class="text-xs uppercase text-outline font-bold">Cliente</p>
+                                <p class="font-title-md text-title-md" id="client-name">Carlos Hernández</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-primary">mail</span>
+                            <div>
+                                <p class="text-xs uppercase text-outline font-bold">Correo Electrónico</p>
+                                <p class="font-body-lg text-body-lg" id="client-email">carlos.hdez@email.com</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <span class="material-symbols-outlined text-primary">call</span>
+                            <div>
+                                <p class="text-xs uppercase text-outline font-bold">Teléfono</p>
+                                <p class="font-body-lg text-body-lg" id="client-phone">300 123 4567</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-surface-variant p-6 border-2 border-dashed border-primary">
+                    <h3 class="font-title-md text-title-md text-primary mb-4">Detalles de Entrega</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between border-b border-outline-variant pb-2">
+                            <span class="font-bold text-on-surface-variant">Tiempo estimado:</span>
+                            <span class="font-bold text-primary">15 Días Hábiles</span>
+                        </div>
+                        <div class="flex justify-between border-b border-outline-variant pb-2">
+                            <span class="font-bold text-on-surface-variant">Ubicación:</span>
+                            <span class="text-on-surface-variant">Taller Norte (Recogida)</span>
+                        </div>
+                        <div class="mt-4 flex items-center gap-3 text-secondary italic">
+                            <span class="material-symbols-outlined">info</span>
+                            <p class="text-sm">La producción inicia tras el pago del 50% de anticipo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Table -->
+            <div class="relative z-10 p-8 md:p-12 pt-0">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-primary text-on-primary">
+                                <th class="p-4 font-bold uppercase text-xs tracking-widest">Descripción del Producto</th>
+                                <th class="p-4 font-bold uppercase text-xs tracking-widest text-center">Madera</th>
+                                <th class="p-4 font-bold uppercase text-xs tracking-widest text-center">Medidas (cm)</th>
+                                <th class="p-4 font-bold uppercase text-xs tracking-widest text-center">Cant.</th>
+                                <th class="p-4 font-bold uppercase text-xs tracking-widest text-right">Precio Unitario</th>
+                                <th class="p-4 font-bold uppercase text-xs tracking-widest text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y-2 divide-surface-variant">
+                            <tr class="hover:bg-surface-container transition-colors">
+                                <td class="p-6">
+                                    <p class="font-bold text-primary text-lg">Mesa de Comedor Artesanal</p>
+                                    <p class="text-xs text-on-surface-variant italic mt-1">Diseño contemporáneo con acabados naturales.</p>
+                                </td>
+                                <td class="p-6 text-center font-medium">Roble Macizo</td>
+                                <td class="p-6 text-center text-sm font-bold">180 x 90 x 75</td>
+                                <td class="p-6 text-center font-bold">1</td>
+                                <td class="p-6 text-right font-medium">$2.200.000</td>
+                                <td class="p-6 text-right font-bold text-primary">$2.200.000</td>
+                            </tr>
+                            <!-- Interactive row for logic simulation -->
+                            <tr class="bg-primary-container/10 border-l-4 border-primary">
+                                <td class="p-6">
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-bold text-primary text-lg">Sillas de Comedor Premium</p>
+                                        <span class="bg-secondary text-[10px] text-white px-2 py-0.5 rounded-full">DATO DE COTIZACIÓN</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant italic mt-1">Estructura reforzada y espaldar ergonómico.</p>
+                                </td>
+                                <td class="p-6 text-center font-medium">Cedro</td>
+                                <td class="p-6 text-center text-sm font-bold">45 x 45 x 90</td>
+                                <td class="p-6 text-center font-bold">
+                                    <input class="w-16 text-center border-2 border-primary font-bold text-primary focus:ring-secondary focus:border-secondary transition-all" id="qty-input" type="number" value="6">
+                                </td>
+                                <td class="p-6 text-right font-medium">$350.000</td>
+                                <td class="p-6 text-right font-bold text-primary" id="item-total">$2.100.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Cost Breakdown -->
+            <div class="relative z-10 p-8 md:p-12 bg-surface-container-highest flex flex-col md:flex-row justify-between gap-12">
+                <div class="md:w-1/2">
+                    <h4 class="font-bold text-primary mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined">notes</span>
+                        Notas y Condiciones
+                    </h4>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
+                        1. Esta factura tiene validez legal como título valor.<br>
+                        2. Garantía de 12 meses por defectos de fabricación y estructura.<br>
+                        3. Los cambios en el diseño original después de la aprobación pueden generar costos adicionales.<br>
+                        4. La madera es un material natural; las variaciones de veta y color son normales y parte de su belleza única.
+                    </p>
+                </div>
+                <div class="md:w-1/3 space-y-3">
+                    <div class="flex justify-between text-on-surface-variant">
+                        <span>Subtotal Productos:</span>
+                        <span class="font-bold">$4.300.000</span>
+                    </div>
+                    <div class="flex justify-between text-on-surface-variant">
+                        <span>Mano de Obra Especializada:</span>
+                        <span class="font-bold">$850.000</span>
+                    </div>
+                    <div class="flex justify-between text-error font-bold italic">
+                        <span>Descuento Aplicado (10%):</span>
+                        <span>-$515.000</span>
+                    </div>
+                    <div class="pt-4 mt-4 border-t-4 border-primary">
+                        <div class="flex justify-between items-end">
+                            <span class="font-display-lg text-primary text-xl font-extrabold uppercase">Total Factura</span>
+                            <span class="font-display-lg text-display-lg text-primary" id="grand-total">$4.635.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dynamic Simulation Status -->
+        <div class="mt-8 bg-tertiary text-on-tertiary p-4 rounded-xl flex items-center justify-center gap-4 animate-pulse">
+            <span class="material-symbols-outlined">sync</span>
+            <p class="font-label-md text-label-md">Sincronizado en tiempo real con pantalla de cotización {{DATA:SCREEN:SCREEN_11}}</p>
+        </div>
+    </main>
+    <!-- BottomNavBar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface py-2 border-t-2 border-primary md:hidden shadow-sm">
+        <div class="flex flex-col items-center justify-center text-on-surface-variant">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-md text-label-md">Home</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant">
+            <span class="material-symbols-outlined">menu_book</span>
+            <span class="font-label-md text-label-md">Catalog</span>
+        </div>
+        <div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+            <span class="material-symbols-outlined">request_quote</span>
+            <span class="font-label-md text-label-md">Quotes</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <span class="font-label-md text-label-md">Orders</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-md text-label-md">Profile</span>
+        </div>
+    </nav>
+    <script>
+            // Simulation of real-time syncing from Cotización
+            const qtyInput = document.getElementById('qty-input');
+            const itemTotal = document.getElementById('item-total');
+            const grandTotal = document.getElementById('grand-total');
+
+            const unitPrice = 350000;
+            const baseSubtotal = 2200000;
+            const labor = 850000;
+
+            qtyInput.addEventListener('input', (e) => {
+                const qty = parseInt(e.target.value) || 0;
+                const newTotal = qty * unitPrice;
+
+                // Format currency
+                const formatter = new Intl.NumberFormat('es-CO', {
+                    style: 'currency',
+                    currency: 'COP',
+                    minimumFractionDigits: 0
+                });
+
+                itemTotal.innerText = formatter.format(newTotal).replace('COP', '$');
+
+                // Calculate grand total logic
+                const currentSubtotal = baseSubtotal + newTotal + labor;
+                const discount = currentSubtotal * 0.10;
+                const finalTotal = currentSubtotal - discount;
+
+                grandTotal.innerText = formatter.format(finalTotal).replace('COP', '$');
+
+                // Visual feedback
+                grandTotal.classList.add('scale-110', 'transition-transform');
+                setTimeout(() => grandTotal.classList.remove('scale-110'), 200);
+            });
+    </script>
+</body></html>
