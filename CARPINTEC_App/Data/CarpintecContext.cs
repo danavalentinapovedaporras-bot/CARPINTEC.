@@ -40,7 +40,7 @@ public partial class CarpintecContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Server=danapoveda\\SQLEXPRESS;Database=Carpintec;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Carpintec;Trusted_Connection=True;TrustServerCertificate=True;");
         }
     }
 
