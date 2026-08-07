@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace CARPINTEC_App.Models;
 
 public partial class Usuario
