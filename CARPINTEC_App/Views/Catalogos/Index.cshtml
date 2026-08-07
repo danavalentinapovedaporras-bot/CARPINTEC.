@@ -1,0 +1,388 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CARPINTEC | Catálogo de Muebles Premium</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "tertiary": "#4d3f20",
+                            "on-secondary-container": "#672c00",
+                            "primary": "#6c2f00",
+                            "surface-dim": "#e4d7d4",
+                            "surface-container-low": "#fef1ed",
+                            "tertiary-fixed": "#f7e0b5",
+                            "on-tertiary-fixed": "#251a01",
+                            "on-error": "#ffffff",
+                            "surface-tint": "#934b19",
+                            "primary-fixed": "#ffdbc9",
+                            "on-error-container": "#93000a",
+                            "secondary-fixed-dim": "#ffb68d",
+                            "on-surface-variant": "#54433a",
+                            "error-container": "#ffdad6",
+                            "on-tertiary-fixed-variant": "#544525",
+                            "on-primary-fixed": "#321200",
+                            "background": "#fff8f6",
+                            "surface": "#fff8f6",
+                            "outline-variant": "#dac2b6",
+                            "on-background": "#201a18",
+                            "surface-container-lowest": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "on-primary-fixed-variant": "#753401",
+                            "inverse-primary": "#ffb68c",
+                            "on-secondary-fixed": "#321200",
+                            "on-surface": "#201a18",
+                            "surface-bright": "#fff8f6",
+                            "surface-container": "#f9ebe7",
+                            "on-tertiary": "#ffffff",
+                            "inverse-on-surface": "#fbeeea",
+                            "surface-container-high": "#f3e5e1",
+                            "on-tertiary-container": "#e2cca2",
+                            "error": "#ba1a1a",
+                            "tertiary-fixed-dim": "#dac49b",
+                            "surface-variant": "#ede0dc",
+                            "secondary-container": "#fd8a3e",
+                            "secondary": "#9a4600",
+                            "on-secondary-fixed-variant": "#763400",
+                            "on-secondary": "#ffffff",
+                            "inverse-surface": "#362f2c",
+                            "outline": "#877369",
+                            "primary-fixed-dim": "#ffb68c",
+                            "primary-container": "#8b4513",
+                            "secondary-fixed": "#ffdbc9",
+                            "tertiary-container": "#665635",
+                            "surface-container-highest": "#ede0dc",
+                            "on-primary-container": "#ffc29f"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "container-max": "1280px",
+                            "margin-mobile": "16px",
+                            "margin-desktop": "64px",
+                            "gutter": "24px",
+                            "base": "8px"
+                        },
+                        "fontFamily": {
+                            "headline-lg-mobile": ["Montserrat"],
+                            "label-md": ["Work Sans"],
+                            "body-lg": ["Work Sans"],
+                            "headline-lg": ["Montserrat"],
+                            "body-md": ["Work Sans"],
+                            "display-lg": ["Montserrat"],
+                            "title-md": ["Montserrat"]
+                        },
+                        "fontSize": {
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            body {
+                background-color: #fff8f6;
+                color: #201a18;
+            }
+
+            .bento-grid {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 24px;
+            }
+
+            .wood-frame {
+                border: 3px solid #6c2f00;
+            }
+
+            .shadow-subtle {
+                box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+            }
+    </style>
+    <style>
+            body {
+                min-height: max(884px, 100dvh);
+            }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+    <!-- TopAppBar -->
+    <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container w-full top-0 sticky border-b-4 border-secondary shadow-sm flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full z-50">
+        <div class="flex items-center gap-3 cursor-pointer active:scale-95">
+
+            <h1 class="font-headline-lg text-headline-lg font-bold text-on-primary tracking-tight">CARPINTEC</h1>
+        </div>
+        <nav class="hidden md:flex gap-gutter font-title-md text-title-md">
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-4 py-1 rounded" href="#">Inicio</a>
+            <a class="text-on-primary font-bold hover:bg-secondary-container transition-colors px-4 py-1 rounded" href="#">Catálogo</a>
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-4 py-1 rounded" href="#">Cotizaciones</a>
+        </nav>
+        <button class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full font-bold hover:bg-secondary transition-all active:scale-95 hidden md:block">Contacto</button>
+    </header>
+    <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20">
+        <section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-gutter"><div class="group"><div class="bg-surface-container-lowest wood-frame rounded-lg overflow-hidden shadow-subtle transition-all duration-300 hover:shadow-xl hover:-translate-y-1"><div class="aspect-[16/9] overflow-hidden"><img alt="Vestidor de roble de lujo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLsdB06ZHXn-W4--9-q-GAd8-ALFwd4pZnAhGM_lcgIJGX5az6DB3OYSPT7l0M6DRyqUHMuKaWfEFB6tLU1rjLnTQan845qal62bC4He_KmnUt7z1puSuSngbvDJP9Gr2Bx_xE7Jsf_h3JwRw-mUKcEcZX1P7Vy95SZjGhBaDytQelOjn6oEvvY1KIgUESiFKc_SqhqsVfuiI9ljKwmN4WJcBWAdsOucAijNPuLheH6e9pPq4myqUimYhlYElkxLwnyZK1mGWoszudI"></div><div class="p-6 space-y-4"><div class="flex justify-between items-start"><h4 class="font-title-md text-title-md text-primary">Vestidor de Roble</h4><span class="bg-primary text-on-primary px-3 py-1 text-[12px] font-bold rounded">NUEVO</span></div><p class="font-body-md text-body-md text-on-surface-variant">Sistema de almacenamiento integral en roble macizo con iluminación LED integrada y herrajes de alta gama.</p><button class="w-full bg-primary text-on-primary py-3 rounded font-bold hover:bg-secondary transition-colors active:scale-95 flex items-center justify-center gap-2"><span class="material-symbols-outlined">request_quote</span> Cotizar Diseño</button></div></div></div><div class="group"><div class="bg-surface-container-lowest wood-frame rounded-lg overflow-hidden shadow-subtle transition-all duration-300 hover:shadow-xl hover:-translate-y-1"><div class="aspect-[16/9] overflow-hidden"><img alt="Cama de diseño en nogal" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLtiAY0Z5tq6mnIDnTD7_dtyC3vcq1skv_UYZC5pBcramZGZqfmZR8I2w8swWupXWKmPwZXBvU5N21y5tMeLQ-O9KVGx22wa6HV9TQZ3R58lIwozRUlIYVrPQCdXdc0Iuw43LRxQ3Ey21WcjniERlcB5GEUK83tXX5rlOxSCYnA50byKDUlqcGyiQK4_8Uw6luVv_bj2Ox8pQMvjARcJXk_9YhSB0Vg9KoGhrcSKGACCdqAE6TodOymyF8D_"></div><div class="p-6 space-y-4"><div class="flex justify-between items-start"><h4 class="font-title-md text-title-md text-primary">Cama Zen Nogal</h4><span class="bg-surface-variant text-on-surface-variant px-2 py-1 text-[10px] font-bold rounded uppercase">Colección Premium</span></div><p class="font-body-md text-body-md text-on-surface-variant">Estructura minimalista de nogal americano con cabecero tapizado en lino natural. Confort y elegancia artesanal.</p><button class="w-full bg-primary text-on-primary py-3 rounded font-bold hover:bg-secondary transition-colors active:scale-95 flex items-center justify-center gap-2"><span class="material-symbols-outlined">request_quote</span> Cotizar</button></div></div></div></section>
+        <!-- Hero Section -->
+        <!-- Product Catalog Header -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b-2 border-outline-variant pb-6">
+            <div>
+                <h3 class="font-headline-lg text-headline-lg text-primary mb-2">Catálogo de Piezas</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Artesanía modular y mobiliario de alta gama para espacios exigentes.</p>
+            </div>
+            <div class="mt-6 md:mt-0 flex gap-4">
+                <button class="flex items-center gap-2 font-label-md text-label-md text-primary border border-outline px-4 py-2 rounded active:scale-95">
+                    <span class="material-symbols-outlined">filter_list</span> Filtrar
+                </button>
+                <button class="flex items-center gap-2 font-label-md text-label-md text-primary border border-outline px-4 py-2 rounded active:scale-95">
+                    <span class="material-symbols-outlined">sort</span> Ordenar
+                </button>
+            </div>
+        </div>
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
+            <!-- Mueble de Roble -->
+            <div class="lg:col-span-4 group">
+                <div class="bg-surface-container-lowest wood-frame rounded-lg overflow-hidden shadow-subtle transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A studio photograph of two minimalist bedside tables made of light oak wood. The nightstands feature a clean rectangular frame, one drawer with a carved handle, and an open lower shelf. They are styled with neutral-toned ceramic lamps and books in a bright, modern bedroom setting. The lighting is soft and even, highlighting the fine wood grain and professional joinery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhro3XhEU-InQc3Uv8-J0YQGb946kGinO0mfbSAxJ02pz73bCt8l-76Ygu3oPAsY6AmIsZ_5OpXzw0dE1bDd_xAzkJ4mjxKTIeaZ0q3lZ5peykEo-QQYmKK6cESy_-fsfGFMumkWGsC3rnkLuyGKBxgZUrAzMOgQfnp7Jrhtb_Lmm1_7LYXlGofgMhsBvDP81naYJX-U51t5CBBlbYbPM10nDftrYmpxmxhWVMocXumbVfPtOJriC21A">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-title-md text-title-md text-primary">Mueble de Roble</h4>
+                            <span class="bg-surface-variant text-on-surface-variant px-2 py-1 text-[10px] font-bold rounded uppercase">Referencia: MK-22</span>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Madera de roble blanco seleccionado, tratado con ceras naturales para resaltar su veta orgánica y asegurar durabilidad extrema.</p>
+                        <div class="bg-surface-container-low p-3 rounded flex justify-between">
+                            <div class="text-[12px] font-bold text-tertiary">
+                                <span class="block opacity-60">ANCHO</span> 50 cm
+                            </div>
+                            <div class="text-[12px] font-bold text-tertiary">
+                                <span class="block opacity-60">ALTO</span> 65 cm
+                            </div>
+                            <div class="text-[12px] font-bold text-tertiary">
+                                <span class="block opacity-60">FONDO</span> 40 cm
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary text-on-primary py-3 rounded font-bold hover:bg-secondary transition-colors active:scale-95 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">request_quote</span> Cotizar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mesa de Comedor -->
+            <div class="lg:col-span-8 group">
+                <div class="bg-surface-container-lowest wood-frame rounded-lg overflow-hidden shadow-subtle h-full flex flex-col md:flex-row transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="md:w-1/2 overflow-hidden">
+                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A wide-angle shot of a massive, live-edge dining table crafted from a single slab of ancient walnut wood. The table is set in a rustic yet elegant dining room with exposed ceiling beams and large windows overlooking a garden. The surface of the table shows natural cracks filled with resin and a deep, rich brown finish. High-end glassware and ceramic plates are arranged for a dinner party, creating a luxurious and inviting atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9ObWt4HvhPd82LnZh3XVLFIIgz42MuAnUfPPgYKINaryM5IMjLHgv2rHAaskgBGxw6A4gmuPrsHEAzC1bZxkiq1ibJ7Jl4dLLhvSVtwJBvLxIXBb0KdnUxmF6haiiqpMZl9Z19MN3H5JMBsnY-qPJqgZ6g5yuzDy3_UFePDy_anaaJGBifUFYS7j4k8GyaCp72gGdBXcRBRqbXSQmAlF3p5FupV0L0LJUfy0uxbhXrO0zYtNXEvg1jA">
+                    </div>
+                    <div class="md:w-1/2 p-8 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-headline-lg text-headline-lg text-primary">Mesa de Comedor</h4>
+                                <span class="bg-primary text-on-primary px-3 py-1 text-[12px] font-bold rounded">BEST SELLER</span>
+                            </div>
+                            <p class="font-body-lg text-body-lg text-on-surface-variant">Estructura robusta de nogal con bordes naturales 'live edge'. Cada pieza es única, conservando la silueta original del árbol.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-3 font-body-md text-on-surface">
+                                    <span class="material-symbols-outlined text-primary text-[18px]">verified</span> Madera certificada FSC
+                                </li>
+                                <li class="flex items-center gap-3 font-body-md text-on-surface">
+                                    <span class="material-symbols-outlined text-primary text-[18px]">verified</span> Acabado mate hidrorrepelente
+                                </li>
+                                <li class="flex items-center gap-3 font-body-md text-on-surface">
+                                    <span class="material-symbols-outlined text-primary text-[18px]">verified</span> Dimensiones personalizables
+                                </li>
+                            </ul>
+                            <div class="border-t border-outline-variant pt-4">
+                                <span class="font-label-md text-label-md text-tertiary">Dimensiones Estándar:</span>
+                                <p class="font-title-md text-title-md text-primary">240cm x 110cm x 75cm</p>
+                            </div>
+                        </div>
+                        <button class="mt-8 w-full bg-primary text-on-primary py-4 rounded font-bold hover:bg-secondary transition-colors active:scale-95 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">request_quote</span> Cotizar Diseño a Medida
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Silla de Cedro -->
+            <div class="lg:col-span-5 group">
+                <div class="bg-surface-container-lowest wood-frame rounded-lg overflow-hidden shadow-subtle transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="aspect-square overflow-hidden bg-surface-variant flex items-center justify-center">
+                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A detailed close-up of a handcrafted wooden armchair with a curved back and spindle design. The chair is made from reddish-brown cedar wood and stands in a bright carpentry workshop with sawdust on the floor. Every joint is visible, showcasing expert dovetail and mortise-and-tenon work. The lighting is dramatic, casting soft shadows that highlight the sculptural form of the chair's arms." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJxUtrXtdDvigw_SF486jgunUDNOvF6ygYICBmL7Nuy21jlUjfZsTjrb1btWUFskNyM6UOh_uSGWLD4sjvWycWId88qeq4aN8ZNksmexqzPLzbOLp3MhZAQ4JJwegZ9Mjhq-N3DfVjW241txOVGkwSMF5KvZilvsjp1PBQR3LSj3q0y9jysK91mxfsv2mHms6XJ6yjxzGmyLLiD89VO529XG2_ALtgwQxpDMVYaE27mm8L7CriMl8xFw">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h4 class="font-title-md text-title-md text-primary">Silla de Cedro</h4>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Diseño ergonómico esculpido en cedro rojo. Una pieza ligera pero estructuralmente indestructible con uniones de espiga tradicionales.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-surface-container text-center p-3 rounded">
+                                <span class="block text-[10px] font-bold text-on-surface-variant">ALTURA ASIENTO</span>
+                                <span class="font-bold text-primary">45 cm</span>
+                            </div>
+                            <div class="bg-surface-container text-center p-3 rounded">
+                                <span class="block text-[10px] font-bold text-on-surface-variant">CAPACIDAD</span>
+                                <span class="font-bold text-primary">150 kg</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary text-on-primary py-3 rounded font-bold hover:bg-secondary transition-colors active:scale-95 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">request_quote</span> Cotizar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Organizador Modular -->
+            <div class="lg:col-span-7 group">
+                <div class="bg-surface-container-lowest wood-frame rounded-lg overflow-hidden shadow-subtle transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col">
+                    <div class="relative h-64 md:h-80 overflow-hidden">
+                        <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A professional product shot of a dark walnut wood spice rack and kitchen tool organizer. The modular system is placed on a white marble countertop in a bright kitchen. It features tiered shelves for uniform glass jars with dark wood caps and a vertical slot section for stainless steel spatulas and whisks. The composition is clean and minimalist, emphasizing functional beauty and order in a contemporary kitchen environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxFOWasnB-SuHTM-W2j8HrNqp5b92fwqf1DitpHOMmdOuX0it7z6HoAxCismdXwsLgGTKZDOHDdgVdv6iRtGCrrxMTTlLbJ9Frn2TrPFT2vc44k0G_kCml613U34DDc46iT6bIr3EYCpnOT4Lx4gzZr977idbDB5PO_LO16_a40oya9KvyZOzcGXOuw0y_vISrg7pb32O67KVZmZVc_PUnLthG0vm5so-ks3U0LT0TxRVKJc7cKhnVpg">
+                        <div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded font-bold text-label-md">MODULAR</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-headline-lg text-headline-lg text-primary mb-2">Organizador Modular</h4>
+                            <p class="font-body-md text-body-md text-on-surface-variant mb-6">Optimiza tu espacio de trabajo o cocina con este sistema de almacenamiento en madera de ébano y nogal. Resistente a la humedad y el uso diario.</p>
+                            <div class="space-y-2 mb-6">
+                                <div class="flex justify-between items-center text-label-md py-1 border-b border-outline-variant">
+                                    <span class="text-on-surface-variant">Material</span>
+                                    <span class="font-bold">Nogal + Ébano</span>
+                                </div>
+                                <div class="flex justify-between items-center text-label-md py-1 border-b border-outline-variant">
+                                    <span class="text-on-surface-variant">Módulos</span>
+                                    <span class="font-bold">6 Expandibles</span>
+                                </div>
+                                <div class="flex justify-between items-center text-label-md py-1 border-b border-outline-variant">
+                                    <span class="text-on-surface-variant">Dimensiones</span>
+                                    <span class="font-bold">80x40x15 cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary text-on-primary py-4 rounded font-bold hover:bg-secondary transition-colors active:scale-95 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">request_quote</span> Cotizar Configuración
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call to Action Section -->
+        <section class="mt-24 mb-16 text-center bg-tertiary-container text-on-tertiary-container p-12 md:p-20 rounded-2xl relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: url(&quot;https://www.transparenttextures.com/patterns/wood-pattern.png&quot;);"></div>
+            <div class="relative z-10 space-y-6 max-w-3xl mx-auto">
+                <h3 class="font-display-lg text-display-lg">¿Tienes un proyecto en mente?</h3>
+                <p class="font-body-lg text-body-lg opacity-90">Fabricamos mobiliario corporativo y residencial bajo las especificaciones más estrictas de diseño. Nuestro equipo de artesanos está listo para darle vida a tus ideas.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                    <button class="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-full font-bold text-title-md hover:bg-secondary transition-all active:scale-95">Solicitar Consultoría Gratis</button>
+                    <button class="bg-white/10 border border-white/20 backdrop-blur-md text-white px-10 py-4 rounded-full font-bold text-title-md hover:bg-white/20 transition-all active:scale-95">Descargar PDF Técnico</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-primary text-on-primary pt-16 pb-28 md:pb-12 px-margin-mobile md:px-margin-desktop">
+        <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 mb-6">
+                    <span class="material-symbols-outlined text-[32px]">carpenter</span>
+                    <span class="font-headline-lg text-headline-lg font-bold">CARPINTEC</span>
+                </div>
+                <p class="font-body-md text-on-primary/70">Estudio de ebanistería fina especializado en mobiliario de autor y proyectos arquitectónicos en madera.</p>
+            </div>
+            <div>
+                <h5 class="font-title-md text-title-md mb-6">Colecciones</h5>
+                <ul class="space-y-3 font-label-md text-on-primary/80">
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Residencial Luxury</a></li>
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Oficinas Modernas</a></li>
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Restaurantes &amp; Hoteles</a></li>
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Accesorios de Autor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-title-md text-title-md mb-6">Carpintec Studio</h5>
+                <ul class="space-y-3 font-label-md text-on-primary/80">
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Nuestra Madera</a></li>
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Proceso de Frabricación</a></li>
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Sostenibilidad</a></li>
+                    <li class=""><a class="hover:text-secondary-fixed transition-colors" href="#">Showroom</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-title-md text-title-md mb-6">Contacto</h5>
+                <p class="font-label-md text-on-primary/80 mb-4">info@carpintec.studio</p>
+                <p class="font-label-md text-on-primary/80">+34 900 000 000</p>
+                <div class="flex gap-4 mt-6">
+                    <a class="w-10 h-10 rounded-full border border-on-primary/30 flex items-center justify-center hover:bg-secondary-container transition-all" href="#">
+                        <span class="material-symbols-outlined text-[20px]">share</span>
+                    </a>
+                    <a class="w-10 h-10 rounded-full border border-on-primary/30 flex items-center justify-center hover:bg-secondary-container transition-all" href="#">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-on-primary/10 text-center text-label-md opacity-60">
+            © 2024 Carpintec Woodwork Studio. Todos los derechos reservados.
+        </div>
+    </footer>
+    <!-- BottomNavBar (Mobile only) -->
+    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-highest border-t-4 border-primary shadow-lg flex justify-around items-center h-20 pb-safe px-2 w-full">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90" href="#">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-label-md text-label-md">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-transform active:scale-90" href="#">
+            <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">handyman</span>
+            <span class="font-label-md text-label-md">Catalog</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90" href="#">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span class="font-label-md text-label-md">New Quote</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90" href="#">
+            <span class="material-symbols-outlined">receipt_long</span>
+            <span class="font-label-md text-label-md">Orders</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90" href="#">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-md text-label-md">Profile</span>
+        </a>
+    </nav>
+    <script>
+            // Simple interactive micro-interactions
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    if (button.classList.contains('bg-primary')) {
+                        button.classList.replace('bg-primary', 'bg-secondary');
+                    }
+                });
+                button.addEventListener('mouseleave', () => {
+                    if (button.classList.contains('bg-secondary')) {
+                        button.classList.replace('bg-secondary', 'bg-primary');
+                    }
+                });
+            });
+    </script>
+
+
+</body></html>

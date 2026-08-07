@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Carpintec - Reportes y Estadísticas</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Tailwind Theme Config -->
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "inverse-primary": "#e1c299",
+                            "on-primary-fixed-variant": "#584324",
+                            "surface-container-highest": "#e4e2dd",
+                            "on-tertiary-fixed": "#0e1c2f",
+                            "on-background": "#000000",
+                            "on-tertiary-container": "#3d495f",
+                            "outline-variant": "#d1c5b8",
+                            "secondary": "#5f5e5e",
+                            "tertiary-fixed-dim": "#bac7e1",
+                            "secondary-fixed-dim": "#c8c6c5",
+                            "tertiary-fixed": "#d6e3fe",
+                            "error": "#ba1a1a",
+                            "primary-fixed": "#feddb3",
+                            "on-primary-container": "#000000",
+                            "on-secondary-fixed-variant": "#474747",
+                            "on-secondary": "#ffffff",
+                            "surface-container-lowest": "#ffffff",
+                            "inverse-on-surface": "#f2f1ec",
+                            "surface-dim": "#dbdad5",
+                            "surface-container": "#f0eee9",
+                            "error-container": "#ffdad6",
+                            "on-secondary-fixed": "#1b1c1c",
+                            "on-error": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface-container-high": "#eae8e3",
+                            "inverse-surface": "#30312e",
+                            "on-tertiary-fixed-variant": "#3b475d",
+                            "on-primary-fixed": "#000000",
+                            "secondary-fixed": "#e4e2e1",
+                            "surface": "#fbf9f4",
+                            "primary-fixed-dim": "#e1c299",
+                            "primary": "#D2B48C",
+                            "on-secondary-container": "#656464",
+                            "on-surface-variant": "#000000",
+                            "background": "#fbf9f4",
+                            "surface-tint": "#D2B48C",
+                            "surface-bright": "#fbf9f4",
+                            "on-surface": "#000000",
+                            "tertiary": "#525f76",
+                            "on-primary": "#000000",
+                            "surface-container-low": "#f5f3ee",
+                            "secondary-container": "#e4e2e1",
+                            "outline": "#7f766a",
+                            "surface-variant": "#e4e2dd",
+                            "tertiary-container": "#acb9d3",
+                            "primary-container": "#D2B48C",
+                            "on-tertiary": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "margin-mobile": "16px",
+                            "base": "8px",
+                            "sidebar-width": "280px",
+                            "gutter": "24px",
+                            "card-padding": "24px",
+                            "margin-desktop": "40px"
+                        },
+                        "fontFamily": {
+                            "body-lg": ["Manrope"],
+                            "headline-md": ["Manrope"],
+                            "headline-lg": ["Manrope"],
+                            "title-md": ["Manrope"],
+                            "label-md": ["Work Sans"],
+                            "data-table": ["Work Sans"],
+                            "body-md": ["Manrope"],
+                            "display-lg": ["Manrope"]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            body {
+                background-color: #fbf9f4;
+                font-family: 'Manrope', sans-serif;
+                color: #000000;
+            }
+
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            .card-shadow {
+                box-shadow: 0 4px 12px rgba(210, 180, 140, 0.12);
+            }
+
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f0eee9;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #d1c5b8;
+                border-radius: 10px;
+            }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+    <!-- MAIN CONTENT AREA -->
+    <div class="w-full" id="main-content">
+        <!-- TOP APP BAR -->
+        <button onclick="history.back()"
+                class="flex items-center gap-2 text-primary hover:underline mb-4">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Volver
+        </button>
+
+        <h2 class="text-4xl font-bold text-black">
+            Reportes
+        </h2>
+
+        <p class="text-gray-500 mb-6">
+            Consulta y exporta los reportes del sistema.
+        </p>
+        <!-- DASHBOARD CANVAS -->
+        <div class="p-margin-desktop space-y-gutter flex-1">
+            <!-- CONTROLS & EXPORT -->
+            <section class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="flex bg-surface-container-low p-1 rounded-xl border border-outline-variant shadow-sm">
+                    <button class="px-6 py-2 rounded-lg bg-primary text-black font-bold font-title-md text-title-md transition-all">Mes</button>
+                    <button class="px-6 py-2 rounded-lg text-black font-title-md text-title-md hover:bg-surface-container-high transition-all">Trimestre</button>
+                    <button class="px-6 py-2 rounded-lg text-black font-title-md text-title-md hover:bg-surface-container-high transition-all">Año</button>
+                </div>
+                <div class="flex gap-3 w-full md:w-auto">
+                    <button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-2 bg-surface-container-lowest border-2 border-primary text-black font-bold rounded-xl font-title-md text-title-md hover:bg-primary/5 transition-all">
+                        <span class="material-symbols-outlined" data-icon="download">download</span>
+                        Exportar Excel
+                    </button>
+                    <button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-2 bg-primary text-black font-bold rounded-xl font-title-md text-title-md hover:opacity-90 transition-all shadow-md">
+                        <span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+                        Exportar PDF
+                    </button>
+                </div>
+            </section>
+            <!-- KPI GRID -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- KPI 1 -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant card-shadow flex flex-col justify-between group hover:-translate-y-1 transition-transform">
+                    <div class="flex justify-between items-start">
+                        <div class="p-3 bg-primary/20 rounded-lg">
+                            <span class="material-symbols-outlined text-black" data-icon="payments">payments</span>
+                        </div>
+                        <span class="font-label-md text-label-md flex items-center gap-1 text-emerald-600 font-bold">
+                            <span class="material-symbols-outlined text-sm font-bold" data-icon="trending_up">trending_up</span>
+                            +12%
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-label-md text-label-md text-black uppercase tracking-wider opacity-70">Ventas Totales</p>
+                        <h3 class="font-headline-md text-headline-md font-bold mt-1 text-black">$45.280,00</h3>
+                    </div>
+                </div>
+                <!-- KPI 2 -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant card-shadow flex flex-col justify-between group hover:-translate-y-1 transition-transform">
+                    <div class="flex justify-between items-start">
+                        <div class="p-3 bg-primary/20 rounded-lg">
+                            <span class="material-symbols-outlined text-black" data-icon="account_balance_wallet">account_balance_wallet</span>
+                        </div>
+                        <span class="font-label-md text-label-md flex items-center gap-1 text-emerald-600 font-bold">
+                            <span class="material-symbols-outlined text-sm font-bold" data-icon="trending_up">trending_up</span>
+                            +8.4%
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-label-md text-label-md text-black uppercase tracking-wider opacity-70">Ganancias Netas</p>
+                        <h3 class="font-headline-md text-headline-md font-bold mt-1 text-black">$18.450,00</h3>
+                    </div>
+                </div>
+                <!-- KPI 3 -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant card-shadow flex flex-col justify-between group hover:-translate-y-1 transition-transform">
+                    <div class="flex justify-between items-start">
+                        <div class="p-3 bg-primary/20 rounded-lg">
+                            <span class="material-symbols-outlined text-black" data-icon="task_alt">task_alt</span>
+                        </div>
+                        <span class="font-label-md text-label-md text-black opacity-70">Este mes</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-label-md text-label-md text-black uppercase tracking-wider opacity-70">Pedidos Completados</p>
+                        <h3 class="font-headline-md text-headline-md font-bold mt-1 text-black">124</h3>
+                    </div>
+                </div>
+                <!-- KPI 4 -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant card-shadow flex flex-col justify-between group hover:-translate-y-1 transition-transform">
+                    <div class="flex justify-between items-start">
+                        <div class="p-3 bg-error-container/30 rounded-lg">
+                            <span class="material-symbols-outlined text-error" data-icon="pending_actions">pending_actions</span>
+                        </div>
+                        <span class="font-label-md text-label-md text-error font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm" data-icon="priority_high">priority_high</span>
+                            Urgente
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-label-md text-label-md text-black uppercase tracking-wider opacity-70">Cotizaciones Pendientes</p>
+                        <h3 class="font-headline-md text-headline-md font-bold mt-1 text-black">18</h3>
+                    </div>
+                </div>
+            </section>
+            <!-- ANALYTICS BENTO GRID -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Ventas por Mes -->
+                <div class="lg:col-span-2 bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant card-shadow">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h4 class="font-title-md text-title-md text-black font-bold">Ventas por Mes</h4>
+                            <p class="font-label-md text-label-md text-black opacity-70">Rendimiento de los últimos 6 meses</p>
+                        </div>
+                        <select class="bg-transparent border-none font-label-md text-label-md focus:ring-0 text-black font-bold cursor-pointer">
+                            <option>2024</option>
+                            <option>2023</option>
+                        </select>
+                    </div>
+                    <div class="h-64 flex items-end justify-between gap-4 px-4">
+                        <!-- Simulated Bar Chart -->
+                        <div class="flex flex-col items-center gap-2 w-full">
+                            <div class="w-full bg-surface-container-highest rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 60%;"></div>
+                            <span class="font-label-md text-label-md text-black">Ene</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full">
+                            <div class="w-full bg-surface-container-highest rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 45%;"></div>
+                            <span class="font-label-md text-label-md text-black">Feb</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full">
+                            <div class="w-full bg-primary rounded-t-lg transition-all duration-500" style="height: 85%;"></div>
+                            <span class="font-label-md text-label-md text-black">Mar</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full">
+                            <div class="w-full bg-surface-container-highest rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 70%;"></div>
+                            <span class="font-label-md text-label-md text-black">Abr</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full">
+                            <div class="w-full bg-surface-container-highest rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 95%;"></div>
+                            <span class="font-label-md text-label-md text-black">May</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full">
+                            <div class="w-full bg-surface-container-highest rounded-t-lg transition-all duration-500 hover:bg-primary" style="height: 75%;"></div>
+                            <span class="font-label-md text-label-md text-black">Jun</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pedidos por Estado -->
+                <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant card-shadow flex flex-col">
+                    <h4 class="font-title-md text-title-md text-black font-bold mb-6">Pedidos por Estado</h4>
+                    <div class="relative flex-1 flex flex-col items-center justify-center">
+                        <svg class="w-48 h-48" viewbox="0 0 100 100">
+                            <circle cx="50" cy="50" fill="transparent" r="40" stroke="#f0dfd6" stroke-width="12"></circle>
+                            <circle class="transition-all duration-1000" cx="50" cy="50" fill="transparent" r="40" stroke="#D2B48C" stroke-dasharray="251.2" stroke-dashoffset="62.8" stroke-linecap="round" stroke-width="12"></circle>
+                            <circle cx="50" cy="50" fill="transparent" r="40" stroke="#000000" stroke-dasharray="251.2" stroke-dashoffset="188.4" stroke-linecap="round" stroke-width="12"></circle>
+                        </svg>
+                        <div class="absolute text-center">
+                            <span class="font-display-lg text-black text-3xl font-bold">124</span>
+                            <p class="font-label-md text-label-md text-black opacity-70">Totales</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-primary"></div>
+                            <span class="font-label-md text-label-md text-black">Producción (45%)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-black"></div>
+                            <span class="font-label-md text-label-md text-black">Entregados (30%)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-surface-variant"></div>
+                            <span class="font-label-md text-label-md text-black">En espera (20%)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-error/40"></div>
+                            <span class="font-label-md text-label-md text-black">Cancelado (5%)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Top Productos más Solicitados -->
+                <div class="lg:col-span-3 bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant card-shadow">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-title-md text-title-md text-black font-bold">Top de Productos más Solicitados</h4>
+                        <button class="text-black font-bold font-label-md text-label-md flex items-center gap-1 hover:underline">
+                            Ver catálogo completo
+                            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Product Card 1 -->
+                        <div class="group cursor-pointer">
+                            <div class="relative overflow-hidden rounded-xl mb-3 aspect-video">
+                                <img alt="Cocinas Integrales" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXV3EaUPBtiZY2mHA5WgxO3_bUHALimOnMis19ydAdtK-e62SJul3hMyR1ot-Aq52Qin0jVNpw6tr0Z4tuX1L6NKLQvpAW_I3MJeHYhYay04sQcKvB0IN720_1pKXLE8J4F6yMd3xoOq8v3TLw-5U2LGg55MwN5i7_U1VnlE5OoE-TD5mLJfQbOhbgQtsXt0T28OVoFK3pp215_vRVgniesSzLHa_Shv_SEaosgwAYxzWvCi-VKtut7w" />
+                                <div class="absolute top-2 right-2 bg-black text-white font-bold font-label-md text-label-md px-2 py-1 rounded">#1 TOP</div>
+                            </div>
+                            <h5 class="font-title-md text-title-md text-black font-bold">Cocinas Integrales</h5>
+                            <div class="flex justify-between items-center mt-1">
+                                <p class="font-label-md text-label-md text-black opacity-70">42 pedidos este mes</p>
+                                <span class="font-body-md text-body-md font-bold text-black">$4.500+ avg</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-primary h-full w-[85%] rounded-full"></div>
+                            </div>
+                        </div>
+                        <!-- Product Card 2 -->
+                        <div class="group cursor-pointer">
+                            <div class="relative overflow-hidden rounded-xl mb-3 aspect-video">
+                                <img alt="Muebles de TV" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Ga_UWmn1AZEMf_M9f2Zc58P-Ng2pem_uDlpoWgYUjVlvs1WMr6XINnn24iKj1lz_LWurcjjSlkIcNXhivr5vm9AlMIPb34jMQXnSZ4M4wMwmKni1Uq2O2l1fYWdinmwtQbemDXwV5dDjYZ_07o7pXZvS3H1Jm96zZZEP7Wsn8WDeJ6Qw8z1XOOsvGukLlO5HkNuaJgq8YlaagXm5EM31QuvdVjnPr9iwpNxBGT0BWf5GO3riW4k5_Q" />
+                            </div>
+                            <h5 class="font-title-md text-title-md text-black font-bold">Muebles de TV</h5>
+                            <div class="flex justify-between items-center mt-1">
+                                <p class="font-label-md text-label-md text-black opacity-70">28 pedidos este mes</p>
+                                <span class="font-body-md text-body-md font-bold text-black">$1.200+ avg</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-primary h-full w-[60%] rounded-full"></div>
+                            </div>
+                        </div>
+                        <!-- Product Card 3 -->
+                        <div class="group cursor-pointer">
+                            <div class="relative overflow-hidden rounded-xl mb-3 aspect-video">
+                                <img alt="Bibliotecas" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd2w_GCjkuVlnlEqXG4-HJQRcdcwGz5Slncuh76FewQkm4KMmqGVg3VdEaS2MP0nwy2ZwreLX-vNXIxBFfGraHOB-e0UqwutoBfOoC-2YtvSq04W2j9Lca5Ga43wxM5rycOu5TO5lQIms52AkAnGuo2415trUGbaF_pRZEriEKT5h7MUECoMaBs31W6J5pOPR9dcAu1o50Esu7rOwCfzl2NmgORfXxMbQKzugEY-2dmOdAlvxnmdS9Wg" />
+                            </div>
+                            <h5 class="font-title-md text-title-md text-black font-bold">Bibliotecas</h5>
+                            <div class="flex justify-between items-center mt-1">
+                                <p class="font-label-md text-label-md text-black opacity-70">15 pedidos este mes</p>
+                                <span class="font-body-md text-body-md font-bold text-black">$2.800+ avg</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-primary h-full w-[40%] rounded-full"></div>
+                            </div>
+                        </div>
+                        <!-- Product Card 4 -->
+                        <div class="group cursor-pointer">
+                            <div class="relative overflow-hidden rounded-xl mb-3 aspect-video">
+                                <img alt="Mesas de Comedor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAmqnuGf0falSq03p9cM6TeFHuDpMqiZsufMHyzDGTU0PTtIomAmRPzgryv8dMG8LLrFSdqSyCj6EOrgCld4uOBcGl0lu0LOLEMyAQlqROyn57-5WsUuN5l_h7EHojy6XR_3z_5FQsd07AMszVFEpOza9zHEXSclCAY7BCOx3WWqq-Qu06HJfmPd_T-lKMlnwp-QOSV9yqz9aHsdODhJKqHptKujJdX4e9nE6_FRO9dnR2jj4pJrGMcQ" />
+                            </div>
+                            <h5 class="font-title-md text-title-md text-black font-bold">Mesas de Comedor</h5>
+                            <div class="flex justify-between items-center mt-1">
+                                <p class="font-label-md text-label-md text-black opacity-70">12 pedidos este mes</p>
+                                <span class="font-body-md text-body-md font-bold text-black">$1.800+ avg</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-primary h-full w-[35%] rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- FOOTER INFO -->
+        <footer class="mt-auto p-margin-desktop flex justify-between items-center text-black border-t border-outline-variant bg-surface-container-lowest">
+            <p class="font-label-md text-label-md opacity-60">© 2024 Carpintec. Todos los derechos reservados.</p>
+            <div class="flex gap-6">
+                <a class="font-label-md text-label-md opacity-60 hover:text-black hover:opacity-100 transition-colors" href="#">Términos</a>
+                <a class="font-label-md text-label-md opacity-60 hover:text-black hover:opacity-100 transition-colors" href="#">Privacidad</a>
+            </div>
+        </footer>
+    </div>
+    <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const bars = document.querySelectorAll('.bg-surface-container-highest');
+                bars.forEach((bar, index) => {
+                    const targetHeight = bar.style.height;
+                    bar.style.height = '0%';
+                    setTimeout(() => {
+                        bar.style.height = targetHeight;
+                    }, 200 + (index * 100));
+                });
+
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(btn => {
+                    btn.addEventListener('mousedown', () => {
+                        btn.classList.add('scale-[0.98]');
+                    });
+                    btn.addEventListener('mouseup', () => {
+                        btn.classList.remove('scale-[0.98]');
+                    });
+                });
+            });
+    </script>
+</body></html>

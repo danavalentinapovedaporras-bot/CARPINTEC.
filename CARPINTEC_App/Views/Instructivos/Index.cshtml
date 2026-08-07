@@ -1,0 +1,241 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Carpintec - Centro de Instructivos</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "on-primary-container": "#ffc29f",
+                            "surface-bright": "#fff8f6",
+                            "outline": "#877369",
+                            "tertiary-fixed": "#f7e0b5",
+                            "tertiary-container": "#665635",
+                            "on-secondary-container": "#672c00",
+                            "surface-tint": "#934b19",
+                            "surface-container-low": "#fef1ed",
+                            "on-primary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "surface-container-highest": "#ede0dc",
+                            "on-secondary-fixed": "#321200",
+                            "surface-variant": "#ede0dc",
+                            "surface-container": "#f9ebe7",
+                            "inverse-on-surface": "#fbeeea",
+                            "secondary-container": "#fd8a3e",
+                            "primary": "#6c2f00",
+                            "on-primary-fixed-variant": "#753401",
+                            "tertiary-fixed-dim": "#dac49b",
+                            "on-error": "#ffffff",
+                            "primary-container": "#8b4513",
+                            "surface-container-high": "#f3e5e1",
+                            "background": "#fff8f6",
+                            "surface": "#fff8f6",
+                            "on-tertiary-fixed-variant": "#544525",
+                            "on-background": "#201a18",
+                            "secondary-fixed-dim": "#ffb68d",
+                            "on-surface-variant": "#54433a",
+                            "on-surface": "#201a18",
+                            "on-tertiary-container": "#e2cca2",
+                            "on-secondary-fixed-variant": "#763400",
+                            "primary-fixed": "#ffdbc9",
+                            "on-secondary": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "margin-mobile": "16px",
+                            "margin-desktop": "64px",
+                            "base": "8px",
+                            "container-max": "1280px",
+                            "gutter": "24px"
+                        },
+                        "fontFamily": {
+                            "headline-lg": ["Montserrat"],
+                            "headline-lg-mobile": ["Montserrat"],
+                            "display-lg": ["Montserrat"],
+                            "title-md": ["Montserrat"],
+                            "body-md": ["Work Sans"],
+                            "body-lg": ["Work Sans"],
+                            "label-md": ["Work Sans"]
+                        },
+                        "fontSize": {
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            body {
+                background-color: #fff8f6; /* Surface Bright / Bone White */
+            }
+
+            .artisan-card {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+                .artisan-card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 12px 24px rgba(108, 47, 0, 0.08);
+                }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+    <!-- TopAppBar -->
+    <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container w-full top-0 left-0 border-b-4 border-primary dark:border-primary-container z-50 sticky">
+        <div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full">
+            <div class="flex items-center gap-3">
+                <img alt="Carpintec Logo" class="w-10 h-10 object-contain rounded-full bg-white p-1" src="https://lh3.googleusercontent.com/aida/AP1WRLtv_SjY_1DFUTv8VsAokGXauDn4FJXhXyhWo0RrASheZWAtLTYVBJ0QTyPq4QPcRDM3_53hToMllAvSMQ7t83Ju3zz6JZHhBFa33YL-rFrTlf3YQkci7_iuKBnubyu16JAOKv_egkealZhuu37X7djl56jMEXDm3UqXk2vYHfXZ_ktflGsMlyQPhXQ8Ydr9hc3Oz_BvRjpZk_Yc3ksTe5Sd5AEKYjK2rYbn58OmO9ikjD4fIh2swHOMm7oX0hiG3tbLO6cE-s8UNs8" />
+                <span class="font-headline-lg text-headline-lg font-bold text-on-primary dark:text-on-primary-container">Carpintec</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="font-label-md text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Inicio</a>
+                <a class="font-label-md text-label-md text-on-primary font-bold" href="#">Instructivos</a>
+                <a class="font-label-md text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Catálogo</a>
+                <a class="font-label-md text-label-md text-on-primary/70 hover:text-on-primary transition-colors" href="#">Contacto</a>
+            </nav>
+            <div class="md:hidden">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20 mb-24">
+        <!-- Hero Section -->
+        <section class="mb-16 max-w-3xl">
+            <h1 class="font-display-lg text-display-lg text-primary mb-6 md:text-display-lg text-headline-lg-mobile">
+                Centro de Instructivos
+            </h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                Nuestra pasión por la madera no termina cuando el mueble sale del taller. Descubre cómo mantener la esencia natural de tus piezas artesanales y aprende las mejores técnicas para integrar nuevos diseños en tu hogar con precisión profesional.
+            </p>
+        </section>
+        <!-- Bento Grid / Cards Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <!-- Card 1: Guía de Madera -->
+            <div class="artisan-card bg-surface-container-lowest border-4 border-primary p-base md:p-8 flex flex-col h-full rounded-lg">
+                <div class="bg-tertiary-fixed text-primary w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-4xl" data-icon="menu_book">menu_book</span>
+                </div>
+                <h2 class="font-headline-lg text-headline-lg text-primary mb-4">Guía de Madera</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">
+                    Aprende todo sobre los tipos de madera, acabados y consejos esenciales para el mantenimiento y limpieza de tus piezas artesanales. Mantén el brillo y la durabilidad de tus muebles por generaciones.
+                </p>
+                <a href="/pdf/guia de madera.pdf"
+                   target="_blank"
+                   class="bg-primary hover:bg-secondary text-on-primary font-bold py-4 px-8 rounded-lg flex items-center justify-center gap-3 active:scale-95 transition-all w-full md:w-max">
+
+                    <span class="material-symbols-outlined">download</span>
+
+                    <span class="font-label-md text-label-md">
+                        Descargar PDF Guía
+                    </span>
+
+                </a>
+            </div>
+            <!-- Card 2: Instructivo de Medición -->
+            <div class="artisan-card bg-surface-container-lowest border-4 border-primary p-base md:p-8 flex flex-col h-full rounded-lg">
+                <div class="bg-tertiary-fixed text-primary w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-4xl" data-icon="straighten">straighten</span>
+                </div>
+                <h2 class="font-headline-lg text-headline-lg text-primary mb-4">Instructivo de Medición</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow">
+                    Guía paso a paso para tomar medidas exactas en tu hogar. Asegura que tu próximo mueble a medida encaje perfectamente en tu espacio, evitando errores comunes de nivelación y profundidad.
+                </p>
+                <a href="/pdf/Instructivo_Carpintec.pdf"
+                   target="_blank"
+                   class="bg-primary hover:bg-secondary text-on-primary font-bold py-4 px-8 rounded-lg flex items-center justify-center gap-3 active:scale-95 transition-all w-full md:w-max">
+
+                    <span class="material-symbols-outlined">download</span>
+
+                    <span class="font-label-md text-label-md">
+                        Descargar PDF Instructivo
+                    </span>
+
+                </a>
+            </div>
+        </div>
+        <!-- Extra Content: Gallery Decor -->
+        <section class="mt-20 border-t-2 border-outline-variant pt-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                <div class="relative overflow-hidden group aspect-square rounded-lg border-2 border-primary/10">
+                    <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A professional close-up shot of a woodworker's hand using a high-quality hand plane on a light oak timber plank. Fine wood shavings curl away from the blade in a bright, sunlit workshop with a clean, artisan aesthetic. The scene is illuminated by warm, natural morning light, emphasizing the grain and texture of the wood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARDKzTSrI4dRmsvJk2_QexL1qtqGonFfXR-LUjtX5pcvB7gI_4GC3M1PcbjyHmvCphj6CV5FjOmpEyfF0d8drJq3lACSiORxtZXc7MFgDKJxycDa0Kt-cAs6oh2DDAkSPbrsJndwC1n13s7Tip4tA7s5XjHb1yQ1hjiIRRyNAaXwvy8r4X3FtUOY9WlbS8alv271_QSoDephhJcuxt7xDCGk1ZKKoRw-grlM2NtirPZaBJNfGrAYq8kA')"></div>
+                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-on-primary font-bold font-title-md">Técnicas de Pulido</span>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group aspect-square rounded-lg border-2 border-primary/10">
+                    <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="An organized collection of vintage carpentry tools, including a brass ruler, wooden chisels, and a steel compass, laid out on a dark walnut workbench. The lighting is soft and moody, casting gentle shadows that highlight the metallic and wooden textures. The aesthetic is professional, sophisticated, and deeply rooted in traditional craftsmanship." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3d5ywqVaqutuliJscw4pFKu2ezHxiOSQOibMkK0vyFaBVVMA7PC2fS9nnC7Jk4DSbfD_QX8gTUXhKa-IJp4YXBGuK_QJeur3GuZilB92RmNuJJ9XdGDKwLLXXJThGBLx0R8Sgh0GilALKOPFduGDqIGwwOIPFMmaxjLPhOrYSd_Lb2MWiqhpC9FVyiQdn5EZdV38yG84adJK95ZxBb4yEEaaoc9j9YUNTYbf_usaqjx737qIy9ETobg')"></div>
+                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-on-primary font-bold font-title-md">Herramientas de Precisión</span>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group aspect-square rounded-lg border-2 border-primary/10">
+                    <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A finished bespoke wooden cabinet standing in a minimalist, modern living room with off-white walls and light gray floors. The furniture piece features elegant joinery and a warm honey finish, illuminated by soft diffuse lighting from a large window. The mood is serene, high-end, and gallery-like, showcasing the final result of artisan carpentry." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-ugVnr1eI9Un5NC9fXJU3jQjPYbrRFY8d1XzkFkRraMgiPHr3r10H1HzLBQG6Zn7L0ea_l1VEkV0fZlcYUTgAVBIiXy7-qfdRosF7-Mh_Q2TSki3WeaBbDKyN58p_0icEjAjKdXOGK5u7-vA5ASETFPvYEZue7_BKpCFlIPMLtlkUkkIN_J3r87TlZo5P2GjIgqlqnSaYZickQa3CNsV3nJWjYWbQPVdYXedXWZqI6lvvgvYoUjn59Q')"></div>
+                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <span class="text-on-primary font-bold font-title-md">Resultados Finales</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar (Mobile Only Logic) -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-primary px-2 border-t-4 border-primary">
+        <a class="flex flex-col items-center justify-center text-on-primary/80 hover:text-on-primary" href="#">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-md text-label-md">Inicio</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-110" href="#">
+            <span class="material-symbols-outlined">menu_book</span>
+            <span class="font-label-md text-label-md">Guías</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-primary/80 hover:text-on-primary" href="#">
+            <span class="material-symbols-outlined">category</span>
+            <span class="font-label-md text-label-md">Catálogo</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-primary/80 hover:text-on-primary" href="#">
+            <span class="material-symbols-outlined">request_quote</span>
+            <span class="font-label-md text-label-md">Cotizar</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-primary/80 hover:text-on-primary" href="#">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-md text-label-md">Perfil</span>
+        </a>
+    </nav>
+    <script>
+            // Micro-interactions
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    // Potential hover effect logic
+                });
+            });
+    </script>
+</body></html>

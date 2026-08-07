@@ -1,0 +1,403 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Carpintec - Login Empleado con Registro Exclusivo</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "primary": "#8b4513",
+                            "inverse-surface": "#362f2c",
+                            "on-secondary": "#ffffff",
+                            "on-primary-fixed-variant": "#753401",
+                            "secondary": "#9a4600",
+                            "on-secondary-container": "#672c00",
+                            "surface-variant": "#ede0dc",
+                            "secondary-fixed": "#ffdbc9",
+                            "on-primary-fixed": "#321200",
+                            "primary-container": "#8b4513",
+                            "surface-container-low": "#fef1ed",
+                            "primary-fixed-dim": "#ffb68c",
+                            "on-secondary-fixed": "#321200",
+                            "tertiary-fixed-dim": "#dac49b",
+                            "on-error": "#ffffff",
+                            "inverse-on-surface": "#fbeeea",
+                            "outline": "#877369",
+                            "on-primary": "#ffffff",
+                            "outline-variant": "#dac2b6",
+                            "tertiary": "#4d3f20",
+                            "on-primary-container": "#ffc29f",
+                            "on-tertiary-fixed": "#251a01",
+                            "on-surface-variant": "#54433a",
+                            "error": "#ba1a1a",
+                            "tertiary-fixed": "#f7e0b5",
+                            "primary-fixed": "#ffdbc9",
+                            "background": "#fff8f6",
+                            "on-secondary-fixed-variant": "#763400",
+                            "on-error-container": "#93000a",
+                            "surface-bright": "#fff8f6",
+                            "surface": "#fff8f6",
+                            "on-surface": "#201a18",
+                            "surface-container-highest": "#ede0dc",
+                            "secondary-container": "#fd8a3e",
+                            "surface-container-high": "#f3e5e1",
+                            "inverse-primary": "#ffb68c",
+                            "surface-container": "#f9ebe7",
+                            "on-tertiary-fixed-variant": "#544525",
+                            "surface-container-lowest": "#ffffff",
+                            "on-tertiary-container": "#e2cca2",
+                            "on-background": "#201a18",
+                            "error-container": "#ffdad6",
+                            "tertiary-container": "#665635",
+                            "surface-dim": "#e4d7d4",
+                            "surface-tint": "#934b19",
+                            "secondary-fixed-dim": "#ffb68d",
+                            "on-tertiary": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "gutter": "24px",
+                            "margin-desktop": "64px",
+                            "margin-mobile": "16px",
+                            "container-max": "1280px",
+                            "base": "8px"
+                        },
+                        "fontFamily": {
+                            "body-md": ["Work Sans"],
+                            "body-lg": ["Work Sans"],
+                            "title-md": ["Montserrat"],
+                            "headline-lg": ["Montserrat"],
+                            "headline-lg-mobile": ["Montserrat"],
+                            "label-md": ["Work Sans"],
+                            "display-lg": ["Montserrat"]
+                        },
+                        "fontSize": {
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            .glass-container {
+                background: rgba(255, 248, 246, 0.7);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            }
+
+            .bg-overlay {
+                background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+            }
+
+            .tab-active {
+                background-color: #8b4513 !important;
+                color: #ffffff !important;
+            }
+
+            .tab-inactive {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: #8b4513;
+            }
+
+            .transition-opacity-transform {
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Background: Dark Walnut Wood Texture -->
+    <div class="fixed inset-0 z-0">
+        <style>
+                    body {
+                        background-image: url('/images/fondo-login.jpeg');
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        min-height: 100vh;
+                    }
+        </style>
+        <div class="absolute inset-0 bg-overlay"></div>
+    </div>
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center px-margin-mobile py-12 relative z-10">
+        <div class="w-full max-w-lg">
+            @if (TempData["Error"] != null)
+            {
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4" role="alert">
+                    <strong>Error:</strong> @TempData["Error"]
+                </div>
+            }
+            <!-- Brand Header -->
+            <div class="flex flex-col items-center mb-10">
+                <div class="flex items-center gap-2">
+                    <img alt="Carpintec Logo"
+                         class="h-8 w-8 object-contain mr-2"
+                         src="~/images/logo.png">
+
+                    <span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-primary dark:text-on-primary-container tracking-tight">
+                        CARPINTEC
+                    </span>
+                </div>
+          
+                <p class="font-label-md text-label-md text-white/90 uppercase tracking-[0.3em] mt-2 drop-shadow-md">Muebles con Alma</p>
+            </div>
+            <!-- Glassmorphism Card -->
+            <div class="glass-container rounded-xl overflow-hidden">
+                <!-- Three Tabs Navigation -->
+                <div class="flex bg-white/20">
+                    <button class="flex-1 py-4 font-title-md text-title-md transition-all duration-300 tab-inactive hover:bg-white/30"
+                            id="tab-cliente"
+                            onclick="switchTab('cliente')">
+                        Cliente
+                    </button>
+
+                    <button class="flex-1 py-4 font-title-md text-title-md transition-all duration-300 tab-inactive hover:bg-white/30"
+                            id="tab-admin"
+                            onclick="switchTab('admin')">
+                        Administrador
+                    </button>
+
+                    <button class="flex-1 py-4 font-title-md text-title-md transition-all duration-300 tab-active"
+                            id="tab-empleado"
+                            onclick="switchTab('empleado')">
+                        Empleado
+                    </button>
+                </div>
+                <!-- Card Content Area -->
+                <div class="p-8 md:p-10">
+                    <form class="space-y-6" id="login-form" method="post" action="@Url.Action("Ingresar", "Login")">
+                        <input type="hidden" id="rol_input" name="rol" value="empleado" />
+                        <!-- Dynamic Role Field -->
+                        <div class="space-y-2 transition-opacity-transform opacity-100" id="dynamic-field-container" style="opacity: 1; transform: translateY(0px);">
+                            <label class="block font-label-md text-label-md text-on-surface-variant font-semibold" for="username" id="label-role">Usuario</label>
+                            <div class="relative hidden" id="input-wrapper">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary" id="icon-role">account_balance</span>
+                                <input class="w-full pl-11 pr-4 py-3.5 bg-white/60 border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none placeholder:text-outline-variant/70" id="username" name="username" placeholder="Usuario" type="text" />
+                            </div>
+                            <div class="relative" id="select-wrapper"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">person</span><input class="w-full pl-11 pr-4 py-3.5 bg-white/60 border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none placeholder:text-outline-variant/70" id="role-select" name="username" placeholder="Ingrese su usuario" type="text" /></div>
+                        </div>
+                        <!-- Password Field -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <label class="block font-label-md text-label-md text-on-surface-variant font-semibold" for="password">Contraseña</label>
+                                <span class="text-[10px] font-label-md text-primary/70 uppercase tracking-tighter bg-primary/5 px-1.5 py-0.5 rounded">Requerida</span>
+                            </div>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">lock</span>
+                                <input class="w-full pl-11 pr-11 py-3.5 bg-white/60 border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md outline-none placeholder:text-outline-variant/70" id="password" name="password" placeholder="••••••••" type="password" />
+                                <button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" onclick="togglePassword()" type="button">
+                                    <span class="material-symbols-outlined" id="pass-toggle-icon">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Forgot Password Link -->
+                        <div class="flex justify-end">
+                            <a class="font-label-md text-label-md text-primary font-semibold hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                        </div>
+                        <!-- Login Button -->
+                        <button class="w-full bg-primary hover:bg-secondary text-white font-title-md text-title-md py-4 rounded-lg shadow-lg transform active:scale-[0.98] transition-all duration-200 uppercase tracking-widest font-bold" type="submit">
+                            Iniciar Sesión
+                        </button>
+                    </form>
+                    <!-- Signup Section (Conditional) -->
+                    <div class="transition-opacity-transform opacity-100" id="signup-container" style="opacity: 1; transform: translateY(0px);">
+                        <div class="relative my-8">
+                            <div class="absolute inset-0 flex items-center">
+                                <span class="w-full border-t border-outline-variant/40"></span>
+                            </div>
+                            <div class="relative flex justify-center text-label-md uppercase">
+                                <span class="bg-surface-container-lowest px-4 text-on-surface-variant/60 font-semibold rounded-full text-xs">O</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="font-body-md text-body-md text-on-surface-variant mb-4">¿Eres nuevo en Carpintec?</p>
+                            <a asp-controller="Registro"
+                               asp-action="Index"
+                               class="inline-block w-full py-3.5 border-2 border-primary text-primary font-title-md text-title-md rounded-lg hover:bg-primary hover:text-white transition-all duration-300 font-bold uppercase tracking-wider">
+                                Crear una cuenta
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Security Badges -->
+            <div class="mt-8 flex justify-center items-center gap-8 text-white/80 drop-shadow-md">
+                <div class="flex items-center gap-1.5 group cursor-default">
+                    <span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">verified_user</span>
+                    <span class="text-[12px] font-label-md font-medium uppercase tracking-wider">SSL Seguro</span>
+                </div>
+                <div class="flex items-center gap-1.5 group cursor-default">
+                    <span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">gpp_good</span>
+                    <span class="text-[12px] font-label-md font-medium uppercase tracking-wider">Privacidad</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-8 px-margin-mobile flex flex-col items-center gap-4 border-t border-white/10 bg-black/40 backdrop-blur-xl relative z-10">
+        <p class="font-body-md text-body-md text-white/70 text-center">© 2024 Carpintec Artesanal. Muebles con Alma.</p>
+        <div class="flex gap-8">
+            <a class="font-label-md text-label-md text-white/50 hover:text-white transition-colors" href="#">Privacidad</a>
+            <a class="font-label-md text-label-md text-white/50 hover:text-white transition-colors" href="#">Términos</a>
+            <a class="font-label-md text-label-md text-white/50 hover:text-white transition-colors" href="#">Soporte</a>
+        </div>
+    </footer>
+    <script>
+            function switchTab(role) {
+                // 1. Guardar el rol en el input oculto que recibe C#
+                const rolInput = document.getElementById('rol_input');
+                if (rolInput) rolInput.value = role;
+
+                const tabs = {
+                    cliente: document.getElementById('tab-cliente'),
+                    admin: document.getElementById('tab-admin'),
+                    empleado: document.getElementById('tab-empleado')
+                };
+
+                const label = document.getElementById('label-role');
+                const icon = document.getElementById('icon-role');
+                const inputWrapper = document.getElementById('input-wrapper');
+                const selectWrapper = document.getElementById('select-wrapper');
+                const signupSection = document.getElementById('signup-container');
+                const fieldContainer = document.getElementById('dynamic-field-container');
+
+                // Inputs del formulario
+                const inputClienteAdmin = document.getElementById('username');
+                const inputEmpleado = document.getElementById('role-select');
+
+                // 2. Cambiar apariencia de pestañas
+                Object.keys(tabs).forEach(key => {
+                    if (tabs[key]) {
+                        if (key === role) {
+                            tabs[key].classList.add('tab-active');
+                            tabs[key].classList.remove('tab-inactive', 'hover:bg-white/30');
+                        } else {
+                            tabs[key].classList.remove('tab-active');
+                            tabs[key].classList.add('tab-inactive', 'hover:bg-white/30');
+                        }
+                    }
+                });
+
+                // 3. Transición de campos
+                if (fieldContainer) {
+                    fieldContainer.style.opacity = '0';
+                    fieldContainer.style.transform = 'translateY(10px)';
+                }
+
+                setTimeout(() => {
+                    // === CONFIGURACIÓN PARA CLIENTE ===
+                    if (role === 'cliente') {
+                        if (label) label.innerText = 'Correo electrónico o Usuario';
+                        if (icon) icon.innerText = 'person';
+
+                        // Mostrar casilla normal y ocultar la de empleado
+                        if (inputWrapper) inputWrapper.classList.remove('hidden');
+                        if (selectWrapper) selectWrapper.classList.add('hidden');
+
+                        // Habilitar campo de cliente para que viaje a C#
+                        if (inputClienteAdmin) {
+                            inputClienteAdmin.placeholder = 'ejemplo@carpintec.com';
+                            inputClienteAdmin.disabled = false;
+                        }
+                        if (inputEmpleado) inputEmpleado.disabled = true;
+
+                        if (signupSection) {
+                            signupSection.classList.remove('hidden');
+                            signupSection.style.opacity = '1';
+                            signupSection.style.transform = 'translateY(0)';
+                        }
+                    }
+                    // === CONFIGURACIÓN PARA ADMINISTRADOR ===
+                    else if (role === 'admin') {
+                        if (label) label.innerText = 'NIT asignado';
+                        if (icon) icon.innerText = 'account_balance';
+
+                        if (inputWrapper) inputWrapper.classList.remove('hidden');
+                        if (selectWrapper) selectWrapper.classList.add('hidden');
+
+                        if (inputClienteAdmin) {
+                            inputClienteAdmin.placeholder = 'admin@carpintec.com';
+                            inputClienteAdmin.disabled = false;
+                        }
+                        if (inputEmpleado) inputEmpleado.disabled = true;
+
+                        if (signupSection) signupSection.classList.add('hidden');
+                    }
+                    // === CONFIGURACIÓN PARA EMPLEADO ===
+                    else if (role === 'empleado') {
+                        if (label) label.innerText = 'Cargo del empleado';
+
+                        if (inputWrapper) inputWrapper.classList.add('hidden');
+                        if (selectWrapper) selectWrapper.classList.remove('hidden');
+
+                        if (inputClienteAdmin) inputClienteAdmin.disabled = true;
+                        if (inputEmpleado) inputEmpleado.disabled = false;
+
+                        if (signupSection) signupSection.classList.add('hidden');
+                    }
+
+                    if (fieldContainer) {
+                        fieldContainer.style.opacity = '1';
+                        fieldContainer.style.transform = 'translateY(0)';
+                    }
+                }, 150);
+            }
+
+            function togglePassword() {
+                const input = document.getElementById('password');
+                const icon = document.getElementById('pass-toggle-icon');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    if (icon) icon.innerText = 'visibility_off';
+                } else {
+                    input.type = 'password';
+                    if (icon) icon.innerText = 'visibility';
+                }
+            }
+
+            // Efectos de foco
+            document.querySelectorAll('input, select').forEach(el => {
+                el.addEventListener('focus', () => {
+                    el.closest('.relative')?.classList.add('ring-2', 'ring-primary/20');
+                });
+                el.addEventListener('blur', () => {
+                    el.closest('.relative')?.classList.remove('ring-2', 'ring-primary/20');
+                });
+            });
+
+            // === LÍNEA CLAVE: INICIAR SIEMPRE EN LA PESTAÑA CLIENTE AL CARGAR LA PÁGINA ===
+            document.addEventListener('DOMContentLoaded', function() {
+                switchTab('cliente');
+            });
+    </script>
+</body></html>

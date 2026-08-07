@@ -1,0 +1,421 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CARPINTEC | Panel Administrativo</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "secondary-container": "#e1e1c9",
+                            "on-secondary-fixed-variant": "#474836",
+                            "tertiary-container": "#334b49",
+                            "on-surface-variant": "#504441",
+                            "tertiary-fixed": "#cde8e5",
+                            "surface": "#fcf9f8",
+                            "outline-variant": "#d4c3be",
+                            "on-surface": "#1b1c1c",
+                            "surface-container-high": "#eae7e7",
+                            "error-container": "#ffdad6",
+                            "primary-container": "#5d4037",
+                            "primary-fixed": "#ffdbd0",
+                            "surface-container": "#f0eded",
+                            "error": "#ba1a1a",
+                            "on-error-container": "#93000a",
+                            "inverse-surface": "#303030",
+                            "on-tertiary-container": "#a0bab7",
+                            "surface-variant": "#e5e2e1",
+                            "secondary": "#5e604d",
+                            "surface-bright": "#fcf9f8",
+                            "surface-container-highest": "#e5e2e1",
+                            "primary": "#442a22",
+                            "on-secondary-fixed": "#1b1d0e",
+                            "on-tertiary-fixed": "#061f1e",
+                            "on-error": "#ffffff",
+                            "primary-fixed-dim": "#e7bdb1",
+                            "on-secondary-container": "#636451",
+                            "surface-tint": "#77574d",
+                            "tertiary": "#1c3433",
+                            "on-primary-fixed-variant": "#5d4037",
+                            "on-primary-container": "#d4ada1",
+                            "surface-container-lowest": "#ffffff",
+                            "surface-dim": "#dcd9d9",
+                            "outline": "#827470",
+                            "inverse-primary": "#e7bdb1",
+                            "background": "#fcf9f8",
+                            "inverse-on-surface": "#f3f0ef",
+                            "secondary-fixed": "#e4e4cc",
+                            "secondary-fixed-dim": "#c8c8b0",
+                            "on-secondary": "#ffffff",
+                            "tertiary-fixed-dim": "#b1ccc9",
+                            "on-tertiary": "#ffffff",
+                            "surface-container-low": "#f6f3f2",
+                            "on-primary-fixed": "#2c160e",
+                            "on-primary": "#ffffff",
+                            "on-background": "#1b1c1c",
+                            "on-tertiary-fixed-variant": "#334b49",
+                            "corporate-brown": "#2D221B"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "md": "24px",
+                            "sm": "12px",
+                            "base": "8px",
+                            "lg": "40px",
+                            "gutter": "24px",
+                            "xl": "64px",
+                            "xs": "4px",
+                            "margin": "32px"
+                        },
+                        "fontFamily": {
+                            "body-md": ["Hanken Grotesk"],
+                            "headline-lg-mobile": ["Manrope"],
+                            "body-lg": ["Hanken Grotesk"],
+                            "body-sm": ["Hanken Grotesk"],
+                            "headline-xl": ["Manrope"],
+                            "headline-md": ["Manrope"],
+                            "headline-lg": ["Manrope"],
+                            "label-md": ["Hanken Grotesk"]
+                        },
+                        "fontSize": {
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            .wood-texture-overlay {
+                background-image: url('https://www.transparenttextures.com/patterns/wood-pattern-with-lines.png');
+                opacity: 0.05;
+                pointer-events: none;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, 0.15);
+                border-radius: 10px;
+            }
+
+            body {
+                min-height: max(884px, 100dvh);
+            }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+   
+
+    <!-- Main Content Canvas (Sin margen para Sidebar) -->
+    <main class="pt-24 pb-12 px-gutter lg:px-margin max-w-7xl mx-auto">
+        <!-- KPI Metrics Bento Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-md mb-lg">
+            <!-- Sales Metric -->
+            <div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_12px_rgba(68,42,34,0.04)] border border-outline-variant/20 hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="bg-primary-fixed/30 p-2 rounded-lg text-primary">
+                        <span class="material-symbols-outlined">payments</span>
+                    </div>
+                    <span class="text-body-sm font-semibold text-green-600 flex items-center">
+                        <span class="material-symbols-outlined text-sm">arrow_upward</span> 15.4%
+                    </span>
+                </div>
+                <p class="text-on-surface-variant text-label-md mb-1 uppercase tracking-wider">Ventas del Mes</p>
+                <h3 class="text-headline-md font-headline-md text-primary">$ 25.680.000</h3>
+                <p class="text-body-sm text-on-surface-variant/70 mt-1">vs mes anterior</p>
+            </div>
+            <!-- Active Orders -->
+            <div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_12px_rgba(68,42,34,0.04)] border border-outline-variant/20 hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="bg-secondary-fixed/30 p-2 rounded-lg text-secondary">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                    </div>
+                    <span class="text-body-sm font-semibold text-green-600 flex items-center">
+                        <span class="material-symbols-outlined text-sm">arrow_upward</span> 12.5%
+                    </span>
+                </div>
+                <p class="text-on-surface-variant text-label-md mb-1 uppercase tracking-wider">Pedidos Activos</p>
+                <h3 class="text-headline-md font-headline-md text-primary">28</h3>
+                <p class="text-body-sm text-on-surface-variant/70 mt-1">proyectos en marcha</p>
+            </div>
+            <!-- Pending Quotes -->
+            <div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_12px_rgba(68,42,34,0.04)] border border-outline-variant/20 hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="bg-tertiary-fixed/30 p-2 rounded-lg text-tertiary">
+                        <span class="material-symbols-outlined">request_quote</span>
+                    </div>
+                    <span class="text-body-sm font-semibold text-error flex items-center">
+                        <span class="material-symbols-outlined text-sm">arrow_downward</span> 5.2%
+                    </span>
+                </div>
+                <p class="text-on-surface-variant text-label-md mb-1 uppercase tracking-wider">Cotizaciones Pendientes</p>
+                <h3 class="text-headline-md font-headline-md text-primary">16</h3>
+                <p class="text-body-sm text-on-surface-variant/70 mt-1">requieren atención</p>
+            </div>
+            <!-- Stock Status -->
+            <div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_12px_rgba(68,42,34,0.04)] border border-outline-variant/20 hover:scale-[1.02] transition-transform duration-300">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="bg-outline-variant/30 p-2 rounded-lg text-on-surface-variant">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                    </div>
+                    <span class="text-body-sm font-semibold text-green-600 flex items-center">
+                        <span class="material-symbols-outlined text-sm">arrow_upward</span> 8.7%
+                    </span>
+                </div>
+                <p class="text-on-surface-variant text-label-md mb-1 uppercase tracking-wider">Stock Inventario</p>
+                <h3 class="text-headline-md font-headline-md text-primary">342</h3>
+                <p class="text-body-sm text-on-surface-variant/70 mt-1">productos registrados</p>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-lg">
+            <!-- Performance Chart -->
+            <div class="lg:col-span-2 bg-surface-container-lowest p-md rounded-3xl shadow-sm border border-outline-variant/20">
+                <div class="flex items-center justify-between mb-lg">
+                    <h2 class="text-headline-md font-headline-md text-primary">Producción vs Ventas</h2>
+                    <select class="bg-surface-container-low border-none rounded-lg text-body-sm font-label-md focus:ring-primary px-3 py-1.5">
+                        <option>Últimos 6 meses</option>
+                        <option>Este año</option>
+                    </select>
+                </div>
+                <div class="h-[300px] w-full">
+                    <canvas id="productionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recent Activity Feed -->
+            <div class="bg-surface-container-lowest p-md rounded-3xl shadow-sm border border-outline-variant/20 flex flex-col">
+                <div class="flex items-center justify-between mb-md">
+                    <h2 class="text-headline-md font-headline-md text-primary">Actividad Reciente</h2>
+                    <button class="text-primary hover:underline text-label-md">Ver todo</button>
+                </div>
+                <div class="space-y-4 overflow-y-auto max-h-[300px] pr-2 custom-scrollbar">
+                    <div class="flex gap-4 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-primary-fixed/20 flex items-center justify-center text-primary shrink-0">
+                            <span class="material-symbols-outlined text-lg">add_circle</span>
+                        </div>
+                        <div>
+                            <p class="text-body-sm text-on-surface"><span class="font-bold">Nuevo pedido:</span> Mesa Comedor de Roble para Juan Pérez.</p>
+                            <p class="text-xs text-on-surface-variant/60">Hace 20 min</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-tertiary-fixed/20 flex items-center justify-center text-tertiary shrink-0">
+                            <span class="material-symbols-outlined text-lg">check_circle</span>
+                        </div>
+                        <div>
+                            <p class="text-body-sm text-on-surface"><span class="font-bold">Cotización aprobada:</span> #C-2024-044 por Carlos Gómez.</p>
+                            <p class="text-xs text-on-surface-variant/60">Hace 1 hora</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-secondary-fixed/20 flex items-center justify-center text-secondary shrink-0">
+                            <span class="material-symbols-outlined text-lg">local_shipping</span>
+                        </div>
+                        <div>
+                            <p class="text-body-sm text-on-surface"><span class="font-bold">Pedido entregado:</span> Mueble TV - Maria Rodriguez.</p>
+                            <p class="text-xs text-on-surface-variant/60">Hace 3 horas</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-3 rounded-xl hover:bg-surface-container-low transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-error-container/20 flex items-center justify-center text-error shrink-0">
+                            <span class="material-symbols-outlined text-lg">warning</span>
+                        </div>
+                        <div>
+                            <p class="text-body-sm text-on-surface"><span class="font-bold">Stock Bajo:</span> Madera Cedro (Menos de 5 unidades).</p>
+                            <p class="text-xs text-on-surface-variant/60">Hace 5 horas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Section -->
+        <section class="mb-lg">
+            <h2 class="text-headline-md font-headline-md text-primary mb-md">Accesos Rápidos</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-md">
+                <button class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">add_box</span>
+                    <span class="text-label-md">Nueva Cotización</span>
+                </button>
+                <a asp-controller="NuevoPedido"
+                   asp-action="Index"
+                   class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm text-decoration-none">
+
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">
+                        post_add
+                    </span>
+
+                    <span class="text-label-md">
+                        Nuevo Pedido
+                    </span>
+                </a>
+                <a asp-controller="Stock"
+                   asp-action="Index"
+                   class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm text-decoration-none">
+
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">
+                        move_to_inbox
+                    </span>
+
+                    <span class="text-label-md">
+                        Entrada Stock
+                    </span>
+                </a>
+                <button class="flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">engineering</span>
+                    <span class="text-label-md">Asignar Mano Obra</span>
+                </button>
+                <a asp-controller="Calendario"
+                   asp-action="Index"
+                   class="hidden lg:flex flex-col items-center gap-3 p-6 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl hover:bg-primary hover:text-on-primary transition-all duration-300 group shadow-sm">
+                    <span class="material-symbols-outlined text-3xl text-primary group-hover:text-on-primary">
+                        calendar_month
+                    </span>
+                    <span class="text-label-md">Calendario Prod.</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Current Projects Table -->
+        <section class="bg-surface-container-lowest p-md rounded-3xl shadow-sm border border-outline-variant/20 overflow-hidden">
+            <div class="flex items-center justify-between mb-lg px-2">
+                <h2 class="text-headline-md font-headline-md text-primary">Proyectos en Producción</h2>
+                <div class="flex gap-2">
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                        <input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-sm focus:ring-primary w-48 lg:w-64" placeholder="Buscar proyecto..." type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b border-outline-variant/30 text-label-md text-on-surface-variant uppercase tracking-wider">
+                            <th class="px-6 py-4">Pedido ID</th>
+                            <th class="px-6 py-4">Cliente</th>
+                            <th class="px-6 py-4">Producto</th>
+                            <th class="px-6 py-4">Estado</th>
+                            <th class="px-6 py-4">Progreso</th>
+                            <th class="px-6 py-4 text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant/10">
+                        <tr class="hover:bg-surface-container-low/50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-primary">P-2024-028</td>
+                            <td class="px-6 py-4">Carlos Gómez</td>
+                            <td class="px-6 py-4">Cocina Integral Cedro</td>
+                            <td class="px-6 py-4">
+                                <span class="bg-primary text-on-primary px-3 py-1 rounded-full text-xs font-bold">PRODUCCIÓN</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="w-32 bg-surface-variant rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">more_vert</span></button>
+                            </td>
+                        </tr>
+                        <tr class="bg-secondary-fixed/10 hover:bg-surface-container-low/50 transition-colors">
+                            <td class="px-6 py-4 font-bold text-primary">P-2024-027</td>
+                            <td class="px-6 py-4">Maria Rodriguez</td>
+                            <td class="px-6 py-4">Closet Moderno Blanco</td>
+                            <td class="px-6 py-4">
+                                <span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-1 rounded-full text-xs font-bold">MONTAJE</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="w-32 bg-surface-variant rounded-full h-2">
+                                    <div class="bg-secondary h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">more_vert</span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script Chart.js -->
+    <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const ctx = document.getElementById('productionChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                        datasets: [
+                            {
+                                label: 'Ventas ($)',
+                                data: [12000000, 19000000, 15000000, 22000000, 18000000, 25680000],
+                                borderColor: '#442a22',
+                                backgroundColor: 'rgba(68, 42, 34, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            },
+                            {
+                                label: 'Proyectos Producidos',
+                                data: [10, 15, 12, 18, 14, 20],
+                                borderColor: '#5e604d',
+                                backgroundColor: 'transparent',
+                                borderDash: [5, 5],
+                                tension: 0.4,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return '$' + value.toLocaleString(); }
+                                }
+                            },
+                            y1: {
+                                beginAtZero: true,
+                                position: 'right',
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>

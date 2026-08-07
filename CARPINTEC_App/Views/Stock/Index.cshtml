@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Carpintec - Inventario de Existencias</title>
+    <!-- Google Fonts: Manrope for headlines, Hanken Grotesk for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "outline": "#827470",
+                            "tertiary-fixed-dim": "#b1ccc9",
+                            "primary-container": "#5d4037",
+                            "on-primary": "#ffffff",
+                            "on-primary-container": "#d4ada1",
+                            "surface-container-lowest": "#ffffff",
+                            "on-secondary-container": "#636451",
+                            "surface-variant": "#e5e2e1",
+                            "on-tertiary": "#ffffff",
+                            "outline-variant": "#d4c3be",
+                            "tertiary-container": "#334b49",
+                            "surface-bright": "#fcf9f8",
+                            "primary-fixed-dim": "#e7bdb1",
+                            "error": "#ba1a1a",
+                            "surface-dim": "#dcd9d9",
+                            "on-tertiary-fixed-variant": "#334b49",
+                            "secondary-fixed": "#e4e4cc",
+                            "inverse-primary": "#e7bdb1",
+                            "tertiary": "#1c3433",
+                            "on-primary-fixed": "#2c160e",
+                            "primary": "#442a22",
+                            "on-background": "#1b1c1c",
+                            "tertiary-fixed": "#cde8e5",
+                            "surface-container-highest": "#e5e2e1",
+                            "on-tertiary-fixed": "#061f1e",
+                            "on-secondary-fixed": "#1b1d0e",
+                            "secondary-container": "#e1e1c9",
+                            "inverse-surface": "#303030",
+                            "primary-fixed": "#ffdbd0",
+                            "background": "#fcf9f8",
+                            "secondary-fixed-dim": "#c8c8b0",
+                            "on-surface-variant": "#504441",
+                            "inverse-on-surface": "#f3f0ef",
+                            "surface-container": "#f0eded",
+                            "on-secondary-fixed-variant": "#474836",
+                            "on-error-container": "#93000a",
+                            "surface-container-low": "#f6f3f2",
+                            "on-surface": "#1b1c1c",
+                            "error-container": "#ffdad6",
+                            "on-tertiary-container": "#a0bab7",
+                            "surface": "#fcf9f8",
+                            "surface-container-high": "#eae7e7",
+                            "on-secondary": "#ffffff",
+                            "secondary": "#5e604d",
+                            "surface-tint": "#77574d",
+                            "on-primary-fixed-variant": "#5d4037",
+                            "on-error": "#ffffff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "margin": "32px",
+                            "xl": "64px",
+                            "sm": "12px",
+                            "base": "8px",
+                            "lg": "40px",
+                            "xs": "4px",
+                            "md": "24px",
+                            "gutter": "24px"
+                        },
+                        "fontFamily": {
+                            "label-md": ["Hanken Grotesk"],
+                            "body-md": ["Hanken Grotesk"],
+                            "body-sm": ["Hanken Grotesk"],
+                            "headline-lg": ["Manrope"],
+                            "headline-md": ["Manrope"],
+                            "headline-lg-mobile": ["Manrope"],
+                            "headline-xl": ["Manrope"],
+                            "body-lg": ["Hanken Grotesk"]
+                        },
+                        "fontSize": {
+                            "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            body {
+                background-color: #fcf9f8;
+                color: #1b1c1c;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                vertical-align: middle;
+            }
+
+            .tonal-elevation-1 {
+                background: #ffffff;
+                box-shadow: 0 4px 6px -1px rgba(68, 42, 34, 0.05), 0 2px 4px -2px rgba(68, 42, 34, 0.05);
+            }
+
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f0eded;
+            }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #d4c3be;
+                border-radius: 10px;
+            }
+
+            .material-card-hover:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 24px -10px rgba(68, 42, 34, 0.15);
+            }
+    </style>
+</head>
+<body class="font-body-md text-body-md pb-24 lg:pb-0">
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm flex items-center justify-between px-md py-sm">
+        <div class="flex items-center gap-base">
+            <span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-150 p-2 hover:bg-surface-variant transition-colors rounded-full">menu</span>
+        </div>
+        <div class="flex items-center gap-xs">
+            <img alt="Logo Carpintec" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLvUaCrJFCALtgbEPf7SexO3dwyQyy9YaZmq9hCOok-uD5opDKpSEW0oRRVraduCqwmn0bsBXebnTFD-Yuh-dmeEwIszpcFY25BjK60KgRDVR0ERxDeS3t_pZDSveomKdxQxUBmvxe4ZFfAkO5pBMzFfchL4LObOQzHri-ET1spGiVhQdy8d3Zvouez1CmVzPchhmPmxeGP8hu_zgQOFsEUPJlfL9hOe45B1R_0uCecqRZf-0K4Q-fmsIfCFIYhW8Y88ZXDRRPCd6g" />
+            <span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">CARPINTEC</span>
+        </div>
+        <div class="flex items-center gap-base">
+            <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary-fixed-dim font-bold overflow-hidden cursor-pointer active:scale-95 duration-150">
+                <img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged carpentry shop owner with a warm, approachable smile, wearing a clean canvas workshop apron. The lighting is soft and natural, suggesting an office inside a high-end woodworking studio. The overall aesthetic is clean, professional, and reliable, reflecting the Artisanal Precision brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-L1zICtvLsXoxIf5lkDor5uA9tQ-7TKYqdP50wjYOfXviE-y3uqfrCoteAIKXiC_5QTiUyIOSUgt-AU2dTMt49t1ZPgoyY_c9fKKSXjhEK-AsX51hotpoykrTIs5DWbaHMiJzaEPckY05FKYtj6dLtK5WX1rogqYMT8ExkXVzqSnR9YIltbtOj38svPfXlA5eZOcENUt9gFTPLaRNUCr0p2f4Q_NDuSwuQOaOwkJmG8ysZRaGp7KU" />
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Canvas -->
+    <main class="max-w-7xl mx-auto px-margin pt-24 pb-12">
+        <!-- Inventory Summary Cards (Bento-ish Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-lg">
+            <!-- Total Items -->
+            <div class="tonal-elevation-1 p-md rounded-xl border border-outline-variant/30 material-card-hover transition-all duration-300">
+                <div class="flex justify-between items-start mb-sm">
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Artículos Totales</span>
+                    <div class="bg-primary-container/10 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-primary">inventory_2</span>
+                    </div>
+                </div>
+                <div class="font-headline-xl text-headline-xl text-primary">1,284</div>
+                <div class="text-body-sm text-on-surface-variant mt-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-tertiary">trending_up</span>
+                    <span>+12 nuevos este mes</span>
+                </div>
+            </div>
+            <!-- Low Stock Alerts -->
+            <div class="tonal-elevation-1 p-md rounded-xl border border-outline-variant/30 material-card-hover transition-all duration-300">
+                <div class="flex justify-between items-start mb-sm">
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Alertas de Stock</span>
+                    <div class="bg-error-container/20 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-error">warning</span>
+                    </div>
+                </div>
+                <div class="font-headline-xl text-headline-xl text-error">08</div>
+                <div class="text-body-sm text-on-surface-variant mt-xs">Requiere atención inmediata</div>
+            </div>
+            <!-- Total Value -->
+            <div class="tonal-elevation-1 p-md rounded-xl border border-outline-variant/30 material-card-hover transition-all duration-300">
+                <div class="flex justify-between items-start mb-sm">
+                    <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Valor de Almacén</span>
+                    <div class="bg-secondary-container p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-secondary">payments</span>
+                    </div>
+                </div>
+                <div class="font-headline-xl text-headline-xl text-primary">€42,500</div>
+                <div class="text-body-sm text-on-surface-variant mt-xs">Estimación de activos actuales</div>
+            </div>
+        </div>
+        <!-- Search and Filter Bar -->
+        <div class="tonal-elevation-1 p-sm rounded-xl mb-md flex flex-col md:flex-row gap-base md:items-center">
+            <div class="relative flex-grow">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                <input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Buscar materiales o herrajes..." type="text" />
+            </div>
+            <div class="flex gap-base overflow-x-auto pb-2 md:pb-0 custom-scrollbar">
+                <button class="px-md py-2 bg-primary text-on-primary rounded-full font-label-md text-label-md whitespace-nowrap active:scale-95 duration-150">Todo</button>
+                <button class="px-md py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-md text-label-md whitespace-nowrap hover:bg-outline-variant transition-colors active:scale-95 duration-150">Maderas</button>
+                <button class="px-md py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-md text-label-md whitespace-nowrap hover:bg-outline-variant transition-colors active:scale-95 duration-150">Herrajes</button>
+                <button class="px-md py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-md text-label-md whitespace-nowrap hover:bg-outline-variant transition-colors active:scale-95 duration-150">Acabados</button>
+            </div>
+        </div>
+        <!-- Stock List Grid -->
+        <div class="grid grid-cols-1 gap-base">
+            <!-- Table Header (Desktop Only) -->
+            <div class="hidden md:grid grid-cols-12 px-md py-base text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">
+                <div class="col-span-5">Material / Producto</div>
+                <div class="col-span-2">Categoría</div>
+                <div class="col-span-2">Cantidad</div>
+                <div class="col-span-2">Estado</div>
+                <div class="col-span-1 text-right">Acción</div>
+            </div>
+            <!-- List Items -->
+            <!-- Item 1: American Oak -->
+            <div class="tonal-elevation-1 rounded-xl p-md grid grid-cols-1 md:grid-cols-12 items-center gap-md material-card-hover transition-all duration-300 group">
+                <div class="col-span-5 flex items-center gap-md">
+                    <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <img class="w-full h-full object-cover" data-alt="A close-up, high-resolution texture of premium American White Oak wood. The grain is fine and straight, with warm honey and cream tones. The lighting is soft and side-angled to emphasize the natural wood fibers, fitting perfectly into the Artisanal Precision design system which values tactile minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwRRdTxqbn5mzncQdM8SRCFxf_YqyBEq2jUR33M8nYRoMgsJosH13647HTSgc2siVGiflh-ganwtCnPWIViR0dgT9XOWwrqf91FHIASn6IyZ3-TzMJ2blVohuuJYEd1hJjToH8kKVaQLVX-GSgf-T9kCR5t6t-33Vlq58Pl805ut7i9QzorJ77vQHLQRyR9KXoh0poPEBUrHssB374arwMGgBm2PF-hSN1f2EbVcG1ku8ishpzVGte" />
+                    </div>
+                    <div>
+                        <h4 class="font-headline-md text-body-lg font-bold text-primary">Roble Americano</h4>
+                        <p class="text-body-sm text-on-surface-variant">Calidad Premium A1 - 2" Espesor</p>
+                    </div>
+                </div>
+                <div class="col-span-2 md:block hidden">
+                    <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-semibold">Maderas</span>
+                </div>
+                <div class="col-span-2">
+                    <div class="font-bold text-primary">15 m³</div>
+                    <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Inventario Físico</div>
+                </div>
+                <div class="col-span-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-xs font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        Disponible
+                    </span>
+                </div>
+                <div class="col-span-1 text-right">
+                    <button class="p-2 hover:bg-surface-variant rounded-full text-primary transition-colors">
+                        <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Item 2: Walnut Wood -->
+            <div class="tonal-elevation-1 rounded-xl p-md grid grid-cols-1 md:grid-cols-12 items-center gap-md material-card-hover transition-all duration-300 group">
+                <div class="col-span-5 flex items-center gap-md">
+                    <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <img class="w-full h-full object-cover" data-alt="A luxurious close-up of dark Walnut wood grain with deep chocolate tones and swirling, elegant patterns. The surface has a subtle satin sheen, reflecting professional workshop lighting. This material swatch embodies the 'Artisanal ERP' style, blending organic textures with high-end digital precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpp7Y5A1Ksxcp_5Hj7tW2mb-CkPElDbAnBEtmXyXEFe4aWGZtpUwNTf2M_drIE5hORr0fkochwzmMFUzYwOBQNDtityvGGKU0ekcVmecbQsWYACW03QuKPsigkYa4Ks19LEyBrnlfXUHQ9d_8iS42iZbhScXSvkdym7WRfJ_wltYRE-gpphj0zXt0G2Ce7S1d_6pkGLPWNYCfKMlcMvHDMWzUXnAVHytN4aSuuLVWNF0T9PQvkSvEJ" />
+                    </div>
+                    <div>
+                        <h4 class="font-headline-md text-body-lg font-bold text-primary">Madera de Nogal</h4>
+                        <p class="text-body-sm text-on-surface-variant">Importado - Secado al Horno</p>
+                    </div>
+                </div>
+                <div class="col-span-2 md:block hidden">
+                    <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-semibold">Maderas</span>
+                </div>
+                <div class="col-span-2">
+                    <div class="font-bold text-error">2.4 m³</div>
+                    <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Punto de Re-pedido: 3 m³</div>
+                </div>
+                <div class="col-span-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                        Stock Bajo
+                    </span>
+                </div>
+                <div class="col-span-1 text-right">
+                    <button class="p-2 hover:bg-surface-variant rounded-full text-primary transition-colors">
+                        <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Item 3: Brass Hinges -->
+            <div class="tonal-elevation-1 rounded-xl p-md grid grid-cols-1 md:grid-cols-12 items-center gap-md material-card-hover transition-all duration-300 group">
+                <div class="col-span-5 flex items-center gap-md">
+                    <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-high flex items-center justify-center">
+                        <img class="w-full h-full object-cover" data-alt="A collection of high-quality brushed brass cabinet hinges arranged neatly on a clean white surface. The metal has a soft, golden glow, indicating premium hardware. The image style is minimalist and sharp, focusing on industrial craftsmanship within a high-end carpentry context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWMgXUmwYpuAbXvVgtIvQBddn9DqIVLMGxkZtPrPZbT2OHYRnqdZPNQt3Xcq63F5TVQ-hocjd-otLmjyMZWO-4blnffBp5xFq4eoZO2ekQ0jbNPQmqlidbEMRF5cD7HGp22kJ5M3_Gjf4MQuUwxVOpgKTewPXXQuopELffNHQrrp9pGLELcKSSMgT8Tk282dfCpkmjI5qjniNk4nImhR-TcTiSnHgQEY-EdAEayskG6zzNIUCHJzQr" />
+                    </div>
+                    <div>
+                        <h4 class="font-headline-md text-body-lg font-bold text-primary">Bisagras de Latón</h4>
+                        <p class="text-body-sm text-on-surface-variant">Cierre Suave - 35mm</p>
+                    </div>
+                </div>
+                <div class="col-span-2 md:block hidden">
+                    <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-semibold">Herrajes</span>
+                </div>
+                <div class="col-span-2">
+                    <div class="font-bold text-primary">240 uds.</div>
+                    <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Cajas de 12 unidades</div>
+                </div>
+                <div class="col-span-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-xs font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                        Disponible
+                    </span>
+                </div>
+                <div class="col-span-1 text-right">
+                    <button class="p-2 hover:bg-surface-variant rounded-full text-primary transition-colors">
+                        <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Item 4: Polyurethane Finish -->
+            <div class="tonal-elevation-1 rounded-xl p-md grid grid-cols-1 md:grid-cols-12 items-center gap-md material-card-hover transition-all duration-300 group">
+                <div class="col-span-5 flex items-center gap-md">
+                    <div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <img class="w-full h-full object-cover" data-alt="A studio shot of professional-grade wood finish containers with elegant labels, set against a backdrop of finished wood surfaces. The color palette is composed of warm ochres and deep browns, emphasizing the artisanal quality of the products. The scene is lit with professional studio lighting that avoids harsh shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo_q6_AMpF2qharyGnIkfhmPieDPR-TMN6UTDtb7bk9dl5QBZ2iOQUSMmNKcb5YK0Oxp3o2vV9V1absPgCkGOXCKvfrkOO8N65bVtI_JpW-7SqoJyvpMlPFJo54n7_Q4_IoGj6St2Z3zaac8pewV7SskP4SPVpvZyPzBAhwWVggcZOjVLS-M-7KG9BuEAYwbD8jaOUsaVnphoi8UF4EGA6-7L8FA9S9Vu6bkqLeoyueKVkMdR1Qrmf" />
+                    </div>
+                    <div>
+                        <h4 class="font-headline-md text-body-lg font-bold text-primary">Barniz Poliuretano</h4>
+                        <p class="text-body-sm text-on-surface-variant">Mate - Secado Rápido (5L)</p>
+                    </div>
+                </div>
+                <div class="col-span-2 md:block hidden">
+                    <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-semibold">Acabados</span>
+                </div>
+                <div class="col-span-2">
+                    <div class="font-bold text-error">0 uds.</div>
+                    <div class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Pedido en Tránsito</div>
+                </div>
+                <div class="col-span-2">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-bold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+                        Agotado
+                    </span>
+                </div>
+                <div class="col-span-1 text-right">
+                    <button class="p-2 hover:bg-surface-variant rounded-full text-primary transition-colors">
+                        <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Pagination / Load More -->
+        <div class="mt-lg flex justify-center">
+            <button class="px-xl py-3 border border-primary text-primary rounded-full font-label-md text-label-md hover:bg-primary-container/10 transition-colors active:translate-y-0.5 duration-200">
+                Ver Más Materiales
+            </button>
+        </div>
+    </main>
+    <!-- FAB for adding new item (Contextual to Inventory) -->
+    <button class="fixed bottom-24 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-lg flex items-center justify-center active:scale-90 transition-transform duration-150 z-40 group">
+        <span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform duration-300">add</span>
+    </button>
+    <!-- Bottom Navigation Bar -->
+    <nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface dark:bg-surface-dim rounded-t-xl shadow-[0_-4px_6px_-1px_rgba(68,42,34,0.05)] flex justify-around items-center h-16 px-margin pb-safe">
+        <div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:translate-y-0.5 duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-label-md text-[10px]">Dashboard</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:translate-y-0.5 duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">architecture</span>
+            <span class="font-label-md text-[10px]">Proyectos</span>
+        </div>
+        <!-- Active Tab: Inventory -->
+        <div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-md py-xs active:translate-y-0.5 duration-200 cursor-pointer">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+            <span class="font-label-md text-[10px] font-bold">Inventario</span>
+        </div>
+        <div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:translate-y-0.5 duration-200 cursor-pointer">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <span class="font-label-md text-[10px]">Agenda</span>
+        </div>
+    </nav>
+    <!-- Desktop Navigation (Top Hidden Menu Logic or Persistent Sidebar) -->
+    <!-- For this "Inventory" focused screen, we stick to the TopAppBar and a clear content hierarchy -->
+    <script>
+            // Simple micro-interactions for the filter buttons
+            const filterButtons = document.querySelectorAll('.flex.gap-base button');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => {
+                        b.classList.remove('bg-primary', 'text-on-primary');
+                        b.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                    });
+                    btn.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+                    btn.classList.add('bg-primary', 'text-on-primary');
+                });
+            });
+
+            // Hover lift effect for cards (already handled by CSS classes but can be extended)
+            const cards = document.querySelectorAll('.tonal-elevation-1');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    // Potential JS logic for dynamic shadowing or sounds
+                });
+            });
+    </script>
+</body></html>

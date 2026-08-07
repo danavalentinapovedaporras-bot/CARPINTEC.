@@ -1,0 +1,197 @@
+@{
+    ViewData["Title"] = "Usuarios";
+}
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Cerrar Sesión | Carpintec Admin</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Manrope:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Shared Tailwind Configuration -->
+    <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "outline": "#827470",
+                            "on-primary-container": "#d4ada1",
+                            "surface-container-high": "#eae7e7",
+                            "on-secondary-container": "#636451",
+                            "surface-container-low": "#f6f3f2",
+                            "tertiary-fixed": "#cde8e5",
+                            "on-primary": "#ffffff",
+                            "primary-fixed": "#ffdbd0",
+                            "error-container": "#ffdad6",
+                            "error": "#ba1a1a",
+                            "on-error": "#ffffff",
+                            "tertiary-fixed-dim": "#b1ccc9",
+                            "surface-tint": "#77574d",
+                            "surface-container-lowest": "#ffffff",
+                            "on-surface": "#1b1c1c",
+                            "secondary-fixed-dim": "#c8c8b0",
+                            "on-tertiary-fixed": "#061f1e",
+                            "inverse-surface": "#303030",
+                            "on-tertiary-fixed-variant": "#334b49",
+                            "on-secondary-fixed": "#1b1d0e",
+                            "secondary-fixed": "#e4e4cc",
+                            "on-secondary": "#ffffff",
+                            "on-primary-fixed-variant": "#5d4037",
+                            "tertiary-container": "#334b49",
+                            "on-error-container": "#93000a",
+                            "surface": "#fcf9f8",
+                            "on-surface-variant": "#504441",
+                            "surface-bright": "#fcf9f8",
+                            "surface-dim": "#dcd9d9",
+                            "tertiary": "#1c3433",
+                            "on-tertiary": "#ffffff",
+                            "surface-variant": "#e5e2e1",
+                            "on-tertiary-container": "#a0bab7",
+                            "on-secondary-fixed-variant": "#474836",
+                            "secondary": "#5e604d",
+                            "inverse-primary": "#e7bdb1",
+                            "on-background": "#1b1c1c",
+                            "inverse-on-surface": "#f3f0ef",
+                            "secondary-container": "#e1e1c9",
+                            "primary-container": "#5d4037",
+                            "outline-variant": "#d4c3be",
+                            "surface-container-highest": "#e5e2e1",
+                            "primary-fixed-dim": "#e7bdb1",
+                            "background": "#fcf9f8",
+                            "surface-container": "#f0eded",
+                            "primary": "#442a22",
+                            "on-primary-fixed": "#2c160e"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "lg": "40px",
+                            "xs": "4px",
+                            "gutter": "24px",
+                            "margin": "32px",
+                            "xl": "64px",
+                            "sm": "12px",
+                            "md": "24px",
+                            "base": "8px"
+                        },
+                        "fontFamily": {
+                            "headline-lg-mobile": ["Manrope"],
+                            "body-lg": ["Hanken Grotesk"],
+                            "body-md": ["Hanken Grotesk"],
+                            "headline-xl": ["Manrope"],
+                            "headline-md": ["Manrope"],
+                            "headline-lg": ["Manrope"],
+                            "body-sm": ["Hanken Grotesk"],
+                            "label-md": ["Hanken Grotesk"]
+                        },
+                        "fontSize": {
+                            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                        }
+                    },
+                },
+            }
+    </script>
+    <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+
+            .wood-texture-overlay {
+                background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+                opacity: 0.03;
+            }
+
+            .modal-entrance {
+                animation: modalScaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            @@keyframes modalScaleUp {
+                from {
+                    opacity: 0;
+                    transform: scale(0.95) translateY(10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+            body {
+                min-height: max(884px, 100dvh);
+            }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex items-center justify-center p-margin overflow-hidden relative" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuClUbeHqJI7kF9XtatLqn-4oe9JlFiwfvU78Fg8mXOsnRR-7CcoXiU77cZuI01QrfuynUchMjoodJp0NuxrjldjWGUETgzmTp7_MjW5LtbktIMHqvVF5wDOOutrtPZ-Lp-QB-KSSlTZcLCPDShvHpCQRMNdPikNB2kleMNzvTKHkLGhnUjmMoswHpqjeVWyQoEW_VYH1NyUaw29NxjF5MRpGyBt_4D5DIHwt6Ygw25nZp4OTt6tFA9n&quot;); background-size: cover; background-position: center center;">
+    
+    <!-- Logout Confirmation Canvas -->
+    <main class="relative z-10 w-full max-w-lg">
+        <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-[40px] p-xl shadow-2xl modal-entrance text-center">
+            <div class="mb-lg">
+                <img alt="Carpintec Logo" class="w-24 h-24 mx-auto rounded-2xl shadow-md" src="https://lh3.googleusercontent.com/aida/AP1WRLswCoT9dWT2s_QbmJUsJTXjnyEI38rC3bRG-obhe2868btToG9mNqTCEbZXz_ii4pHqST6D--Mcaz3u_JOr2FIzckoiMUCT_uSXxPIGoifCWlc69drg6mjt93fiAhwY3PRHFTTWZoqfuo16IPw08nmBpRSND6qSCS55NSsVaz5tGybYAuJq60VkOn0fC6TtKUZsQeFbI6m6PDMjPLkPY2zZKfVbwXevMSvHW8XShpWnnSfNNFxENUJR7FOzb4h3EqaQ5q69fffB5Q">
+            </div>
+            <h1 class="font-headline-xl text-white mb-md">¿Deseas finalizar tu sesión?</h1>
+            <p class="font-body-sm text-white/70 mb-xl italic">Asegúrate de haber guardado todos los cambios antes de cerrar sesión</p>
+            <div class="flex flex-col gap-md">
+                <button class="w-full bg-[#2D221B] text-white py-md px-xl rounded-full font-headline-md flex items-center justify-center gap-base shadow-lg hover:bg-[#442a22] transition-all active:scale-95" onclick="handleLogout()">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>Cerrar Sesión</span>
+                </button>
+                <button class="w-full text-white/70 hover:text-white font-label-md uppercase tracking-widest transition-all active:scale-98" onclick="handleCancel()">
+                    <span class="border-b border-white/30">Volver al Panel</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Micro-interactions Script -->
+    <script>
+            function handleLogout() {
+                const btn = event.currentTarget;
+                btn.innerHTML = `
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span>Saliendo...</span>
+                        `;
+                btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+                setTimeout(() => {
+                    document.body.style.transition = 'opacity 0.5s ease-out';
+                    document.body.style.opacity = '0';
+                    console.log("Sesión cerrada exitosamente.");
+                }, 800);
+            }
+
+            function handleCancel() {
+                console.log("Operación cancelada. Regresando al panel.");
+                const modal = document.querySelector('.modal-entrance');
+                modal.style.transition = 'transform 0.2s ease-in, opacity 0.2s ease-in';
+                modal.style.transform = 'scale(0.98)';
+                modal.style.opacity = '0.5';
+
+                setTimeout(() => {
+                    window.history.back();
+                }, 200);
+            }
+    </script>
+    <div class="fixed bottom-base left-0 w-full text-center pb-md pointer-events-none">
+        <p class="font-label-md text-white/40 uppercase tracking-widest">
+            Carpintec • Artesanal Precision ERP v2.4.0
+        </p>
+    </div>
+
+</body>
+</html>
