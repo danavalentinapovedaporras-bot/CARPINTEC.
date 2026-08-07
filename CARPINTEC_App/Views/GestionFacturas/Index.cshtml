@@ -1,0 +1,304 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="es" style="">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mis Facturas - Carpintec</title>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+        darkMode: "class",
+        theme: {
+        extend: {
+        "colors": {
+        "on-secondary-fixed": "#321200",
+        "on-error-container": "#93000a",
+        "tertiary-container": "#665635",
+        "on-tertiary-fixed": "#251a01",
+        "surface-tint": "#934b19",
+        "secondary-fixed": "#ffdbc9",
+        "outline-variant": "#dac2b6",
+        "inverse-surface": "#362f2c",
+        "on-error": "#ffffff",
+        "on-primary-fixed": "#321200",
+        "error": "#ba1a1a",
+        "tertiary": "#4d3f20",
+        "primary-fixed": "#ffdbc9",
+        "primary-container": "#8b4513",
+        "primary-fixed-dim": "#ffb68c",
+        "on-secondary-container": "#672c00",
+        "tertiary-fixed-dim": "#dac49b",
+        "error-container": "#ffdad6",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed-variant": "#544525",
+        "outline": "#877369",
+        "on-tertiary-container": "#e2cca2",
+        "primary": "#6c2f00",
+        "on-primary-container": "#ffc29f",
+        "inverse-on-surface": "#fbeeea",
+        "secondary": "#9a4600",
+        "surface-bright": "#fff8f6",
+        "on-primary-fixed-variant": "#753401",
+        "surface-container-low": "#fef1ed",
+        "surface-container-high": "#f3e5e1",
+        "surface-container": "#f9ebe7",
+        "tertiary-fixed": "#f7e0b5",
+        "surface-dim": "#e4d7d4",
+        "on-tertiary": "#ffffff",
+        "on-background": "#201a18",
+        "surface-variant": "#ede0dc",
+        "surface": "#fff8f6",
+        "on-primary": "#ffffff",
+        "secondary-fixed-dim": "#ffb68d",
+        "on-secondary": "#ffffff",
+        "surface-container-highest": "#ede0dc",
+        "on-secondary-fixed-variant": "#763400",
+        "secondary-container": "#fd8a3e",
+        "on-surface-variant": "#54433a",
+        "on-surface": "#201a18",
+        "inverse-primary": "#ffb68c",
+        "background": "#fff8f6"
+        },
+        "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+        },
+        "spacing": {
+        "margin-mobile": "16px",
+        "gutter": "24px",
+        "base": "8px",
+        "margin-desktop": "64px",
+        "container-max": "1280px"
+        },
+        "fontFamily": {
+        "headline-lg": [
+        "Montserrat"
+        ],
+        "display-lg": [
+        "Montserrat"
+        ],
+        "body-md": [
+        "Work Sans"
+        ],
+        "label-md": [
+        "Work Sans"
+        ],
+        "title-md": [
+        "Montserrat"
+        ],
+        "body-lg": [
+        "Work Sans"
+        ],
+        "headline-lg-mobile": [
+        "Montserrat"
+        ]
+        },
+        "fontSize": {
+        "headline-lg": [
+        "32px",
+        {
+        "lineHeight": "40px",
+        "fontWeight": "700"
+        }
+        ],
+        "display-lg": [
+        "48px",
+        {
+        "lineHeight": "56px",
+        "letterSpacing": "-0.02em",
+        "fontWeight": "700"
+        }
+        ],
+        "body-md": [
+        "16px",
+        {
+        "lineHeight": "24px",
+        "fontWeight": "400"
+        }
+        ],
+        "label-md": [
+        "14px",
+        {
+        "lineHeight": "20px",
+        "letterSpacing": "0.05em",
+        "fontWeight": "500"
+        }
+        ],
+        "title-md": [
+        "20px",
+        {
+        "lineHeight": "28px",
+        "fontWeight": "600"
+        }
+        ],
+        "body-lg": [
+        "18px",
+        {
+        "lineHeight": "28px",
+        "fontWeight": "400"
+        }
+        ],
+        "headline-lg-mobile": [
+        "24px",
+        {
+        "lineHeight": "32px",
+        "fontWeight": "700"
+        }
+        ]
+        }
+        },
+        },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <style>
+        body {
+        min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen relative font-body-md text-body-md">
+    <!-- TopAppBar -->
+    <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-headline-lg-mobile text-headline-lg-mobile fixed top-0 w-full z-50 shadow-md flex justify-between items-center px-margin-mobile h-16 w-full">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined" data-icon="handyman">handyman</span>
+            <span class="font-display-lg text-[24px] font-bold text-on-primary dark:text-on-primary-container">Carpintec</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-6">
+            <a class="font-label-md text-label-md text-on-primary hover:text-secondary-container transition-colors" href="#">Inicio</a>
+            <a class="font-label-md text-label-md text-on-primary hover:text-secondary-container transition-colors" href="#">Catálogo</a>
+            <a class="font-label-md text-label-md text-on-primary hover:text-secondary-container transition-colors" href="#">Perfil</a>
+            <button class="font-label-md text-label-md bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full hover:bg-secondary transition-colors active:scale-95 shadow-sm">Cerrar Sesión</button>
+        </nav>
+        <button class="md:hidden hover:bg-secondary dark:hover:bg-secondary-container transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center font-label-md text-label-md">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </header>
+    <!-- Main Content -->
+    <main class="pt-24 pb-28 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col gap-8">
+        <header class="mb-4"><h1 class="font-display-lg text-headline-lg md:text-display-lg text-primary border-b border-outline-variant pb-2">Mis Facturas</h1><p class="font-body-md text-body-md text-on-surface-variant mt-2 italic font-serif">Cada pieza cuenta una historia. Gracias por permitirnos ser parte de la tuya.</p></header>
+        <div class="flex flex-col gap-4">
+            <!-- Invoice Card: Pending -->
+            <article class="bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-secondary-container"></div>
+                <div class="flex items-center gap-4 w-full sm:w-auto flex-grow">
+                    <img alt="Thumbnail" class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0 shadow-sm" src="https://lh3.googleusercontent.com/aida/AP1WRLu5SsRBaJQOKX60FyUpwZh2jPuxm-0HZ553N6o-sBP39OeYHc0oLh-5B_aD_j1wVEMFSpvG9WcZ_IESK5Tg33YBuEHOawOEsmFa3jnwGud_Dh_RNXLsgON_aE8xQL77asaE-1RIP01TUnB07b1JxtOYaWC2AAow4yXBZoUVuuM-FjRosQZ_hR7e9V0WATZ7HFqrV1-hCZy9u0qilUWwDPWJbmePfI_KkRunh-AKC6vvklY-0zDHmnZWktk" />
+                    <div class="flex-grow min-w-0">
+                        <div class="flex justify-between items-center mb-1"><h2 class="font-bold text-[16px] text-primary truncate">#FAC-2024-034</h2><span class="text-[12px] text-on-surface-variant">15/10/23</span></div>
+                        <div class="flex items-center gap-3"><span class="bg-secondary-container/20 text-secondary-container text-[12px] px-2 py-0.5 rounded-full font-medium border border-secondary-container/30">Pendiente</span><p class="text-[14px] font-bold text-on-surface">$2.8M</p></div>
+                    </div>
+                </div>
+                <div class="flex sm:flex-col justify-between sm:justify-center items-center sm:items-end w-full sm:w-auto gap-3 mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-outline-variant">
+                    <div class="flex gap-2 opacity-60"><span class="material-symbols-outlined text-[18px] text-on-surface-variant">account_balance_wallet</span><span class="material-symbols-outlined text-[18px] text-on-surface-variant">smartphone</span></div>
+                    <button class="bg-primary text-on-primary text-[14px] px-5 py-2 rounded-lg font-bold shadow-sm hover:bg-primary/90 transition-colors">Pagar</button>
+                </div>
+            </article>
+            <!-- Invoice Card: Overdue -->
+            <article class="bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-error"></div>
+                <div class="flex items-center gap-4 w-full sm:w-auto flex-grow">
+                    <div class="w-16 h-16 rounded-lg bg-surface-container-highest flex items-center justify-center flex-shrink-0 shadow-inner border border-outline-variant/50"><span class="material-symbols-outlined text-on-surface-variant text-2xl">build</span></div>
+                    <div class="flex-grow min-w-0"><div class="flex justify-between items-center mb-1"><h2 class="font-bold text-[16px] text-primary truncate">#FAC-2024-028</h2><span class="text-[12px] text-on-surface-variant">01/09/23</span></div><div class="flex items-center gap-3"><span class="bg-error-container text-on-error-container text-[12px] px-2 py-0.5 rounded-full font-medium border border-error/20">Vencida</span><p class="text-[14px] font-bold text-on-surface">$450k</p></div></div>
+                </div>
+                <div class="flex justify-end items-center w-full sm:w-auto mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-outline-variant"><button class="bg-primary text-on-primary text-[14px] px-5 py-2 rounded-lg font-bold shadow-sm hover:bg-primary/90 transition-colors">Pagar</button></div>
+            </article>
+            <!-- Invoice Card: Paid -->
+            <article class="bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 shadow-sm relative overflow-hidden opacity-90">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-tertiary"></div>
+                <div class="flex items-center gap-4 w-full sm:w-auto flex-grow">
+                    <div class="w-16 h-16 rounded-lg bg-surface-container-highest flex items-center justify-center flex-shrink-0 shadow-inner border border-outline-variant/50"><span class="material-symbols-outlined text-on-surface-variant text-2xl">table_restaurant</span></div><div class="flex-grow min-w-0"><div class="flex justify-between items-center mb-1"><h2 class="font-bold text-[16px] text-primary truncate">#FAC-2024-015</h2><span class="text-[12px] text-on-surface-variant">12/08/23</span></div><div class="flex items-center gap-3"><span class="bg-tertiary-container/20 text-tertiary text-[12px] px-2 py-0.5 rounded-full font-medium border border-tertiary/20">Pagada</span><p class="text-[14px] font-bold text-on-surface">$1.2M</p></div></div>
+                </div>
+                <div class="flex justify-end items-center w-full sm:w-auto gap-2 mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-outline-variant"><button class="text-primary p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[20px]">visibility</span></button><button class="text-primary p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button></div>
+            </article>
+        </div>
+        <section class="flex flex-col gap-6 mt-4">
+            <h3 class="font-title-md text-title-md text-primary border-b border-outline-variant pb-2">Asistencia y Soporte</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- PQR -->
+                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="flex items-center gap-3 text-primary mb-2">
+                            <div class="bg-primary-container/10 p-2 rounded-full"><span class="material-symbols-outlined text-[24px]">support_agent</span></div>
+                            <h3 class="font-bold text-[18px]">PQR</h3>
+                        </div>
+                        <p class="text-[14px] text-on-surface-variant mb-4">¿Dudas o reclamos? Nuestro equipo está listo para ayudarte.</p>
+                    </div>
+                    <button class="bg-primary text-on-primary text-[14px] py-2.5 rounded-lg font-bold shadow-sm hover:bg-primary/90 transition-colors w-full">Radicar PQR</button>
+                </div>
+                <!-- Nuestros Productos -->
+                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="flex items-center gap-3 text-primary mb-2">
+                            <div class="bg-primary-container/10 p-2 rounded-full"><span class="material-symbols-outlined text-[24px]">chair</span></div>
+                            <h3 class="font-bold text-[18px]">Catálogo</h3>
+                        </div>
+                        <p class="text-[14px] text-on-surface-variant mb-4">Calidad artesanal en cada una de nuestras piezas certificadas.</p>
+                    </div>
+                    <button class="bg-surface text-primary border border-primary text-[14px] py-2.5 rounded-lg font-bold shadow-sm hover:bg-primary-container/10 transition-colors w-full">Ver Catálogo</button>
+                </div>
+                <!-- Métodos de Pago & Seguridad Combined -->
+                <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow lg:col-span-1 md:col-span-2">
+                    <div>
+                        <div class="flex items-center gap-3 text-primary mb-2">
+                            <div class="bg-primary-container/10 p-2 rounded-full"><span class="material-symbols-outlined text-[24px]">verified_user</span></div>
+                            <span class="font-bold text-[18px]">Seguridad SSL</span>
+                        </div>
+                        <p class="text-[14px] text-on-surface-variant mb-4">Transacciones protegidas y ley de datos. Múltiples medios de pago disponibles.</p>
+                    </div>
+                    <div class="flex gap-4 opacity-70 items-center justify-start mt-2">
+                        <span class="material-symbols-outlined text-primary text-[24px]">account_balance_wallet</span>
+                        <span class="material-symbols-outlined text-primary text-[24px]">smartphone</span>
+                        <span class="material-symbols-outlined text-primary text-[24px]">credit_card</span>
+                        <span class="material-symbols-outlined text-primary text-[24px]">account_balance</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar -->
+    <nav class="bg-surface-container-highest dark:bg-surface-container-lowest text-primary dark:text-primary-fixed-dim font-label-md text-label-md fixed bottom-0 w-full z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center h-20 px-2 pb-safe md:hidden border-t border-outline-variant/30">
+        <!-- Tab: Inicio -->
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-90 duration-150 p-2" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+            <span class="">Inicio</span>
+        </a>
+        <!-- Tab: Catálogo -->
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-90 duration-150 p-2" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+            <span class="">Catálogo</span>
+        </a>
+        <!-- Tab: Cotizaciones -->
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-90 duration-150 p-2" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="request_quote">request_quote</span>
+            <span class="">Cotizaciones</span>
+        </a>
+        <!-- Tab: Pedidos -->
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-colors active:scale-90 duration-150 p-2" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+            <span class="">Pedidos</span>
+        </a>
+        <!-- Tab: Perfil (ACTIVE) -->
+        <a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-5 py-1.5 shadow-sm hover:bg-primary/90 transition-colors active:scale-90 duration-150" href="#">
+            <span class="material-symbols-outlined mb-0.5" data-icon="person">person</span>
+            <span class="font-bold">Perfil</span>
+        </a>
+    </nav>
+</body></html>

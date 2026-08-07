@@ -1,0 +1,423 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Mis Pedidos - Carpintec</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+        darkMode: "class",
+        theme: {
+        extend: {
+        "colors": {
+        "secondary-fixed": "#ffdbc9",
+        "outline": "#877369",
+        "surface-dim": "#e4d7d4",
+        "surface-variant": "#ede0dc",
+        "primary": "#6c2f00",
+        "surface-container": "#f9ebe7",
+        "tertiary": "#4d3f20",
+        "surface-container-low": "#fef1ed",
+        "primary-fixed-dim": "#ffb68c",
+        "on-tertiary-container": "#e2cca2",
+        "secondary-fixed-dim": "#ffb68d",
+        "tertiary-fixed-dim": "#dac49b",
+        "primary-container": "#8b4513",
+        "on-surface": "#201a18",
+        "on-primary-fixed": "#321200",
+        "on-tertiary-fixed-variant": "#544525",
+        "on-surface-variant": "#54433a",
+        "outline-variant": "#dac2b6",
+        "on-tertiary": "#ffffff",
+        "on-secondary": "#ffffff",
+        "inverse-on-surface": "#fbeeea",
+        "surface-container-lowest": "#ffffff",
+        "surface-tint": "#934b19",
+        "surface": "#fff8f6",
+        "on-primary-container": "#ffc29f",
+        "on-secondary-fixed-variant": "#763400",
+        "on-secondary-container": "#672c00",
+        "surface-container-high": "#f3e5e1",
+        "on-tertiary-fixed": "#251a01",
+        "surface-bright": "#fff8f6",
+        "on-error": "#ffffff",
+        "secondary": "#9a4600",
+        "on-error-container": "#93000a",
+        "surface-container-highest": "#ede0dc",
+        "on-background": "#201a18",
+        "background": "#fff8f6",
+        "tertiary-fixed": "#f7e0b5",
+        "inverse-surface": "#362f2c",
+        "on-primary-fixed-variant": "#753401",
+        "inverse-primary": "#ffb68c",
+        "error-container": "#ffdad6",
+        "on-secondary-fixed": "#321200",
+        "error": "#ba1a1a",
+        "tertiary-container": "#665635",
+        "primary-fixed": "#ffdbc9",
+        "on-primary": "#ffffff",
+        "secondary-container": "#fd8a3e"
+        },
+        "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+        },
+        "spacing": {
+        "base": "8px",
+        "gutter": "24px",
+        "margin-desktop": "64px",
+        "margin-mobile": "16px",
+        "container-max": "1280px"
+        },
+        "fontFamily": {
+        "headline-lg-mobile": ["Montserrat"],
+        "headline-lg": ["Montserrat"],
+        "body-lg": ["Work Sans"],
+        "display-lg": ["Montserrat"],
+        "body-md": ["Work Sans"],
+        "title-md": ["Montserrat"],
+        "label-md": ["Work Sans"]
+        },
+        "fontSize": {
+        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+        }
+        }
+        }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .material-symbols-outlined.fill {
+        font-variation-settings: 'FILL' 1;
+        }
+
+        .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        .progress-bar-fill {
+        transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+    <!-- TopAppBar -->
+    <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-title-md text-title-md w-full top-0 sticky border-b-4 border-secondary shadow-sm flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 z-50">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-2xl" data-icon="carpenter">carpenter</span>
+            <img alt="Carpintec Logo" class="h-8 w-8 object-contain rounded-full bg-white/10 p-1" src="https://lh3.googleusercontent.com/aida/AP1WRLvNe57FwpZCdLAdjTNHN9XTbzc2Gyq00dNP3DWAuThQ7dU6F7AYKMvDhbDeJsApzda7arQDQ6fogHr1u5ZKwCDgBsRwsqgC4x9emCV66_rArH9MfjOQUoiS1p8L4xGFFDa-HKPAZFp9BAK851Lr-1WKSaZjYD-7yW8oTpXJLtD9D3fXF3ubssHwmFV2PtEA0ksdV7Y9VG-KzdVA7Dk02qu1adStcby7EaxYW734BSWgVoVXKrFPRfcLVSddUtvhdAh0ZAdn1X62HXI">
+            <span class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-primary">CARPINTEC</span>
+        </div>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6">
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95" href="#">Inicio</a>
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95" href="#">Catalogo</a>
+
+            <a class="text-on-primary font-bold hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95 border-b-2 border-white" href="#">Perfil</a>
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95" href="#">Cerrar Sesion</a>
+        </nav>
+        <div class="md:hidden">
+            <button class="material-symbols-outlined p-2 hover:bg-secondary-container rounded-full transition-colors">menu</button>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-[container-max] mx-auto px-margin-mobile md:px-margin-desktop py-8 mb-24 md:mb-8">
+        <div class="mb-8">
+            <h1 class="font-headline-lg text-headline-lg text-primary mb-2">Mis Pedidos</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">Rastrea el progreso de tus muebles a medida.</p>
+        </div>
+        <div class="space-y-6">
+            <!-- Order 1: Mesa de Comedor -->
+            <article class="bg-surface-container-lowest border-2 border-outline/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow md:flex">
+                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r"><img alt="Mesa de Comedor Roble" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuw2Q9KTitaswXOch_ZNyAvqWFg7MCdokBHJQkgHnx9dIdYsyxroTlXGLeIbR4JzCCEqsFXCEYCEFjgS1qK28cuMgwgTtlAzHLsFW9gQYVSBuRsxFzIjqeJMIiSOJvWHVzD8-nMUlim4UFjUMT2msP_t0o9btBd4BYkLXtp1-sc5-juZLmGh5am9mVJr_l2nlgIItJLCaBtzApM291EWY8idqVeZ_KvKFNyp-qR4qoYjPlHmKJ0O4rPw9LBUkJT4iAj-ORJYbsNUA"></div>
+                <div class="p-6 border-b border-outline/10 bg-surface-container-low/50 flex-grow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">#ORD-8492</span>
+                                <span class="bg-primary/10 text-primary font-label-md px-2 py-0.5 rounded-full text-xs">Producción</span>
+                            </div>
+                            <h2 class="font-title-md text-title-md text-on-surface">Mesa de Comedor Roble</h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">Roble macizo, 200x100cm, acabado natural</p>
+                        </div>
+                        <div class="flex flex-row md:flex-col gap-4 md:gap-1 text-sm md:text-right">
+                            <div>
+                                <span class="text-on-surface-variant block md:inline">Fecha pedido:</span>
+                                <span class="font-medium">12 Oct 2023</span>
+                            </div>
+                            <div>
+                                <span class="text-on-surface-variant block md:inline">Entrega est:</span>
+                                <span class="font-medium text-primary">15 Nov 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="mb-4 flex justify-between items-end">
+                        <span class="font-label-md text-label-md text-on-surface">Progreso actual: 40%</span>
+                        <span class="font-body-md text-body-md text-primary font-medium">Producción</span>
+                    </div>
+                    <!-- Progress Bar -->
+                    <div class="h-3 w-full bg-surface-variant rounded-full overflow-hidden mb-6 relative">
+                        <div class="absolute top-0 left-0 h-full bg-primary progress-bar-fill rounded-full" style="width: 40%;"></div>
+                    </div>
+                    <!-- Stages List (Desktop: Horizontal, Mobile: Vertical Grid) -->
+                    <div class="grid grid-cols-2 md:flex md:justify-between gap-y-4 md:gap-0 font-label-md text-xs text-center">
+                        <div class="flex flex-col items-center opacity-100 text-primary">
+                            <span class="material-symbols-outlined text-[20px] mb-1 fill">check_circle</span>
+                            <span class="">Recibido</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-100 text-primary">
+                            <span class="material-symbols-outlined text-[20px] mb-1 fill">design_services</span>
+                            <span class="">Diseño</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-100 text-secondary">
+                            <span class="material-symbols-outlined text-[20px] mb-1">handyman</span>
+                            <span class="font-bold">Producción</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">format_paint</span>
+                            <span class="">Pintura</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">fact_check</span>
+                            <span class="">Control</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">inventory_2</span>
+                            <span class="">Empaque</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">local_shipping</span>
+                            <span class="">En camino</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">home</span>
+                            <span class="">Entregado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-surface-container flex flex-wrap gap-3 justify-end border-t border-outline/10">
+                    <button class="px-4 py-2 bg-transparent border-2 border-primary text-primary font-label-md text-label-md rounded hover:bg-secondary hover:text-white hover:border-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">receipt</span> Factura
+                    </button>
+                    <button class="px-4 py-2 bg-primary text-white font-label-md text-label-md rounded hover:bg-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span> Ver detalles
+                    </button>
+                </div>
+            </article>
+            <!-- Order 2: Sillas -->
+            <article class="bg-surface-container-lowest border-2 border-outline/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow md:flex">
+                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r"><img alt="Sillas Artesanales" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLtHrpKf6_eqPzGH-tUFyColKx60BTyzwYVZfBgWWzhNCA8PYW2HSNHPgP26TRsZCZqC67QeQTdJCbqTWlGLkdeOTZ_9TM6Hvkz9rbr0umQBe3ndMoUbE65vsxE_awNe1wfXrcQQE9_CcXfaq6jXXkNW16n2TOK5vcbVB0glezcZQ9YlnjpZEQK9tfewN7dgMifuHGE8ssb6Xq81ZB-uFtH9-aiPdNDZig6iJq-5rj6uZdaUgNJWj1ygFAPwt22FQT4fdeQymu8-4kE"></div>
+                <div class="p-6 border-b border-outline/10 bg-surface-container-low/50 flex-grow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">#ORD-8455</span>
+                                <span class="bg-secondary/10 text-secondary font-label-md px-2 py-0.5 rounded-full text-xs">Empaque</span>
+                            </div>
+                            <h2 class="font-title-md text-title-md text-on-surface">Sillas Artesanales (x4)</h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">Madera de nogal, asiento tapizado lino</p>
+                        </div>
+                        <div class="flex flex-row md:flex-col gap-4 md:gap-1 text-sm md:text-right">
+                            <div>
+                                <span class="text-on-surface-variant block md:inline">Fecha pedido:</span>
+                                <span class="font-medium">28 Sep 2023</span>
+                            </div>
+                            <div>
+                                <span class="text-on-surface-variant block md:inline">Entrega est:</span>
+                                <span class="font-medium text-primary">25 Oct 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="mb-4 flex justify-between items-end">
+                        <span class="font-label-md text-label-md text-on-surface">Progreso actual: 80%</span>
+                        <span class="font-body-md text-body-md text-secondary font-medium">Empaque</span>
+                    </div>
+                    <div class="h-3 w-full bg-surface-variant rounded-full overflow-hidden mb-6 relative">
+                        <div class="absolute top-0 left-0 h-full bg-secondary progress-bar-fill rounded-full" style="width: 80%;"></div>
+                    </div>
+                    <div class="grid grid-cols-2 md:flex md:justify-between gap-y-4 md:gap-0 font-label-md text-xs text-center">
+                        <div class="flex flex-col items-center opacity-100 text-primary">
+                            <span class="material-symbols-outlined text-[20px] mb-1 fill">check_circle</span>
+                            <span class="">Recibido</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-100 text-primary">
+                            <span class="material-symbols-outlined text-[20px] mb-1 fill">check_circle</span>
+                            <span class="">Diseño</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-100 text-primary">
+                            <span class="material-symbols-outlined text-[20px] mb-1 fill">check_circle</span>
+                            <span class="">Producción</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-100 text-primary">
+                            <span class="material-symbols-outlined text-[20px] mb-1 fill">check_circle</span>
+                            <span class="">Pintura</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-100 text-primary">
+                            <span class="material-symbols-outlined text-[20px] mb-1 fill">check_circle</span>
+                            <span class="">Control</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-100 text-secondary">
+                            <span class="material-symbols-outlined text-[20px] mb-1">inventory_2</span>
+                            <span class="font-bold">Empaque</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">local_shipping</span>
+                            <span class="">En camino</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">home</span>
+                            <span class="">Entregado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-surface-container flex flex-wrap gap-3 justify-end border-t border-outline/10">
+                    <button class="px-4 py-2 bg-transparent border-2 border-primary text-primary font-label-md text-label-md rounded hover:bg-secondary hover:text-white hover:border-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">receipt</span> Factura
+                    </button>
+                    <button class="px-4 py-2 bg-primary text-white font-label-md text-label-md rounded hover:bg-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span> Ver detalles
+                    </button>
+                </div>
+            </article>
+            <!-- Order 3: Estantería -->
+            <article class="bg-surface-container-lowest border-2 border-outline/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow md:flex">
+                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r"><img alt="Estantería Minimalista" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLubedUAwRJZb_z0ONF0QHvPtneODHFHTpQyRJaJkzK8OQdgz1JfWRlbnt0MnxQ0r3Nw2ctg5lVcp1J0aM7RPYSbErT0SrO7L-aGGJDhDlbvM6d1CMx5yXIgCKbO5JsynPl-fTVHwtcDYK1M_TXMAeXx60LrbAb-8IHypoDL9iKwqBbTskuIlBmFu9GWYLEnxc6KWrwa4AceS_N6AOzHEWlmMIESyOdFTUagkX4rHpegkGiNHY-wXSXOT9XdwR7vW4aab025uSBItQ"></div>
+                <div class="p-6 border-b border-outline/10 bg-surface-container-low/50 flex-grow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">#ORD-8512</span>
+                                <span class="bg-surface-variant text-on-surface-variant font-label-md px-2 py-0.5 rounded-full text-xs">Pedido recibido</span>
+                            </div>
+                            <h2 class="font-title-md text-title-md text-on-surface">Estantería Minimalista</h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">Pino tratado, 5 estantes, acabado mate</p>
+                        </div>
+                        <div class="flex flex-row md:flex-col gap-4 md:gap-1 text-sm md:text-right">
+                            <div>
+                                <span class="text-on-surface-variant block md:inline">Fecha pedido:</span>
+                                <span class="font-medium">20 Oct 2023</span>
+                            </div>
+                            <div>
+                                <span class="text-on-surface-variant block md:inline">Entrega est:</span>
+                                <span class="font-medium text-primary">10 Dic 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="mb-4 flex justify-between items-end">
+                        <span class="font-label-md text-label-md text-on-surface">Progreso actual: 10%</span>
+                        <span class="font-body-md text-body-md text-primary font-medium">Pedido recibido</span>
+                    </div>
+                    <div class="h-3 w-full bg-surface-variant rounded-full overflow-hidden mb-6 relative">
+                        <div class="absolute top-0 left-0 h-full bg-tertiary progress-bar-fill rounded-full" style="width: 10%;"></div>
+                    </div>
+                    <div class="grid grid-cols-2 md:flex md:justify-between gap-y-4 md:gap-0 font-label-md text-xs text-center">
+                        <div class="flex flex-col items-center opacity-100 text-tertiary">
+                            <span class="material-symbols-outlined text-[20px] mb-1">receipt_long</span>
+                            <span class="font-bold">Recibido</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">design_services</span>
+                            <span class="">Diseño</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">handyman</span>
+                            <span class="">Producción</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">format_paint</span>
+                            <span class="">Pintura</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">fact_check</span>
+                            <span class="">Control</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">inventory_2</span>
+                            <span class="">Empaque</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">local_shipping</span>
+                            <span class="">En camino</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-40 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[20px] mb-1">home</span>
+                            <span class="">Entregado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-surface-container flex flex-wrap gap-3 justify-end border-t border-outline/10">
+                    <button class="px-4 py-2 bg-transparent border-2 border-primary text-primary font-label-md text-label-md rounded hover:bg-secondary hover:text-white hover:border-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">receipt</span> Factura
+                    </button>
+                    <button class="px-4 py-2 bg-primary text-white font-label-md text-label-md rounded hover:bg-secondary transition-colors focus:ring-2 focus:ring-primary focus:outline-none flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">visibility</span> Ver detalles
+                    </button>
+                </div>
+            </article>
+        </div>
+    </main>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="md:hidden bg-surface-container-highest dark:bg-surface-container-low text-primary dark:text-primary-fixed font-label-md text-label-md fixed bottom-0 w-full z-50 border-t-4 border-primary shadow-lg flex justify-around items-center h-20 pb-safe px-2">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 p-2 rounded-xl" href="#">
+            <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+            <span class="">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 p-2 rounded-xl" href="#">
+            <span class="material-symbols-outlined" data-icon="handyman">handyman</span>
+            <span class="">Catalog</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 p-2 rounded-xl" href="#">
+            <span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+            <span class="">New Quote</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-transform active:scale-90" href="#">
+            <span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+            <span class="">Orders</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-transform active:scale-90 p-2 rounded-xl" href="#">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="">Profile</span>
+        </a>
+    </nav>
+    <script>
+        // Trigger animations on load for progress bars
+        document.addEventListener("DOMContentLoaded", () => {
+        const bars = document.querySelectorAll('.progress-bar-fill');
+        bars.forEach(bar => {
+        const targetWidth = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => {
+        bar.style.width = targetWidth;
+        }, 100);
+        });
+        });
+    </script>
+
+
+</body></html>
