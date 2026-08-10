@@ -7,12 +7,18 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
     <title>Crear Cuenta - Carpintec</title>
 
     <style>
+
             * {
                 margin: 0;
                 padding: 0;
@@ -27,7 +33,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
+                min-height: 100vh;
             }
 
             .contenedor {
@@ -59,7 +65,49 @@
                 border: 1px solid #ccc;
             }
 
-            button {
+            /* =========================
+                       CONTENEDOR CONTRASEÑA
+                       ========================= */
+
+            .password-wrapper {
+                position: relative;
+                width: 100%;
+            }
+
+                .password-wrapper input {
+                    width: 100%;
+                    padding-right: 45px;
+                }
+
+            /* =========================
+                       BOTÓN OJO
+                       ========================= */
+
+            .toggle-password {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: auto;
+                padding: 5px;
+                background: transparent;
+                color: #777;
+                border: none;
+                border-radius: 0;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+                .toggle-password:hover {
+                    background: transparent;
+                    color: #8b4513;
+                }
+
+            /* =========================
+                       BOTÓN CREAR CUENTA
+                       ========================= */
+
+            .btn-crear {
                 width: 100%;
                 padding: 14px;
                 background: #8b4513;
@@ -68,9 +116,10 @@
                 border-radius: 6px;
                 cursor: pointer;
                 font-size: 18px;
+                margin-top: 5px;
             }
 
-                button:hover {
+                .btn-crear:hover {
                     background: #6d3510;
                 }
 
@@ -96,7 +145,9 @@
                     text-decoration: none;
                     font-weight: bold;
                 }
+
     </style>
+
 </head>
 
 <body>
@@ -119,22 +170,42 @@
             </div>
         }
 
-        <form asp-controller="Registro" asp-action="Registrar" method="post">
+        <form asp-controller="Registro"
+              asp-action="Registrar"
+              method="post">
+
+            <!-- =========================
+                 NOMBRE
+                 ========================= -->
 
             <label>Nombre</label>
-            <input asp-for="Nombre" required />
+
+            <input asp-for="Nombre"
+                   required />
 
             <span asp-validation-for="Nombre"
                   style="color:red;"></span>
 
+
+            <!-- =========================
+                 APELLIDO
+                 ========================= -->
+
             <label>Apellido</label>
-            <input asp-for="Apellido" required />
+
+            <input asp-for="Apellido"
+                   required />
 
             <span asp-validation-for="Apellido"
                   style="color:red;"></span>
 
 
+            <!-- =========================
+                 CORREO
+                 ========================= -->
+
             <label>Correo</label>
+
             <input asp-for="Correo"
                    type="email"
                    required />
@@ -142,42 +213,142 @@
             <span asp-validation-for="Correo"
                   style="color:red;"></span>
 
+
+            <!-- =========================
+                 CONTRASEÑA
+                 ========================= -->
+
             <label>Contraseña</label>
-            <input asp-for="Contraseña"
-                   type="password"
-                   minlength="6"
-                   required />
+
+            <div class="password-wrapper">
+
+                <input asp-for="Contraseña"
+                       id="password"
+                       type="password"
+                       minlength="6"
+                       required />
+
+                <button type="button"
+                        class="toggle-password"
+                        onclick="togglePassword('password', this)"
+                        aria-label="Mostrar contraseña">
+
+                    👁
+
+                </button>
+
+            </div>
 
             <span asp-validation-for="Contraseña"
                   style="color:red;"></span>
 
+
+            <!-- =========================
+                 CONFIRMAR CONTRASEÑA
+                 ========================= -->
+
             <label>Confirmar contraseña</label>
-            <input type="password"
-                   name="confirmarPassword"
-                   minlength="6"
-                   required />
-            <button type="submit">
+
+            <div class="password-wrapper">
+
+                <input type="password"
+                       id="confirmarPassword"
+                       name="confirmarPassword"
+                       minlength="6"
+                       required />
+
+                <button type="button"
+                        class="toggle-password"
+                        onclick="togglePassword('confirmarPassword', this)"
+                        aria-label="Mostrar contraseña">
+
+                    👁
+
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 CREAR CUENTA
+                 ========================= -->
+
+            <button type="submit"
+                    class="btn-crear">
+
                 Crear Cuenta
+
             </button>
 
         </form>
 
+
+        <!-- =========================
+             VOLVER AL LOGIN
+             ========================= -->
+
         <div class="login">
+
             ¿Ya tienes cuenta?<br />
 
-            <a asp-controller="Login" asp-action="Index">
+            <a asp-controller="Login"
+               asp-action="Index">
+
                 Iniciar sesión
+
             </a>
 
         </div>
 
     </div>
 
-</body>
-</html>
 
-@section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    <script>
+
+            function togglePassword(inputId, button) {
+
+                const input =
+                    document.getElementById(inputId);
+
+                if (input.type === "password") {
+
+                    input.type = "text";
+
+                    button.textContent = "🙈";
+
+                    button.setAttribute(
+                        "aria-label",
+                        "Ocultar contraseña"
+                    );
+
+                } else {
+
+                    input.type = "password";
+
+                    button.textContent = "👁";
+
+                    button.setAttribute(
+                        "aria-label",
+                        "Mostrar contraseña"
+                    );
+                }
+            }
+
+    </script>
+
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync(
+                "_ValidationScriptsPartial"
+            );
+        }
     }
-}
+
+</body>
+
+</html>
