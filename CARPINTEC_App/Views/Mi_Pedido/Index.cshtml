@@ -124,18 +124,36 @@
     <!-- TopAppBar -->
     <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-title-md text-title-md w-full top-0 sticky border-b-4 border-secondary shadow-sm flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 z-50">
         <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-2xl" data-icon="carpenter">carpenter</span>
-            <img alt="Carpintec Logo" class="h-8 w-8 object-contain rounded-full bg-white/10 p-1" src="https://lh3.googleusercontent.com/aida/AP1WRLvNe57FwpZCdLAdjTNHN9XTbzc2Gyq00dNP3DWAuThQ7dU6F7AYKMvDhbDeJsApzda7arQDQ6fogHr1u5ZKwCDgBsRwsqgC4x9emCV66_rArH9MfjOQUoiS1p8L4xGFFDa-HKPAZFp9BAK851Lr-1WKSaZjYD-7yW8oTpXJLtD9D3fXF3ubssHwmFV2PtEA0ksdV7Y9VG-KzdVA7Dk02qu1adStcby7EaxYW734BSWgVoVXKrFPRfcLVSddUtvhdAh0ZAdn1X62HXI">
+            <a href="javascript:history.back()"
+               class="flex items-center gap-2">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <img alt="Carpintec Logo"
+                 class="h-8 w-8 object-contain mr-2"
+                 src="~/images/logo.png">
             <span class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-bold text-on-primary">CARPINTEC</span>
         </div>
         <!-- Desktop Nav -->
         <nav class="hidden md:flex items-center gap-6">
-            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95" href="#">Inicio</a>
-            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95" href="#">Catalogo</a>
-
-            <a class="text-on-primary font-bold hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95 border-b-2 border-white" href="#">Perfil</a>
-            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95" href="#">Cerrar Sesion</a>
-        </nav>
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+               asp-controller="DashboardCliente"
+               asp-action="Index">
+                Inicio
+            </a>           <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+               asp-controller="Misproductos"
+               asp-action="Index">
+                Catalogo
+            </a>
+        <a class="text-on-primary font-bold hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95 border-b-2 border-white"
+           asp-controller="Miperfil"
+           asp-action="Index">
+            Perfil
+        </a>           
+<a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+   asp-controller="Login"
+   asp-action="CerrarSesion">
+    Cerrar Sesión
+</a>        </nav>
         <div class="md:hidden">
             <button class="material-symbols-outlined p-2 hover:bg-secondary-container rounded-full transition-colors">menu</button>
         </div>
@@ -149,7 +167,13 @@
         <div class="space-y-6">
             <!-- Order 1: Mesa de Comedor -->
             <article class="bg-surface-container-lowest border-2 border-outline/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow md:flex">
-                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r"><img alt="Mesa de Comedor Roble" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuw2Q9KTitaswXOch_ZNyAvqWFg7MCdokBHJQkgHnx9dIdYsyxroTlXGLeIbR4JzCCEqsFXCEYCEFjgS1qK28cuMgwgTtlAzHLsFW9gQYVSBuRsxFzIjqeJMIiSOJvWHVzD8-nMUlim4UFjUMT2msP_t0o9btBd4BYkLXtp1-sc5-juZLmGh5am9mVJr_l2nlgIItJLCaBtzApM291EWY8idqVeZ_KvKFNyp-qR4qoYjPlHmKJ0O4rPw9LBUkJT4iAj-ORJYbsNUA"></div>
+                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r">
+                   
+                    <img alt="Mesa de Comedor Roble"
+                         class="w-full h-full object-cover"
+                         src="~/images/comedor.jpeg">
+
+</div>
                 <div class="p-6 border-b border-outline/10 bg-surface-container-low/50 flex-grow">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                         <div>
@@ -228,7 +252,11 @@
             </article>
             <!-- Order 2: Sillas -->
             <article class="bg-surface-container-lowest border-2 border-outline/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow md:flex">
-                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r"><img alt="Sillas Artesanales" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLtHrpKf6_eqPzGH-tUFyColKx60BTyzwYVZfBgWWzhNCA8PYW2HSNHPgP26TRsZCZqC67QeQTdJCbqTWlGLkdeOTZ_9TM6Hvkz9rbr0umQBe3ndMoUbE65vsxE_awNe1wfXrcQQE9_CcXfaq6jXXkNW16n2TOK5vcbVB0glezcZQ9YlnjpZEQK9tfewN7dgMifuHGE8ssb6Xq81ZB-uFtH9-aiPdNDZig6iJq-5rj6uZdaUgNJWj1ygFAPwt22FQT4fdeQymu8-4kE"></div>
+                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r">
+                    <img alt="Sillas Artesanales"
+                         class="w-full h-full object-cover"
+                         src="~/images/sillas.jpeg">
+                </div>
                 <div class="p-6 border-b border-outline/10 bg-surface-container-low/50 flex-grow">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                         <div>
@@ -305,7 +333,11 @@
             </article>
             <!-- Order 3: Estantería -->
             <article class="bg-surface-container-lowest border-2 border-outline/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow md:flex">
-                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r"><img alt="Estantería Minimalista" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLubedUAwRJZb_z0ONF0QHvPtneODHFHTpQyRJaJkzK8OQdgz1JfWRlbnt0MnxQ0r3Nw2ctg5lVcp1J0aM7RPYSbErT0SrO7L-aGGJDhDlbvM6d1CMx5yXIgCKbO5JsynPl-fTVHwtcDYK1M_TXMAeXx60LrbAb-8IHypoDL9iKwqBbTskuIlBmFu9GWYLEnxc6KWrwa4AceS_N6AOzHEWlmMIESyOdFTUagkX4rHpegkGiNHY-wXSXOT9XdwR7vW4aab025uSBItQ"></div>
+                <div class="w-full h-48 overflow-hidden border-b border-outline/10 md:w-1/3 md:h-auto md:border-b-0 md:border-r">
+                    <img alt="Estantería Minimalista"
+                         class="w-full h-full object-cover"
+                         src="~/images/estanteria.jpeg">
+                </div>
                 <div class="p-6 border-b border-outline/10 bg-surface-container-low/50 flex-grow">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                         <div>

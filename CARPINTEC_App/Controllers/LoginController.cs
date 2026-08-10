@@ -72,7 +72,7 @@ public class LoginController : Controller
         }
         catch (Exception ex)
         {
-            TempData["Error"] = "Error al procesar la solicitud";
+            TempData["Error"] = "ERROR: " + ex.Message;
             return RedirectToAction("Index");
         }
     }

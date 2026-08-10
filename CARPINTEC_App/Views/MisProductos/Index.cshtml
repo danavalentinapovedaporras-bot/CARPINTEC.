@@ -165,19 +165,45 @@
         <!-- TopAppBar -->
         <div class="bg-primary flex items-center justify-between px-margin-mobile h-16 w-full border-b-4 border-primary-container shadow-sm">
             <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-on-primary">handyman</span>
+                <a href="javascript:history.back()"
+                   class="flex items-center gap-2">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </a>
                 <span class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary uppercase tracking-wider">Carpintec</span>
             </div>
             <!-- Desktop Navigation Links (Hidden on Mobile) -->
             <nav class="hidden md:flex gap-6 items-center">
-                <a class="font-title-md text-title-md text-on-primary-fixed-variant hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#">Inicio</a>
-                <a class="font-title-md text-title-md text-on-primary font-bold hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#">Catálogo</a>
-                <a class="font-title-md text-title-md text-on-primary-fixed-variant hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#">Cotizar</a>
-                <a class="font-title-md text-title-md text-on-primary-fixed-variant hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#">Pedidos</a>
-                <a class="font-title-md text-title-md text-on-primary-fixed-variant hover:bg-secondary-container transition-colors px-3 py-1 rounded" href="#">Perfil</a>
-            </nav>
+                <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+                   asp-controller="DashboardCliente"
+                   asp-action="Index">
+                    Inicio
+                </a>             
+                <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+                   asp-controller="MisProductos"
+                   asp-action="Index">
+                    Catalogo
+                </a>             
+                <a aria-current="page"
+               class="text-on-primary font-bold border-b-2 border-on-primary pb-1 hover:text-secondary-fixed hover:transition-colors font-label-md text-label-md active scale-95 transition-transform duration-200"
+               asp-controller="MiCotizacion"
+               asp-action="Index">
+                Mis Cotizaciones
+            </a>         
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+           asp-controller="Mi_Pedido"
+           asp-action="Index">
+            Pedidos
+        </a>         
+        <a class="text-on-primary font-bold hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95 border-b-2 border-white"
+       asp-controller="Miperfil"
+       asp-action="Index">
+        Perfil
+    </a>
+</nav>
             <div class="md:hidden flex items-center">
-                <img alt="Carpintec Logo" class="h-8 w-8 object-contain bg-white rounded-full p-1 hidden" src="https://lh3.googleusercontent.com/aida/AP1WRLvNe57FwpZCdLAdjTNHN9XTbzc2Gyq00dNP3DWAuThQ7dU6F7AYKMvDhbDeJsApzda7arQDQ6fogHr1u5ZKwCDgBsRwsqgC4x9emCV66_rArH9MfjOQUoiS1p8L4xGFFDa-HKPAZFp9BAK851Lr-1WKSaZjYD-7yW8oTpXJLtD9D3fXF3ubssHwmFV2PtEA0ksdV7Y9VG-KzdVA7Dk02qu1adStcby7EaxYW734BSWgVoVXKrFPRfcLVSddUtvhdAh0ZAdn1X62HXI">
+                <img alt="Carpintec Logo"
+                     class="h-8 w-8 object-contain mr-2"
+                     src="~/images/logo.png">
             </div>
         </div>
     </header>
@@ -212,7 +238,9 @@
                 <!-- Product 1 -->
                 <article class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
                     <div class="relative h-48 w-full overflow-hidden bg-surface-container">
-                        <img alt="Cocina Moderna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLtgOkPgIrOzW3cBf7q63SozkejM1gDNVdkeeEtPwF3mYTIg0pdWx3863xbCTSKaQXwuv2YwRO2Ml-DFx7fO-YiQz9OlwOj9kb0T1WSvKiIpBbhxtNnn4RnwYS4rexPlyc8e7d3Y1xuoTX5jbwZpjao-4iQH5jJ-2r56kcWmX9TQH-E20dGqZIDmkue3GWg2IBXw9xwrZQ8t89JoBY9ldXTGvNjOWt7NZPDCQl-LbNL0VKoYC1R2XsSgwDCp">
+                        <img alt="Cocina Moderna"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             src="~/images/cocina.jpeg">
                     </div>
                     <div class="p-4 flex flex-col flex-grow"><h2 class="font-title-md text-title-md text-primary mb-1">Cocina Moderna Roble</h2><p class="font-label-md text-label-md text-on-surface-variant mb-2">Cocinas</p><div class="mb-2"><span class="bg-tertiary-container text-on-tertiary-container text-xs px-2 py-0.5 rounded font-label-md">Madera: Roble Macizo</span></div><p class="font-body-md text-sm text-on-surface mb-4 flex-grow line-clamp-3">Gabinetería en roble macizo con acabado natural mate. Herrajes de cierre lento y diseño minimalista para espacios contemporáneos.</p><div class="bg-surface-container-high p-2 rounded mb-4 flex flex-col gap-1"><span class="font-label-md text-xs text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">straighten</span> A Medida</span></div><div class="flex gap-2 mt-auto"><button class="flex-1 bg-primary hover:bg-secondary text-on-primary font-title-md text-[14px] font-bold py-2 px-2 rounded transition-colors flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[18px]">calculate</span> Cotizar</button><button class="flex-1 border border-primary text-primary hover:bg-primary-container hover:text-on-primary-container font-title-md text-[14px] font-bold py-2 px-2 rounded transition-colors flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[18px]">menu_book</span> Instructivo</button></div></div>
                 </article>
@@ -241,7 +269,9 @@
                 <!-- Product 5 -->
                 <article class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
                     <div class="relative h-48 w-full overflow-hidden bg-surface-container">
-                        <img alt="Comedor Roble Macizo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLu5SsRBaJQOKX60FyUpwZh2jPuxm-0HZ553N6o-sBP39OeYHc0oLh-5B_aD_j1wVEMFSpvG9WcZ_IESK5Tg33YBuEHOawOEsmFa3jnwGud_Dh_RNXLsgON_aE8xQL77asaE-1RIP01TUnB07b1JxtOYaWC2AAow4yXBZoUVuuM-FjRosQZ_hR7e9V0WATZ7HFqrV1-hCZy9u0qilUWwDPWJbmePfI_KkRunh-AKC6vvklY-0zDHmnZWktk">
+                        <img alt="Comedor Roble Macizo"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             src="~/images/comedor.jpeg">
                     </div>
                     <div class="p-4 flex flex-col flex-grow">
                         <h2 class="font-title-md text-title-md text-primary mb-1">Comedor Roble Macizo</h2>
@@ -310,7 +340,9 @@
                 <!-- Product 9 -->
                 <article class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
                     <div class="relative h-48 w-full overflow-hidden bg-surface-container">
-                        <img alt="Cama Zen Nogal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLu4VEkxIbvr6o5LvIskkHpe3AJYmgWwqM_O6vCO1WCnXeKIbnTwytNlMNyYdnHysmr_A51t3h4VhLV2HuhfTbJ5H7tUSmlF0B7ARM1sNt4lecagZ1JTOA--bhPytnSNvUVzl1GvZkjbypB-wBjt8qkApbGLrdV4cZsUEzxIAmDYS4gSQ5q1bwOlOoScm4AeHBZBeA1ueGoJUteziBGo8dpNnttdAc2ynqgJAuoQlhF8Z3ApC0nwYBEzOlgE">
+                        <img alt="Cama Zen Nogal"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             src="~/images/cama.jpeg">
                     </div>
                     <div class="p-4 flex flex-col flex-grow">
                         <h2 class="font-title-md text-title-md text-primary mb-1">Cama Zen Nogal</h2>

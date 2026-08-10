@@ -179,14 +179,33 @@
     <!-- TopAppBar -->
     <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-headline-lg-mobile text-headline-lg-mobile fixed top-0 w-full z-50 shadow-md flex justify-between items-center px-margin-mobile h-16 w-full">
         <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined" data-icon="handyman">handyman</span>
+            
+            <a href="javascript:history.back()"
+               class="flex items-center gap-2">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
             <span class="font-display-lg text-[24px] font-bold text-on-primary dark:text-on-primary-container">Carpintec</span>
         </div>
         <nav class="hidden md:flex items-center gap-6">
-            <a class="font-label-md text-label-md text-on-primary hover:text-secondary-container transition-colors" href="#">Inicio</a>
-            <a class="font-label-md text-label-md text-on-primary hover:text-secondary-container transition-colors" href="#">Catálogo</a>
-            <a class="font-label-md text-label-md text-on-primary hover:text-secondary-container transition-colors" href="#">Perfil</a>
-            <button class="font-label-md text-label-md bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full hover:bg-secondary transition-colors active:scale-95 shadow-sm">Cerrar Sesión</button>
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+               asp-controller="DashboardCliente"
+               asp-action="Index">
+                Inicio
+            </a>           
+            <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+               asp-controller="Misproductos"
+               asp-action="Index">
+                Catalogo
+            </a>           <a class="text-on-primary font-bold hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95 border-b-2 border-white"
+               asp-controller="Miperfil"
+               asp-action="Index">
+                Perfil
+            </a>
+        <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+           asp-controller="Login"
+           asp-action="CerrarSesion">
+            Cerrar Sesión
+        </a>
         </nav>
         <button class="md:hidden hover:bg-secondary dark:hover:bg-secondary-container transition-colors active:scale-95 duration-200 p-2 rounded-full flex items-center justify-center font-label-md text-label-md">
             <span class="material-symbols-outlined">menu</span>
@@ -200,8 +219,9 @@
             <article class="bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 shadow-sm relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-1.5 h-full bg-secondary-container"></div>
                 <div class="flex items-center gap-4 w-full sm:w-auto flex-grow">
-                    <img alt="Thumbnail" class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0 shadow-sm" src="https://lh3.googleusercontent.com/aida/AP1WRLu5SsRBaJQOKX60FyUpwZh2jPuxm-0HZ553N6o-sBP39OeYHc0oLh-5B_aD_j1wVEMFSpvG9WcZ_IESK5Tg33YBuEHOawOEsmFa3jnwGud_Dh_RNXLsgON_aE8xQL77asaE-1RIP01TUnB07b1JxtOYaWC2AAow4yXBZoUVuuM-FjRosQZ_hR7e9V0WATZ7HFqrV1-hCZy9u0qilUWwDPWJbmePfI_KkRunh-AKC6vvklY-0zDHmnZWktk" />
-                    <div class="flex-grow min-w-0">
+                    <img alt="Thumbnail"
+                         class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0 shadow-sm"
+                         src="~/images/silladecedro.jpeg" />                    <div class="flex-grow min-w-0">
                         <div class="flex justify-between items-center mb-1"><h2 class="font-bold text-[16px] text-primary truncate">#FAC-2024-034</h2><span class="text-[12px] text-on-surface-variant">15/10/23</span></div>
                         <div class="flex items-center gap-3"><span class="bg-secondary-container/20 text-secondary-container text-[12px] px-2 py-0.5 rounded-full font-medium border border-secondary-container/30">Pendiente</span><p class="text-[14px] font-bold text-on-surface">$2.8M</p></div>
                     </div>

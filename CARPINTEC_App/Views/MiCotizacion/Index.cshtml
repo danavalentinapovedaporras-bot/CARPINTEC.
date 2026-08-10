@@ -132,20 +132,38 @@
     <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container docked full-width top-0 border-b-4 border-primary dark:border-primary-fixed shadow-md z-50 sticky">
         <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
             <div class="flex items-center gap-4">
-                <img alt="Carpintec Logo" class="h-10 w-10 object-contain bg-white rounded-sm p-1" src="https://lh3.googleusercontent.com/aida/AP1WRLvNe57FwpZCdLAdjTNHN9XTbzc2Gyq00dNP3DWAuThQ7dU6F7AYKMvDhbDeJsApzda7arQDQ6fogHr1u5ZKwCDgBsRwsqgC4x9emCV66_rArH9MfjOQUoiS1p8L4xGFFDa-HKPAZFp9BAK851Lr-1WKSaZjYD-7yW8oTpXJLtD9D3fXF3ubssHwmFV2PtEA0ksdV7Y9VG-KzdVA7Dk02qu1adStcby7EaxYW734BSWgVoVXKrFPRfcLVSddUtvhdAh0ZAdn1X62HXI">
+                <img alt="Carpintec Logo"
+                     class="h-8 w-8 object-contain mr-2"
+                     src="~/images/logo.png">
                 <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-[32px]">carpenter</span>
+                    <a href="javascript:history.back()"
+                       class="flex items-center gap-2">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                    </a>
                     <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-primary dark:text-on-primary-container tracking-tight">CARPINTEC</h1>
                 </div>
             </div>
             <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-8">
-                <a class="text-on-primary/80 font-medium hover:text-secondary-fixed hover:transition-colors font-label-md text-label-md" href="#">Inicio</a>
-
-                <a aria-current="page" class="text-on-primary font-bold border-b-2 border-on-primary pb-1 hover:text-secondary-fixed hover:transition-colors font-label-md text-label-md active scale-95 transition-transform duration-200" href="#">Mis Cotizaciones</a>
+                <a class="text-on-primary/80 hover:bg-secondary-container transition-colors px-3 py-2 rounded-md cursor-pointer active:scale-95"
+                   asp-controller="DasboardCliente"
+                   asp-action="Index">
+                    Inicio
+                </a>
+                <a aria-current="page"
+                   class="text-on-primary font-bold border-b-2 border-on-primary pb-1 hover:text-secondary-fixed hover:transition-colors font-label-md text-label-md active scale-95 transition-transform duration-200"
+                   asp-controller="MiCotizacion"
+                   asp-action="Index">
+                    Mis Cotizaciones
+                </a>               
                 <button class="bg-surface text-primary font-label-md text-label-md px-6 py-2 rounded-full font-bold hover:bg-secondary-fixed transition-colors flex items-center gap-2">
                     Contacto
-                </button><a class="text-on-primary/80 font-medium hover:text-secondary-fixed hover:transition-colors font-label-md text-label-md ml-4" href="#">Cerrar sesión</a>
+                </button>
+                <a class="text-on-primary/80 font-medium hover:text-secondary-fixed hover:transition-colors font-label-md text-label-md ml-4"
+                   asp-controller="Login"
+                   asp-action="CerrarSesion">
+                    Cerrar sesión
+                </a>
             </nav>
             <!-- Mobile Menu Button -->
             <button class="md:hidden text-on-primary p-2">
@@ -168,7 +186,9 @@
             <article class="bg-surface-container-lowest border-2 border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:border-primary transition-colors group">
                 <!-- Image Section -->
                 <div class="w-full md:w-1/3 min-h-[300px] md:min-h-full relative overflow-hidden bg-surface-variant border-b-2 md:border-b-0 md:border-r-2 border-outline-variant">
-                    <img alt="Closet de Roble" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLuNN4-8Ckda6pBcJcWMF2onSP_QfqXBNVrh8mTBZLnPGEyxS4Jec6ZDD6JiSQYt7Ti5KMCY3R9VVlbgLG-_NpJZ5oYZ97tPe6bsMYX_zbNmMB5JabgXP6DpJXRyG9wwyWwvl800EsDcbk-6kry-BjQLzDeonxGQfSIyhGgGZ3gMVt-ttV2hDz4974gCiUKwjsfOYzVQ8rEcwW7gGJHwgrth0SbqwgUUBQK3PfbviCO3DzZoUU1NdD3ShWlk">
+                    <img alt="Closet de Roble"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         src="~/images/closetroble.jpeg">
                 </div>
                 <!-- Content Section -->
                 <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-between gap-6">
@@ -222,7 +242,9 @@
             <!-- Quote Item 2 -->
             <article class="bg-surface-container-lowest border-2 border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:border-primary transition-colors group">
                 <div class="w-full md:w-1/3 min-h-[300px] md:min-h-full relative overflow-hidden bg-surface-variant border-b-2 md:border-b-0 md:border-r-2 border-outline-variant">
-                    <img alt="Mesa de Comedor de Nogal" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLu5SsRBaJQOKX60FyUpwZh2jPuxm-0HZ553N6o-sBP39OeYHc0oLh-5B_aD_j1wVEMFSpvG9WcZ_IESK5Tg33YBuEHOawOEsmFa3jnwGud_Dh_RNXLsgON_aE8xQL77asaE-1RIP01TUnB07b1JxtOYaWC2AAow4yXBZoUVuuM-FjRosQZ_hR7e9V0WATZ7HFqrV1-hCZy9u0qilUWwDPWJbmePfI_KkRunh-AKC6vvklY-0zDHmnZWktk">
+                    <img alt="Mesa de Comedor de Nogal"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         src="~/images/mesa.jpeg">
                 </div>
                 <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-between gap-6">
                     <div class="flex flex-col gap-4">
@@ -273,7 +295,9 @@
             <!-- Quote Item 3 -->
             <article class="bg-surface-container-lowest border-2 border-outline-variant rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:border-primary transition-colors group">
                 <div class="w-full md:w-1/3 min-h-[300px] md:min-h-full relative overflow-hidden bg-surface-variant border-b-2 md:border-b-0 md:border-r-2 border-outline-variant">
-                    <img alt="Silla de Cedro" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLu_MICgZb4vn1-FPS7g0W4TEQnw4rEaSpWLzIRlM4UeyHq8wQ8OFeBfsq8ETSKPhwbmE5cZ8Rec1ex9VyUI9nAMhwxtHJysa7xNcaw80nIeJbIZxL9EQ1FsACIpFps_M2u51eZ3q7zg4McGAjkayPamZlsDYvdWDeUcCUAT7hS0gXDOkNKLFy6GGm_22J7uKLTqci2r4W4W0uU7H_-U9lwZsUkz3o8cfSQ5HUD6WYbfuemE2mVMUCr8bRGf">
+                    <img alt="Silla de Cedro"
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         src="~/images/silladecedro.jpeg">
                 </div>
                 <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-between gap-6">
                     <div class="flex flex-col gap-4">
