@@ -2,9 +2,11 @@
 using CARPINTEC_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CARPINTEC_App.Controllers
 {
+    [Authorize]
     public class UsuariosController : Controller
     {
         private readonly CarpintecContext _context;
@@ -13,17 +15,62 @@ namespace CARPINTEC_App.Controllers
         {
             _context = context;
         }
-        // GET: UsuariosController
+
+        // GET: Usuarios
         public async Task<IActionResult> Index()
         {
             var usuarios = await _context.Usuarios.ToListAsync();
             return View(usuarios);
         }
+
+        // GET: Usuarios/NuevoUsuario
+        [HttpGet]
         public IActionResult NuevoUsuario()
         {
             return View();
         }
 
+        // POST: Usuarios/NuevoUsuario
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NuevoUsuario(Usuario usuario)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(usuario);
+            }
+
+            // Verificar si el correo ya existe
+            if (!string.IsNullOrEmpty(usuario.Correo))
+            {
+                bool correoExiste = await _context.Usuarios
+                    .AnyAsync(u => u.Correo == usuario.Correo);
+
+                if (correoExiste)
+                {
+                    ModelState.AddModelError(
+                        "Correo",
+                        "Este correo ya está registrado."
+                    );
+
+                    return View(usuario);
+                }
+            }
+
+            // El usuario se crea activo
+            usuario.Estado = "Activo";
+
+            // Guardar en la tabla Usuarios
+            _context.Usuarios.Add(usuario);
+
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Usuario creado correctamente.";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
@@ -36,55 +83,20 @@ namespace CARPINTEC_App.Controllers
             return View(usuario);
         }
 
-        // GET: UsuariosController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: UsuariosController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
 
             if (usuario == null)
+            {
                 return NotFound();
+            }
 
             return View(usuario);
         }
 
-        // POST: UsuariosController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-       
-        public async Task<IActionResult> CambiarEstado(int id)
-        {
-            var usuario = await _context.Usuarios.FindAsync(id);
-
-            if (usuario == null)
-                return NotFound();
-
-            usuario.Estado = usuario.Estado == "Activo" ? "Inactivo" : "Activo";
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
-        }
-      
+        // POST: Usuarios/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Usuario usuario)
@@ -105,25 +117,25 @@ namespace CARPINTEC_App.Controllers
             return View(usuario);
         }
 
-        // GET: UsuariosController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UsuariosController/Delete/5
+        // Cambiar estado del usuario
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> CambiarEstado(int id)
         {
-            try
+            var usuario = await _context.Usuarios.FindAsync(id);
+
+            if (usuario == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+            usuario.Estado = usuario.Estado == "Activo"
+                ? "Inactivo"
+                : "Activo";
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

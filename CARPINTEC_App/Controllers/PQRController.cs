@@ -2,10 +2,13 @@
 using CARPINTEC_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
 namespace CARPINTEC_App.Controllers
 {
+    [Authorize]
     public class PQRController : Controller
-    
+
     {
         private readonly CarpintecContext _context;
 

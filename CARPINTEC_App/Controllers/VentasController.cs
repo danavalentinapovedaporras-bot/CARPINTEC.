@@ -2,9 +2,11 @@
 using CARPINTEC_App.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CARPINTEC_App.Controllers
 {
+    [Authorize]
     public class VentasController : Controller
     {
         // Aquí va el contexto

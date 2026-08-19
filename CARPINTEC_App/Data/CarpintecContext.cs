@@ -364,6 +364,8 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.Estado).HasMaxLength(20).IsUnicode(false);
             entity.Property(e => e.Nombre).HasMaxLength(100).IsUnicode(false);
             entity.Property(e => e.Rol).HasMaxLength(50).IsUnicode(false);
+            entity.Property(e => e.IntentosFallidos)
+    .HasDefaultValue(0);
         });
 
         modelBuilder.Entity<Ventum>(entity =>
