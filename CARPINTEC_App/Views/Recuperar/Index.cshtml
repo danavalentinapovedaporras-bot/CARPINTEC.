@@ -1,0 +1,143 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Recuperar contraseña - Carpintec</title>
+
+    <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial;
+            }
+
+            body {
+                background: url('/img/fondoLogin.jpg');
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .contenedor {
+                width: 420px;
+                background: white;
+                padding: 35px;
+                border-radius: 12px;
+                box-shadow: 0 0 20px rgba(0,0,0,.3);
+            }
+
+            h2 {
+                text-align: center;
+                color: #8b4513;
+                margin-bottom: 20px;
+            }
+
+            p {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #555;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            input {
+                width: 100%;
+                padding: 12px;
+                margin-top: 8px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+
+            button {
+                width: 100%;
+                padding: 14px;
+                background: #8b4513;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+                button:hover {
+                    background: #6f360e;
+                }
+
+            .mensaje {
+                color: red;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+            .volver {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+                .volver a {
+                    text-decoration: none;
+                    color: #8b4513;
+                    font-weight: bold;
+                }
+    </style>
+
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <h2>Recuperar contraseña</h2>
+
+        <p>Ingresa el correo con el que creaste tu cuenta.</p>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="mensaje">
+                @TempData["Error"]
+            </div>
+        }
+
+        <form asp-action="BuscarCorreo" method="post">
+
+            <label>Correo electrónico</label>
+
+            <input type="email"
+                   name="correo"
+                   required />
+
+            <button type="submit">
+
+                Continuar
+
+            </button>
+
+        </form>
+
+        <div class="volver">
+
+            <a asp-controller="Login"
+               asp-action="Index">
+
+                ← Volver al inicio de sesión
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

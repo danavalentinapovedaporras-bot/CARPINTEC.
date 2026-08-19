@@ -1,4 +1,5 @@
 ﻿using CARPINTEC_App.Data;
+using CARPINTEC_App.Models;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,53 @@ namespace CARPINTEC_App.Controllers
             _context = context;
         }
 
-        // GET: PedidosController
-        public ActionResult Index()
+        // GET: PedidosController (Vista principal)
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var pedidos = await _context.Pedidos
+                .Include(p => p.IdClienteNavigation)
+                .ToListAsync();
+
+            return View(pedidos);
+        }
+
+        // POST: PedidosController/GuardarPedido (Procesa el formulario del modal)
+        [HttpPost]
+        public async Task<IActionResult> GuardarPedido(Pedido pedido)
+        {
+            try
+            {
+                // 1. Si eligió una cotización, obtenemos automáticamente el Cliente y el Total
+                if (pedido.IdCotizacion > 0)
+                {
+                    var cotizacion = await _context.Cotizacions
+                        .FirstOrDefaultAsync(c => c.IdCotizacion == pedido.IdCotizacion);
+
+                    if (cotizacion != null)
+                    {
+                        pedido.IdCliente = cotizacion.IdCliente;
+                        if (pedido.ValorTotal == 0)
+                        {
+                            pedido.ValorTotal = cotizacion.Total;
+                        }
+                    }
+                }
+
+                // 2. Asignamos la fecha de registro actual
+                pedido.FechaRegistro = DateTime.Now;
+
+                // 3. Guardamos en la base de datos SQL Server
+                _context.Pedidos.Add(pedido);
+                await _context.SaveChangesAsync();
+
+                // 4. Redirigimos para actualizar la vista principal
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error al guardar en BD: " + ex.ToString());
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // GET: PedidosController/Details/5
@@ -31,21 +75,6 @@ namespace CARPINTEC_App.Controllers
         public ActionResult Create()
         {
             return View();
-        }
-
-        // POST: PedidosController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: PedidosController/Edit/5
@@ -89,6 +118,7 @@ namespace CARPINTEC_App.Controllers
                 return View();
             }
         }
+
         public IActionResult ExportarExcel()
         {
             var pedidos = _context.Pedidos
@@ -128,13 +158,13 @@ namespace CARPINTEC_App.Controllers
                 encabezado.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                 int fila = 5;
-               
 
                 foreach (var pedido in pedidos)
                 {
                     hoja.Cell(fila, 1).Value = pedido.CodigoPedido;
-                    hoja.Cell(fila, 2).Value = pedido.IdClienteNavigation.Nombre + " " +
-                                               pedido.IdClienteNavigation.Apellido;
+                    hoja.Cell(fila, 2).Value = (pedido.IdClienteNavigation != null)
+                        ? pedido.IdClienteNavigation.Nombre + " " + pedido.IdClienteNavigation.Apellido
+                        : "Sin Cliente";
                     hoja.Cell(fila, 3).Value = pedido.FechaSolicitud.ToString("dd/MM/yyyy");
                     hoja.Cell(fila, 4).Value = pedido.FechaEntrega.ToString("dd/MM/yyyy");
                     hoja.Cell(fila, 5).Value = pedido.Estado;
@@ -162,8 +192,6 @@ namespace CARPINTEC_App.Controllers
                         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                         "Pedidos.xlsx");
                 }
-
-               
             }
         }
     }

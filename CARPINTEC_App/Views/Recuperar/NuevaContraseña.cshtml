@@ -1,13 +1,10 @@
-﻿@model CARPINTEC_App.Models.Usuario
-
-@{
+﻿@{
     Layout = null;
-    ViewData["Title"] = "Crear Cuenta";
+    ViewData["Title"] = "Nueva Contraseña";
 }
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
     <meta charset="utf-8" />
@@ -15,7 +12,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0" />
 
-    <title>Crear Cuenta - Carpintec</title>
+    <title>Nueva Contraseña - Carpintec</title>
 
     <style>
 
@@ -23,7 +20,7 @@
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-                font-family: Arial, Helvetica, sans-serif;
+                font-family: Arial;
             }
 
             body {
@@ -33,10 +30,10 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                min-height: 100vh;
+                height: 100vh;
             }
 
-            .contenedor {
+            .card {
                 width: 430px;
                 background: white;
                 padding: 35px;
@@ -47,40 +44,41 @@
             h2 {
                 text-align: center;
                 color: #8b4513;
+                margin-bottom: 10px;
+            }
+
+            p {
+                text-align: center;
+                color: gray;
                 margin-bottom: 25px;
             }
 
             label {
                 font-weight: bold;
                 display: block;
-                margin-top: 10px;
-            }
-
-            input {
-                width: 100%;
-                padding: 12px;
-                margin-top: 5px;
-                margin-bottom: 15px;
-                border-radius: 6px;
-                border: 1px solid #ccc;
+                margin-bottom: 6px;
             }
 
             /* =========================
-                       CONTENEDOR CONTRASEÑA
+                       CONTENEDOR DE CONTRASEÑA
                        ========================= */
 
             .password-wrapper {
                 position: relative;
                 width: 100%;
+                margin-bottom: 18px;
             }
 
                 .password-wrapper input {
                     width: 100%;
-                    padding-right: 45px;
+                    padding: 12px 45px 12px 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    margin-bottom: 0;
                 }
 
             /* =========================
-                       BOTÓN OJO
+                       BOTÓN DEL OJO
                        ========================= */
 
             .toggle-password {
@@ -104,47 +102,45 @@
                 }
 
             /* =========================
-                       BOTÓN CREAR CUENTA
+                       BOTÓN CAMBIAR CONTRASEÑA
                        ========================= */
 
-            .btn-crear {
+            .btn-cambiar {
                 width: 100%;
                 padding: 14px;
                 background: #8b4513;
                 color: white;
                 border: none;
                 border-radius: 6px;
+                font-size: 17px;
                 cursor: pointer;
-                font-size: 18px;
-                margin-top: 5px;
             }
 
-                .btn-crear:hover {
+                .btn-cambiar:hover {
                     background: #6d3510;
                 }
 
-            .mensaje {
-                color: red;
+            /* =========================
+                       MENSAJES
+                       ========================= */
+
+            .mensajeError {
+                background: #ffd6d6;
+                color: #b30000;
+                padding: 12px;
+                border-radius: 6px;
                 text-align: center;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
 
-            .ok {
+            .mensajeOk {
+                background: #d9ffe2;
                 color: green;
+                padding: 12px;
+                border-radius: 6px;
                 text-align: center;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
             }
-
-            .login {
-                text-align: center;
-                margin-top: 20px;
-            }
-
-                .login a {
-                    color: #8b4513;
-                    text-decoration: none;
-                    font-weight: bold;
-                }
 
     </style>
 
@@ -152,95 +148,55 @@
 
 <body>
 
-    <div class="contenedor">
+    <div class="card">
 
-        <h2>Crear Cuenta</h2>
+        <h2>Nueva Contraseña</h2>
+
+        <p>
+            Ingrese una nueva contraseña para su cuenta.
+        </p>
 
         @if (TempData["Error"] != null)
         {
-            <div class="mensaje">
+            <div class="mensajeError">
                 @TempData["Error"]
             </div>
         }
 
         @if (TempData["Success"] != null)
         {
-            <div class="ok">
+            <div class="mensajeOk">
                 @TempData["Success"]
             </div>
         }
 
-        <form asp-controller="Registro"
-              asp-action="Registrar"
+        <form asp-controller="Recuperar"
+              asp-action="GuardarNuevaContraseña"
               method="post">
 
             <!-- =========================
-                 NOMBRE
+                 NUEVA CONTRASEÑA
                  ========================= -->
 
-            <label>Nombre</label>
-
-            <input asp-for="Nombre"
-                   required />
-
-            <span asp-validation-for="Nombre"
-                  style="color:red;"></span>
-
-
-            <!-- =========================
-                 APELLIDO
-                 ========================= -->
-
-            <label>Apellido</label>
-
-            <input asp-for="Apellido"
-                   required />
-
-            <span asp-validation-for="Apellido"
-                  style="color:red;"></span>
-
-
-            <!-- =========================
-                 CORREO
-                 ========================= -->
-
-            <label>Correo</label>
-
-            <input asp-for="Correo"
-                   type="email"
-                   required />
-
-            <span asp-validation-for="Correo"
-                  style="color:red;"></span>
-
-
-            <!-- =========================
-                 CONTRASEÑA
-                 ========================= -->
-
-            <label>Contraseña</label>
+            <label>Nueva contraseña</label>
 
             <div class="password-wrapper">
 
-                <input asp-for="Contraseña"
+                <input type="password"
                        id="password"
-                       type="password"
-                       minlength="6"
+                       name="password"
+                       minlength="8"
+                       placeholder="Ingrese la nueva contraseña"
                        required />
 
                 <button type="button"
                         class="toggle-password"
                         onclick="togglePassword('password', this)"
                         aria-label="Mostrar contraseña">
-
                     👁
-
                 </button>
 
             </div>
-
-            <span asp-validation-for="Contraseña"
-                  style="color:red;"></span>
 
 
             <!-- =========================
@@ -254,51 +210,30 @@
                 <input type="password"
                        id="confirmarPassword"
                        name="confirmarPassword"
-                       minlength="6"
+                       minlength="8"
+                       placeholder="Confirme la contraseña"
                        required />
 
                 <button type="button"
                         class="toggle-password"
                         onclick="togglePassword('confirmarPassword', this)"
                         aria-label="Mostrar contraseña">
-
                     👁
-
                 </button>
 
             </div>
 
 
             <!-- =========================
-                 CREAR CUENTA
+                 BOTÓN
                  ========================= -->
 
             <button type="submit"
-                    class="btn-crear">
-
-                Crear Cuenta
-
+                    class="btn-cambiar">
+                Cambiar Contraseña
             </button>
 
         </form>
-
-
-        <!-- =========================
-             VOLVER AL LOGIN
-             ========================= -->
-
-        <div class="login">
-
-            ¿Ya tienes cuenta?<br />
-
-            <a asp-controller="Login"
-               asp-action="Index">
-
-                Iniciar sesión
-
-            </a>
-
-        </div>
 
     </div>
 
@@ -340,15 +275,5 @@
 
     </script>
 
-
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync(
-                "_ValidationScriptsPartial"
-            );
-        }
-    }
-
 </body>
-
 </html>

@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Verificar código";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Verificar código</title>
+
+    <style>
+            body {
+                font-family: Arial;
+                background: #f5f5f5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            .card {
+                width: 400px;
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 15px rgba(0,0,0,.2);
+            }
+
+            h2 {
+                text-align: center;
+                color: #8b4513;
+                margin-bottom: 20px;
+            }
+
+            input {
+                width: 100%;
+                padding: 12px;
+                margin-top: 15px;
+                margin-bottom: 20px;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px;
+                background: #8b4513;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+                button:hover {
+                    background: #6b3410;
+                }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h2>Verificar Código</h2>
+
+        <form asp-controller="Recuperar"
+              asp-action="NuevaContraseña"
+              method="get">
+
+            <label>Ingrese el código recibido</label>
+
+            <input type="text"
+                   name="codigo"
+                   placeholder="123456"
+                   required />
+
+            <button type="submit">
+                Verificar
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

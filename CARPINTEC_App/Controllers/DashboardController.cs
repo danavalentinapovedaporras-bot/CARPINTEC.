@@ -1,88 +1,90 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CARPINTEC_App.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class DashboardController : Controller
     {
-        // GET: DashboardController
-        public ActionResult Index()
+        // GET: Dashboard
+        public IActionResult Index()
         {
             return View();
         }
 
-        // GET: DashboardController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: DashboardController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: DashboardController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: DashboardController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: DashboardController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: DashboardController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: DashboardController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        // GET: Dashboard/Calendario
         public IActionResult Calendario()
         {
             return View();
+        }
+
+        // GET: Dashboard/Details/5
+        public IActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: Dashboard/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Dashboard/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Dashboard/Edit/5
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Dashboard/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Dashboard/Delete/5
+        public IActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Dashboard/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
