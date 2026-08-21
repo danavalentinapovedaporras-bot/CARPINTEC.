@@ -1,85 +1,189 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using CARPINTEC_App.Data;
+using CARPINTEC_App.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CARPINTEC_App.Controllers
 {
     [Authorize]
     public class EmpleadosController : Controller
     {
-        // GET: EmpleadosController
-        public ActionResult Index()
+
+        private readonly CarpintecContext _context;
+
+
+        public EmpleadosController(CarpintecContext context)
         {
-            return View();
+            _context = context;
         }
 
-        // GET: EmpleadosController/Details/5
-        public ActionResult Details(int id)
+
+
+        // LISTAR EMPLEADOS
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+            var empleados = await _context.Empleados
+                .ToListAsync();
+
+
+            return View(empleados);
+
         }
 
-        // GET: EmpleadosController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: EmpleadosController/Create
+
+
+        // CREAR EMPLEADO
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> NuevoEmpleado(Empleado empleado)
         {
-            try
+
+            if (!ModelState.IsValid)
             {
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+
+
+            // Estado inicial
+
+            empleado.Estado = "Activo";
+
+
+
+            _context.Empleados.Add(empleado);
+
+
+
+            await _context.SaveChangesAsync();
+
+
+
+            TempData["Success"] = "Empleado creado correctamente";
+
+
+
+            return RedirectToAction(nameof(Index));
+
         }
 
-        // GET: EmpleadosController/Edit/5
-        public ActionResult Edit(int id)
+
+
+
+        // OBTENER DATOS PARA MODAL VER
+
+        [HttpGet]
+        public async Task<IActionResult> ObtenerEmpleado(int id)
         {
-            return View();
+
+            var empleado = await _context.Empleados
+                .FirstOrDefaultAsync(e => e.IdEmpleado == id);
+
+
+
+            if (empleado == null)
+            {
+                return NotFound();
+            }
+
+
+            return Json(empleado);
+
         }
 
-        // POST: EmpleadosController/Edit/5
+
+
+
+
+        // EDITAR EMPLEADO
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> EditarEmpleado([FromBody] Empleado empleado)
         {
-            try
+
+
+            var empleadoBD = await _context.Empleados
+                .FirstOrDefaultAsync(e => e.IdEmpleado == empleado.IdEmpleado);
+
+
+
+            if (empleadoBD == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+
+
+            empleadoBD.Documento = empleado.Documento;
+
+            empleadoBD.Nombre = empleado.Nombre;
+
+            empleadoBD.Apellido = empleado.Apellido;
+
+            empleadoBD.Cargo = empleado.Cargo;
+
+            empleadoBD.Correo = empleado.Correo;
+
+            empleadoBD.Telefono = empleado.Telefono;
+
+            empleadoBD.Direccion = empleado.Direccion;
+
+            empleadoBD.Salario = empleado.Salario;
+
+
+
+            _context.Update(empleadoBD);
+
+
+
+            await _context.SaveChangesAsync();
+
+
+
+            return Ok();
+
         }
 
-        // GET: EmpleadosController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: EmpleadosController/Delete/5
+
+
+
+        // CAMBIAR ESTADO
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> CambiarEstado([FromBody] EstadoEmpleado datos)
         {
-            try
+
+
+            var empleado = await _context.Empleados
+                .FirstOrDefaultAsync(e => e.IdEmpleado == datos.IdEmpleado);
+
+
+
+            if (empleado == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+
+
+            empleado.Estado = datos.Estado;
+
+
+
+            await _context.SaveChangesAsync();
+
+
+
+            return Ok();
+
         }
+
+
     }
 }

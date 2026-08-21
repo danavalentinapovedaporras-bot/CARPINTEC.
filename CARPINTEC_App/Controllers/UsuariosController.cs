@@ -3,6 +3,7 @@ using CARPINTEC_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace CARPINTEC_App.Controllers
 {
@@ -60,11 +61,23 @@ namespace CARPINTEC_App.Controllers
             // El usuario se crea activo
             usuario.Estado = "Activo";
 
-            // Guardar en la tabla Usuarios
+            // Inicializar intentos de inicio de sesión
+            usuario.IntentosFallidos = 0;
+
+
+            // Crear hash de la contraseña
+            var hasher = new PasswordHasher<Usuario>();
+
+            usuario.Contraseña = hasher.HashPassword(
+                usuario,
+                usuario.Contraseña
+            );
+
+
+            // Guardar usuario
             _context.Usuarios.Add(usuario);
 
             await _context.SaveChangesAsync();
-
             TempData["Success"] = "Usuario creado correctamente.";
 
             return RedirectToAction(nameof(Index));
@@ -83,6 +96,21 @@ namespace CARPINTEC_App.Controllers
             return View(usuario);
         }
 
+        // Obtener usuario para modal VER
+        [HttpGet]
+        public async Task<IActionResult> ObtenerUsuario(int id)
+        {
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(x => x.IdUsuario == id);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Json(usuario);
+        }
+
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
@@ -96,44 +124,64 @@ namespace CARPINTEC_App.Controllers
             return View(usuario);
         }
 
-        // POST: Usuarios/Edit/5
+        // Editar usuario desde modal
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Usuario usuario)
+        public async Task<IActionResult> Edit([FromBody] Usuario usuario)
         {
-            if (id != usuario.IdUsuario)
+
+            var usuarioBD = await _context.Usuarios
+                .FirstOrDefaultAsync(x => x.IdUsuario == usuario.IdUsuario);
+
+
+            if (usuarioBD == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                _context.Update(usuario);
-                await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
-            }
+            usuarioBD.Nombre = usuario.Nombre;
 
-            return View(usuario);
+            usuarioBD.Apellido = usuario.Apellido;
+
+            usuarioBD.Correo = usuario.Correo;
+
+            usuarioBD.Rol = usuario.Rol;
+
+
+            _context.Update(usuarioBD);
+
+            await _context.SaveChangesAsync();
+
+
+            return Ok();
+
         }
 
-        // Cambiar estado del usuario
+        // Cambiar estado desde modal
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CambiarEstado(int id)
+        public async Task<IActionResult> CambiarEstado(int id, string estado)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(x => x.IdUsuario == id);
+
 
             if (usuario == null)
             {
                 return NotFound();
             }
 
-            usuario.Estado = usuario.Estado == "Activo"
-                ? "Inactivo"
-                : "Activo";
+
+            usuario.Estado = estado;
+
+
+            _context.Update(usuario);
 
             await _context.SaveChangesAsync();
+
+
+            TempData["Success"] = "Estado actualizado correctamente";
+
 
             return RedirectToAction(nameof(Index));
         }
