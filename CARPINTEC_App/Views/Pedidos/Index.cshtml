@@ -400,7 +400,7 @@
                 <div class="flex items-center justify-between px-6 py-5 border-b border-gray-200 sticky top-0 bg-white z-10">
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900">Nuevo Pedido</h2>
-                        <p class="text-sm text-gray-500 mt-1">Registra un nuevo pedido a partir de una cotización.</p>
+                        <p class="text-sm text-gray-500 mt-1">Registra un nuevo pedido directamente en el sistema.</p>
                     </div>
                     <button type="button"
                             onclick="cerrarNuevoPedido()"
@@ -410,33 +410,40 @@
                 </div>
 
                 <!-- Contenido del Formulario -->
-                <form action="/Pedidos/GuardarPedido" method="post" id="formNuevoPedido" class="p-6">
+                <form asp-controller="Pedidos" asp-action="GuardarPedido" method="post" id="formNuevoPedido" class="p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-                        <!-- Cotización -->
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Cotización</label>
-                            <select name="IdCotizacion" id="cotizacionPedido" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary">
-                                <option value="">Seleccionar cotización...</option>
-                                <option value="1">COT-0001 - Cliente de ejemplo</option>
+                        <!-- Cliente (Cargado dinámicamente desde la BD) -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Cliente</label>
+                            <select name="IdCliente" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary" required>
+                                <option value="">Seleccionar cliente...</option>
+                                @if (ViewBag.ListaClientes != null)
+                                {
+                                    foreach (var cliente in ViewBag.ListaClientes)
+                                    {
+                                        <option value="@cliente.IdCliente">@cliente.Nombre @cliente.Apellido</option>
+                                    }
+                                }
                             </select>
                         </div>
 
-                        <!-- Código -->
+                        <!-- Código del pedido -->
+                    
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Código del pedido</label>
                             <input type="text"
                                    name="CodigoPedido"
-                                   value="P-2026-001"
-                                   readonly
-                                   class="w-full rounded-xl border border-gray-300 bg-gray-100 px-4 py-3 text-gray-600">
+                                   placeholder="Ej: P-2026-007"
+                                   required
+                                   class="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-800">
                         </div>
-
                         <!-- Fecha solicitud -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha de solicitud</label>
                             <input type="date"
                                    name="FechaSolicitud"
+                                   required
                                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary">
                         </div>
 
@@ -445,6 +452,7 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Fecha de entrega</label>
                             <input type="date"
                                    name="FechaEntrega"
+                                   required
                                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary">
                         </div>
 
@@ -468,7 +476,14 @@
                                    step="0.01"
                                    name="ValorTotal"
                                    placeholder="0.00"
+                                   required
                                    class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary">
+                        </div>
+
+                        <!-- Observaciones (Opcional según tu BD) -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Observaciones</label>
+                            <textarea name="Observaciones" rows="2" placeholder="Detalles o especificaciones del pedido..." class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary"></textarea>
                         </div>
                     </div>
 

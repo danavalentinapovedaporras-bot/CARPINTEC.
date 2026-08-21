@@ -23,48 +23,52 @@ namespace CARPINTEC_App.Controllers
                 .Include(p => p.IdClienteNavigation)
                 .ToListAsync();
 
+            // Pasamos la lista de clientes reales a la vista para el selector
+            ViewBag.ListaClientes = await _context.Clientes.ToListAsync();
+
             return View(pedidos);
         }
 
-        // POST: PedidosController/GuardarPedido (Procesa el formulario del modal)
+        // POST: PedidosController/GuardarPedido (Procesa el formulario del modal directamente)
         [HttpPost]
         public async Task<IActionResult> GuardarPedido(Pedido pedido)
         {
-            try
+            // 1. Limpiamos las validaciones de navegación
+            ModelState.Remove("IdClienteNavigation");
+            ModelState.Remove("IdCotizacionNavigation");
+            ModelState.Remove("DetallePedidos");
+            ModelState.Remove("ManoObras");
+            ModelState.Remove("Venta");
+
+            // Si tu base de datos exige un IdCotizacion y no lo estás pidiendo en el form, 
+            // le asignamos un valor por defecto que exista en tu tabla Cotizacion (ej: 1)
+            if (pedido.IdCotizacion == 0)
             {
-                // 1. Si eligió una cotización, obtenemos automáticamente el Cliente y el Total
-                if (pedido.IdCotizacion > 0)
-                {
-                    var cotizacion = await _context.Cotizacions
-                        .FirstOrDefaultAsync(c => c.IdCotizacion == pedido.IdCotizacion);
+                pedido.IdCotizacion = 1;
+            }
 
-                    if (cotizacion != null)
-                    {
-                        pedido.IdCliente = cotizacion.IdCliente;
-                        if (pedido.ValorTotal == 0)
-                        {
-                            pedido.ValorTotal = cotizacion.Total;
-                        }
-                    }
-                }
+            pedido.FechaRegistro = DateTime.Now;
 
-                // 2. Asignamos la fecha de registro actual
-                pedido.FechaRegistro = DateTime.Now;
-
-                // 3. Guardamos en la base de datos SQL Server
+            // 2. Comprobamos si el modelo pasa las reglas de validación
+            if (ModelState.IsValid)
+            {
                 _context.Pedidos.Add(pedido);
                 await _context.SaveChangesAsync();
-
-                // 4. Redirigimos para actualizar la vista principal
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+
+            // 3. SI HAY UN ERROR DE VALIDACIÓN: Imprimimos en la consola de Visual Studio 
+            // exactamente qué campo está fallando
+            foreach (var state in ModelState.Values)
             {
-                System.Diagnostics.Debug.WriteLine("Error al guardar en BD: " + ex.ToString());
-                return RedirectToAction(nameof(Index));
+                foreach (var error in state.Errors)
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR DE VALIDACIÓN: " + error.ErrorMessage);
+                }
             }
-        }
 
+            return RedirectToAction(nameof(Index));
+        }
         // GET: PedidosController/Details/5
         public ActionResult Details(int id)
         {
