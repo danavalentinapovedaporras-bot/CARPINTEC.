@@ -22,8 +22,8 @@ public partial class CarpintecContext : DbContext
     public DbSet<DetalleFactura> DetalleFacturas { get; set; }
     public virtual DbSet<Cliente> Clientes { get; set; }
     public virtual DbSet<Configuracion> Configuracions { get; set; }
-    public virtual DbSet<Cotizacion> Cotizacions { get; set; }
-    public virtual DbSet<DetalleCotizacion> DetalleCotizacions { get; set; }
+    public virtual DbSet<Cotizacion> Cotizaciones { get; set; }
+    public virtual DbSet<DetalleCotizacion> DetalleCotizacion { get; set; }
     public virtual DbSet<DetallePedido> DetallePedidos { get; set; }
     public virtual DbSet<Empleado> Empleados { get; set; }
     public virtual DbSet<Inventario> Inventarios { get; set; }
@@ -94,7 +94,7 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.Estado).HasMaxLength(20).IsUnicode(false).HasDefaultValue("Pendiente");
             entity.Property(e => e.FechaRegistro).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
             entity.Property(e => e.Folio).HasMaxLength(20).IsUnicode(false);
-            entity.Property(e => e.Observaciones).HasMaxLength(300).IsUnicode(false);
+          
             entity.Property(e => e.Total).HasColumnType("decimal(12, 2)");
 
             entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Cotizacions)
