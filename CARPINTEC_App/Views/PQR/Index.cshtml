@@ -1,6 +1,6 @@
 @model IEnumerable<CARPINTEC_App.Models.Pqr>
 @{
-    ViewData["Title"] = "Usuarios";
+    ViewData["Title"] = "Gestion de pqr";
 }
 <!DOCTYPE html>
 <html class="light" lang="es" style="">
@@ -118,7 +118,10 @@
                 background-color: rgba(245, 245, 220, 0.3);
             }
 
-            .side-nav-active { @@apply
+            .side-nav-active {
+    background-color: #5d4037;
+    color:white;
+}
                 bg-primary-container text-on-primary-container rounded-lg mx-sm my-xs px-md py-sm;
             }
     </style>
@@ -155,37 +158,63 @@
         <!-- Canvas -->
         <div class="p-margin max-w-7xl w-full mx-auto">
             <!-- Page Header -->
-            <div class="mb-lg">
-                <h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Gestión de PQR</h2>
-                <p class="text-on-surface-variant font-body-md">Administra las peticiones, quejas, reclamos y sugerencias enviadas por los clientes de forma centralizada.</p>
+<div class="mb-lg flex justify-between items-center">
+
+    <div>
+        <h2 class="font-headline-lg text-headline-lg text-primary mb-xs">
+            Gestión de PQR
+        </h2>
+
+        <p class="text-on-surface-variant font-body-md">
+            Administra las peticiones, quejas, reclamos y sugerencias enviadas por los clientes de forma centralizada.
+        </p>
+    </div>
+
+  <!-- Botón Nueva PQR -->
+<button onclick="abrirModalPQR()"
+        class="bg-primary text-on-primary px-md py-sm rounded-lg font-bold flex items-center gap-sm">
+
+    <span class="material-symbols-outlined">
+        add
+    </span>
+
+    Nueva PQR
+
+</button>
+
+        
+
+</div>
             </div>
             <!-- Resumen Stats -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-lg">
                 <div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border-l-4 border-yellow-500 hover:-translate-y-1 transition-transform">
                     <div class="flex items-center justify-between">
                         <span class="material-symbols-outlined text-yellow-600 bg-yellow-50 p-sm rounded-lg">pending_actions</span>
-                        <span class="text-headline-md font-headline-md text-primary">12</span>
+                        <span class="text-headline-md font-headline-md text-primary">@ViewBag.Pendientes</span>
                     </div>
                     <p class="mt-sm text-label-md text-on-surface-variant">PQR Pendientes</p>
                 </div>
                 <div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border-l-4 border-blue-500 hover:-translate-y-1 transition-transform">
                     <div class="flex items-center justify-between">
                         <span class="material-symbols-outlined text-blue-600 bg-blue-50 p-sm rounded-lg">sync</span>
-                        <span class="text-headline-md font-headline-md text-primary">08</span>
+                        <span class="text-headline-md font-headline-md text-primary">@ViewBag.EnProceso</span>
                     </div>
                     <p class="mt-sm text-label-md text-on-surface-variant">En proceso</p>
                 </div>
                 <div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border-l-4 border-green-500 hover:-translate-y-1 transition-transform">
                     <div class="flex items-center justify-between">
                         <span class="material-symbols-outlined text-green-600 bg-green-50 p-sm rounded-lg">verified</span>
-                        <span class="text-headline-md font-headline-md text-primary">45</span>
+                        <span class="text-headline-md font-headline-md text-primary">@ViewBag.Respondidas</span>
                     </div>
                     <p class="mt-sm text-label-md text-on-surface-variant">Respondidas</p>
                 </div>
                 <div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border-l-4 border-gray-400 hover:-translate-y-1 transition-transform">
                     <div class="flex items-center justify-between">
                         <span class="material-symbols-outlined text-gray-600 bg-gray-50 p-sm rounded-lg">inventory_2</span>
-                        <span class="text-headline-md font-headline-md text-primary">120</span>
+                        <span class="text-headline-md font-headline-md text-primary">
+    @ViewBag.Cerradas
+</span>
                     </div>
                     <p class="mt-sm text-label-md text-on-surface-variant">Cerradas</p>
                 </div>
@@ -254,7 +283,9 @@
                                     </td>
 
                                     <td class="px-md py-md">
-                                        @item.IdClienteNavigation.Nombre @item.IdClienteNavigation.Apellido
+                                       @(item.IdClienteNavigation != null 
+    ? item.IdClienteNavigation.Nombre + " " + item.IdClienteNavigation.Apellido 
+    : "Cliente no encontrado")
                                     </td>
 
                                     <td class="px-md py-md">
@@ -281,25 +312,31 @@
 
                                         <div class="flex justify-center gap-sm">
 
-                                            <a asp-action="Details"
-                                               asp-route-id="@item.IdPqr"
-                                               class="text-primary hover:scale-110 transition-transform">
+                                           <button onclick="abrirDetallePQR()"
+        class="text-primary hover:scale-110 transition-transform">
 
-                                                <span class="material-symbols-outlined">
-                                                    visibility
-                                                </span>
+    <span class="material-symbols-outlined">
+        visibility
+    </span>
 
-                                            </a>
+</button>
 
-                                            <a asp-action="Responder"
-                                               asp-route-id="@item.IdPqr"
-                                               class="text-primary hover:scale-110 transition-transform">
+                                           <form asp-action="Responder" method="post">
 
-                                                <span class="material-symbols-outlined">
-                                                    reply
-                                                </span>
+    @Html.AntiForgeryToken()
 
-                                            </a>
+    <input type="hidden" name="id" value="@item.IdPqr" />
+
+    <button type="submit"
+            class="text-primary hover:scale-110 transition-transform">
+
+        <span class="material-symbols-outlined">
+            reply
+        </span>
+
+    </button>
+
+</form>
 
                                             <a asp-action="Edit"
                                                asp-route-id="@item.IdPqr"
@@ -457,21 +494,140 @@
     <!-- Overlay for Modal -->
     <div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[55] opacity-0 pointer-events-none transition-opacity duration-500" id="overlay" onclick="toggleDetail()"></div>
     <script>
-            function toggleDetail() {
-                const panel = document.getElementById('detailPanel');
-                const overlay = document.getElementById('overlay');
+            function abrirDetallePQR(){
 
-                if (panel.classList.contains('translate-x-full')) {
-                    panel.classList.remove('translate-x-full');
-                    overlay.classList.remove('opacity-0', 'pointer-events-none');
-                } else {
-                    panel.classList.add('translate-x-full');
-                    overlay.classList.add('opacity-0', 'pointer-events-none');
-                }
-            }
+    const panel = document.getElementById('detailPanel');
+    const overlay = document.getElementById('overlay');
+
+    panel.classList.remove('translate-x-full');
+
+    overlay.classList.remove('opacity-0');
+    overlay.classList.remove('pointer-events-none');
+
+}
     </script>
+<div id="modalPQR"
+     class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
 
 
+    <div class="bg-white rounded-xl p-6 w-full max-w-lg">
 
 
-</body></html>
+        <h3 class="text-xl font-bold mb-4">
+            Registrar nueva PQR
+        </h3>
+
+
+        <form asp-controller="PQR" asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+            @Html.AntiForgeryToken()
+
+
+            <label class="block mb-2">
+                Cliente
+            </label>
+
+            <select name="IdCliente"
+                    class="w-full border rounded-lg p-2 mb-4">
+
+                <option>
+                    Seleccione cliente
+                </option>
+
+                @foreach(var cliente in ViewBag.Clientes)
+                {
+                    <option value="@cliente.IdCliente">
+                        @cliente.Nombre @cliente.Apellido
+                    </option>
+                }
+
+            </select>
+
+
+            <label class="block mb-2">
+                Tipo
+            </label>
+
+            <select name="Tipo"
+                    class="w-full border rounded-lg p-2 mb-4">
+
+                <option value="Peticion">Petición</option>
+                <option value="Queja">Queja</option>
+                <option value="Reclamo">Reclamo</option>
+                <option value="Sugerencia">Sugerencia</option>
+
+            </select>
+
+
+            <label class="block mb-2">
+                Asunto
+            </label>
+
+            <input name="Asunto"
+                   class="w-full border rounded-lg p-2 mb-4"/>
+
+
+            <label class="block mb-2">
+                Descripción
+            </label>
+
+            <textarea name="Descripcion"
+                      class="w-full border rounded-lg p-2 mb-4"></textarea>
+
+
+            <div class="flex justify-end gap-3">
+
+                <button type="button"
+                        onclick="cerrarModalPQR()"
+                        class="bg-gray-300 px-4 py-2 rounded-lg">
+                    Cancelar
+                </button>
+
+
+                <button type="submit"
+                        class="bg-primary text-white px-4 py-2 rounded-lg">
+                    Guardar
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+function abrirModalPQR(){
+
+    let modal = document.getElementById("modalPQR");
+
+    modal.classList.remove("hidden");
+
+    modal.classList.add("flex");
+
+}
+
+
+function cerrarModalPQR(){
+
+    let modal = document.getElementById("modalPQR");
+
+    modal.classList.add("hidden");
+
+    modal.classList.remove("flex");
+
+}
+
+</script>
+
+
+</body>
+</html>
+
+   

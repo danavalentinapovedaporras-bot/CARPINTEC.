@@ -1,14 +1,13 @@
 ﻿using CARPINTEC_App.Data;
 using CARPINTEC_App.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
 
 namespace CARPINTEC_App.Controllers
 {
     [Authorize]
     public class PQRController : Controller
-
     {
         private readonly CarpintecContext _context;
 
@@ -16,17 +15,34 @@ namespace CARPINTEC_App.Controllers
         {
             _context = context;
         }
-        // GET: PQRController
+
+
+        // LISTADO DE PQR
         public async Task<IActionResult> Index()
         {
             var listaPqr = await _context.Pqrs
                 .Include(p => p.IdClienteNavigation)
+                .OrderByDescending(p => p.FechaRegistro)
                 .ToListAsync();
+
+
+            // Estadísticas
+            ViewBag.Pendientes = listaPqr.Count(p => p.Estado == "Pendiente");
+            ViewBag.EnProceso = listaPqr.Count(p => p.Estado == "En proceso");
+            ViewBag.Respondidas = listaPqr.Count(p => p.Estado == "Respondida");
+            ViewBag.Cerradas = listaPqr.Count(p => p.Estado == "Cerrada");
+
+
+            // Clientes para el modal de crear PQR
+            ViewBag.Clientes = await _context.Clientes
+                .Where(c => c.Estado == "Activo")
+                .ToListAsync();
+
 
             return View(listaPqr);
         }
 
-        // GET: PQRController/Details/5
+        // VER DETALLE DE PQR
         public async Task<IActionResult> Details(int id)
         {
             var pqr = await _context.Pqrs
@@ -40,114 +56,86 @@ namespace CARPINTEC_App.Controllers
 
             return View(pqr);
         }
-        public async Task<IActionResult> Responder(int id)
-        {
-            var pqr = await _context.Pqrs
-                .Include(p => p.IdClienteNavigation)
-                .FirstOrDefaultAsync(p => p.IdPqr == id);
-
-            if (pqr == null)
-            {
-                return NotFound();
-            }
-
-            return View(pqr);
-        }
-
-        // GET: PQRController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PQRController/Create
+        // GUARDAR NUEVA PQR DESDE EL MODAL DEL INDEX
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Responder(int id, Pqr pqr)
+        public async Task<IActionResult> Create(Pqr pqr)
         {
-            if (id != pqr.IdPqr)
-            {
-                return NotFound();
-            }
 
-            var pqrDB = await _context.Pqrs.FindAsync(id);
+            Console.WriteLine("ENTRÓ AL CREATE");
+            Console.WriteLine("Cliente: " + pqr.IdCliente);
+            Console.WriteLine("Asunto: " + pqr.Asunto);
+            Console.WriteLine("Descripcion: " + pqr.Descripcion);
 
-            if (pqrDB == null)
-            {
-                return NotFound();
-            }
 
-            pqrDB.Respuesta = pqr.Respuesta;
-            pqrDB.Estado = pqr.Estado;
-            pqrDB.FechaRespuesta = DateOnly.FromDateTime(DateTime.Now);
+            pqr.CodigoPqr = "PQR-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            pqr.FechaRegistro = DateOnly.FromDateTime(DateTime.Now);
+
+            pqr.Estado = "Pendiente";
+
+
+            _context.Pqrs.Add(pqr);
 
             await _context.SaveChangesAsync();
 
+
             return RedirectToAction(nameof(Index));
         }
+
+
+        // RESPONDER PQR
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Responder(int id, string respuesta, string estado)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: PQRController/Edit/5
-        public async Task<IActionResult> Edit(int id)
-        {
             var pqr = await _context.Pqrs
-                .Include(p => p.IdClienteNavigation)
                 .FirstOrDefaultAsync(p => p.IdPqr == id);
+
 
             if (pqr == null)
             {
                 return NotFound();
             }
 
-            return View(pqr);
+
+            pqr.Respuesta = respuesta;
+            pqr.Estado = estado;
+            pqr.FechaRespuesta = DateOnly.FromDateTime(DateTime.Now);
+
+
+            await _context.SaveChangesAsync();
+
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: PQRController/Edit/5
+
+
+        // CAMBIAR ESTADO DE PQR
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> CambiarEstado(int id, string estado)
         {
-            try
+
+            var pqr = await _context.Pqrs.FindAsync(id);
+
+
+            if (pqr == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+
+            pqr.Estado = estado;
+
+
+            await _context.SaveChangesAsync();
+
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: PQRController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PQRController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
