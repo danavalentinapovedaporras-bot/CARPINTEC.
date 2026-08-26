@@ -15,6 +15,7 @@ namespace CARPINTEC_App.Controllers
         }
 
         // GET: Cotizaciones (ÚNICO método Index con Filtro de Estado y Paginación integrados)
+        // GET: Cotizaciones (ÚNICO método Index con Filtro de Estado y Paginación integrados)
         public async Task<IActionResult> Index(string estado = "Todas", int page = 1)
         {
             int pageSize = 10;
@@ -22,17 +23,26 @@ namespace CARPINTEC_App.Controllers
             // --- CÁLCULOS PARA LAS TARJETAS (Métricas Generales) ---
             ViewBag.TotalCotizaciones = await _context.Cotizaciones.CountAsync();
 
-            ViewBag.PendientesCount = await _context.Cotizaciones.Where(c => c.Estado == "Pendiente").CountAsync();
+            ViewBag.PendientesAprobacion = await _context.Cotizaciones.Where(c => c.Estado == "Pendiente").CountAsync();
 
             // Suma del total de las pendientes (Valuadas en $)
             decimal valorPendientes = await _context.Cotizaciones
                 .Where(c => c.Estado == "Pendiente")
                 .SumAsync(c => (decimal?)c.Total) ?? 0;
 
-            // Formatear a millones (ej. $2.4M) o mostrar en formato de dinero
-            ViewBag.ValorPendientesFormatted = valorPendientes >= 1000000
-                ? $"${(valorPendientes / 1000000.0m):0.1M}M"
-                : $"${valorPendientes:N0}";
+            // Formatear a millones de forma segura
+            string valorFormateado;
+            if (valorPendientes >= 1000000)
+            {
+                decimal enMillones = valorPendientes / 1000000.0m;
+                valorFormateado = "$" + enMillones.ToString("0.0") + "M";
+            }
+            else
+            {
+                valorFormateado = "$" + valorPendientes.ToString("N0");
+            }
+
+            ViewBag.ValorPendientesFormatted = valorFormateado;
 
             // Cálculo de la Tasa de Conversión (Ejemplo: Aprobadas / Total * 100)
             int totalAprobadas = await _context.Cotizaciones.Where(c => c.Estado == "Aprobada").CountAsync();

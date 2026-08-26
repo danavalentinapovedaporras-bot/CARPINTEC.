@@ -17,16 +17,44 @@ namespace CARPINTEC_App.Controllers
         }
 
         // GET: PedidosController (Vista principal)
-        public async Task<IActionResult> Index()
-        {
-            var pedidos = await _context.Pedidos
-                .Include(p => p.IdClienteNavigation)
-                .ToListAsync();
 
-            // Pasamos la lista de clientes reales a la vista para el selector
+        public async Task<IActionResult> Index(string estado = "Todas", int page = 1)
+        {
+            int pageSize = 10;
+
+            // --- 1. MÉTRICAS PARA LAS 4 TARJETAS ---
+            ViewBag.TotalActivos = await _context.Pedidos.CountAsync();
+            ViewBag.EnProduccionCount = await _context.Pedidos.Where(p => p.Estado == "En Producción").CountAsync();
+            ViewBag.PendientesEntregaCount = await _context.Pedidos.Where(p => p.Estado == "Pendiente Entrega").CountAsync();
+
+            decimal valorEnCurso = await _context.Pedidos
+                .Where(p => p.Estado != "Entregado" && p.Estado != "Cancelado")
+                .SumAsync(p => (decimal?)p.ValorTotal) ?? 0;
+
+            ViewBag.ValorEnCursoFormatted = valorEnCurso.ToString("N2");
+
+            // --- NUEVO: CARGAR LA LISTA DE CLIENTES PARA EL SELECTOR DEL MODAL ---
             ViewBag.ListaClientes = await _context.Clientes.ToListAsync();
 
-            return View(pedidos);
+            // --- 2. CONSULTA DE LA TABLA CON PAGINACIÓN Y FILTROS ---
+            var query = _context.Pedidos.Include(p => p.IdClienteNavigation).AsQueryable();
+
+            if (!string.IsNullOrEmpty(estado) && estado != "Todas")
+            {
+                query = query.Where(p => p.Estado == estado);
+            }
+
+            int totalRegistros = await query.CountAsync();
+            var registros = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.EstadoActual = estado;
+            ViewBag.PageCurrent = page;
+            ViewBag.TotalPages = (int)Math.Ceiling(decimal.Divide(totalRegistros, pageSize));
+
+            return View(registros);
         }
 
         // POST: PedidosController/GuardarPedido (Procesa el formulario del modal directamente)

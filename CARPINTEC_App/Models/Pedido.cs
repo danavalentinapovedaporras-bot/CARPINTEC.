@@ -8,6 +8,7 @@ public partial class Pedido
     public int IdPedido { get; set; }
 
     public string CodigoPedido { get; set; } = null!;
+    public string? Producto { get; set; }
 
     public int IdCotizacion { get; set; }
 
@@ -33,5 +34,5 @@ public partial class Pedido
 
     public virtual ICollection<ManoObra> ManoObras { get; set; } = new List<ManoObra>();
 
-    public virtual ICollection<Ventum> Venta { get; set; } = new List<Ventum>();
+    public virtual ICollection<Venta> Venta { get; set; } = new List<Venta>();
 }

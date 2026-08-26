@@ -3,6 +3,7 @@
 
     ViewData["Title"] = "Gestión de Pedidos";
 }
+@model IEnumerable<CARPINTEC_App.Models.Pedido>
 <!DOCTYPE html>
 <html class="light" lang="es">
 <head>
@@ -164,22 +165,20 @@
                     <p class="text-on-surface/70 font-body-md">Supervisa el flujo de producción artesanal y entregas.</p>
                 </div>
 
-                <div class="flex flex-wrap items-center gap-3 relative z-20">
-                    <input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary w-64 transition-all text-on-surface placeholder-on-surface/50"
-                           placeholder="Buscar pedidos, clientes..."
-                           type="text">
+       
                     <button type="button"
                             onclick="abrirNuevoPedido()"
                             class="bg-primary text-on-primary px-6 py-3 rounded-xl font-title-md text-title-md flex items-center gap-2 shadow-soft-wood hover:scale-[1.02] active:scale-[0.98] transition-all font-bold cursor-pointer relative z-30">
                         <span class="material-symbols-outlined">add</span>
                         Nuevo Pedido
                     </button>
-                </div>
+                
             </div>
 
             <!-- Stats Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-                <!-- Stat Card 1 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter w-full mb-8">
+
+                <!-- Stat Card 1: Pedidos Activos -->
                 <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-surface-container-highest shadow-soft-wood group hover:border-primary/20 transition-all">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-primary/20 rounded-lg text-on-surface">
@@ -188,10 +187,10 @@
                         <span class="text-on-surface/60 text-[12px] font-bold">+12% vs mes ant.</span>
                     </div>
                     <p class="font-label-md text-label-md text-on-surface/70">Pedidos Activos</p>
-                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">42</h3>
+                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">@ViewBag.TotalActivos</h3>
                 </div>
 
-                <!-- Stat Card 2 -->
+                <!-- Stat Card 2: En Producción -->
                 <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-surface-container-highest shadow-soft-wood group hover:border-primary/20 transition-all">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-primary/20 rounded-lg text-on-surface">
@@ -200,22 +199,22 @@
                         <span class="text-on-surface/60 text-[12px] font-bold">87% capacidad</span>
                     </div>
                     <p class="font-label-md text-label-md text-on-surface/70">En Producción</p>
-                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">18</h3>
+                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">@ViewBag.EnProduccionCount</h3>
                 </div>
 
-                <!-- Stat Card 3 -->
+                <!-- Stat Card 3: Pendientes Entrega -->
                 <div class="bg-surface-container-lowest p-card-padding rounded-xl border border-surface-container-highest shadow-soft-wood group hover:border-primary/20 transition-all">
                     <div class="flex justify-between items-start mb-4">
                         <div class="p-3 bg-primary/20 rounded-lg text-on-surface">
                             <span class="material-symbols-outlined text-[28px]">local_shipping</span>
                         </div>
-                        <span class="text-error text-[12px] font-bold">3 Urgentes</span>
+                        <span class="text-error text-[12px] font-bold">Urgentes</span>
                     </div>
                     <p class="font-label-md text-label-md text-on-surface/70">Pendientes Entrega</p>
-                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">7</h3>
+                    <h3 class="font-display-lg text-[32px] text-on-surface font-bold">@ViewBag.PendientesEntregaCount</h3>
                 </div>
 
-                <!-- Stat Card 4 -->
+                <!-- Stat Card 4: Valor Total en Curso -->
                 <div class="bg-black p-card-padding rounded-xl border border-black shadow-lg group relative overflow-hidden">
                     <div class="relative z-10">
                         <div class="flex justify-between items-start mb-4">
@@ -224,14 +223,14 @@
                             </div>
                         </div>
                         <p class="font-label-md text-label-md text-white/80">Valor Total en Curso</p>
-                        <h3 class="font-display-lg text-[28px] text-primary font-bold">$142,500.00</h3>
+                        <h3 class="font-display-lg text-[28px] text-primary font-bold">$@ViewBag.ValorEnCursoFormatted</h3>
                     </div>
                     <div class="absolute -right-4 -bottom-4 opacity-10">
                         <span class="material-symbols-outlined text-[120px] text-white">paid</span>
                     </div>
                 </div>
-            </div>
 
+            </div>
             <!-- Main Table Section -->
             <div class="bg-surface-container-lowest rounded-xl border border-surface-container-highest shadow-soft-wood overflow-hidden">
                 <!-- Table Filters -->
@@ -239,17 +238,38 @@
                     <div class="flex items-center gap-3">
                         <span class="font-label-md text-label-md text-on-surface/70 uppercase tracking-wider">Filtrar por:</span>
                         <div class="flex gap-2">
-                            <button class="px-4 py-1.5 rounded-full bg-black text-primary text-[12px] font-bold transition-all cursor-pointer">Todos</button>
-                            <button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface text-[12px] font-medium hover:bg-primary/20 transition-all cursor-pointer">Diseño</button>
-                            <button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface text-[12px] font-medium hover:bg-primary/20 transition-all cursor-pointer">Corte</button>
-                            <button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface text-[12px] font-medium hover:bg-primary/20 transition-all cursor-pointer">Producción</button>
+                            <!-- Botón Todos -->
+                            <a href="@Url.Action("Index", new { estado = "Todas" })"
+                               class="px-4 py-1.5 rounded-full text-[12px] transition-all cursor-pointer @(ViewBag.EstadoActual == "Todas" ? "bg-black text-primary font-bold" : "bg-surface-container-high text-on-surface font-medium hover:bg-primary/20")">
+                                Todos
+                            </a>
+
+                            <!-- Botón Diseño -->
+                            <a href="@Url.Action("Index", new { estado = "Diseño" })"
+                               class="px-4 py-1.5 rounded-full text-[12px] transition-all cursor-pointer @(ViewBag.EstadoActual == "Diseño" ? "bg-black text-primary font-bold" : "bg-surface-container-high text-on-surface font-medium hover:bg-primary/20")">
+                                Diseño
+                            </a>
+
+                            <!-- Botón Corte -->
+                            <a href="@Url.Action("Index", new { estado = "Corte" })"
+                               class="px-4 py-1.5 rounded-full text-[12px] transition-all cursor-pointer @(ViewBag.EstadoActual == "Corte" ? "bg-black text-primary font-bold" : "bg-surface-container-high text-on-surface font-medium hover:bg-primary/20")">
+                                Corte
+                            </a>
+
+                            <!-- Botón Producción -->
+                            <a href="@Url.Action("Index", new { estado = "En Producción" })"
+                               class="px-4 py-1.5 rounded-full text-[12px] transition-all cursor-pointer @(ViewBag.EstadoActual == "En Producción" ? "bg-black text-primary font-bold" : "bg-surface-container-high text-on-surface font-medium hover:bg-primary/20")">
+                                Producción
+                            </a>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-all cursor-pointer">
+                        <button type="button" class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-all cursor-pointer">
                             <span class="material-symbols-outlined text-[20px]">filter_list</span>
                             <span class="font-label-md">Más filtros</span>
                         </button>
+                    </div>
+                </div>
                         <a asp-controller="Pedidos"
                            asp-action="ExportarExcel"
                            class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-low transition-all cursor-pointer">
@@ -275,121 +295,104 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-outline-variant/30">
-                            <!-- Row 1 -->
-                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface cursor-pointer">
-                                <td class="p-table-cell-padding font-bold text-black">P-2024-028</td>
-                                <td class="p-table-cell-padding">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">RM</div>
-                                        <span>Ricardo Mendoza</span>
-                                    </div>
-                                </td>
-                                <td class="p-table-cell-padding">Cocina Integral Roble</td>
-                                <td class="p-table-cell-padding text-on-surface/70">12 Oct 2023</td>
-                                <td class="p-table-cell-padding text-on-surface/70">15 Nov 2023</td>
-                                <td class="p-table-cell-padding">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-blue-100 text-blue-800 border border-blue-200">En Diseño</span>
-                                </td>
-                                <td class="p-table-cell-padding text-right font-bold text-black">$12,450.00</td>
-                                <td class="p-table-cell-padding text-right">
-                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface cursor-pointer">
-                                        <span class="material-symbols-outlined">more_vert</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- Row 2 -->
-                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface cursor-pointer">
-                                <td class="p-table-cell-padding font-bold text-black">P-2024-025</td>
-                                <td class="p-table-cell-padding">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">SO</div>
-                                        <span>Sofía Ortiz</span>
-                                    </div>
-                                </td>
-                                <td class="p-table-cell-padding">Escritorio Nogal Ejecutivo</td>
-                                <td class="p-table-cell-padding text-on-surface/70">08 Oct 2023</td>
-                                <td class="p-table-cell-padding text-on-surface/70 font-bold text-error">28 Oct 2023</td>
-                                <td class="p-table-cell-padding">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-orange-100 text-orange-800 border border-orange-200">Corte</span>
-                                </td>
-                                <td class="p-table-cell-padding text-right font-bold text-black">$4,200.00</td>
-                                <td class="p-table-cell-padding text-right">
-                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface cursor-pointer">
-                                        <span class="material-symbols-outlined">more_vert</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- Row 3 -->
-                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface cursor-pointer">
-                                <td class="p-table-cell-padding font-bold text-black">P-2024-019</td>
-                                <td class="p-table-cell-padding">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">JC</div>
-                                        <span>Javier Castro</span>
-                                    </div>
-                                </td>
-                                <td class="p-table-cell-padding">Cava Vinos Modular</td>
-                                <td class="p-table-cell-padding text-on-surface/70">25 Sep 2023</td>
-                                <td class="p-table-cell-padding text-on-surface/70">20 Oct 2023</td>
-                                <td class="p-table-cell-padding">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-purple-100 text-purple-800 border border-purple-200">Ensamble</span>
-                                </td>
-                                <td class="p-table-cell-padding text-right font-bold text-black">$8,900.00</td>
-                                <td class="p-table-cell-padding text-right">
-                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface cursor-pointer">
-                                        <span class="material-symbols-outlined">more_vert</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- Row 4 -->
-                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface cursor-pointer">
-                                <td class="p-table-cell-padding font-bold text-black">P-2024-012</td>
-                                <td class="p-table-cell-padding">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">EL</div>
-                                        <span>Elena Luna</span>
-                                    </div>
-                                </td>
-                                <td class="p-table-cell-padding">Puerta Principal Tallada</td>
-                                <td class="p-table-cell-padding text-on-surface/70">15 Sep 2023</td>
-                                <td class="p-table-cell-padding text-on-surface/70">10 Oct 2023</td>
-                                <td class="p-table-cell-padding">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-yellow-100 text-yellow-800 border border-yellow-200">Pintura</span>
-                                </td>
-                                <td class="p-table-cell-padding text-right font-bold text-black">$22,000.00</td>
-                                <td class="p-table-cell-padding text-right">
-                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface cursor-pointer">
-                                        <span class="material-symbols-outlined">more_vert</span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- Row 5 -->
-                            <tr class="hover:bg-surface-bright transition-colors group text-on-surface cursor-pointer">
-                                <td class="p-table-cell-padding font-bold text-black">P-2024-008</td>
-                                <td class="p-table-cell-padding">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">MM</div>
-                                        <span>Manuel Morales</span>
-                                    </div>
-                                </td>
-                                <td class="p-table-cell-padding">Juego de Comedor Caoba</td>
-                                <td class="p-table-cell-padding text-on-surface/70">01 Sep 2023</td>
-                                <td class="p-table-cell-padding text-on-surface/70">25 Sep 2023</td>
-                                <td class="p-table-cell-padding">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-green-100 text-green-800 border border-green-200">Completado</span>
-                                </td>
-                                <td class="p-table-cell-padding text-right font-bold text-black">$18,500.00</td>
-                                <td class="p-table-cell-padding text-right">
-                                    <button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface cursor-pointer">
-                                        <span class="material-symbols-outlined">more_vert</span>
-                                    </button>
-                                </td>
-                            </tr>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="hover:bg-surface-bright transition-colors group text-on-surface cursor-pointer">
+
+                                        <!-- ID Pedido -->
+                                        <td class="p-table-cell-padding font-bold text-black">@item.CodigoPedido</td>
+
+                                        <!-- Cliente con Iniciales Dinámicas -->
+                                        <td class="p-table-cell-padding">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-8 h-8 rounded-full bg-primary/30 flex items-center justify-center text-on-surface font-bold text-[12px]">
+                                                    @{
+                                                        string iniciales = "NC";
+                                                        if (item.IdClienteNavigation?.Nombre != null)
+                                                        {
+                                                            string nombre = item.IdClienteNavigation.Nombre.Trim();
+                                                            string apellido = item.IdClienteNavigation.Apellido?.Trim() ?? "";
+                                                            iniciales = $"{nombre[0]}".ToUpper();
+                                                            if (!string.IsNullOrEmpty(apellido))
+                                                            {
+                                                                iniciales += $"{apellido[0]}".ToUpper();
+                                                            }
+                                                        }
+                                                    }
+                                                    @iniciales
+                                                </div>
+                                                <span>
+                                                    @(item.IdClienteNavigation != null ? $"{item.IdClienteNavigation.Nombre} {item.IdClienteNavigation.Apellido}" : "Sin cliente")
+                                                </span>
+                                            </div>
+                                        </td>
+
+                                <!-- Producto correcto -->
+                                <td class="p-table-cell-padding">@item.Producto</td>
+
+                                        <!-- Fecha de Registro -->
+                                        <td class="p-table-cell-padding text-on-surface/70">@item.FechaSolicitud.ToString("dd MMM yyyy")</td>
+
+                                        <!-- Fecha de Compromiso -->
+                                        <td class="p-table-cell-padding text-on-surface/70">@item.FechaEntrega.ToString("dd MMM yyyy")</td>
+
+                                        <!-- Estado con Insignias Condicionales -->
+                                        <td class="p-table-cell-padding">
+                                            @if (item.Estado == "En Diseño" || item.Estado == "Diseño")
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-blue-100 text-blue-800 border border-blue-200">En Diseño</span>
+                                            }
+                                            else if (item.Estado == "Corte")
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-orange-100 text-orange-800 border border-orange-200">Corte</span>
+                                            }
+                                            else if (item.Estado == "Ensamble")
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-purple-100 text-purple-800 border border-purple-200">Ensamble</span>
+                                            }
+                                            else if (item.Estado == "Pintura")
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-yellow-100 text-yellow-800 border border-yellow-200">Pintura</span>
+                                            }
+                                            else if (item.Estado == "Completado")
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-green-100 text-green-800 border border-green-200">Completado</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-gray-100 text-gray-800 border border-gray-200">@item.Estado</span>
+                                            }
+                                        </td>
+
+                                        <!-- Valor Monetario -->
+                                        <td class="p-table-cell-padding text-right font-bold text-black">$@item.ValorTotal.ToString("N2")</td>
+
+                                        <!-- Botón de Menú de Acciones -->
+                                        <td class="p-table-cell-padding text-right">
+                                            <button type="button" class="p-2 hover:bg-surface-container-high rounded-full text-on-surface cursor-pointer">
+                                                <span class="material-symbols-outlined">more_vert</span>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center py-8 text-on-surface/50 font-medium">
+                                        No hay pedidos guardados en la base de datos.
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+                <!-- Fin de la sección de la Tabla o Contenido Principal -->
+            
+        </main>
         @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
         <!-- MODAL NUEVO PEDIDO -->
@@ -414,9 +417,9 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                         <!-- Cliente (Cargado dinámicamente desde la BD) -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Cliente</label>
-                            <select name="IdCliente" class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold text-black mb-1">Cliente</label>
+                            <select name="IdCliente" class="w-full bg-surface-container-lowest p-3 rounded-xl border border-outline-variant" required>
                                 <option value="">Seleccionar cliente...</option>
                                 @if (ViewBag.ListaClientes != null)
                                 {
@@ -426,6 +429,14 @@
                                     }
                                 }
                             </select>
+                        </div>
+
+                        <!-- Campo para el Producto dentro del formulario del Modal -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-bold text-on-surface mb-2">Producto / Descripción</label>
+                            <input type="text" name="Producto" required
+                                   class="w-full px-4 py-2 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface focus:outline-none focus:border-primary"
+                                   placeholder="Ej. Cocina Integral Roble">
                         </div>
 
                         <!-- Código del pedido -->

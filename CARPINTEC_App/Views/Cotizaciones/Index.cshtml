@@ -151,16 +151,16 @@
                 </button>
             </div>
         </div>
-
-        <!-- Summary Cards (Bento Style) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        
+        <!-- 1. Summary Cards (Bento Style) - 3 columnas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 w-full">
             <!-- Card 1 -->
             <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant custom-shadow-level-1 relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform"></div>
                 <div class="flex items-start justify-between relative">
                     <div>
                         <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Total Cotizaciones</p>
-                        <h3 class="text-headline-md text-black">148</h3>
+                        <h3 class="text-headline-md text-black">@ViewBag.TotalCotizaciones</h3>
                         <p class="text-label-md text-black font-bold mt-2 flex items-center gap-1">
                             <span class="material-symbols-outlined text-[16px]">trending_up</span> +12% este mes
                         </p>
@@ -177,9 +177,9 @@
                 <div class="flex items-start justify-between relative">
                     <div>
                         <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Pendientes de Aprobación</p>
-                        <h3 class="text-headline-md text-black">32</h3>
+                        <h3 class="text-headline-md text-black">@ViewBag.PendientesAprobacion</h3>
                         <p class="text-label-md text-black/80 font-bold mt-2 flex items-center gap-1">
-                            Valuadas en $2.4M
+                            Valuadas en @ViewBag.ValorPendientesFormatted
                         </p>
                     </div>
                     <div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center">
@@ -194,9 +194,9 @@
                 <div class="flex items-start justify-between relative">
                     <div>
                         <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Tasa de Conversión</p>
-                        <h3 class="text-headline-md text-black">68.4%</h3>
+                        <h3 class="text-headline-md text-black">@ViewBag.TasaConversion%</h3>
                         <div class="w-full bg-surface-container-low h-2 rounded-full mt-3 overflow-hidden">
-                            <div class="bg-primary h-full rounded-full" style="width: 68.4%"></div>
+                            <div class="bg-primary h-full rounded-full" style="width: @ViewBag.TasaConversion%;"></div>
                         </div>
                     </div>
                     <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -204,12 +204,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Filter Bar -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+        </div> <!-- AQUÍ SE CIERRA CORRECTAMENTE EL GRID DE LAS 3 TARJETAS -->
+        <!-- 2. Filter Bar (Ahora está fuera del grid y abarca el 100% de ancho) -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 w-full">
             <!-- Filtros por Estado -->
-            <div class="flex items-center gap-2 mb-4">
+            <div class="flex items-center gap-2 mb-4 sm:mb-0">
                 <a href="@Url.Action("Index", new { estado = "Todas" })"
                    class="px-4 py-2 rounded-full text-sm font-semibold transition-colors @(ViewBag.EstadoActual == "Todas" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200")">
                     Todas
@@ -233,8 +232,9 @@
             </button>
         </div>
 
-        <!-- Data Table Section -->
-        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow-level-1 overflow-x-auto">
+
+        <!-- 3. Data Table Section (Bloque independiente con ancho del 100%) -->
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow-level-1 overflow-x-auto w-full mb-8">
             <table class="w-full border-collapse text-left min-w-[700px]">
                 <thead class="bg-surface-container">
                     <tr>
@@ -250,56 +250,29 @@
                     @foreach (var item in Model)
                     {
                         <tr class="hover:bg-surface-container-low/50 transition-colors">
-
-                            <td class="px-6 py-5">
-                                @item.Folio
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.IdClienteNavigation.Nombre
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.Fecha
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.Total
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.Estado
-                            </td>
-
+                            <td class="px-6 py-5">@item.Folio</td>
+                            <td class="px-6 py-5">@item.IdClienteNavigation.Nombre</td>
+                            <td class="px-6 py-5">@item.Fecha</td>
+                            <td class="px-6 py-5">@item.Total</td>
+                            <td class="px-6 py-5">@item.Estado</td>
                             <td class="px-6 py-5 text-right">
                                 <div class="flex justify-end gap-1">
-
-                                    <a asp-controller="Cotizaciones"
-                                       asp-action="Details"
-                                       asp-route-id="@item.IdCotizacion"
-                                       class="p-2 text-black hover:text-primary">
+                                    <a asp-controller="Cotizaciones" asp-action="Details" asp-route-id="@item.IdCotizacion" class="p-2 text-black hover:text-primary">
                                         <span class="material-symbols-outlined">visibility</span>
                                     </a>
-
-                                    <a asp-controller="Cotizaciones"
-                                       asp-action="Edit"
-                                       asp-route-id="@item.IdCotizacion"
-                                       class="p-2 text-black hover:text-primary">
+                                    <a asp-controller="Cotizaciones" asp-action="Edit" asp-route-id="@item.IdCotizacion" class="p-2 text-black hover:text-primary">
                                         <span class="material-symbols-outlined">edit</span>
                                     </a>
-
                                     <button type="button" onclick="eliminarDeVista(this, @item.IdCotizacion)" class="p-2 text-red-600 hover:text-red-800 focus:outline-none">
                                         <span class="material-symbols-outlined">delete</span>
                                     </button>
-
                                 </div>
                             </td>
-
                         </tr>
                     }
                 </tbody>
             </table>
-
+        </div>
             <!-- Table Pagination -->
             <div class="bg-surface-container/30 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-outline-variant">
                 <p class="text-label-md text-black/60 font-bold">
@@ -563,7 +536,9 @@
             </main>
         </div>
     </div>
-
+            
+        
+    </main>
     <!-- ========================================== -->
     <!-- SCRIPTS DE CONTROL Y GUARDADO EN BD        -->
     <!-- ========================================== -->

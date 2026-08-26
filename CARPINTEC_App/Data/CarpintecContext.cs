@@ -34,7 +34,7 @@ public partial class CarpintecContext : DbContext
     public virtual DbSet<Producto> Productos { get; set; }
     public virtual DbSet<ActividadTaller> ActividadTallers { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
-    public virtual DbSet<Ventum> Venta { get; set; }
+    public virtual DbSet<Venta> Ventas { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -366,9 +366,12 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.Rol).HasMaxLength(50).IsUnicode(false);
         });
 
-        modelBuilder.Entity<Ventum>(entity =>
+        modelBuilder.Entity<Venta>(entity =>
         {
-            entity.HasKey(e => e.IdVenta).HasName("PK__Venta__BC1240BD5FC6DC6A");
+            // Indícale que en SQL Server la tabla se llama exactamente "Venta"
+            entity.ToTable("Venta");
+
+            entity.HasKey(e => e.IdVenta).HasName("PK__Venta__BC1248BD5FC6DC6A");
             entity.HasIndex(e => e.NumeroFactura, "UQ__Venta__CF12F9A66A3EC81B").IsUnique();
 
             entity.Property(e => e.Estado).HasMaxLength(20).IsUnicode(false);
@@ -379,7 +382,7 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.Subtotal).HasColumnType("decimal(12, 2)");
             entity.Property(e => e.Total).HasColumnType("decimal(12, 2)");
 
-            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Venta)
+            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Ventas)
                 .HasForeignKey(d => d.IdCliente)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Venta_Cliente");

@@ -7,37 +7,68 @@ namespace CARPINTEC_App.Controllers
 {
     public class VentasController : Controller
     {
-        // Aquí va el contexto
         private readonly CarpintecContext _context;
 
-        // Aquí va el constructor
         public VentasController(CarpintecContext context)
         {
             _context = context;
         }
 
-        // Después siguen los métodos
-      public IActionResult Index()
-{
-    var facturas = _context.Facturas.ToList();
-    return View(facturas);
-}
-
-
-
-public IActionResult VerFactura(int id)
-    {
-        var factura = _context.Facturas
-            .Include(f => f.DetallesFactura)
-                .ThenInclude(d => d.Producto)
-            .FirstOrDefault(f => f.IdFactura == id);
-
-        if (factura == null)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Crear(Venta venta)
         {
-            return NotFound();
+            if (ModelState.IsValid)
+            {
+                venta.Estado = "Pendiente"; // Estado por defecto
+                _context.Ventas.Add(venta);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(venta);
+        }
+        public IActionResult Index()
+        {
+            // Consultamos la tabla Ventas del contexto
+            var ventasList = _context.Ventas
+                .Include(v => v.IdClienteNavigation)
+                .Include(v => v.IdPedidoNavigation)
+                .ToList();
+
+            // --- CÁLCULOS PARA LAS TARJETAS BENTO ---
+            decimal ventasTotales = ventasList
+                .Where(v => v.Estado != "Anulada")
+                .Sum(v => v.Total);
+            ViewBag.VentasTotalesMes = ventasTotales.ToString("N2");
+
+            var pendientes = ventasList.Where(v => v.Estado == "Pendiente").ToList();
+            ViewBag.CantidadPendientes = pendientes.Count;
+            ViewBag.ValorPendientesFormatted = pendientes.Sum(v => v.Total).ToString("N2");
+
+            decimal totalRecaudado = ventasList
+                .Where(v => v.Estado == "Pagada")
+                .Sum(v => v.Total);
+            ViewBag.TotalRecaudadoFormatted = totalRecaudado.ToString("N2");
+
+            ViewBag.CantidadProximos = pendientes.Count;
+            ViewBag.SiguienteVencimientoFecha = "Al día";
+
+            return View(ventasList);
         }
 
-        return View(factura);
+        public IActionResult VerFactura(int id)
+        {
+            var venta = _context.Ventas
+                .Include(v => v.IdClienteNavigation)
+                .Include(v => v.IdPedidoNavigation)
+                .FirstOrDefault(v => v.IdVenta == id);
+
+            if (venta == null)
+            {
+                return NotFound();
+            }
+
+            return View(venta);
+        }
     }
-}
 }
