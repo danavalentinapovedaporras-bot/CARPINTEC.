@@ -56,6 +56,43 @@ namespace CARPINTEC_App.Controllers
 
             return View(pqr);
         }
+        // OBTENER DATOS DE UNA PQR PARA EL MODAL
+        [HttpGet]
+        public async Task<IActionResult> ObtenerPQR(int id)
+        {
+            var pqr = await _context.Pqrs
+                .Include(p => p.IdClienteNavigation)
+                .FirstOrDefaultAsync(p => p.IdPqr == id);
+
+            if (pqr == null)
+            {
+                return NotFound();
+            }
+
+            return Json(new
+            {
+                id = pqr.IdPqr,
+                codigo = pqr.CodigoPqr,
+
+                cliente = pqr.IdClienteNavigation != null
+                    ? pqr.IdClienteNavigation.Nombre + " " + pqr.IdClienteNavigation.Apellido
+                    : "",
+
+                documento = pqr.IdClienteNavigation?.Documento,
+                correo = pqr.IdClienteNavigation?.Correo,
+                telefono = pqr.IdClienteNavigation?.Telefono,
+
+                tipo = pqr.Tipo,
+                asunto = pqr.Asunto,
+                descripcion = pqr.Descripcion,
+
+                estado = pqr.Estado,
+
+                fecha = pqr.FechaRegistro.ToString("dd/MM/yyyy"),
+
+                respuesta = pqr.Respuesta
+            });
+        }
         // GUARDAR NUEVA PQR DESDE EL MODAL DEL INDEX
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -79,7 +116,6 @@ namespace CARPINTEC_App.Controllers
 
             await _context.SaveChangesAsync();
 
-
             return RedirectToAction(nameof(Index));
         }
 
@@ -89,6 +125,10 @@ namespace CARPINTEC_App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Responder(int id, string respuesta, string estado)
         {
+            Console.WriteLine("ENTRÓ A RESPONDER");
+            Console.WriteLine("ID: " + id);
+            Console.WriteLine("Respuesta: " + respuesta);
+            Console.WriteLine("Estado: " + estado);
 
             var pqr = await _context.Pqrs
                 .FirstOrDefaultAsync(p => p.IdPqr == id);
@@ -105,13 +145,81 @@ namespace CARPINTEC_App.Controllers
             pqr.FechaRespuesta = DateOnly.FromDateTime(DateTime.Now);
 
 
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR AL GUARDAR PQR:");
+                Console.WriteLine(ex.ToString());
+
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
+        }
+        // EDITAR PQR - MOSTRAR FORMULARIO
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var pqr = await _context.Pqrs
+                .Include(p => p.IdClienteNavigation)
+                .FirstOrDefaultAsync(p => p.IdPqr == id);
+
+
+            if (pqr == null)
+            {
+                return NotFound();
+            }
+
+
+            ViewBag.Clientes = await _context.Clientes
+                .Where(c => c.Estado == "Activo")
+                .ToListAsync();
+
+
+            return View(pqr);
+        }
+
+
+        // GUARDAR CAMBIOS DE PQR
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Pqr pqr)
+        {
+
+            if (id != pqr.IdPqr)
+            {
+                return NotFound();
+            }
+
+
+            var pqrBD = await _context.Pqrs
+                .FirstOrDefaultAsync(p => p.IdPqr == id);
+
+
+            if (pqrBD == null)
+            {
+                return NotFound();
+            }
+
+
+            pqrBD.CodigoPqr = pqr.CodigoPqr;
+            pqrBD.IdCliente = pqr.IdCliente;
+            pqrBD.Tipo = pqr.Tipo;
+            pqrBD.Asunto = pqr.Asunto;
+            pqrBD.Descripcion = pqr.Descripcion;
+            pqrBD.Estado = pqr.Estado;
+            pqrBD.Respuesta = pqr.Respuesta;
+            pqrBD.FechaRegistro = pqr.FechaRegistro;
+
+
             await _context.SaveChangesAsync();
 
 
             return RedirectToAction(nameof(Index));
         }
-
-
 
         // CAMBIAR ESTADO DE PQR
         [HttpPost]
