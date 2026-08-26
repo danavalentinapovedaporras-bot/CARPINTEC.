@@ -1,6 +1,7 @@
-﻿using CARPINTEC_App.Models;
-using CARPINTEC_App.Data;
+﻿using CARPINTEC_App.Data;
+using CARPINTEC_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace CARPINTEC_App.Controllers
@@ -16,16 +17,31 @@ namespace CARPINTEC_App.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Crear(Venta venta)
+        public IActionResult Create(Venta venta)
         {
             if (ModelState.IsValid)
             {
-                venta.Estado = "Pendiente"; // Estado por defecto
+                // Si el estado viene vacío, le ponemos Pendiente por defecto
+                if (string.IsNullOrEmpty(venta.Estado))
+                {
+                    venta.Estado = "Pendiente";
+                }
+
                 _context.Ventas.Add(venta);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(venta);
+
+            // Si hay un error, recargamos la vista Index con los datos necesarios
+            var ventasList = _context.Ventas
+                .Include(v => v.IdClienteNavigation)
+                .Include(v => v.IdPedidoNavigation)
+                .ToList();
+
+            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Nombre", venta.IdCliente);
+            ViewData["IdPedido"] = new SelectList(_context.Pedidos, "IdPedido", "IdPedido", venta.IdPedido);
+
+            return View("Index", ventasList);
         }
         public IActionResult Index()
         {
@@ -34,6 +50,10 @@ namespace CARPINTEC_App.Controllers
                 .Include(v => v.IdClienteNavigation)
                 .Include(v => v.IdPedidoNavigation)
                 .ToList();
+
+            // --- LISTAS PARA LOS SELECTS DEL MODAL ---
+            ViewData["IdCliente"] = new SelectList(_context.Clientes, "IdCliente", "Nombre");
+            ViewData["IdPedido"] = new SelectList(_context.Pedidos, "IdPedido", "IdPedido");
 
             // --- CÁLCULOS PARA LAS TARJETAS BENTO ---
             decimal ventasTotales = ventasList
@@ -69,6 +89,23 @@ namespace CARPINTEC_App.Controllers
             }
 
             return View(venta);
+        }
+        [HttpGet]
+        public IActionResult DetalleFacturaCard(int id)
+        {
+            // Buscamos la factura con sus relaciones
+            var venta = _context.Ventas
+                .Include(v => v.IdClienteNavigation)
+                .Include(v => v.IdPedidoNavigation)
+                .FirstOrDefault(v => v.IdVenta == id);
+
+            if (venta == null)
+            {
+                return NotFound();
+            }
+
+            // Retorna una "Vista Parcial" con el diseño de la tarjeta
+            return PartialView("_DetalleFactura", venta);
         }
     }
 }

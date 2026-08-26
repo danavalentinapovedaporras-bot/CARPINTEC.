@@ -7,6 +7,7 @@
         public int IdPedido { get; set; }
 
         public int IdCliente { get; set; }
+        public DateTime FechaVenta { get; set; }
 
         public string? NumeroFactura { get; set; }
 
