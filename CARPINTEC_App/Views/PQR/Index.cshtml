@@ -729,7 +729,8 @@
 
 
                 <input type="hidden" id="editIdPqr" name="IdPqr">
-
+                <input type="hidden" id="editIdCliente" name="IdCliente">
+                <input type="hidden" id="editId" name="id">
 
                 <label class="block mb-2">
                     Código
@@ -1017,6 +1018,10 @@ function cerrarModalPQR(){
 
 
                 document.getElementById("editIdPqr").value = datos.id;
+
+                document.getElementById("editIdCliente").value = datos.idCliente;
+
+                document.getElementById("editId").value = datos.id;
 
                 document.getElementById("editCodigo").value = datos.codigo;
 

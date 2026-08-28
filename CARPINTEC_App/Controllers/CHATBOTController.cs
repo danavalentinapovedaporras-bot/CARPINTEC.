@@ -1,85 +1,50 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Mvc;
+using CARPINTEC_App.Models;
 
 namespace CARPINTEC_App.Controllers
 {
-    [Authorize]
-    public class CHATBOTController : Controller
+    public class ChatbotController : Controller
     {
-        // GET: CHATBOTController
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        // GET: CHATBOTController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CHATBOTController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CHATBOTController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Preguntar([FromBody] MensajeChatbot mensaje)
         {
-            try
+
+            string respuesta = "";
+
+
+            if (mensaje.Mensaje.ToLower().Contains("servicio"))
             {
-                return RedirectToAction(nameof(Index));
+                respuesta = "CARPINTEC ofrece fabricación de muebles, cocinas integrales, closets y muebles personalizados.";
             }
-            catch
+
+            else if (mensaje.Mensaje.ToLower().Contains("cotizacion"))
             {
-                return View();
+                respuesta = "Puedes solicitar una cotización registrándote e ingresando al módulo de cotizaciones.";
             }
+
+            else if (mensaje.Mensaje.ToLower().Contains("pedido"))
+            {
+                respuesta = "Puedes consultar el estado de tu pedido desde el módulo de pedidos.";
+            }
+
+            else if (mensaje.Mensaje.ToLower().Contains("hola"))
+            {
+                respuesta = "Hola 👋 soy el asistente virtual de CARPINTEC.";
+            }
+
+            else
+            {
+                respuesta = "No entendí tu pregunta. Puedes consultar sobre servicios, pedidos o cotizaciones.";
+            }
+
+
+            return Json(new
+            {
+                respuesta = respuesta
+            });
+
         }
 
-        // GET: CHATBOTController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CHATBOTController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CHATBOTController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CHATBOTController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

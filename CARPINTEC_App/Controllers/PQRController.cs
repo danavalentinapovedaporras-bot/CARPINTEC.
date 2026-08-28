@@ -72,6 +72,7 @@ namespace CARPINTEC_App.Controllers
             return Json(new
             {
                 id = pqr.IdPqr,
+                idCliente = pqr.IdCliente,
                 codigo = pqr.CodigoPqr,
 
                 cliente = pqr.IdClienteNavigation != null
@@ -206,7 +207,6 @@ namespace CARPINTEC_App.Controllers
 
 
             pqrBD.CodigoPqr = pqr.CodigoPqr;
-            pqrBD.IdCliente = pqr.IdCliente;
             pqrBD.Tipo = pqr.Tipo;
             pqrBD.Asunto = pqr.Asunto;
             pqrBD.Descripcion = pqr.Descripcion;
@@ -215,11 +215,17 @@ namespace CARPINTEC_App.Controllers
             pqrBD.FechaRegistro = pqr.FechaRegistro;
 
 
-            await _context.SaveChangesAsync();
-
-
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.ToString());
+            }
             return RedirectToAction(nameof(Index));
-        }
+        } // ← ESTA LLAVE CIERRA EL MÉTODO EDIT
+
 
         // CAMBIAR ESTADO DE PQR
         [HttpPost]
@@ -229,21 +235,17 @@ namespace CARPINTEC_App.Controllers
 
             var pqr = await _context.Pqrs.FindAsync(id);
 
-
             if (pqr == null)
             {
                 return NotFound();
             }
 
-
             pqr.Estado = estado;
-
 
             await _context.SaveChangesAsync();
 
-
             return RedirectToAction(nameof(Index));
         }
-
     }
 }
+    
