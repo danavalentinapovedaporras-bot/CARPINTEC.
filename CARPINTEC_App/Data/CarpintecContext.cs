@@ -375,7 +375,7 @@ public partial class CarpintecContext : DbContext
             entity.HasIndex(e => e.NumeroFactura, "UQ__Venta__CF12F9A66A3EC81B").IsUnique();
 
             entity.Property(e => e.Estado).HasMaxLength(20).IsUnicode(false);
-            entity.Property(e => e.Iva).HasColumnType("decimal(12, 2)").HasColumnName("IVA");
+            entity.Property(e => e.IVA).HasColumnType("decimal(12, 2)").HasColumnName("IVA");
             entity.Property(e => e.MetodoPago).HasMaxLength(30).IsUnicode(false);
             entity.Property(e => e.NumeroFactura).HasMaxLength(20).IsUnicode(false);
             entity.Property(e => e.Observaciones).HasMaxLength(250).IsUnicode(false);
