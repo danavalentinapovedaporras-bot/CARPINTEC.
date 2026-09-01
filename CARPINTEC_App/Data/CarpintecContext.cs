@@ -35,6 +35,9 @@ public partial class CarpintecContext : DbContext
     public virtual DbSet<ActividadTaller> ActividadTallers { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
     public virtual DbSet<Venta> Ventas { get; set; }
+    public virtual DbSet<Inventario> VistaInventario { get; set; }
+    public DbSet<SolicitudReposicion> SolicitudesReposicion { get; set; }
+    public DbSet<MovimientoInventario> MovimientosInventario { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -392,6 +395,10 @@ public partial class CarpintecContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Venta_Pedido");
         });
+
+        modelBuilder.Entity<Inventario>()
+            .ToView("Vista_Inventario")
+            .HasKey(i => i.IdInventario);
 
         OnModelCreatingPartial(modelBuilder);
     }
