@@ -3,7 +3,5 @@
     public class MensajeChatbot
     {
         public string Mensaje { get; set; } = "";
-
-        public string Respuesta { get; set; } = "";
     }
 }

@@ -36,6 +36,8 @@ public partial class CarpintecContext : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
     public virtual DbSet<Ventum> Venta { get; set; }
 
+    public virtual DbSet<ChatBot> ChatBots { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -65,7 +67,33 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.NombreEmpresa).HasMaxLength(150).IsUnicode(false);
             entity.Property(e => e.Telefono).HasMaxLength(20).IsUnicode(false);
             entity.Property(e => e.TipoCliente).HasMaxLength(20).IsUnicode(false);
+           
         });
+
+        modelBuilder.Entity<ChatBot>(entity =>
+{
+    entity.HasKey(e => e.IdChat);
+
+    entity.ToTable("ChatBot");
+
+    entity.Property(e => e.MensajeUsuario)
+        .HasMaxLength(500)
+        .IsUnicode(false);
+
+    entity.Property(e => e.RespuestaBot)
+        .HasMaxLength(500)
+        .IsUnicode(false);
+
+    entity.Property(e => e.Fecha)
+        .HasDefaultValueSql("(getdate())")
+        .HasColumnType("datetime");
+
+
+    entity.HasOne(e => e.Usuario)
+        .WithMany()
+        .HasForeignKey(e => e.IdUsuario)
+        .HasConstraintName("FK_ChatBot_Usuario");
+});
 
         modelBuilder.Entity<Configuracion>(entity =>
         {

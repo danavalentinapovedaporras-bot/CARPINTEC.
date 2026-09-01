@@ -337,7 +337,7 @@
                 class="bg-primary text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition">
 
             <span class="material-symbols-outlined text-4xl">
-                smart_toy
+                robot_2
             </span>
 
         </button>
@@ -362,16 +362,16 @@
 
 
             <!-- Mensajes -->
-            <div class="p-4 h-64 overflow-y-auto text-sm"
-                 id="chat-messages">
+            <div id="chat-messages"
+                 class="p-4 h-80 overflow-y-auto text-sm whitespace-pre-line space-y-2">
 
-                <p class="bg-surface-container p-3 rounded-lg">
+                <div class="bg-surface-container p-3 rounded-lg max-w-[90%]">
                     👋 Hola, soy el asistente virtual de CARPINTEC.
+
                     ¿En qué puedo ayudarte?
-                </p>
+                </div>
 
             </div>
-
 
             <!-- Entrada -->
             <div class="flex border-t">
@@ -423,10 +423,13 @@
                 let mensajes = document.getElementById("chat-messages");
 
 
-                mensajes.innerHTML += `
-                <p class="bg-primary text-white p-3 rounded-lg mt-2">
+                mensajes.innerHTML +=
+                    `
+            <div class="flex justify-end">
+                <div class="bg-primary text-white p-3 rounded-lg max-w-[90%]">
                     ${mensaje}
-                </p>`;
+                </div>
+            </div>`;
 
 
                 let respuesta = await fetch('/Chatbot/Preguntar', {
@@ -451,7 +454,10 @@
 
                 input.value = "";
 
+                mensajes.scrollTop = mensajes.scrollHeight;
+
             }
+            
     </script>
 </body>
 </html>
