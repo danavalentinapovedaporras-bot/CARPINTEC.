@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace CARPINTEC_App.Models;
 
+
+
 public partial class Cotizacion
 {
     public int IdCotizacion { get; set; }
@@ -19,8 +21,6 @@ public partial class Cotizacion
 
     public string Estado { get; set; } = null!;
 
-    public string? Observaciones { get; set; }
-
     public DateTime? FechaRegistro { get; set; }
 
     public virtual ICollection<DetalleCotizacion> DetalleCotizacions { get; set; } = new List<DetalleCotizacion>();
@@ -30,4 +30,16 @@ public partial class Cotizacion
     public virtual Empleado IdEmpleadoNavigation { get; set; } = null!;
 
     public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
+    // NUEVAS COLUMNAS ORGANIZADAS
+    public string? NombreCliente { get; set; }
+    public string? CorreoCliente { get; set; }
+    public string? TelefonoCliente { get; set; }
+    public string? DetalleProducto { get; set; }
+    public string? TipoMadera { get; set; }
+    public int? Cantidad { get; set; }
+    public string? Medidas { get; set; }
+    public string? TiempoEntrega { get; set; }
+    public string? ObservacionesAdicionales { get; set; }
+
+
 }

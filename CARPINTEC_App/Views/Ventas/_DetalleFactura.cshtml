@@ -1,0 +1,96 @@
+﻿@model CARPINTEC_App.Models.Venta
+
+<div class="xl:col-span-1">
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-[0_12px_24px_rgba(68,42,34,0.06)] sticky top-24 overflow-hidden">
+
+        <!-- Cabecera de la Factura -->
+        <div class="p-md border-b border-outline-variant/30 bg-surface-container-low/30">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <div class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-1">Detalle de Factura</div>
+                    <h3 class="text-headline-md font-headline-md text-on-surface font-bold">@Model.NumeroFactura</h3>
+                </div>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold
+                    @(Model.Estado == "Pagada" ? "bg-tertiary-fixed text-on-tertiary-fixed-variant" :
+                      Model.Estado == "Pendiente" ? "bg-secondary-fixed text-on-secondary-fixed-variant" :
+                      "bg-error-container text-on-error-container")">
+                    @Model.Estado?.ToUpper()
+                </span>
+            </div>
+
+            <!-- Datos Generales -->
+            <div class="grid grid-cols-2 gap-y-4 text-body-sm mt-6">
+                <div>
+                    <span class="block text-on-surface-variant text-xs mb-1">Cliente</span>
+                    <span class="font-semibold text-on-surface">@Model.IdClienteNavigation?.Nombre</span>
+                </div>
+                <div>
+                    <span class="block text-on-surface-variant text-xs mb-1">Documento</span>
+                    <span class="text-on-surface">@(Model.IdClienteNavigation?.Documento ?? "N/A")</span>
+                </div>
+                <div>
+                    <span class="block text-on-surface-variant text-xs mb-1">Fecha Emisión</span>
+                    <span class="text-on-surface">@Model.FechaVenta.ToString("dd/MM/yyyy")</span>
+                </div>
+                <div>
+                    <span class="block text-on-surface-variant text-xs mb-1">Método Pago</span>
+                    <span class="text-on-surface">@(Model.MetodoPago ?? "Transferencia")</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productos Dinámicos -->
+        <div class="p-md bg-surface-container-lowest">
+            <h4 class="text-label-md font-label-md text-on-surface mb-3 border-b border-outline-variant/20 pb-2">Productos</h4>
+
+            <div class="flex flex-col gap-3 text-body-sm max-h-[160px] overflow-y-auto pr-1">
+                @if (Model.IdPedidoNavigation != null && Model.IdPedidoNavigation.DetallePedidos != null && Model.IdPedidoNavigation.DetallePedidos.Any())
+                {
+                    @foreach (var detalle in Model.IdPedidoNavigation.DetallePedidos)
+                    {
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <div class="font-semibold text-on-surface">@detalle.IdProductoNavigation?.Nombre</div>
+                                <div class="text-on-surface-variant text-xs">Cant: @detalle.Cantidad x $@detalle.PrecioUnitario.ToString("N2")</div>
+                            </div>
+                            <div class="font-semibold text-on-surface text-right">$@((detalle.Cantidad * detalle.PrecioUnitario).ToString("N2"))</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-xs text-on-surface-variant italic">No hay productos en este pedido.</p>
+                }
+            </div>
+
+            <!-- Totales -->
+            <div class="mt-6 pt-4 border-t border-outline-variant/30 flex flex-col gap-2 text-body-sm">
+                <div class="flex justify-between text-on-surface-variant">
+                    <span>Subtotal</span>
+                    <span>$@Model.Subtotal.ToString("N2")</span>
+                </div>
+                <div class="flex justify-between text-on-surface-variant">
+                    <span>IVA (19%)</span>
+                    <span>$@Model.IVA.ToString("N2")</span>
+                </div>
+                <div class="flex justify-between items-center mt-2 pt-2 border-t border-outline-variant/30">
+                    <span class="text-label-md font-label-md font-bold text-on-surface">TOTAL</span>
+                    <span class="text-headline-md font-headline-md font-bold text-primary">$@Model.Total.ToString("N2")</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="p-md bg-surface-container-low/30 border-t border-outline-variant/30 flex flex-col gap-3">
+            <div class="flex gap-3">
+                <button type="button" class="flex-1 bg-surface-container-lowest border border-outline-variant/50 text-on-surface hover:bg-surface-container-low px-4 py-2 rounded-lg text-label-md font-label-md transition-colors flex justify-center items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="download">download</span> PDF
+                </button>
+                <button type="button" class="flex-1 bg-surface-container-lowest border border-outline-variant/50 text-on-surface hover:bg-surface-container-low px-4 py-2 rounded-lg text-label-md font-label-md transition-colors flex justify-center items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="print">print</span> Imprimir
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

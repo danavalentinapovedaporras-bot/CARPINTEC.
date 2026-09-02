@@ -22,8 +22,8 @@ public partial class CarpintecContext : DbContext
     public DbSet<DetalleFactura> DetalleFacturas { get; set; }
     public virtual DbSet<Cliente> Clientes { get; set; }
     public virtual DbSet<Configuracion> Configuracions { get; set; }
-    public virtual DbSet<Cotizacion> Cotizacions { get; set; }
-    public virtual DbSet<DetalleCotizacion> DetalleCotizacions { get; set; }
+    public virtual DbSet<Cotizacion> Cotizaciones { get; set; }
+    public virtual DbSet<DetalleCotizacion> DetalleCotizacion { get; set; }
     public virtual DbSet<DetallePedido> DetallePedidos { get; set; }
     public virtual DbSet<Empleado> Empleados { get; set; }
     public virtual DbSet<Inventario> Inventarios { get; set; }
@@ -34,7 +34,10 @@ public partial class CarpintecContext : DbContext
     public virtual DbSet<Producto> Productos { get; set; }
     public virtual DbSet<ActividadTaller> ActividadTallers { get; set; }
     public virtual DbSet<Usuario> Usuarios { get; set; }
-    public virtual DbSet<Ventum> Venta { get; set; }
+    public virtual DbSet<Venta> Ventas { get; set; }
+    public virtual DbSet<Inventario> VistaInventario { get; set; }
+    public DbSet<SolicitudReposicion> SolicitudesReposicion { get; set; }
+    public DbSet<MovimientoInventario> MovimientosInventario { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -94,7 +97,7 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.Estado).HasMaxLength(20).IsUnicode(false).HasDefaultValue("Pendiente");
             entity.Property(e => e.FechaRegistro).HasDefaultValueSql("(getdate())").HasColumnType("datetime");
             entity.Property(e => e.Folio).HasMaxLength(20).IsUnicode(false);
-            entity.Property(e => e.Observaciones).HasMaxLength(300).IsUnicode(false);
+          
             entity.Property(e => e.Total).HasColumnType("decimal(12, 2)");
 
             entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Cotizacions)
@@ -366,20 +369,23 @@ public partial class CarpintecContext : DbContext
             entity.Property(e => e.Rol).HasMaxLength(50).IsUnicode(false);
         });
 
-        modelBuilder.Entity<Ventum>(entity =>
+        modelBuilder.Entity<Venta>(entity =>
         {
-            entity.HasKey(e => e.IdVenta).HasName("PK__Venta__BC1240BD5FC6DC6A");
+            // Indícale que en SQL Server la tabla se llama exactamente "Venta"
+            entity.ToTable("Venta");
+
+            entity.HasKey(e => e.IdVenta).HasName("PK__Venta__BC1248BD5FC6DC6A");
             entity.HasIndex(e => e.NumeroFactura, "UQ__Venta__CF12F9A66A3EC81B").IsUnique();
 
             entity.Property(e => e.Estado).HasMaxLength(20).IsUnicode(false);
-            entity.Property(e => e.Iva).HasColumnType("decimal(12, 2)").HasColumnName("IVA");
+            entity.Property(e => e.IVA).HasColumnType("decimal(12, 2)").HasColumnName("IVA");
             entity.Property(e => e.MetodoPago).HasMaxLength(30).IsUnicode(false);
             entity.Property(e => e.NumeroFactura).HasMaxLength(20).IsUnicode(false);
             entity.Property(e => e.Observaciones).HasMaxLength(250).IsUnicode(false);
             entity.Property(e => e.Subtotal).HasColumnType("decimal(12, 2)");
             entity.Property(e => e.Total).HasColumnType("decimal(12, 2)");
 
-            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Venta)
+            entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Ventas)
                 .HasForeignKey(d => d.IdCliente)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Venta_Cliente");
@@ -389,6 +395,10 @@ public partial class CarpintecContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Venta_Pedido");
         });
+
+        modelBuilder.Entity<Inventario>()
+            .ToView("Vista_Inventario")
+            .HasKey(i => i.IdInventario);
 
         OnModelCreatingPartial(modelBuilder);
     }
