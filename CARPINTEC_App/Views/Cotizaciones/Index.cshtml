@@ -140,24 +140,27 @@
             <div class="flex flex-wrap items-center gap-3">
                 <button class="bg-surface-container text-black font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:bg-surface-container-high transition-all border border-outline-variant active:scale-95 text-body-sm">
                     <span class="material-symbols-outlined">straighten</span>
-                    <span>Instructivo de medición</span>
+                    <a asp-controller="Instructivos"
+                       asp-action="Index"
+                       class="font-title-md text-title-md bg-primary-container text-white hover:bg-secondary transition-colors px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
+                        Instructivos
+                    </a>
                 </button>
-                <button class="bg-primary text-black font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:brightness-95 transition-all shadow-md active:scale-95 text-body-sm">
-                    <span class="material-symbols-outlined">add</span>
-                    <span>Nueva Cotización</span>
+                <button type="button" onclick="abrirModalCotizacion()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded-xl shadow-md transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Nueva Cotización
                 </button>
             </div>
         </div>
-
-        <!-- Summary Cards (Bento Style) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        
+        <!-- 1. Summary Cards (Bento Style) - 3 columnas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 w-full">
             <!-- Card 1 -->
             <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant custom-shadow-level-1 relative overflow-hidden group">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform"></div>
                 <div class="flex items-start justify-between relative">
                     <div>
                         <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Total Cotizaciones</p>
-                        <h3 class="text-headline-md text-black">148</h3>
+                        <h3 class="text-headline-md text-black">@ViewBag.TotalCotizaciones</h3>
                         <p class="text-label-md text-black font-bold mt-2 flex items-center gap-1">
                             <span class="material-symbols-outlined text-[16px]">trending_up</span> +12% este mes
                         </p>
@@ -174,9 +177,9 @@
                 <div class="flex items-start justify-between relative">
                     <div>
                         <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Pendientes de Aprobación</p>
-                        <h3 class="text-headline-md text-black">32</h3>
+                        <h3 class="text-headline-md text-black">@ViewBag.PendientesAprobacion</h3>
                         <p class="text-label-md text-black/80 font-bold mt-2 flex items-center gap-1">
-                            Valuadas en $2.4M
+                            Valuadas en @ViewBag.ValorPendientesFormatted
                         </p>
                     </div>
                     <div class="w-12 h-12 bg-secondary-container rounded-lg flex items-center justify-center">
@@ -191,9 +194,9 @@
                 <div class="flex items-start justify-between relative">
                     <div>
                         <p class="text-label-md text-black/60 font-bold uppercase tracking-wider mb-1">Tasa de Conversión</p>
-                        <h3 class="text-headline-md text-black">68.4%</h3>
+                        <h3 class="text-headline-md text-black">@ViewBag.TasaConversion%</h3>
                         <div class="w-full bg-surface-container-low h-2 rounded-full mt-3 overflow-hidden">
-                            <div class="bg-primary h-full rounded-full" style="width: 68.4%"></div>
+                            <div class="bg-primary h-full rounded-full" style="width: @ViewBag.TasaConversion%;"></div>
                         </div>
                     </div>
                     <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -201,15 +204,27 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Filter Bar -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-            <div class="flex flex-wrap gap-2">
-                <button class="px-4 py-2 rounded-full bg-primary text-black text-label-md font-bold border border-primary">Todas</button>
-                <button class="px-4 py-2 rounded-full bg-transparent text-black border border-outline-variant hover:bg-surface-container-low transition-colors text-label-md font-bold">Pendientes</button>
-                <button class="px-4 py-2 rounded-full bg-transparent text-black border border-outline-variant hover:bg-surface-container-low transition-colors text-label-md font-bold">Aprobadas</button>
-                <button class="px-4 py-2 rounded-full bg-transparent text-black border border-outline-variant hover:bg-surface-container-low transition-colors text-label-md font-bold">Rechazadas</button>
+        </div> <!-- AQUÍ SE CIERRA CORRECTAMENTE EL GRID DE LAS 3 TARJETAS -->
+        <!-- 2. Filter Bar (Ahora está fuera del grid y abarca el 100% de ancho) -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 w-full">
+            <!-- Filtros por Estado -->
+            <div class="flex items-center gap-2 mb-4 sm:mb-0">
+                <a href="@Url.Action("Index", new { estado = "Todas" })"
+                   class="px-4 py-2 rounded-full text-sm font-semibold transition-colors @(ViewBag.EstadoActual == "Todas" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200")">
+                    Todas
+                </a>
+                <a href="@Url.Action("Index", new { estado = "Pendiente" })"
+                   class="px-4 py-2 rounded-full text-sm font-semibold transition-colors @(ViewBag.EstadoActual == "Pendiente" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200")">
+                    Pendientes
+                </a>
+                <a href="@Url.Action("Index", new { estado = "Aprobada" })"
+                   class="px-4 py-2 rounded-full text-sm font-semibold transition-colors @(ViewBag.EstadoActual == "Aprobada" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200")">
+                    Aprobadas
+                </a>
+                <a href="@Url.Action("Index", new { estado = "Rechazada" })"
+                   class="px-4 py-2 rounded-full text-sm font-semibold transition-colors @(ViewBag.EstadoActual == "Rechazada" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200")">
+                    Rechazadas
+                </a>
             </div>
             <button class="flex items-center gap-2 text-black hover:text-primary transition-colors font-bold uppercase tracking-wider text-xs">
                 <span class="material-symbols-outlined text-[20px]">filter_list</span>
@@ -217,8 +232,9 @@
             </button>
         </div>
 
-        <!-- Data Table Section -->
-        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow-level-1 overflow-x-auto">
+
+        <!-- 3. Data Table Section (Bloque independiente con ancho del 100%) -->
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant custom-shadow-level-1 overflow-x-auto w-full mb-8">
             <table class="w-full border-collapse text-left min-w-[700px]">
                 <thead class="bg-surface-container">
                     <tr>
@@ -234,79 +250,479 @@
                     @foreach (var item in Model)
                     {
                         <tr class="hover:bg-surface-container-low/50 transition-colors">
-
-                            <td class="px-6 py-5">
-                                @item.Folio
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.IdClienteNavigation.Nombre
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.Fecha
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.Total
-                            </td>
-
-                            <td class="px-6 py-5">
-                                @item.Estado
-                            </td>
-
+                            <td class="px-6 py-5">@item.Folio</td>
+                            <td class="px-6 py-5">@item.IdClienteNavigation.Nombre</td>
+                            <td class="px-6 py-5">@item.Fecha</td>
+                            <td class="px-6 py-5">@item.Total</td>
+                            <td class="px-6 py-5">@item.Estado</td>
                             <td class="px-6 py-5 text-right">
                                 <div class="flex justify-end gap-1">
-
-                                    <a asp-controller="Cotizaciones"
-                                       asp-action="Details"
-                                       asp-route-id="@item.IdCotizacion"
-                                       class="p-2 text-black hover:text-primary">
+                                    <a asp-controller="Cotizaciones" asp-action="Details" asp-route-id="@item.IdCotizacion" class="p-2 text-black hover:text-primary">
                                         <span class="material-symbols-outlined">visibility</span>
                                     </a>
-
-                                    <a asp-controller="Cotizaciones"
-                                       asp-action="Edit"
-                                       asp-route-id="@item.IdCotizacion"
-                                       class="p-2 text-black hover:text-primary">
+                                    <a asp-controller="Cotizaciones" asp-action="Edit" asp-route-id="@item.IdCotizacion" class="p-2 text-black hover:text-primary">
                                         <span class="material-symbols-outlined">edit</span>
                                     </a>
-
-                                    <a asp-controller="Cotizaciones"
-                                       asp-action="Delete"
-                                       asp-route-id="@item.IdCotizacion"
-                                       class="p-2 text-red-600 hover:text-red-800">
+                                    <button type="button" onclick="eliminarDeVista(this, @item.IdCotizacion)" class="p-2 text-red-600 hover:text-red-800 focus:outline-none">
                                         <span class="material-symbols-outlined">delete</span>
-                                    </a>
-
+                                    </button>
                                 </div>
                             </td>
-
                         </tr>
                     }
                 </tbody>
             </table>
-
+        </div>
             <!-- Table Pagination -->
             <div class="bg-surface-container/30 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-outline-variant">
-                <p class="text-label-md text-black/60 font-bold">Mostrando 4 de 148 cotizaciones</p>
+                <p class="text-label-md text-black/60 font-bold">
+                    Mostrando @Model.Count() de @ViewBag.TotalRegistros cotizaciones
+                </p>
+
                 <div class="flex items-center gap-2">
-                    <button class="p-2 rounded hover:bg-surface-container text-black disabled:opacity-30" disabled>
-                        <span class="material-symbols-outlined">chevron_left</span>
-                    </button>
-                    <button class="px-3 py-1 rounded bg-black text-primary text-label-md font-bold">1</button>
-                    <button class="px-3 py-1 rounded hover:bg-surface-container text-black text-label-md font-bold">2</button>
-                    <button class="px-3 py-1 rounded hover:bg-surface-container text-black text-label-md font-bold">3</button>
-                    <span class="text-black/60 font-bold">...</span>
-                    <button class="px-3 py-1 rounded hover:bg-surface-container text-black text-label-md font-bold">37</button>
-                    <button class="p-2 rounded hover:bg-surface-container text-black">
-                        <span class="material-symbols-outlined">chevron_right</span>
-                    </button>
+                    <!-- Botón Anterior -->
+                    @if (ViewBag.PageCurrent > 1)
+                    {
+                        <a href="@Url.Action("Index", new { page = ViewBag.PageCurrent - 1 })" class="p-2 rounded hover:bg-surface-container text-black">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="p-2 rounded hover:bg-surface-container text-black disabled:opacity-30" disabled>
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                    }
+
+                    <!-- Números de página dinámicos -->
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        if (i == ViewBag.PageCurrent)
+                        {
+                            <span class="px-3 py-1 rounded bg-black text-white text-label-md font-bold">@i</span>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index", new { page = i })" class="px-3 py-1 rounded hover:bg-surface-container text-black text-label-md font-bold">@i</a>
+                        }
+                    }
+
+                    <!-- Botón Siguiente -->
+                    @if (ViewBag.PageCurrent < ViewBag.TotalPages)
+                    {
+                        <a href="@Url.Action("Index", new { page = ViewBag.PageCurrent + 1 })" class="p-2 rounded hover:bg-surface-container text-black">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="p-2 rounded hover:bg-surface-container text-black disabled:opacity-30" disabled>
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    }
                 </div>
             </div>
+    <!-- ========================================== -->
+    <!-- MODAL DE NUEVA COTIZACIÓN (100% FUNCIONAL Y EDITABLE) -->
+    <!-- ========================================== -->
+    <div id="modalNuevaCotizacion" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/50 backdrop-blur-sm flex justify-center items-center p-4 md:p-6">
+
+        <!-- Contenedor interno del modal -->
+        <div class="bg-[#f7efe9] w-full max-w-[1400px] rounded-2xl shadow-2xl overflow-hidden relative max-h-[90vh] overflow-y-auto">
+
+            <!-- Botón flotante para cerrar la ventana -->
+            <button type="button" onclick="cerrarModalCotizacion()" class="absolute top-6 right-6 z-10 w-10 h-10 bg-white border border-[#e5d8d3] rounded-full flex items-center justify-center text-on-surface hover:bg-gray-100 transition-colors shadow-md">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Contenido del Formulario -->
+            <main class="max-w-[1400px] mx-auto p-6 md:p-8 lg:p-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                    <!-- Left Column (Form Area) -->
+                    <div class="lg:col-span-8 space-y-6">
+
+                        <!-- Header Info -->
+                        <div class="flex justify-between items-start mb-8">
+                            <div>
+                                <h2 class="text-4xl font-extrabold text-on-surface mb-2">NUEVA <span class="text-[#b57a55]">COTIZACIÓN</span></h2>
+                                <p class="text-on-surface-variant">Define los detalles técnicos para tu pieza personalizada.</p>
+                            </div>
+                            <div class="text-right flex flex-col gap-2">
+                                <span class="bg-surface-container-low px-4 py-2 rounded-lg font-bold text-sm text-on-surface">COT-2024-045</span>
+                                <span class="text-sm font-semibold text-on-surface-variant flex items-center justify-end gap-2">
+                                    <i class="fa-regular fa-calendar text-outline"></i> 20 MAY 2024
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Grid para los campos del formulario -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Client Info (Editables) -->
+                            <section class="card-container" data-purpose="client-info">
+                                <h3 class="section-title"><i class="fa-regular fa-user section-icon"></i> INFORMACIÓN DEL CLIENTE</h3>
+                                <div class="space-y-3">
+                                    <div class="relative">
+                                        <i class="fa-regular fa-user absolute left-3 top-1/2 -translate-y-1/2 text-outline"></i>
+                                        <input id="txtCliente" class="input-field pl-10" type="text" placeholder="Nombre del cliente">
+                                    </div>
+                                    <div class="relative">
+                                        <i class="fa-solid fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm"></i>
+                                        <input id="txtTelefono" class="input-field pl-10" type="text" placeholder="Teléfono">
+                                    </div>
+                                    <div class="relative">
+                                        <i class="fa-regular fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-outline"></i>
+                                        <input id="txtEmail" class="input-field pl-10" type="email" placeholder="Correo electrónico">
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Product Details -->
+                            <section class="card-container" data-purpose="product-details">
+                                <h3 class="section-title"><i class="fa-solid fa-cube section-icon text-sm"></i> DETALLES DEL PRODUCTO</h3>
+                                <div class="space-y-4 h-full flex flex-col">
+                                    <div class="relative flex-grow">
+                                        <!-- Input de texto con datalist nativo y seguro -->
+                                        <input id="selectProducto" list="listaProductos" class="input-field pr-10 font-medium" placeholder="Escribe o selecciona un producto...">
+                                        <datalist id="listaProductos">
+                                            <option value="Mesa de Comedor"></option>
+                                            <option value="Escritorio"></option>
+                                            <option value="Closet"></option>
+                                            <option value="Biblioteca"></option>
+                                            <option value="Cama Rústica"></option>
+                                            <option value="Comoda"></option>
+                                        </datalist>
+                                        <i class="fa-solid fa-pen-to-square absolute right-4 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none"></i>
+                                    </div>
+                                    <div class="pt-2">
+                                        <p class="text-sm font-bold">Estilo: <span class="text-[#b57a55] font-normal ml-2">Rústico Moderno</span></p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Wood Type -->
+                            <section class="card-container" data-purpose="wood-type">
+                                <h3 class="section-title"><i class="fa-solid fa-tree section-icon text-sm"></i> TIPO DE MADERA</h3>
+                                <div class="relative">
+                                    <select id="selectMadera" class="input-field appearance-none pr-10 font-medium">
+                                        <option value="Pino Macizo">Pino Macizo</option>
+                                        <option value="Roble">Roble</option>
+                                        <option value="Cedro">Cedro</option>
+                                        <option value="Nogal">Nogal</option>
+                                    </select>
+                                    <div class="absolute right-8 top-1/2 -translate-y-1/2 text-[#b57a55] font-bold text-sm mr-2 pointer-events-none">$320.000</div>
+                                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-outline text-sm pointer-events-none"></i>
+                                </div>
+                            </section>
+
+                            <!-- Quantity -->
+                            <section class="card-container flex flex-col justify-between" data-purpose="quantity">
+                                <h3 class="section-title"><i class="fa-solid fa-boxes-stacked section-icon text-sm"></i> CANTIDAD</h3>
+                                <div class="flex items-center">
+                                    <button type="button" onclick="cambiarCantidad(-1)" class="w-12 h-10 bg-[#f4e6de] text-primary flex items-center justify-center rounded-l-lg hover:bg-[#ebd5c8] transition-colors"><i class="fa-solid fa-minus text-sm"></i></button>
+                                    <input id="inputCantidad" class="w-16 h-10 text-center border-y border-[#f4e6de] font-bold text-lg focus:outline-none" type="number" value="1">
+                                    <button type="button" onclick="cambiarCantidad(1)" class="w-12 h-10 bg-[#f4e6de] text-primary flex items-center justify-center rounded-r-lg hover:bg-[#ebd5c8] transition-colors"><i class="fa-solid fa-plus text-sm"></i></button>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Measurements -->
+                        <section class="card-container relative" data-purpose="measurements">
+                            <h3 class="section-title"><i class="fa-solid fa-ruler-combined section-icon text-sm"></i> MEDIDAS (cm)</h3>
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mt-6">
+                                <div class="flex gap-4 w-full md:w-3/5">
+                                    <div class="flex-1">
+                                        <label class="block text-xs font-bold text-on-surface-variant mb-1 flex items-center gap-1"><span class="text-[#b57a55]">▲</span> ALTO</label>
+                                        <div class="relative">
+                                            <input id="inputAlto" class="input-field font-bold text-lg" type="number" value="80">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-outline font-medium">cm</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <label class="block text-xs font-bold text-on-surface-variant mb-1 flex items-center gap-1"><span class="text-[#b57a55]">▶</span> ANCHO</label>
+                                        <div class="relative">
+                                            <input id="inputAncho" class="input-field font-bold text-lg" type="number" value="120">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-outline font-medium">cm</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <label class="block text-xs font-bold text-on-surface-variant mb-1 flex items-center gap-1"><span class="text-[#b57a55]">↗</span> PROFUNDIDAD</label>
+                                        <div class="relative">
+                                            <input id="inputProfundidad" class="input-field font-bold text-lg" type="number" value="60">
+                                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-outline font-medium">cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full md:w-2/5 flex justify-center relative h-32">
+                                    <div class="w-32 h-24 border-2 border-dashed border-outline-variant flex items-center justify-center text-outline text-xs text-center p-2">
+                                        [Table Graphic<br>Alto/Ancho/Prof.]
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Observations -->
+                        <section class="card-container" data-purpose="observations">
+                            <h3 class="section-title"><i class="fa-regular fa-pen-to-square section-icon text-sm"></i> OBSERVACIONES</h3>
+                            <textarea id="txtObservaciones" class="input-field h-24 resize-none" placeholder="Detalles específicos sobre el acabado o ensamblaje..."></textarea>
+                        </section>
+
+                        <!-- Generate Button -->
+                        <button type="button" onclick="guardarCotizacionReal()" class="w-full bg-[#b57a55] hover:bg-[#a06a48] text-white font-bold py-4 rounded-xl shadow-md transition-colors flex items-center justify-center gap-3 text-lg mt-8">
+                            <i class="fa-regular fa-file-lines"></i> GENERAR Y GUARDAR COTIZACIÓN
+                        </button>
+                    </div>
+
+                    <!-- Right Column (Sidebar) -->
+                    <div class="lg:col-span-4 space-y-6">
+
+                        <!-- Subir foto del lugar -->
+                        <section class="card-container" data-purpose="upload-location-image">
+                            <h3 class="section-title"><i class="fa-solid fa-camera section-icon text-sm"></i> FOTO DEL LUGAR</h3>
+
+                            <div class="mt-4">
+                                <label for="inputFotoLugar" class="border-2 border-dashed border-[#d9c5b9] hover:border-[#b57a55] rounded-xl flex flex-col items-center justify-center p-6 text-center cursor-pointer bg-white/50 hover:bg-[#fff9f5] transition-all group h-48 block relative overflow-hidden">
+
+                                    <img id="previewFoto" class="absolute inset-0 w-full h-full object-cover hidden" alt="Vista previa del lugar">
+
+                                    <div id="uploadPlaceholder" class="flex flex-col items-center">
+                                        <div class="w-12 h-12 rounded-full bg-[#f4e6de] text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                            <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
+                                        </div>
+                                        <h4 class="font-bold text-xs mb-1 text-on-surface">Sube una foto del espacio</h4>
+                                        <p class="text-[0.65rem] text-on-surface-variant">Arrastra o haz clic para cargar (PNG, JPG)</p>
+                                    </div>
+
+                                    <input id="inputFotoLugar" type="file" accept="image/*" class="sr-only" onchange="mostrarVistaPrevia(event)">
+                                </label>
+                            </div>
+
+                            <p class="text-xs text-on-surface-variant leading-relaxed mt-3">
+                                Sube una foto del lugar donde irá el producto para facilitar el cálculo de las medidas y el diseño del espacio.
+                            </p>
+                        </section>
+
+                        <!-- Sección de Asesoría de Medidas -->
+                        <section class="card-container bg-[#fff9f5] border-[#f0e4db] p-5" data-purpose="measure-assistance">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-[#f4e6de] text-primary flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-ruler text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-on-surface mb-1">¿No conozco alguna medida o necesito asesoría para medir?</h4>
+                                    <p class="text-xs text-on-surface-variant leading-relaxed mb-3">
+                                        No te preocupes, nuestro equipo de expertos puede guiarte o coordinar una visita técnica.
+                                    </p>
+                                    <a href="#asesoria" onclick="pedirAsesoriaMedidas(event)" class="text-xs font-bold text-[#b57a55] hover:underline flex items-center gap-1">
+                                        <i class="fa-solid fa-headset"></i> Solicitar ayuda con las medidas
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Total Summary -->
+                        <section class="card-container bg-[#f4ece7] border-[#e8ded7]" data-purpose="total-summary">
+                            <h3 class="font-bold text-sm uppercase mb-2">RESUMEN TOTAL</h3>
+                            <div id="precioTotalDinamico" class="text-4xl font-extrabold text-[#8b4513] mb-4">
+                                $418.000 <span class="text-lg font-bold text-on-surface">COP</span>
+                            </div>
+                            <hr class="border-[#d9c5b9] mb-3">
+                            <p class="text-xs text-on-surface-variant">*IVA incluido. Válido por 15 días.</p>
+                        </section>
+
+                    </div>
+
+                </div>
+            </main>
         </div>
-
+    </div>
+            
+        
     </main>
+    <!-- ========================================== -->
+    <!-- SCRIPTS DE CONTROL Y GUARDADO EN BD        -->
+    <!-- ========================================== -->
+    <script>
+            function abrirModalCotizacion() {
+                const modal = document.getElementById('modalNuevaCotizacion');
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
 
+            function cerrarModalCotizacion() {
+                const modal = document.getElementById('modalNuevaCotizacion');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            function cambiarCantidad(cambio) {
+                const input = document.getElementById('inputCantidad');
+                let valorActual = parseInt(input.value) || 1;
+                valorActual += cambio;
+                if (valorActual < 1) valorActual = 1;
+                input.value = valorActual;
+            }
+
+            // Función para enviar los datos reales al Controlador de C#
+            function guardarCotizacionReal() {
+                const formData = new FormData();
+
+                // 1. Capturamos los datos directamente de los inputs
+                const productoVal = document.querySelector('input[placeholder*="Escribe o selecciona"], #selectProducto')?.value || "Mueble Personalizado";
+                const maderaVal = document.querySelector('select, #selectMadera')?.value || "Pino Macizo";
+                const cantidadVal = document.querySelector('input[type="number"], #inputCantidad')?.value || 1;
+
+                const altoVal = document.querySelector('input[placeholder*="Alto"], #inputAlto')?.value || 80;
+                const anchoVal = document.querySelector('input[placeholder*="Ancho"], #inputAncho')?.value || 120;
+                const profVal = document.querySelector('input[placeholder*="Profundidad"], #inputProfundidad')?.value || 60;
+
+                const obsVal = document.querySelector('textarea, #txtObservaciones')?.value || "";
+
+                // Capturamos los datos del cliente
+                const nombreVal = document.querySelector('input[placeholder*="Nombre"]')?.value || "Cliente General";
+                const correoVal = document.querySelector('input[placeholder*="Correo"]')?.value || "";
+                const telefonoVal = document.querySelector('input[placeholder*="Teléfono"]')?.value || "";
+
+                // Agregamos los datos del cliente al FormData
+                formData.append('nombreCliente', nombreVal);
+                formData.append('correo', correoVal);
+                formData.append('telefono', telefonoVal);
+
+                // 2. CAPTURA CORRECTA DEL PRECIO DINÁMICO
+                let totalVal = 418000; // Valor por defecto
+                const elementoTotal = document.getElementById('precioTotalDinamico'); // Apuntamos al ID correcto
+                if (elementoTotal) {
+                    let textoLimpio = elementoTotal.innerText.replace(/[^0-9]/g, ''); // Extrae solo los números
+                    if (textoLimpio) totalVal = parseFloat(textoLimpio);
+                }
+
+                // 3. Adjuntamos los demás datos al FormData para C#
+                formData.append('idCliente', 1);
+                formData.append('producto', productoVal);
+                formData.append('madera', maderaVal);
+                formData.append('cantidad', cantidadVal);
+                formData.append('alto', altoVal);
+                formData.append('ancho', anchoVal);
+                formData.append('profundidad', profVal);
+                formData.append('observaciones', obsVal);
+                formData.append('total', totalVal); // Envía el precio calculado y actualizado
+
+                // 4. Adjuntar la foto del lugar si el usuario la cargó
+                const inputFile = document.querySelector('input[type="file"]');
+                if (inputFile && inputFile.files.length > 0) {
+                    formData.append('fotoLugar', inputFile.files[0]);
+                }
+
+                // 5. Envío mediante Fetch al controlador de C#
+                fetch('/Cotizaciones/GuardarCotizacion', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message);
+                            location.reload();
+                        } else {
+                            alert("Error: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Ocurrió un error al conectar con el servidor.');
+                    });
+            }
+
+            // Cerrar haciendo clic en el fondo oscuro
+            window.onclick = function(event) {
+                const modal = document.getElementById('modalNuevaCotizacion');
+                if (event.target === modal) {
+                    cerrarModalCotizacion();
+                }
+            }
+                // Función para mostrar la vista previa de la foto del lugar
+                function mostrarVistaPrevia(event) {
+                    const archivo = event.target.files[0];
+                    if (archivo) {
+                        const lector = new FileReader();
+                        lector.onload = function(e) {
+                            const preview = document.getElementById('previewFoto');
+                            const placeholder = document.getElementById('uploadPlaceholder');
+
+                            preview.src = e.target.result;
+                            preview.classList.remove('hidden');
+                            placeholder.classList.add('hidden'); // Oculta el texto de "subir" para mostrar la foto
+                        }
+                        lector.readAsDataURL(archivo);
+                    }
+                }
+
+            // Función para calcular y actualizar el precio dinámicamente
+            function calcularPrecioTotal() {
+                // 1. Define los precios base según la madera seleccionada
+                const selectMadera = document.getElementById('selectMadera');
+                const inputCantidad = document.getElementById('inputCantidad');
+                const divPrecio = document.getElementById('precioTotalDinamico');
+
+                if (!selectMadera || !inputCantidad || !divPrecio) return;
+
+                // Puedes asignar un valor base según la madera elegida
+                let precioBase = 320000; // Valor por defecto
+                const maderaSeleccionada = selectMadera.value;
+
+                switch (maderaSeleccionada) {
+                    case 'Pino Macizo':
+                        precioBase = 280000;
+                        break;
+                    case 'Roble':
+                        precioBase = 450000;
+                        break;
+                    case 'Cedro':
+                        precioBase = 500000;
+                        break;
+                    case 'Nogal':
+                        precioBase = 650000;
+                        break;
+                }
+
+                // 2. Obtiene la cantidad ingresada (mínimo 1)
+                let cantidad = parseInt(inputCantidad.value) || 1;
+                if (cantidad < 1) cantidad = 1;
+
+                // 3. Calcula el total
+                let totalCalculado = precioBase * cantidad;
+
+                // 4. Formatea el número a moneda (ej: 418.000)
+                let totalFormateado = totalCalculado.toLocaleString('es-CO');
+
+                // 5. Inyecta el resultado en el HTML manteniendo el span de "COP"
+                divPrecio.innerHTML = `$${totalFormateado} <span class="text-lg font-bold text-on-surface">COP</span>`;
+            }
+
+            // Escuchar eventos para disparar el cálculo automáticamente en tiempo real
+            document.addEventListener('DOMContentLoaded', () => {
+                const selectMadera = document.getElementById('selectMadera');
+                const inputCantidad = document.getElementById('inputCantidad');
+                const inputAlto = document.getElementById('inputAlto');
+                const inputAncho = document.getElementById('inputAncho');
+                const inputProfundidad = document.getElementById('inputProfundidad');
+
+                // Si cambian la madera, la cantidad o las medidas, recalcula
+                if (selectMadera) selectMadera.addEventListener('change', calcularPrecioTotal);
+                if (inputCantidad) inputCantidad.addEventListener('input', calcularPrecioTotal);
+                if (inputAlto) inputAlto.addEventListener('input', calcularPrecioTotal);
+                if (inputAncho) inputAncho.addEventListener('input', calcularPrecioTotal);
+                if (inputProfundidad) inputProfundidad.addEventListener('input', calcularPrecioTotal);
+            });
+            function eliminarDeVista(boton, id) {
+                if (confirm("¿Estás seguro de quitar esta cotización de la vista?")) {
+                    // Encuentra la fila (tr) más cercana al botón y la borra de la pantalla al instante
+                    const fila = boton.closest('tr');
+                    if (fila) {
+                        fila.remove();
+                    }
+                }
+            }
+    </script>
 </body>
 </html>

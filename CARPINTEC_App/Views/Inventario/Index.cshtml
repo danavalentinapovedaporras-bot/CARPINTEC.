@@ -1,6 +1,4 @@
-@{
-    ViewData["Title"] = "Usuarios";
-}
+@model IEnumerable<CARPINTEC_App.Models.Inventario>
 <!DOCTYPE html>
 <html class="light" lang="es" style="">
 <head>
@@ -237,123 +235,119 @@
                         </thead>
                         <tbody class="divide-y divide-outline-variant/20">
                             <!-- Low Stock Alert Row -->
-                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group bg-primary-fixed/10">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
-                                            <img alt="Roble" class="w-full h-full object-cover" data-alt="A macro high-definition photograph of natural oak wood grain. The texture is intricate with warm honey and brown tones. The lighting is soft and professional, highlighting the organic patterns of the timber. The style is clean, minimalist, and aligns with high-end carpentry craftsmanship and luxury interiors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABhbceZ_3xBvveIRXOMvc7viZsUmY09mLKZIBJ7AWttKc0rlNXcBTC7es-mnI5vktnecnllgHtZnDMz-Hzo0pZn_Sr0m47p2ycqQRL-tvIitg9vqHdPRM5WiWkikCD1ux-nVvI1u7SUAV0bcaBoe5dbzbgoOuXbSyBWopiaxDi_N4QcyluNsa_qkhS3NwZe_hIL9CV0mXwqWTTl4vrS3uIMBD21oyshVKPmOm_gkLfybvhAicAkFTT4spXR9zt_yAscJWa9bvxaK4">
-                                        </div>
-                                        <div>
-                                            <p class="text-body-md font-bold text-primary">Madera Roble Macizo</p>
-                                            <p class="text-body-sm text-on-surface-variant">Ref: WD-RB-001</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-body-sm">Maderas Nobles</td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="px-3 py-1 rounded-full bg-error-container text-error text-label-md font-bold">15</span>
-                                </td>
-                                <td class="px-6 py-4 text-body-sm">Tablones</td>
-                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$120.000</td>
-                                <td class="px-6 py-4">
-                                    <span class="flex items-center gap-1 text-error text-label-md font-bold uppercase tracking-wider">
-                                        <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span> Stock Bajo
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
-                                </td>
-                            </tr>
-                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group bg-primary-fixed/10">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
-                                            <img alt="Cedro" class="w-full h-full object-cover" data-alt="A close-up shot of rich cedar wood planks stacked in a workshop. The wood has a deep reddish-brown hue and a visible vertical grain. The atmosphere is warm and professional, suggesting a high-quality carpentry environment. Soft ambient lighting creates subtle highlights on the wooden surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCh3rCl9fkCdpVMIhga5AKkkmTbQytr8dwdlknVRNcc6odqGAyPEO287odKwPwe-orchqRSJLw5XGaVizG_Dhr1oe1QoWw6ar67Ft_EOWdOULFJ4JbP9X_VIvrfH8Qb-wkCVwE1kz1xWkDIgMh4QjIzRYdw1mtD1XXR9PTKrJkEhilr4_vmktMJQdHMriuCCuMptHkmX8QyYXEkWUEAmRBRbhK1sR-a_M1gWtctW42vwGnBTEPtigTP6eLBIUM9eTuwM2849sXhDk">
-                                        </div>
-                                        <div>
-                                            <p class="text-body-md font-bold text-primary">Madera Cedro Rojo</p>
-                                            <p class="text-body-sm text-on-surface-variant">Ref: WD-CD-044</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-body-sm">Maderas Nobles</td>
-                                <td class="px-6 py-4 text-center text-body-md font-bold text-primary">28</td>
-                                <td class="px-6 py-4 text-body-sm">Tablones</td>
-                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$85.000</td>
-                                <td class="px-6 py-4">
-                                    <span class="flex items-center gap-1 text-tertiary text-label-md font-bold uppercase tracking-wider">
-                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Disponible
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
-                                </td>
-                            </tr>
-                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
-                                            <span class="material-symbols-outlined text-primary text-3xl">build</span>
-                                        </div>
-                                        <div>
-                                            <p class="text-body-md font-bold text-primary">Tornillo 1 1/2" Cabeza Plana</p>
-                                            <p class="text-body-sm text-on-surface-variant">Ref: HJ-TR-102</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-body-sm">Herrajes</td>
-                                <td class="px-6 py-4 text-center text-body-md font-bold text-primary">1,250</td>
-                                <td class="px-6 py-4 text-body-sm">Unidades</td>
-                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$150</td>
-                                <td class="px-6 py-4">
-                                    <span class="flex items-center gap-1 text-tertiary text-label-md font-bold uppercase tracking-wider">
-                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Disponible
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
-                                </td>
-                            </tr>
-                            <tr class="zebra-row hover:bg-surface-container-low transition-colors group bg-primary-fixed/10">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
-                                            <img alt="Adhesivo" class="w-full h-full object-cover" data-alt="A studio shot of industrial-strength wood adhesive containers arranged neatly on a clean white surface. The packaging is professional, featuring neutral earth tones and clear labeling. The lighting is bright and airy, emphasizing a clean and organized production environment. The overall aesthetic is minimalist and functional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW_ATHEdXO8i-Glt9WIpMbZk5SSdJjMOjynTU6SzDD7WLcm8T-aax80xVkF3fKvx4uyhHkUkXa5SyuS4OZhg9ih11IfvXH7et3meno_FSyqLBJbGqTfdNO54brNXQSXveSQCur8Y-xHemOdtzzGhcYSLLjrnNX42vkp6qX69oMTHffyqf3Ujq-Y47nZ7L3iby4QNOzGR_gU7-PyO4ciFKxV0KDQwEVXciNg8WL-8bhL6ybpXL6jarcPzU-EOGhrnVbMvK3lXU0nJI">
-                                        </div>
-                                        <div>
-                                            <p class="text-body-md font-bold text-primary">Pegante para Madera PVA</p>
-                                            <p class="text-body-sm text-on-surface-variant">Ref: CH-PG-009</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-body-sm">Químicos</td>
-                                <td class="px-6 py-4 text-center text-body-md font-bold text-primary">42</td>
-                                <td class="px-6 py-4 text-body-sm">Galones</td>
-                                <td class="px-6 py-4 text-body-md font-semibold text-primary">$45.000</td>
-                                <td class="px-6 py-4">
-                                    <span class="flex items-center gap-1 text-tertiary text-label-md font-bold uppercase tracking-wider">
-                                        <span class="w-2 h-2 rounded-full bg-tertiary"></span> Disponible
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-                                    <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
-                                </td>
-                            </tr>
-                        </tbody>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    // Lógica para alternar el estilo si el stock es bajo (ejemplo menor o igual a 15)
+                                    bool esStockBajo = item.StockActual <= 15;
+                                    string claseFila = esStockBajo ? "zebra-row hover:bg-surface-container-low transition-colors group bg-primary-fixed/10" : "zebra-row hover:bg-surface-container-low transition-colors group";
+
+                                    <tr class="@claseFila">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center gap-4">
+                                                <div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
+                                                    @if (!string.IsNullOrEmpty(item.NombreProducto) && item.NombreProducto.Contains("Tornillo"))
+                                                    {
+                                                        <span class="material-symbols-outlined text-primary text-3xl">build</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="material-symbols-outlined text-primary text-3xl">inventory_2</span>
+                                                    }
+                                                </div>
+                                                <div>
+                                                    <p class="text-body-md font-bold text-primary">@item.NombreProducto</p>
+                                                    <p class="text-body-sm text-on-surface-variant">Ref: @item.IdInventario</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 text-body-sm">General</td>
+                                        <td class="px-6 py-4 text-center">
+                                            @if (esStockBajo)
+                                            {
+                                                <span class="px-3 py-1 rounded-full bg-error-container text-error text-label-md font-bold">@item.StockActual</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-body-md font-bold text-primary">@item.StockActual</span>
+                                            }
+                                        </td>
+                                        <td class="px-6 py-4 text-body-sm">@item.UnidadMedida</td>
+                                        <td class="px-6 py-4 text-body-md font-semibold text-primary">$@item.PrecioCompra.ToString("N0")</td>
+                                        <td class="px-6 py-4">
+                                            @if (esStockBajo)
+                                            {
+                                                <span class="flex items-center gap-1 text-error text-label-md font-bold uppercase tracking-wider">
+                                                    <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span> Stock Bajo
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="flex items-center gap-1 text-tertiary text-label-md font-bold uppercase tracking-wider">
+                                                    <span class="w-2 h-2 rounded-full bg-tertiary"></span> Disponible
+                                                </span>
+                                            }
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <a asp-action="Edit" asp-route-id="@item.IdInventario" class="p-2 text-on-surface-variant hover:text-primary transition-colors inline-block"><span class="material-symbols-outlined">edit</span></a>
+                                            <button class="p-2 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <div class="p-6 border-t border-outline-variant/30 bg-surface-container-low/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                @{
+                                    int paginaActual = ViewBag.PaginaActual ?? 1;
+                                    int totalPaginas = ViewBag.TotalPaginas ?? 1;
+                                    int totalRegistros = ViewBag.TotalRegistros ?? 0;
+                                    int registrosPorPagina = ViewBag.RegistrosPorPagina ?? 5;
+
+                                    int inicio = totalRegistros == 0 ? 0 : ((paginaActual - 1) * registrosPorPagina) + 1;
+                                    int fin = Math.Min(paginaActual * registrosPorPagina, totalRegistros);
+                                }
+
+                                <!-- Texto de conteo dinámico -->
+                                <p class="text-body-sm text-on-surface-variant">
+                                    Mostrando @inicio - @fin de @totalRegistros productos
+                                </p>
+
+                                <!-- Botones de paginación funcionales -->
+                                <div class="flex gap-2 items-center">
+                                    @if (paginaActual > 1)
+                                    {
+                                        <a asp-action="Index" asp-route-pagina="@(paginaActual - 1)"
+                                           class="px-3 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all text-body-sm font-medium">
+                                            Anterior
+                                        </a>
+                                    }
+
+                                    @for (int i = 1; i <= totalPaginas; i++)
+                                    {
+                                        if (i == paginaActual)
+                                        {
+                                            <span class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-on-primary font-bold shadow-sm">
+                                                @i
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Index" asp-route-pagina="@i"
+                                               class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all font-medium">
+                                                @i
+                                            </a>
+                                        }
+                                    }
+
+                                    @if (paginaActual < totalPaginas)
+                                    {
+                                        <a asp-action="Index" asp-route-pagina="@(paginaActual + 1)"
+                                           class="px-3 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all text-body-sm font-medium">
+                                            Siguiente
+                                        </a>
+                                    }
+                                </div>
+                            </div>
                     </table>
-                </div>
-                <div class="p-6 border-t border-outline-variant/30 bg-surface-container-low/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-body-sm text-on-surface-variant">Mostrando 1 - 4 de 342 productos</p>
-                    <div class="flex gap-2">
-                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">1</button>
-                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">2</button>
-                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">3</button>
-                        <span class="px-2 self-center">...</span>
-                        <button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">86</button>
                     </div>
                 </div>
             </div>
@@ -413,16 +407,47 @@
                     </div>
                 </div>
                 <!-- Custom Material Swatches / Specialty Component -->
-                <div class="bg-primary text-on-primary p-md rounded-xl wood-shadow flex flex-col justify-between" style="background-color: rgb(210, 180, 140); color: rgb(27, 28, 28);"><div><h3 class="text-headline-md font-headline-md mb-2">&nbsp;Agotados</h3><p class="text-body-sm mb-6 text-on-surface-variant">Materiales y suministros con stock en cero</p><div class="space-y-4"><div class="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/10"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-error">block</span><span class="text-body-md font-bold">Madera de Cedro</span></div><span class="text-label-md font-bold text-error uppercase">Agotado</span></div><div class="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/10"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-error">block</span><span class="text-body-md font-bold">Bisagras de Bronce</span></div><span class="text-label-md font-bold text-error uppercase">Agotado</span></div><div class="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/10"><div class="flex items-center gap-3"><span class="material-symbols-outlined text-error">block</span><span class="text-body-md font-bold">Barniz Mate 1L</span></div><span class="text-label-md font-bold text-error uppercase">Agotado</span></div></div></div>
-                    <a asp-controller="Rebastecimiento"
-                       asp-action="Index"
-                       class="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg">
-                        <span class="material-symbols-outlined">inventory</span>
+                  <div class="bg-primary text-on-primary p-6 rounded-xl wood-shadow flex flex-col justify-between" style="background-color: rgb(210, 180, 140); color: rgb(27, 28, 28);">
+                    <div>
+                        <h3 class="text-headline-md font-headline-md mb-2">&nbsp;Stock Bajo</h3>
+                        <p class="text-body-sm mb-6 text-on-surface-variant">Materiales con existencias críticas (1 a 10 unidades)</p>
+
+                        <div class="space-y-4">
+                            @{
+                                var stockBajo = ViewBag.ProductosBajos as List<CARPINTEC_App.Models.Inventario>;
+                            }
+
+                            @if (stockBajo != null && stockBajo.Any())
+                            {
+                                @foreach (var item in stockBajo)
+                                {
+                                    <div class="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/10">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-warning">warning</span>
+                                            <div>
+                                                <span class="text-body-md font-bold block">@item.NombreProducto</span>
+                                                <span class="text-xs text-on-surface-variant">Quedan: @item.StockActual @item.UnidadMedida</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-label-md font-bold text-error uppercase">Bajo</span>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="p-3 text-center text-on-surface-variant text-sm italic">
+                                    No hay productos con stock crítico actualmente.
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Botón que activa la ventana emergente -->
+                    <button type="button" onclick="abrirModal()" class="mt-6 w-full py-3 rounded-lg bg-primary-fixed text-on-primary-fixed font-bold hover:bg-white transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm">
+                        <span class="material-symbols-outlined">add_shopping_cart</span>
                         Solicitar Reposición
-                    </a>
+                    </button>
                 </div>
-            </div>
-        </div>
     </main>
     <!-- Bottom Navigation Bar (Mobile only) -->
     <nav class="fixed bottom-0 w-full lg:hidden z-50 rounded-t-xl bg-surface dark:bg-surface-container-highest border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(68,42,34,0.08)]">
@@ -449,7 +474,137 @@
             </a>
         </div>
     </nav>
+            <!-- VENTANA EMERGENTE (MODAL) DE SOLICITUD DE REPOSICIÓN -->
+            <dialog id="modalReposicion" class="rounded-2xl p-0 shadow-2xl backdrop:bg-black/50 w-full max-w-xl border border-outline-variant/30">
+                <div class="bg-surface-container p-6 max-h-[90vh] overflow-y-auto">
+                    <!-- Cabecera del Modal -->
+                    <div class="flex justify-between items-center mb-4 border-b border-outline-variant/20 pb-3">
+                        <div>
+                            <h3 class="text-lg font-bold text-primary flex items-center gap-2">
+                                <span class="material-symbols-outlined text-error">local_shipping</span>
+                                Solicitar reposición de inventario
+                            </h3>
+                            <p class="text-xs text-on-surface-variant">Registra una solicitud para reabastecer un producto agotado o con existencias bajas.</p>
+                        </div>
+                        <button type="button" onclick="cerrarModal()" class="text-on-surface-variant hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+
+                    <!-- Formulario completo -->
+                    <form asp-controller="Inventario" asp-action="CrearReposicion" method="post" class="space-y-4">
+
+                        <!-- 1. Producto -->
+                        <div>
+                            <label class="block text-sm font-medium text-on-surface-variant mb-1">Producto</label>
+                            <select name="ProductoId" class="w-full rounded-lg border border-outline-variant/40 p-2.5 bg-surface text-primary text-sm focus:outline-none focus:border-primary" required>
+                                <option value="">Seleccione el producto...</option>
+                                @if (Model != null)
+                                {
+                                    @foreach (var prod in Model)
+                                    {
+                                        <option value="@prod.IdInventario">@prod.NombreProducto (Stock actual: @prod.StockActual)</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <!-- 3. Stock actual (Informativo) -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-on-surface-variant mb-1">Stock Actual</label>
+                                <div class="p-2.5 rounded-lg bg-surface-variant/40 border border-outline-variant/30 text-sm text-primary font-semibold flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span> 0 unidades (Agotado)
+                                </div>
+                            </div>
+
+                            <!-- 4. Cantidad a solicitar y Unidad de medida -->
+                            <div>
+                                <label class="block text-sm font-medium text-on-surface-variant mb-1">Cantidad a Solicitar</label>
+                                <div class="flex gap-2">
+                                    <input type="number" name="Cantidad" placeholder="Ej. 50" min="1" class="w-full rounded-lg border border-outline-variant/40 p-2.5 bg-surface text-primary text-sm focus:outline-none focus:border-primary" required />
+                                    <span class="p-2.5 rounded-lg bg-surface-variant/20 border border-outline-variant/30 text-xs text-on-surface-variant flex items-center">
+                                        Unidades
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- 5. Motivo de la solicitud -->
+                            <div>
+                                <label class="block text-sm font-medium text-on-surface-variant mb-1">Motivo de la Solicitud</label>
+                                <select name="Motivo" class="w-full rounded-lg border border-outline-variant/40 p-2.5 bg-surface text-primary text-sm focus:outline-none focus:border-primary">
+                                    <option value="Agotado">Producto agotado</option>
+                                    <option value="StockBajo">Stock bajo</option>
+                                    <option value="PedidoCliente">Pedido de cliente</option>
+                                    <option value="AumentoProduccion">Aumento de producción</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+
+                            <!-- 6. Prioridad -->
+                            <div>
+                                <label class="block text-sm font-medium text-on-surface-variant mb-1">Prioridad</label>
+                                <select name="Prioridad" class="w-full rounded-lg border border-outline-variant/40 p-2.5 bg-surface text-primary text-sm focus:outline-none focus:border-primary">
+                                    <option value="Alta">🔴 Alta</option>
+                                    <option value="Normal" selected>🟡 Normal</option>
+                                    <option value="Baja">🟢 Baja</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- 7. Proveedor sugerido -->
+                            <div>
+                                <label class="block text-sm font-medium text-on-surface-variant mb-1">Proveedor Sugerido (Opcional)</label>
+                                <select name="Proveedor" class="w-full rounded-lg border border-outline-variant/40 p-2.5 bg-surface text-primary text-sm focus:outline-none focus:border-primary">
+                                    <option value="">Seleccione proveedor...</option>
+                                    <option value="Maderas del Norte">Maderas del Norte S.A.</option>
+                                    <option value="Herrajes y Herramientas S.A.S">Herrajes y Herramientas S.A.S</option>
+                                    <option value="Químicos Industriales">Químicos Industriales</option>
+                                </select>
+                            </div>
+
+                            <!-- 8. Fecha requerida -->
+                            <div>
+                                <label class="block text-sm font-medium text-on-surface-variant mb-1">Fecha Requerida</label>
+                                <input type="date" name="FechaRequerida" class="w-full rounded-lg border border-outline-variant/40 p-2.5 bg-surface text-primary text-sm focus:outline-none focus:border-primary" />
+                            </div>
+                        </div>
+
+                        <!-- 9. Observaciones -->
+                        <div>
+                            <label class="block text-sm font-medium text-on-surface-variant mb-1">Observaciones / Notas</label>
+                            <textarea name="Observaciones" rows="2" placeholder="Ej. Se necesita este material para continuar con la fabricación de los pedidos pendientes..." class="w-full rounded-lg border border-outline-variant/40 p-2.5 bg-surface text-primary text-sm focus:outline-none focus:border-primary"></textarea>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="flex justify-end gap-3 pt-4 border-t border-outline-variant/20">
+                            <button type="button" onclick="cerrarModal()" class="px-4 py-2 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-high transition-colors text-sm font-medium">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="px-4 py-2 rounded-lg bg-primary text-on-primary hover:opacity-90 transition-opacity text-sm font-medium shadow-sm">
+                                Enviar Solicitud
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+
+    <!-- Script para controlar la ventana -->
     <script>
+            const modal = document.getElementById('modalReposicion');
+
+            function abrirModal() {
+                modal.showModal(); // Abre la ventana emergente con efecto oscuro atrás
+            }
+
+            function cerrarModal() {
+                modal.close(); // Cierra la ventana
+            }
+  
+    
             // Simple micro-interaction for rows
             document.querySelectorAll('.zebra-row').forEach(row => {
                 row.addEventListener('click', () => {

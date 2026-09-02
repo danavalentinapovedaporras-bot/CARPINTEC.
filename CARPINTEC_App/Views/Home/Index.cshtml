@@ -153,6 +153,7 @@
                    class="bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-bold hover:bg-secondary-fixed transition-colors flex items-center justify-center font-label-md text-label-md">
                     Iniciar sesión
                 </a>
+
                 <a class="bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-bold hover:bg-secondary-fixed transition-colors flex items-center justify-center" href="#contacto-form">Contacto</a>
             </nav>
         </div>
@@ -212,32 +213,476 @@
                         <span class="material-symbols-outlined text-primary text-5xl mb-6">countertops</span>
                         <h3 class="font-title-md text-title-md text-primary mb-4">Cocinas Integrales</h3>
                         <p class="font-body-md text-on-surface-variant mb-8">Diseño y fabricación de cocinas personalizadas que maximizan la funcionalidad.</p>
-                        <button class="mt-auto bg-primary text-white px-6 py-2 flex items-center gap-2 hover:bg-secondary transition-colors font-bold" type="button">
-                            Más información <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        </button>
+                        <button type="button"
+        onclick="abrirCatalogoCocinas()"
+        class="bg-[#442a22] text-white px-6 py-3 rounded-lg hover:bg-[#5a382d] transition">
+    Ver catálogo de cocinas
+</button>
                     </div>
+
                     <!-- Service Card 2 -->
                     <div class="bg-white p-8 border-t-4 border-primary shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
                         <span class="material-symbols-outlined text-primary text-5xl mb-6">door_sliding</span>
                         <h3 class="font-title-md text-title-md text-primary mb-4">Closets y Armarios</h3>
                         <p class="font-body-md text-on-surface-variant mb-8">Armarios a medida que aprovechan cada centímetro de espacio en tu habitación.</p>
-                        <button class="mt-auto bg-primary text-white px-6 py-2 flex items-center gap-2 hover:bg-secondary transition-colors font-bold" type="button">
-                            Más información <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        <button onclick="abrirCatalogoClosets()" class="mt-auto bg-[#442a22] text-white px-6 py-2.5 rounded-lg flex items-center gap-2 hover:bg-[#5a382d] transition-colors font-medium text-sm" type="button">
+                            Ver catálogo de closets <span class="material-symbols-outlined text-sm">chevron_right</span>
                         </button>
                     </div>
-                    <!-- Service Card 3 -->
-                    <div class="bg-white p-8 border-t-4 border-primary shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
-                        <span class="material-symbols-outlined text-primary text-5xl mb-6">handyman</span>
-                        <h3 class="font-title-md text-title-md text-primary mb-4">Muebles a Medida</h3>
-                        <p class="font-body-md text-on-surface-variant mb-8">Mobiliario personalizado para el hogar y oficina con materiales de alta gama.</p>
-                        <button class="mt-auto bg-primary text-white px-6 py-2 flex items-center gap-2 hover:bg-secondary transition-colors font-bold" type="button">
-                            Más información <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        </button>
+                   <!-- Service Card 3 -->
+            <div class="bg-white p-8 border-t-4 border-primary shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
+                  <span class="material-symbols-outlined text-primary text-5xl mb-6">handyman</span>
+                <h3 class="font-title-md text-title-md text-primary mb-4">Muebles a Medida</h3>
+                  <p class="font-body-md text-on-surface-variant mb-8">Mobiliario personalizado para el hogar y oficina con materiales de alta gama.</p>
+                <button onclick="abrirCatalogoMuebles()" class="mt-auto bg-[#442a22] text-white px-6 py-2.5 rounded-lg flex items-center gap-2 hover:bg-[#5a382d] transition-colors font-medium text-sm" type="button">
+                       Ver catálogo de muebles <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+
                     </div>
                 </div>
             </div>
         </section>
+        <!-- Modal de Catálogo Completo -->
+        <dialog id="modalCatalogoCocinas" class="backdrop:bg-black/60 backdrop:backdrop-blur-sm p-0 rounded-2xl border border-[#e8dcd0] shadow-2xl max-w-5xl w-[92%] max-h-[90vh] bg-[#faf6f0] overflow-hidden">
+            <div class="flex flex-col h-full max-h-[90vh]">
 
+                <!-- Header -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-[#e8dcd0] bg-white sticky top-0 z-10">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#442a22]">Catálogo de Cocinas Integrales</h3>
+                        <p class="text-xs text-gray-500">Explora todos nuestros diseños, materiales y acabados</p>
+                    </div>
+                    <button type="button" onclick="cerrarCatalogoCocinas()" class="text-2xl text-gray-400 hover:text-[#442a22] transition leading-none">&times;</button>
+                </div>
+
+                <!-- Contenido con scroll y más modelos -->
+                <div class="p-6 overflow-y-auto">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+                        <!-- Tarjeta 1 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500" alt="Cocina Roble Minimalista" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Cocina Roble Minimalista</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Gabinetes lisos con apertura gola (sin tiradores) y mesón en cuarzo blanco resistente.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cocina%20Roble%20Minimalista" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 2 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=500" alt="Cocina Clásica Campestre" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Cocina Clásica Campestre</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Estructura en madera sólida tratada con alacenas de vidrio y amplia isla central.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cocina%20Clásica%20Campestre" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 3 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500" alt="Cocina Premium con Barra" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Cocina Premium con Barra</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Iluminación LED integrada, torre de hornos empotrada y barra desayunadora.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cocina%20Premium%20con%20Barra" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 4 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=500" alt="Cocina Industrial Grafito" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Cocina Industrial Grafito</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Combinación de acabados mate oscuros, detalles metálicos y repisas flotantes.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cocina%20Industrial%20Grafito" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 5 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500" alt="Cocina Nórdica Escandinava" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Cocina Nórdica Escandinava</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Tonos claros que maximizan la luz natural, ideal para apartamentos o espacios compactos.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cocina%20Nórdica%20Escandinava" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta 6 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500" alt="Cocina Integral Tipo Loft" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Cocina Abierta Tipo Loft</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Integración fluida con el área social y muebles altos de gran capacidad.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cocina%20Abierta%20Tipo%20Loft" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </dialog>
+        <!-- Modal de Catálogo de Closets y Armarios -->
+        <dialog id="modalCatalogoClosets" class="backdrop:bg-black/60 backdrop:backdrop-blur-sm p-0 rounded-2xl border border-[#e8dcd0] shadow-2xl max-w-5xl w-[92%] max-h-[90vh] bg-[#faf6f0] overflow-hidden">
+            <div class="flex flex-col h-full max-h-[90vh]">
+
+                <!-- Header -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-[#e8dcd0] bg-white sticky top-0 z-10">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#442a22]">Catálogo de Closets y Armarios</h3>
+                        <p class="text-xs text-gray-500">Diseños funcionales y optimizados a la medida de tu espacio</p>
+                    </div>
+                    <button type="button" onclick="cerrarCatalogoClosets()" class="text-2xl text-gray-400 hover:text-[#442a22] transition leading-none">&times;</button>
+                </div>
+
+                <!-- Contenido con scroll y modelos de closets -->
+                <div class="p-6 overflow-y-auto">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+                        <!-- Modelo 1 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1558997519-83ea9252def8?w=500" alt="Walk-in Closet Moderno" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Walk-in Closet Premium</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Vestidor abierto con iluminación LED en repisas, zapateros inclinados e isla central para accesorios.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Walk-in%20Closet%20Premium" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Modelo 2 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500" alt="Closet Puertas Corredizas" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Closet Puertas Corredizas</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Ideal para ahorrar espacio, con sistema de riel silencioso y una puerta con espejo de cuerpo entero.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Closet%20Puertas%20Corredizas" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Modelo 3 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500" alt="Armario Empotrado Minimalista" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Armario Empotrado de Techo a Piso</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Aprovechamiento total de altura con maleteros superiores y gavetas con cierre suave (push-to-open).</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Armario%20Empotrado" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Modelo 4 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=500" alt="Closet Estilo Industrial" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Closet Abierto Industrial</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Estructura metálica en negro mate combinada con madera cálida, ideal para habitaciones modernas.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Closet%20Abierto%20Industrial" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Modelo 5 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1540518614846-7ede433c4ef0?w=500" alt="Armario Escandinavo Blanco" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Armario Nórdico en Roble Claro</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Tonos claros que aportan amplitud y luminosidad, con divisiones internas para ropa corta y larga.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Armario%20Nórdico%20en%20Roble%20Claro" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Modelo 6 -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500" alt="Closet Esquinero a Medida" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-[#442a22] text-sm">Closet Esquinero en L</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Diseñado para esquinas difíciles, maximizando la capacidad de almacenamiento con pantaloneros extraíbles.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Closet%20Esquinero%20en%20L" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </dialog>
+        <!-- Modal de Catálogo de Muebles a Medida -->
+<dialog id="modalCatalogoMuebles" class="backdrop:bg-black/60 backdrop:backdrop-blur-sm p-0 rounded-2xl border border-[#e8dcd0] shadow-2xl max-w-5xl w-[92%] max-h-[90vh] bg-[#faf6f0] overflow-hidden">
+    <div class="flex flex-col h-full max-h-[90vh]">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between px-6 py-4 border-b border-[#e8dcd0] bg-white sticky top-0 z-10">
+            <div>
+                <h3 class="text-xl font-bold text-[#442a22]">Catálogo de Muebles a Medida</h3>
+                <p class="text-xs text-gray-500">Mobiliario personalizado en madera para sala, comedor, dormitorio y oficina</p>
+            </div>
+            <button type="button" onclick="cerrarCatalogoMuebles()" class="text-2xl text-gray-400 hover:text-[#442a22] transition leading-none">&times;</button>
+        </div>
+
+        <!-- Contenido con scroll y catálogo variado -->
+        <div class="p-6 overflow-y-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+                <!-- 1. Camas -->
+                <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500" alt="Cama King Flotante" class="w-full h-44 object-cover">
+                    <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Dormitorio</span>
+                            <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Cama Flotante con Nocheros</h4>
+                            <p class="text-xs text-gray-600 mt-1">Estructura en roble macizo con cabecero tapizado e iluminación LED perimetral oculta.</p>
+                        </div>
+                        <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cama%20Flotante%20con%20Nocheros" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                            Cotizar este diseño
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. Comedores y Mesas -->
+                <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500" alt="Juego de Comedor" class="w-full h-44 object-cover">
+                    <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Comedor</span>
+                            <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Mesa de Comedor y Sillas</h4>
+                            <p class="text-xs text-gray-600 mt-1">Mesa en madera maciza con acabado natural y juego de sillas ergonómicas tapizadas.</p>
+                        </div>
+                        <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Mesa%20de%20Comedor%20y%20Sillas" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                            Cotizar este diseño
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Centros de TV y Entretenimiento -->
+                <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                    <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=500" alt="Centro de Entretenimiento" class="w-full h-44 object-cover">
+                    <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Sala</span>
+                            <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Panel de TV Flotante y Repisas</h4>
+                            <p class="text-xs text-gray-600 mt-1">Panel decorativo alistonado con mueble flotante para consolas y pasacables oculto.</p>
+                        </div>
+                        <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Panel%20de%20TV%20Flotante" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                            Cotizar este diseño
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. Escritorios y Home Office -->
+                <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                    <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=500" alt="Escritorio Ejecutivo" class="w-full h-44 object-cover">
+                    <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Oficina / Estudio</span>
+                            <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Escritorio Ejecutivo a Medida</h4>
+                            <p class="text-xs text-gray-600 mt-1">Superficie amplia con cajoneras de seguridad y compartimento para gestión eléctrica.</p>
+                        </div>
+                        <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Escritorio%20Ejecutivo" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                            Cotizar este diseño
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Bibliotecas y Organizadores -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <!-- Aquí cambias la ruta de la imagen -->
+                            <img src="~/images/cama.jpeg" alt="Cama de madera" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Dormitorio</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Cama de Madera a Medida</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Estructura sólida en madera tratada con acabados naturales.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Cama%20de%20Madera" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!--5. Organizadores y Estantería -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/organizador.jpeg" alt="Organizador de madera" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Almacenamiento</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Organizador Multiusos a Medida</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Mueble organizador con divisiones modulares ideal para optimizar espacios.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Organizador%20Multiusos" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 5. Organizadores y Estantería -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/organiza.jpeg" alt="Organizador de madera" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Almacenamiento</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Organizador Multiusos a Medida</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Mueble organizador con divisiones modulares ideal para optimizar espacios.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Organizador%20Multiusos" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 5. Mesitas de Noche -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/mesita.jpeg" alt="Mesita de noche de madera" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Dormitorio</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Mesita de Noche Moderna</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Diseño compacto en madera maciza con cajón de riel suave y repisa inferior.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Mesita%20de%20Noche" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 5. Juegos de Comedor -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/room.jpeg" alt="Juego de Comedor" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Comedor</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Juego de Comedor Elegance</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Mesa robusta en madera maciza con acabados finos y juego de sillas a juego.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Juego%20de%20Comedor" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 5. Sillas de Comedor -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/sillas.jpeg" alt="Sillas de madera" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Comedor / Sala</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Juego de Sillas Ergonómicas</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Estructura en madera sólida de alta resistencia con acabados suaves y tapizado opcional.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Juego%20de%20Sillas" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 5. Armarios y Closets -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/closet.jpeg" alt="Closet " class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Dormitorio</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Closet a Medida</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Diseño con divisiones interiores personalizadas, zapatero y acabados en madera de roble.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Closet%20en%20Roble" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 5. Armarios y Closets -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/Wooden.jpeg" alt="Closet " class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Dormitorio</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Closet a Medida</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Diseño con divisiones interiores personalizadas, zapatero y acabados en madera de roble.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Closet%20en%20Roble" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                        <!-- 5. Estanterías y Libreros -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/estanteria.jpeg" alt="Estantería de madera" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Almacenamiento / Decoración</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Estantería Decorativa a Medida</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Estructura firme en madera maciza con niveles amplios, ideal para libros y decoración.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20la%20Estantería%20Decorativa" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+                            </div>
+                        </div>
+                <!-- 6. Muebles de Baño -->
+                        <div class="bg-white rounded-xl border border-[#e8dcd0] overflow-hidden flex flex-col shadow-sm hover:shadow-md transition">
+                            <img src="~/images/vanity.jpeg" alt="Mueble de Baño" class="w-full h-44 object-cover">
+                            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-[#df934f] uppercase tracking-wider">Baño</span>
+                                    <h4 class="font-bold text-[#442a22] text-sm mt-0.5">Vanity / Mueble de Baño RH</h4>
+                                    <p class="text-xs text-gray-600 mt-1">Madera con tratamiento resistente a la humedad (RH), gavetas organizadoras y espejo con luz.</p>
+                                </div>
+                                <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Mueble%20de%20Baño" target="_blank" class="w-full text-center text-xs font-semibold bg-[#442a22] hover:bg-[#5a382d] text-white py-2.5 rounded-lg transition">
+                                    Cotizar este diseño
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                      </div>
+
+                </div>
+
+            </div>
+        </dialog>
         <!-- Trabajos Section -->
         <section class="py-16 md:py-24 bg-white" id="trabajos">
             <div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
@@ -312,21 +757,76 @@
     </footer>
 
     <script>
-        // Micro-interactions and Menu Toggle with null-checks
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+            const modalCocinas = document.getElementById('modalCatalogoCocinas');
 
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('flex');
+            function abrirCatalogoCocinas() {
+                modalCocinas.showModal();
+            }
 
-                const icon = menuBtn.querySelector('span');
-                if (icon) {
-                    icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+            function cerrarCatalogoCocinas() {
+                modalCocinas.close();
+            }
+
+            // Cerrar haciendo clic afuera del contenido
+            modalCocinas.addEventListener('click', (e) => {
+                const rect = modalCocinas.getBoundingClientRect();
+                const dentro = (
+                    rect.top <= e.clientY &&
+                    e.clientY <= rect.top + rect.height &&
+                    rect.left <= e.clientX &&
+                    e.clientX <= rect.left + rect.width
+                );
+                if (!dentro) {
+                    modalCocinas.close();
                 }
             });
-        }
+            //Catalogo de closets
+            const modalClosets = document.getElementById('modalCatalogoClosets');
+
+            function abrirCatalogoClosets() {
+                modalClosets.showModal();
+            }
+
+            function cerrarCatalogoClosets() {
+                modalClosets.close();
+            }
+
+            // Cerrar haciendo clic afuera del recuadro
+            modalClosets.addEventListener('click', (e) => {
+                const rect = modalClosets.getBoundingClientRect();
+                const dentro = (
+                    rect.top <= e.clientY &&
+                    e.clientY <= rect.top + rect.height &&
+                    rect.left <= e.clientX &&
+                    e.clientX <= rect.left + rect.width
+                );
+                if (!dentro) {
+                    modalClosets.close();
+                }
+            });
+            //catalogo de muebles
+            const modalMuebles = document.getElementById('modalCatalogoMuebles');
+
+            function abrirCatalogoMuebles() {
+                modalMuebles.showModal();
+            }
+
+            function cerrarCatalogoMuebles() {
+                modalMuebles.close();
+            }
+
+            modalMuebles.addEventListener('click', (e) => {
+                const r = modalMuebles.getBoundingClientRect();
+                const fuera = (
+                    e.clientY < r.top ||
+                    e.clientY > r.bottom ||
+                    e.clientX < r.left ||
+                    e.clientX > r.right
+                );
+                if (fuera) {
+                    modalMuebles.close();
+                }
+            });
     </script>
     <!-- CHATBOT CARPINTEC -->
     <div id="chatbot-container"

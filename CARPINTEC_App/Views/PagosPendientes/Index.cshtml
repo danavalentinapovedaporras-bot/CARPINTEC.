@@ -1,0 +1,389 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CARPINTEC - Pagos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+        darkMode: "class",
+        theme: {
+        extend: {
+        "colors": {
+        "on-secondary-fixed": "#321200",
+        "on-background": "#201a18",
+        "on-tertiary-container": "#e2cca2",
+        "secondary": "#9a4600",
+        "surface-variant": "#ede0dc",
+        "error": "#ba1a1a",
+        "on-tertiary": "#ffffff",
+        "error-container": "#ffdad6",
+        "background": "#fff8f6",
+        "tertiary-fixed-dim": "#dac49b",
+        "secondary-fixed-dim": "#ffb68d",
+        "tertiary": "#4d3f20",
+        "primary-fixed-dim": "#ffb68c",
+        "on-secondary-fixed-variant": "#763400",
+        "tertiary-container": "#665635",
+        "surface-container-lowest": "#ffffff",
+        "outline": "#877369",
+        "inverse-surface": "#362f2c",
+        "primary": "#6c2f00",
+        "outline-variant": "#dac2b6",
+        "surface-tint": "#934b19",
+        "secondary-container": "#fd8a3e",
+        "surface-container": "#f9ebe7",
+        "surface-bright": "#fff8f6",
+        "primary-fixed": "#ffdbc9",
+        "on-secondary-container": "#672c00",
+        "on-error-container": "#93000a",
+        "on-primary": "#ffffff",
+        "on-surface-variant": "#54433a",
+        "inverse-primary": "#ffb68c",
+        "surface-dim": "#e4d7d4",
+        "on-primary-container": "#ffc29f",
+        "on-error": "#ffffff",
+        "on-tertiary-fixed": "#251a01",
+        "tertiary-fixed": "#f7e0b5",
+        "secondary-fixed": "#ffdbc9",
+        "on-surface": "#201a18",
+        "on-tertiary-fixed-variant": "#544525",
+        "surface-container-low": "#fef1ed",
+        "primary-container": "#8b4513",
+        "surface-container-highest": "#ede0dc",
+        "surface-container-high": "#f3e5e1",
+        "on-secondary": "#ffffff",
+        "on-primary-fixed-variant": "#753401",
+        "inverse-on-surface": "#fbeeea",
+        "surface": "#fff8f6",
+        "on-primary-fixed": "#321200"
+        },
+        "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem",
+        "20px": "20px"
+        },
+        "spacing": {
+        "margin-mobile": "16px",
+        "gutter": "24px",
+        "base": "8px",
+        "margin-desktop": "64px",
+        "container-max": "1280px"
+        },
+        "fontFamily": {
+        "label-md": [
+        "Work Sans"
+        ],
+        "body-lg": [
+        "Work Sans"
+        ],
+        "body-md": [
+        "Work Sans"
+        ],
+        "headline-lg-mobile": [
+        "Montserrat"
+        ],
+        "title-md": [
+        "Montserrat"
+        ],
+        "headline-lg": [
+        "Montserrat"
+        ],
+        "display-lg": [
+        "Montserrat"
+        ]
+        },
+        "fontSize": {
+        "label-md": [
+        "14px",
+        {
+        "lineHeight": "20px",
+        "letterSpacing": "0.05em",
+        "fontWeight": "500"
+        }
+        ],
+        "body-lg": [
+        "18px",
+        {
+        "lineHeight": "28px",
+        "fontWeight": "400"
+        }
+        ],
+        "body-md": [
+        "16px",
+        {
+        "lineHeight": "24px",
+        "fontWeight": "400"
+        }
+        ],
+        "headline-lg-mobile": [
+        "24px",
+        {
+        "lineHeight": "32px",
+        "fontWeight": "700"
+        }
+        ],
+        "title-md": [
+        "20px",
+        {
+        "lineHeight": "28px",
+        "fontWeight": "600"
+        }
+        ],
+        "headline-lg": [
+        "32px",
+        {
+        "lineHeight": "40px",
+        "fontWeight": "700"
+        }
+        ],
+        "display-lg": [
+        "48px",
+        {
+        "lineHeight": "56px",
+        "letterSpacing": "-0.02em",
+        "fontWeight": "700"
+        }
+        ]
+        },
+        boxShadow: {
+        'soft': '0 8px 30px rgba(0,0,0,0.04)',
+        }
+        },
+        },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <style>
+        body {
+        min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col pt-20 pb-24 md:pb-0">
+    <!-- TopAppBar -->
+    <header class="bg-primary text-on-primary font-title-md text-title-md shadow-sm border-b-4 border-primary-container fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20">
+        <div class="flex items-center gap-4">
+            <button class="md:hidden hover:bg-secondary transition-colors p-2 rounded-full scale-95 active:scale-90 transition-transform">
+                <span class="material-symbols-outlined" data-icon="menu">menu</span>
+            </button>
+            <a href="javascript:history.back()"
+               class="flex items-center gap-2">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <div class="font-display-lg text-display-lg-mobile tracking-tighter text-on-primary">
+                CARPINTEC
+            </div>
+        </div>
+        <nav class="hidden md:flex gap-6 items-center">
+            <a class="text-on-primary hover:text-primary-fixed transition-colors text-label-md font-label-md uppercase" href="#">Inicio</a>
+            <a class="text-on-primary hover:text-primary-fixed transition-colors text-label-md font-label-md uppercase" href="#">Acerca de</a>
+            <a class="text-on-primary hover:text-primary-fixed transition-colors text-label-md font-label-md uppercase" href="#">Contacto</a>
+        </nav>
+        <button class="hover:bg-secondary transition-colors p-2 rounded-full scale-95 active:scale-90 transition-transform">
+            <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-[1280px] w-full mx-auto px-margin-mobile md:px-margin-desktop py-8">
+        <div class="mb-8">
+            <h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Gestión de Pagos</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">Revisa y gestiona tus facturas por cobrar.</p>
+        </div>
+        <!-- Summary Section -->
+        <div class="bg-surface-container-lowest rounded-[20px] p-6 mb-10 shadow-soft border border-outline-variant flex flex-col md:flex-row gap-6 justify-between items-center">
+            <div class="text-center md:text-left flex-1">
+                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-1">Total Pendiente</span>
+                <h3 class="font-headline-lg text-headline-lg text-primary">$9,550.00</h3>
+            </div>
+            <div class="hidden md:block w-px h-16 bg-outline-variant"></div>
+            <div class="text-center md:text-left flex-1">
+                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-1">Próximo Vencimiento</span>
+                <h3 class="font-title-md text-title-md text-error">15 Oct 2023</h3>
+            </div>
+            <div class="hidden md:block w-px h-16 bg-outline-variant"></div>
+            <div class="text-center md:text-left flex-1">
+                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-1">Último Pago</span>
+                <h3 class="font-title-md text-title-md text-on-surface">$1,500.00 <span class="text-body-md text-on-surface-variant font-normal">(02 Oct)</span></h3>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-gutter mb-12">
+            <!-- Invoice Card 1 -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-[20px] p-6 flex flex-col shadow-soft hover:shadow-lg transition-shadow duration-300">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-4">
+                        <img alt="Armarios Empotrados"
+                             class="w-16 h-16 object-cover rounded-lg border border-outline-variant"
+                             src="~/images/armario.jpeg">                        <div>
+                            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-1">Factura</span>
+                            <h2 class="font-title-md text-title-md text-primary">#INV-2023-089</h2>
+                        </div>
+                    </div>
+                    <span class="bg-error-container text-on-error-container font-label-md text-label-md px-4 py-1.5 rounded-full border border-error flex items-center gap-1 shadow-sm"><span class="material-symbols-outlined text-[16px]">warning</span> Vencida</span>
+                </div>
+                <div class="mb-6 flex-grow">
+                    <p class="font-title-md text-body-lg text-on-surface mb-1">Proyecto: Armarios Empotrados Residencial</p>
+                    <p class="font-body-md text-body-md text-on-surface mb-4">Vencimiento: <strong class="text-error">15 Oct 2023</strong></p>
+                    <div class="bg-surface-container-low rounded-lg p-4 space-y-2">
+                        <div class="flex justify-between text-body-md text-on-surface-variant">
+                            <span>Subtotal</span>
+                            <span>$4,000.00</span>
+                        </div>
+                        <div class="flex justify-between text-body-md text-on-surface-variant">
+                            <span>Impuestos (IVA 12.5%)</span>
+                            <span>$500.00</span>
+                        </div>
+                        <div class="flex justify-between text-title-md font-semibold text-primary pt-2 border-t border-outline-variant mt-2">
+                            <span>Total a Pagar</span>
+                            <span>$4,500.00</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full bg-primary text-on-primary font-title-md text-body-lg py-4 px-6 rounded-[20px] hover:bg-secondary transition-colors duration-200 shadow-md">
+                    Pagar ahora
+                </button>
+            </div>
+            <!-- Invoice Card 2 -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-[20px] p-6 flex flex-col shadow-soft hover:shadow-lg transition-shadow duration-300">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-4">
+                        <img alt="Mesa de Comedor"
+                             class="w-16 h-16 object-cover rounded-lg border border-outline-variant"
+                             src="~/images/mesa.jpeg">                        <div>
+                            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-1">Factura</span>
+                            <h2 class="font-title-md text-title-md text-primary">#INV-2023-092</h2>
+                        </div>
+                    </div>
+                    <span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-4 py-1.5 rounded-full border border-secondary flex items-center gap-1 shadow-sm"><span class="material-symbols-outlined text-[16px]">schedule</span> Pendiente</span>
+                </div>
+                <div class="mb-6 flex-grow">
+                    <p class="font-title-md text-body-lg text-on-surface mb-1">Proyecto: Mesa de Comedor Roble</p>
+                    <p class="font-body-md text-body-md text-on-surface mb-4">Vencimiento: <strong>28 Oct 2023</strong></p>
+                    <div class="bg-surface-container-low rounded-lg p-4 space-y-2">
+                        <div class="flex justify-between text-body-md text-on-surface-variant">
+                            <span>Subtotal</span>
+                            <span>$1,111.11</span>
+                        </div>
+                        <div class="flex justify-between text-body-md text-on-surface-variant">
+                            <span>Impuestos (IVA 12.5%)</span>
+                            <span>$138.89</span>
+                        </div>
+                        <div class="flex justify-between text-title-md font-semibold text-primary pt-2 border-t border-outline-variant mt-2">
+                            <span>Total a Pagar</span>
+                            <span>$1,250.00</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full bg-primary text-on-primary font-title-md text-body-lg py-4 px-6 rounded-[20px] hover:bg-secondary transition-colors duration-200 shadow-md">
+                    Pagar ahora
+                </button>
+            </div>
+            <!-- Invoice Card 3 -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-[20px] p-6 flex flex-col shadow-soft hover:shadow-lg transition-shadow duration-300">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-surface-container rounded-lg border border-outline-variant flex items-center justify-center text-on-surface-variant">
+                            <span class="material-symbols-outlined text-3xl">door_open</span>
+                        </div>
+                        <div>
+                            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider block mb-1">Factura</span>
+                            <h2 class="font-title-md text-title-md text-primary">#INV-2023-095</h2>
+                        </div>
+                    </div>
+                    <span class="bg-secondary-container text-on-secondary-container font-label-md text-label-md px-4 py-1.5 rounded-full border border-secondary flex items-center gap-1 shadow-sm"><span class="material-symbols-outlined text-[16px]">schedule</span> Pendiente</span>
+                </div>
+                <div class="mb-6 flex-grow">
+                    <p class="font-title-md text-body-lg text-on-surface mb-1">Proyecto: Puertas Interiores a Medida</p>
+                    <p class="font-body-md text-body-md text-on-surface mb-4">Vencimiento: <strong>05 Nov 2023</strong></p>
+                    <div class="bg-surface-container-low rounded-lg p-4 space-y-2">
+                        <div class="flex justify-between text-body-md text-on-surface-variant">
+                            <span>Subtotal</span>
+                            <span>$3,377.78</span>
+                        </div>
+                        <div class="flex justify-between text-body-md text-on-surface-variant">
+                            <span>Impuestos (IVA 12.5%)</span>
+                            <span>$422.22</span>
+                        </div>
+                        <div class="flex justify-between text-title-md font-semibold text-primary pt-2 border-t border-outline-variant mt-2">
+                            <span>Total a Pagar</span>
+                            <span>$3,800.00</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full bg-primary text-on-primary font-title-md text-body-lg py-4 px-6 rounded-[20px] hover:bg-secondary transition-colors duration-200 shadow-md">
+                    Pagar ahora
+                </button>
+            </div>
+        </div>
+        <!-- Payment History Section -->
+        <div class="bg-surface-container-lowest rounded-[20px] p-6 shadow-soft border border-outline-variant">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-title-md text-title-md text-primary">Historial Reciente</h2>
+                <a class="text-secondary font-label-md text-label-md hover:underline flex items-center gap-1" href="#">Ver todos <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+            </div>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center py-3 border-b border-outline-variant">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-secondary bg-secondary-container p-2 rounded-full">check_circle</span>
+                        <div>
+                            <h4 class="font-title-md text-body-md text-on-surface">#INV-2023-085</h4>
+                            <p class="font-body-md text-sm text-on-surface-variant">Sillas de Comedor Nogal</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-title-md text-body-md text-primary">$850.00</p>
+                        <p class="font-body-md text-sm text-on-surface-variant">Pagado: 02 Oct 2023</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center py-3">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-secondary bg-secondary-container p-2 rounded-full">check_circle</span>
+                        <div>
+                            <h4 class="font-title-md text-body-md text-on-surface">#INV-2023-082</h4>
+                            <p class="font-body-md text-sm text-on-surface-variant">Mueble de TV Moderno</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-title-md text-body-md text-primary">$1,200.00</p>
+                        <p class="font-body-md text-sm text-on-surface-variant">Pagado: 25 Sep 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="md:hidden bg-surface text-primary font-label-md text-label-md shadow-lg border-t-2 border-outline-variant fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 rounded-t-[20px]">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all scale-110 duration-300" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="dashboard">dashboard</span>
+            <span>Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all scale-110 duration-300" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="request_quote">request_quote</span>
+            <span>Quotes</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all scale-110 duration-300" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="local_shipping">local_shipping</span>
+            <span>Orders</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary transition-all scale-110 duration-300" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+            <span>Catalog</span>
+        </a>
+        <a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-[20px] px-4 py-1 hover:text-secondary transition-all scale-110 duration-300" href="#">
+            <span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+            <span>Profile</span>
+        </a>
+    </nav>
+</body></html>

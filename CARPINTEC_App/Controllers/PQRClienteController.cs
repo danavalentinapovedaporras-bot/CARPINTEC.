@@ -3,27 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CARPINTEC_App.Controllers
 {
-    public class RebastecimientoController : Controller
+    public class PQRClienteController : Controller
     {
-        // GET: RebastecimientoController
+        // GET: PQRClienteController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: RebastecimientoController/Details/5
+        // GET: PQRClienteController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: RebastecimientoController/Create
+        // GET: PQRClienteController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RebastecimientoController/Create
+        // POST: PQRClienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -38,13 +38,13 @@ namespace CARPINTEC_App.Controllers
             }
         }
 
-        // GET: RebastecimientoController/Edit/5
+        // GET: PQRClienteController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: RebastecimientoController/Edit/5
+        // POST: PQRClienteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -59,13 +59,13 @@ namespace CARPINTEC_App.Controllers
             }
         }
 
-        // GET: RebastecimientoController/Delete/5
+        // GET: PQRClienteController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: RebastecimientoController/Delete/5
+        // POST: PQRClienteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

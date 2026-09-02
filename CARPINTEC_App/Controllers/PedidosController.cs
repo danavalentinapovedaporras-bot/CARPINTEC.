@@ -1,4 +1,5 @@
 ﻿using CARPINTEC_App.Data;
+using CARPINTEC_App.Models;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,87 @@ namespace CARPINTEC_App.Controllers
             _context = context;
         }
 
-        // GET: PedidosController
-        public ActionResult Index()
+        // GET: PedidosController (Vista principal)
+
+        public async Task<IActionResult> Index(string estado = "Todas", int page = 1)
         {
-            return View();
+            int pageSize = 10;
+
+            // --- 1. MÉTRICAS PARA LAS 4 TARJETAS ---
+            ViewBag.TotalActivos = await _context.Pedidos.CountAsync();
+            ViewBag.EnProduccionCount = await _context.Pedidos.Where(p => p.Estado == "En Producción").CountAsync();
+            ViewBag.PendientesEntregaCount = await _context.Pedidos.Where(p => p.Estado == "Pendiente Entrega").CountAsync();
+
+            decimal valorEnCurso = await _context.Pedidos
+                .Where(p => p.Estado != "Entregado" && p.Estado != "Cancelado")
+                .SumAsync(p => (decimal?)p.ValorTotal) ?? 0;
+
+            ViewBag.ValorEnCursoFormatted = valorEnCurso.ToString("N2");
+
+            // --- NUEVO: CARGAR LA LISTA DE CLIENTES PARA EL SELECTOR DEL MODAL ---
+            ViewBag.ListaClientes = await _context.Clientes.ToListAsync();
+
+            // --- 2. CONSULTA DE LA TABLA CON PAGINACIÓN Y FILTROS ---
+            var query = _context.Pedidos.Include(p => p.IdClienteNavigation).AsQueryable();
+
+            if (!string.IsNullOrEmpty(estado) && estado != "Todas")
+            {
+                query = query.Where(p => p.Estado == estado);
+            }
+
+            int totalRegistros = await query.CountAsync();
+            var registros = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.EstadoActual = estado;
+            ViewBag.PageCurrent = page;
+            ViewBag.TotalPages = (int)Math.Ceiling(decimal.Divide(totalRegistros, pageSize));
+
+            return View(registros);
         }
 
+        // POST: PedidosController/GuardarPedido (Procesa el formulario del modal directamente)
+        [HttpPost]
+        public async Task<IActionResult> GuardarPedido(Pedido pedido)
+        {
+            // 1. Limpiamos las validaciones de navegación
+            ModelState.Remove("IdClienteNavigation");
+            ModelState.Remove("IdCotizacionNavigation");
+            ModelState.Remove("DetallePedidos");
+            ModelState.Remove("ManoObras");
+            ModelState.Remove("Venta");
+
+            // Si tu base de datos exige un IdCotizacion y no lo estás pidiendo en el form, 
+            // le asignamos un valor por defecto que exista en tu tabla Cotizacion (ej: 1)
+            if (pedido.IdCotizacion == 0)
+            {
+                pedido.IdCotizacion = 1;
+            }
+
+            pedido.FechaRegistro = DateTime.Now;
+
+            // 2. Comprobamos si el modelo pasa las reglas de validación
+            if (ModelState.IsValid)
+            {
+                _context.Pedidos.Add(pedido);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            // 3. SI HAY UN ERROR DE VALIDACIÓN: Imprimimos en la consola de Visual Studio 
+            // exactamente qué campo está fallando
+            foreach (var state in ModelState.Values)
+            {
+                foreach (var error in state.Errors)
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR DE VALIDACIÓN: " + error.ErrorMessage);
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
         // GET: PedidosController/Details/5
         public ActionResult Details(int id)
         {
@@ -33,21 +109,6 @@ namespace CARPINTEC_App.Controllers
         public ActionResult Create()
         {
             return View();
-        }
-
-        // POST: PedidosController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: PedidosController/Edit/5
@@ -91,6 +152,7 @@ namespace CARPINTEC_App.Controllers
                 return View();
             }
         }
+
         public IActionResult ExportarExcel()
         {
             var pedidos = _context.Pedidos
@@ -130,13 +192,13 @@ namespace CARPINTEC_App.Controllers
                 encabezado.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                 int fila = 5;
-               
 
                 foreach (var pedido in pedidos)
                 {
                     hoja.Cell(fila, 1).Value = pedido.CodigoPedido;
-                    hoja.Cell(fila, 2).Value = pedido.IdClienteNavigation.Nombre + " " +
-                                               pedido.IdClienteNavigation.Apellido;
+                    hoja.Cell(fila, 2).Value = (pedido.IdClienteNavigation != null)
+                        ? pedido.IdClienteNavigation.Nombre + " " + pedido.IdClienteNavigation.Apellido
+                        : "Sin Cliente";
                     hoja.Cell(fila, 3).Value = pedido.FechaSolicitud.ToString("dd/MM/yyyy");
                     hoja.Cell(fila, 4).Value = pedido.FechaEntrega.ToString("dd/MM/yyyy");
                     hoja.Cell(fila, 5).Value = pedido.Estado;
@@ -164,8 +226,6 @@ namespace CARPINTEC_App.Controllers
                         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                         "Pedidos.xlsx");
                 }
-
-               
             }
         }
     }

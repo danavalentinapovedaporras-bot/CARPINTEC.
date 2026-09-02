@@ -37,5 +37,5 @@ public partial class Cliente
 
     public virtual ICollection<Pqr> Pqrs { get; set; } = new List<Pqr>();
 
-    public virtual ICollection<Ventum> Venta { get; set; } = new List<Ventum>();
+    public virtual ICollection<Venta> Ventas { get; set; } = new List<Venta>();
 }
