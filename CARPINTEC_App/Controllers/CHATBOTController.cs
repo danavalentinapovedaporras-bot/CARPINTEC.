@@ -109,7 +109,7 @@ namespace CARPINTEC_App.Controllers
                      pregunta.Contains("cotizaciones"))
             {
 
-                var cotizaciones = await _context.Cotizacions
+                var cotizaciones = await _context.Cotizaciones
                     .Take(5)
                     .ToListAsync();
 
